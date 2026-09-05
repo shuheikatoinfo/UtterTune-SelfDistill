@@ -247,13 +247,14 @@ any audio was selected, no result rests on that choice.
   catch pool (11). The author's answers, the drop list and the reinstatements are released with the
   item files (`screening_dryrun_author.json`, `screening_dropped.json`).
 
-  Grading is done **on the server** (the collection endpoint), not in the browser: the answer key
-  is never sent to the client, so a candidate cannot read it out of the page. If the grading
-  request fails (network error, endpoint unavailable) the session is allowed to continue and is
-  recorded as `unverified`; every response is re-graded offline from the collection log before
-  payment and before entering the analysis, and `unverified` sessions that fail the offline
-  grading are excluded there. This fail-open behaviour is a payment-fairness measure, not a
-  loosening of the criterion.
+  Grading is done **on the server** — a Cloudflare Pages Function on the same origin as the study
+  site — and not in the browser: the answer key is never sent to the client, so a candidate cannot
+  read it out of the page. Judgements are stored server-side as they are made, with the browser's
+  local copy kept only as the rater's own safety net and unsent judgements retried. If the grading
+  request fails the session is allowed to continue and is recorded as `unverified`; every response
+  is re-graded offline before payment and before entering the analysis, and `unverified` sessions
+  that fail that grading are excluded there. This fail-open behaviour is a payment-fairness
+  measure, not a loosening of the criterion.
 - **All raters judge all 787 stimuli.** Judgments are not divided among raters. This is what
   makes κ computable over the entire stimulus set rather than over an overlap subset.
 - **Task: three-way, collapsed to binary for the primary outcome.** The rater is shown the
