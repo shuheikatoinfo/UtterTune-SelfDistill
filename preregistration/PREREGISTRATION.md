@@ -161,7 +161,7 @@ UtterTune adapter was trained on JSUT+JVS, so JVS is excluded as a reference eve
 
 Each word-unit is synthesized under the single voice its hash assigns (§3), so cells A–D span 27,
 31, 28 and 30 of the 42 held-out references respectively. The 472 judgements are split into **6
-blocks of 80** (§4), about 20 min each; with the 10-item gate a first session fits in half an
+blocks of 80** (§4), about 20 min each; with the 20-item gate a first session fits in half an
 hour. Each stimulus is judged by five raters: 30 block-assignments, about 10 h of judging in total
 (JPY ~50,000 at JPY 5,000/h) plus screening for roughly 10 admitted raters.
 
@@ -200,15 +200,16 @@ any audio was selected, no result rests on that choice.
   admitted are reported. Self-declared credentials are not a substitute for the test.
 
   *Amendment, 2026-09-05 (before any rater was admitted and before any listening data existed).*
-  The gate is **10 items** at **9/10**, and each block additionally carries **6 catch trials**.
+  The gate is **20 items** at **19/20**, and each block additionally carries **6 catch trials**.
 
   *Why split it.* A gate can only test ability at the moment of admission; it cannot tell whether a
   rater kept listening for the next hundred judgements. A short gate plus ongoing checks tests both,
-  for fewer known-answer items in total than a long gate alone.
+  and the checks cost six judgements per block rather than a second sitting.
 
-  *Gate (10 items).* 頭高 3 / 中高 2 / 平板 3 / 尾高 2, gold balanced 5/5, in the same three-choice
-  format and ＼/￣ notation as the study. Ten items cannot express a 95% cut exactly; 9/10 leaves
-  one item of slack for a mishandled keypress.
+  *Gate (20 items).* 5 items in each of 頭高 / 中高 / 平板 / 尾高, gold balanced 10/10, in the same
+  three-choice format and ＼/￣ notation as the study. 19/20 leaves one item of slack for a
+  mishandled keypress — the author slipped on 2 of 36 in the dry runs — without admitting a
+  candidate who cannot hear a contrast.
 
   *Catch trials (6 per block).* Four are known-answer items from the same verified pool as the gate;
   two are items already in that block, presented again under a different blind id, to measure
@@ -242,8 +243,8 @@ any audio was selected, no result rests on that choice.
   or a slipped answer, and the answer file cannot tell them apart. Of 36 candidates, 5 were dropped
   — four where the base did not render the dictionary accent (三時, 一人, 汁物, 二回) and one whose
   reading itself was wrong (茄子, rendered ナス) — and 2 (手紙, 魚) were reinstated when the
-  re-listen found the audio correct after all. The surviving 31 items form the gate (10) and the
-  catch pool (21). The author's answers, the drop list and the reinstatements are released with the
+  re-listen found the audio correct after all. The surviving 31 items form the gate (20) and the
+  catch pool (11). The author's answers, the drop list and the reinstatements are released with the
   item files (`screening_dryrun_author.json`, `screening_dropped.json`).
 
   Grading is done **on the server** (the collection endpoint), not in the browser: the answer key
