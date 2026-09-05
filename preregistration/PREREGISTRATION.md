@@ -156,14 +156,15 @@ UtterTune adapter was trained on JSUT+JVS, so JVS is excluded as a reference eve
 | 2 | B — data-free vs recorded-data (AR) | CosyVoice2 difficult × {**UtterTune released**, Ours} × 50 | 100 |
 | 3 | C — cross-architecture (diffusion) | Irodori difficult × {No-edit, Ours} × 50 | 100 |
 | 4 | D — locality (AR) | Sarashina katakana × {No-edit, Ours} × 50 | 100 |
-| 5 | Attention checks | duplicate-consistency items, ≈5% (§4) | 22 |
-| | **Total** | | **472** |
+| 5 | Attention checks | duplicate-consistency items, ≈5% (§4) | 23 |
+| | **Total** | | **473** |
 
 Each word-unit is synthesized under the single voice its hash assigns (§3), so cells A–D span 27,
-31, 28 and 30 of the 42 held-out references respectively. The 472 judgements are split into **6
-blocks of 80** (§4), about 20 min each; with the 20-item gate a first session fits in half an
-hour. Each stimulus is judged by five raters: 30 block-assignments, about 10 h of judging in total
-(JPY ~50,000 at JPY 5,000/h) plus screening for roughly 10 admitted raters.
+31, 28 and 30 of the 42 held-out references respectively. The 473 judgements are split into **5
+blocks of 95–98** (§4) — 99–102 with the four known-answer catch trials each block carries — about
+25 min each; with the 20-item gate a first session fits in half an hour. Each stimulus is judged by
+five raters: 25 block-assignments, about 10.5 h of judging in total (JPY ~52,000 at JPY 5,000/h)
+plus the gate for every candidate screened, admitted or not.
 
 An Irodori katakana locality cell (200 stimuli) was specified in an earlier draft and removed
 before any listening data was collected: it repeated cell D's question on a second backbone and
@@ -200,26 +201,25 @@ any audio was selected, no result rests on that choice.
   admitted are reported. Self-declared credentials are not a substitute for the test.
 
   *Amendment, 2026-09-05 (before any rater was admitted and before any listening data existed).*
-  The gate is **20 items** at **19/20**, and each block additionally carries **6 catch trials**.
+  The gate is **20 items** at **19/20**, and each block additionally carries **4 catch trials**.
 
   *Why split it.* A gate can only test ability at the moment of admission; it cannot tell whether a
   rater kept listening for the next hundred judgements. A short gate plus ongoing checks tests both,
-  and the checks cost six judgements per block rather than a second sitting.
+  and the checks cost four judgements per block rather than a second sitting.
 
   *Gate (20 items).* 5 items in each of 頭高 / 中高 / 平板 / 尾高, gold balanced 10/10, in the same
   three-choice format and ＼/￣ notation as the study. 19/20 leaves one item of slack for a
   mishandled keypress — the author slipped on 2 of 36 in the dry runs — without admitting a
   candidate who cannot hear a contrast.
 
-  *Catch trials (6 per block).* Four are known-answer items from the same verified pool as the gate;
-  two are items already in that block, presented again under a different blind id, to measure
-  within-rater consistency — two, not every item, since consistency does not need the whole block
-  judged twice. They ship as an ordinary cell with ordinary blind ids and are placed at per-block
+  *Catch trials (4 per block).* Known-answer items from the same verified pool as the gate. The
+  blocks already carry 23 duplicate-consistency items of their own, so within-rater consistency is
+  measured there and is not duplicated here; what those duplicates cannot do is separate a careful
+  rater from a consistent guesser, which is what a known answer tests. They ship as an ordinary cell with ordinary blind ids and are placed at per-block
   jittered positions, never first and never adjacent, with each repeat kept well away from the item
-  it repeats; nothing in the page or its network traffic marks a judgement as a check. A rater
-  scoring **below 5/6** on the known-answer catch trials is reported and excluded from the primary
-  analysis; the repeat pairs are reported as a within-rater agreement rate and are not an exclusion
-  criterion.
+  it repeats; nothing in the page or its network traffic marks a judgement as a check. A rater scoring
+  **below 3/4** on these is reported and excluded from the primary analysis; the block's own
+  duplicate pairs are reported as a within-rater agreement rate and are not an exclusion criterion.
 
   *Coverage.* The original 20 items test the position of a word-internal downstep only; their own
   note records that heiban/odaka contrasts were excluded because the contrast is audible only on

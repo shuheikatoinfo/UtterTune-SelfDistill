@@ -10,31 +10,19 @@
   "block": 0,
   "blind_id": "c001",
   "kind": "known",
-  "source": "scr17",
-  "gold": "0"
- },
- {
-  "block": 0,
-  "blind_id": "c002",
-  "kind": "repeat",
-  "source": "D_sarashina_katakana/q0028"
- },
- {
-  "block": 0,
-  "blind_id": "c003",
-  "kind": "known",
   "source": "scr15",
   "gold": "0"
  },
  {
   "block": 0,
-  "blind_id": "c004",
-  "kind": "repeat",
-  "source": "A_sarashina_difficult/q0137"
+  "blind_id": "c002",
+  "kind": "known",
+  "source": "scr17",
+  "gold": "0"
  },
  {
   "block": 0,
-  "blind_id": "c005",
+  "blind_id": "c003",
   "kind": "known",
   "source": "scrc12",
   "gold": "1"
@@ -49,8 +37,9 @@
  {
   "block": 1,
   "blind_id": "c101",
-  "kind": "repeat",
-  "source": "C_irodori_difficult/q0084"
+  "kind": "known",
+  "source": "scrc06",
+  "gold": "1"
  },
  {
   "block": 1,
@@ -63,33 +52,22 @@
   "block": 1,
   "blind_id": "c103",
   "kind": "known",
-  "source": "scrc06",
+  "source": "scrc14",
   "gold": "1"
  },
  {
-  "block": 1,
-  "blind_id": "c104",
+  "block": 2,
+  "blind_id": "c200",
   "kind": "known",
   "source": "scrc14",
   "gold": "1"
  },
  {
-  "block": 1,
-  "blind_id": "c105",
-  "kind": "repeat",
-  "source": "C_irodori_difficult/q0042"
- },
- {
-  "block": 2,
-  "blind_id": "c200",
-  "kind": "repeat",
-  "source": "A_sarashina_difficult/q0004"
- },
- {
   "block": 2,
   "blind_id": "c201",
-  "kind": "repeat",
-  "source": "A_sarashina_difficult/q0117"
+  "kind": "known",
+  "source": "scr15",
+  "gold": "0"
  },
  {
   "block": 2,
@@ -106,31 +84,18 @@
   "gold": "0"
  },
  {
-  "block": 2,
-  "blind_id": "c204",
-  "kind": "known",
-  "source": "scr15",
-  "gold": "0"
- },
- {
-  "block": 2,
-  "blind_id": "c205",
-  "kind": "known",
-  "source": "scrc14",
-  "gold": "1"
- },
- {
   "block": 3,
   "blind_id": "c300",
-  "kind": "repeat",
-  "source": "B_cv2_datafree_vs_recorded/q0014"
+  "kind": "known",
+  "source": "scrc06",
+  "gold": "1"
  },
  {
   "block": 3,
   "blind_id": "c301",
   "kind": "known",
-  "source": "scrc06",
-  "gold": "1"
+  "source": "scr09",
+  "gold": "0"
  },
  {
   "block": 3,
@@ -142,22 +107,9 @@
  {
   "block": 3,
   "blind_id": "c303",
-  "kind": "repeat",
-  "source": "D_sarashina_katakana/q0045"
- },
- {
-  "block": 3,
-  "blind_id": "c304",
   "kind": "known",
   "source": "scrc14",
   "gold": "1"
- },
- {
-  "block": 3,
-  "blind_id": "c305",
-  "kind": "known",
-  "source": "scr09",
-  "gold": "0"
  },
  {
   "block": 4,
@@ -169,34 +121,22 @@
  {
   "block": 4,
   "blind_id": "c401",
-  "kind": "repeat",
-  "source": "B_cv2_datafree_vs_recorded/q0038"
- },
- {
-  "block": 4,
-  "blind_id": "c402",
-  "kind": "repeat",
-  "source": "D_sarashina_katakana/q0066"
- },
- {
-  "block": 4,
-  "blind_id": "c403",
   "kind": "known",
   "source": "scr17",
   "gold": "0"
  },
  {
   "block": 4,
-  "blind_id": "c404",
+  "blind_id": "c402",
   "kind": "known",
-  "source": "scrc07",
+  "source": "scr09",
   "gold": "0"
  },
  {
   "block": 4,
-  "blind_id": "c405",
+  "blind_id": "c403",
   "kind": "known",
-  "source": "scr09",
+  "source": "scrc07",
   "gold": "0"
  }
 ]
