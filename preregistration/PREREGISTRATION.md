@@ -227,10 +227,6 @@ any audio was selected, no result rests on that choice.
   in every run in which they appeared. The author's answers and the drop list are released with
   the item files (`screening_dryrun_author.json`, `screening_dropped.json`).
 
-  This is validity filtering of an instrument, carried out before any listening data existed, and
-  it selects on nothing the study measures. It does mean the author's own dry-run score carries no
-  information about how hard the frozen set is: the set was defined by those answers.
-
   *Threshold.* Accent type here is a categorical judgment, not a noisy perceptual one, so a listener
   who hears the contrast does not miss an unambiguous item by chance, and the burden is placed on
   the items rather than on a lenient cut-off. 19/20 leaves one item of slack for a mishandled
