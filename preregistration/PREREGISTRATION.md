@@ -161,7 +161,7 @@ UtterTune adapter was trained on JSUT+JVS, so JVS is excluded as a reference eve
 
 Each word-unit is synthesized under the single voice its hash assigns (§3), so cells A–D span 27,
 31, 28 and 30 of the 42 held-out references respectively. The 472 judgements are split into **6
-blocks of 80** (§4), about 20 min each; with the 20-item screening a first session fits in half an
+blocks of 80** (§4), about 20 min each; with the 10-item gate a first session fits in half an
 hour. Each stimulus is judged by five raters: 30 block-assignments, about 10 h of judging in total
 (JPY ~50,000 at JPY 5,000/h) plus screening for roughly 10 admitted raters.
 
@@ -200,37 +200,51 @@ any audio was selected, no result rests on that choice.
   admitted are reported. Self-declared credentials are not a substitute for the test.
 
   *Amendment, 2026-09-05 (before any rater was admitted and before any listening data existed).*
-  The screening is **20 items** and the threshold **19/20 (95%)**.
+  The gate is **10 items** at **9/10**, and each block additionally carries **6 catch trials**.
+
+  *Why split it.* A gate can only test ability at the moment of admission; it cannot tell whether a
+  rater kept listening for the next hundred judgements. A short gate plus ongoing checks tests both,
+  for fewer known-answer items in total than a long gate alone.
+
+  *Gate (10 items).* 頭高 3 / 中高 2 / 平板 3 / 尾高 2, gold balanced 5/5, in the same three-choice
+  format and ＼/￣ notation as the study. Ten items cannot express a 95% cut exactly; 9/10 leaves
+  one item of slack for a mishandled keypress.
+
+  *Catch trials (6 per block).* Four are known-answer items from the same verified pool as the gate;
+  two are items already in that block, presented again under a different blind id, to measure
+  within-rater consistency — two, not every item, since consistency does not need the whole block
+  judged twice. They ship as an ordinary cell with ordinary blind ids and are placed at per-block
+  jittered positions, never first and never adjacent, with each repeat kept well away from the item
+  it repeats; nothing in the page or its network traffic marks a judgement as a check. A rater
+  scoring **below 5/6** on the known-answer catch trials is reported and excluded from the primary
+  analysis; the repeat pairs are reported as a within-rater agreement rate and are not an exclusion
+  criterion.
 
   *Coverage.* The original 20 items test the position of a word-internal downstep only; their own
   note records that heiban/odaka contrasts were excluded because the contrast is audible only on
-  the following particle. The evaluation set is predominantly heiban, so the screening did not test
-  the distinction the study most depends on. The frozen set is 5 items in each of 頭高 / 中高 /
-  平板 / 尾高, gold balanced 10/10.
+  the following particle. The evaluation set is predominantly heiban, so that pool did not test the
+  distinction the study most depends on; heiban/odaka items were added, and gate and catch pool
+  both span all four accent types.
 
   *How the heiban/odaka items are built.* Not by requesting an accent. A first attempt asked the
-  adapter to render the same word once as heiban and once as odaka; that cannot work, and an
-  author dry run confirmed it did not — both members of all eight pairs were heard as the same
-  type. The contrast is realised on the following particle, outside the tagged span, so the control
-  signal cannot express it, and every word chosen happened to be odaka in the dictionary anyway.
-  The items that shipped instead have the base model read plain text, so each word comes out in its
-  dictionary type (pyopenjtalk: `acc==0` heiban, `acc==mora_size` odaka); the difficulty lies
-  entirely in what the rater is **shown** — that type, or the opposite member of the contrast. This
-  is the construction the original items already used, and it needs no controllable accent.
+  adapter to render the same word once as heiban and once as odaka; that cannot work, and an author
+  dry run confirmed it did not — both members of all eight pairs were heard as the same type. The
+  contrast is realised on the following particle, outside the tagged span, so the control signal
+  cannot express it, and every word chosen happened to be odaka in the dictionary anyway. The items
+  that shipped instead have the base model read plain text, so each word comes out in its dictionary
+  type (pyopenjtalk: `acc==0` heiban, `acc==mora_size` odaka); the difficulty lies entirely in what
+  the rater is **shown** — that type, or the opposite member of the contrast.
 
-  *Item validity.* An item is usable only if the audio actually carries the accent the item claims.
-  That does not follow from the synthesis request: of 36 candidates, **7 were dropped** — four
-  where the base did not render the dictionary accent (三時, 一人, 汁物, 二回), one whose reading
-  itself was wrong (茄子, rendered ナス), and two heiban words rendered with a fall (手紙, 魚).
-  Every clip was ASR-verified for its reading, and every clip was then judged by ear by the author
-  across two dry runs; the twenty items retained are those whose gold matched the author's verdict
-  in every run in which they appeared. The author's answers and the drop list are released with
-  the item files (`screening_dryrun_author.json`, `screening_dropped.json`).
-
-  *Threshold.* Accent type here is a categorical judgment, not a noisy perceptual one, so a listener
-  who hears the contrast does not miss an unambiguous item by chance, and the burden is placed on
-  the items rather than on a lenient cut-off. 19/20 leaves one item of slack for a mishandled
-  keypress or a moment of inattention without admitting a candidate who cannot hear a contrast.
+  *Item validity.* An item is usable only if the audio carries the accent the item claims, which
+  does not follow from the synthesis request. Every clip was ASR-verified for its reading and then
+  judged by ear by the author across two dry runs. Where a verdict disagreed with an item's gold,
+  the clip was **re-listened to before anything was discarded**: a disagreement can mean bad audio
+  or a slipped answer, and the answer file cannot tell them apart. Of 36 candidates, 5 were dropped
+  — four where the base did not render the dictionary accent (三時, 一人, 汁物, 二回) and one whose
+  reading itself was wrong (茄子, rendered ナス) — and 2 (手紙, 魚) were reinstated when the
+  re-listen found the audio correct after all. The surviving 31 items form the gate (10) and the
+  catch pool (21). The author's answers, the drop list and the reinstatements are released with the
+  item files (`screening_dryrun_author.json`, `screening_dropped.json`).
 
   Grading is done **on the server** (the collection endpoint), not in the browser: the answer key
   is never sent to the client, so a candidate cannot read it out of the page. If the grading

@@ -1,9 +1,13 @@
 {
- "scr02": "base did not render the dictionary accent",
- "scr04": "base did not render the dictionary accent",
- "scr08": "base did not render the dictionary accent",
- "scr11": "base did not render the dictionary accent",
- "scr19": "reading itself wrong: ナスビ rendered as ナス",
- "scrc03": "rendered with a fall, not heiban",
- "scrc05": "rendered with a fall, not heiban"
+ "dropped": {
+  "scr02": "re-listened: base did not render the dictionary accent",
+  "scr04": "re-listened: base did not render the dictionary accent",
+  "scr08": "re-listened: base did not render the dictionary accent",
+  "scr11": "re-listened: base did not render the dictionary accent",
+  "scr19": "reading itself wrong: ナスビ rendered as ナス (also caught by ASR)"
+ },
+ "reinstated_after_relisten": {
+  "scrc03": "re-listened: audio is heiban as the dictionary says; the dry-run answer was a slip",
+  "scrc05": "re-listened: audio is heiban as the dictionary says; the dry-run answer was a slip"
+ }
 }

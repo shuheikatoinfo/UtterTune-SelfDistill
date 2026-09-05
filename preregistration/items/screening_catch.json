@@ -1,0 +1,191 @@
+[
+ {
+  "id": "scrc12",
+  "word": "池",
+  "carrier": "池が話題になっていました。",
+  "reading": "イケ",
+  "accent_type": "尾高",
+  "shown_accent": "イケ＼",
+  "gold": "1"
+ },
+ {
+  "id": "scr09",
+  "word": "二冊",
+  "carrier": "全部で二冊になりました。",
+  "reading": "ニサツ",
+  "accent_type": "頭高",
+  "shown_accent": "ニサ'ツ",
+  "gold": "0"
+ },
+ {
+  "id": "scr17",
+  "word": "ドイツ",
+  "carrier": "ドイツについての本を読んでみたい。",
+  "reading": "ドイツ",
+  "accent_type": "頭高",
+  "shown_accent": "ドイ'ツ",
+  "gold": "0"
+ },
+ {
+  "id": "scrc07",
+  "word": "電車",
+  "carrier": "電車が話題になっていました。",
+  "reading": "デンシャ",
+  "accent_type": "平板",
+  "shown_accent": "デンシャ＼",
+  "gold": "0"
+ },
+ {
+  "id": "scr12",
+  "word": "当番",
+  "carrier": "当番に興味を持つ人が増えている。",
+  "reading": "トーバン",
+  "accent_type": "頭高",
+  "shown_accent": "ト'ーバン",
+  "gold": "1"
+ },
+ {
+  "id": "scr07",
+  "word": "委員",
+  "carrier": "委員のことがずっと気になっていた。",
+  "reading": "イイン",
+  "accent_type": "頭高",
+  "shown_accent": "イイ'ン",
+  "gold": "0"
+ },
+ {
+  "id": "scrc04",
+  "word": "鳥",
+  "carrier": "鳥が話題になっていました。",
+  "reading": "トリ",
+  "accent_type": "平板",
+  "shown_accent": "トリ￣",
+  "gold": "1"
+ },
+ {
+  "id": "scrc11",
+  "word": "店",
+  "carrier": "店が話題になっていました。",
+  "reading": "ミセ",
+  "accent_type": "尾高",
+  "shown_accent": "ミセ￣",
+  "gold": "0"
+ },
+ {
+  "id": "scrc02",
+  "word": "名前",
+  "carrier": "名前が話題になっていました。",
+  "reading": "ナマエ",
+  "accent_type": "平板",
+  "shown_accent": "ナマエ￣",
+  "gold": "1"
+ },
+ {
+  "id": "scrc05",
+  "word": "魚",
+  "carrier": "魚が話題になっていました。",
+  "reading": "サカナ",
+  "accent_type": "平板",
+  "shown_accent": "サカナ＼",
+  "gold": "0"
+ },
+ {
+  "id": "scrc10",
+  "word": "犬",
+  "carrier": "犬が話題になっていました。",
+  "reading": "イヌ",
+  "accent_type": "尾高",
+  "shown_accent": "イヌ＼",
+  "gold": "1"
+ },
+ {
+  "id": "scrc14",
+  "word": "足",
+  "carrier": "足が話題になっていました。",
+  "reading": "アシ",
+  "accent_type": "尾高",
+  "shown_accent": "アシ＼",
+  "gold": "1"
+ },
+ {
+  "id": "scrc13",
+  "word": "音",
+  "carrier": "音が話題になっていました。",
+  "reading": "オト",
+  "accent_type": "尾高",
+  "shown_accent": "オト￣",
+  "gold": "0"
+ },
+ {
+  "id": "scrc06",
+  "word": "時間",
+  "carrier": "時間が話題になっていました。",
+  "reading": "ジカン",
+  "accent_type": "平板",
+  "shown_accent": "ジカン￣",
+  "gold": "1"
+ },
+ {
+  "id": "scr16",
+  "word": "スペイン",
+  "carrier": "スペインがみんなの関心を集めている。",
+  "reading": "スペイン",
+  "accent_type": "中高",
+  "shown_accent": "スペ'イン",
+  "gold": "1"
+ },
+ {
+  "id": "scrc15",
+  "word": "山",
+  "carrier": "山が話題になっていました。",
+  "reading": "ヤマ",
+  "accent_type": "尾高",
+  "shown_accent": "ヤマ￣",
+  "gold": "0"
+ },
+ {
+  "id": "scr05",
+  "word": "三冊",
+  "carrier": "ここに三冊並べておきました。",
+  "reading": "サンサツ",
+  "accent_type": "中高",
+  "shown_accent": "サンサ'ツ",
+  "gold": "0"
+ },
+ {
+  "id": "scr18",
+  "word": "自動車",
+  "carrier": "自動車に興味を持つ人が増えている。",
+  "reading": "ジドーシャ",
+  "accent_type": "中高",
+  "shown_accent": "ジド'ーシャ",
+  "gold": "1"
+ },
+ {
+  "id": "scr15",
+  "word": "ロンドン",
+  "carrier": "ロンドンがみんなの関心を集めている。",
+  "reading": "ロンドン",
+  "accent_type": "頭高",
+  "shown_accent": "ロンド'ン",
+  "gold": "0"
+ },
+ {
+  "id": "scr14",
+  "word": "胡椒",
+  "carrier": "胡椒をきっかけに会話がはずんだ。",
+  "reading": "コショー",
+  "accent_type": "中高",
+  "shown_accent": "コショ'ー",
+  "gold": "1"
+ },
+ {
+  "id": "scr13",
+  "word": "デパート",
+  "carrier": "デパートのことをていねいに教えてくれた。",
+  "reading": "デパート",
+  "accent_type": "中高",
+  "shown_accent": "デ'パート",
+  "gold": "0"
+ }
+]

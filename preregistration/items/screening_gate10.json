@@ -1,0 +1,102 @@
+[
+ {
+  "id": "scr10",
+  "word": "会議",
+  "carrier": "会議という話題で意見が分かれた。",
+  "reading": "カイギ",
+  "accent_type": "頭高",
+  "shown_accent": "カ'イギ",
+  "gold": "1",
+  "source": "screening_20"
+ },
+ {
+  "id": "scrc00",
+  "word": "桜",
+  "carrier": "桜が話題になっていました。",
+  "reading": "サクラ",
+  "accent_type": "平板",
+  "shown_accent": "サクラ￣",
+  "gold": "1",
+  "source": "screening_v4"
+ },
+ {
+  "id": "scr06",
+  "word": "靴下",
+  "carrier": "靴下のことがずっと気になっていた。",
+  "reading": "クツシタ",
+  "accent_type": "中高",
+  "shown_accent": "クツ'シタ",
+  "gold": "1",
+  "source": "screening_20"
+ },
+ {
+  "id": "scr00",
+  "word": "カシオ",
+  "carrier": "カシオに関する記事を読んでみた。",
+  "reading": "カシオ",
+  "accent_type": "頭高",
+  "shown_accent": "カ'シオ",
+  "gold": "1",
+  "source": "screening_20"
+ },
+ {
+  "id": "scrc01",
+  "word": "車",
+  "carrier": "車が話題になっていました。",
+  "reading": "クルマ",
+  "accent_type": "平板",
+  "shown_accent": "クルマ＼",
+  "gold": "0",
+  "source": "screening_v4"
+ },
+ {
+  "id": "scrc08",
+  "word": "花",
+  "carrier": "花が話題になっていました。",
+  "reading": "ハナ",
+  "accent_type": "尾高",
+  "shown_accent": "ハナ＼",
+  "gold": "1",
+  "source": "screening_v4"
+ },
+ {
+  "id": "scr01",
+  "word": "ジャカルタ",
+  "carrier": "ジャカルタのことがずっと気になっていた。",
+  "reading": "ジャカルタ",
+  "accent_type": "中高",
+  "shown_accent": "ジャカル'タ",
+  "gold": "0",
+  "source": "screening_20"
+ },
+ {
+  "id": "scrc03",
+  "word": "手紙",
+  "carrier": "手紙が話題になっていました。",
+  "reading": "テガミ",
+  "accent_type": "平板",
+  "shown_accent": "テガミ＼",
+  "gold": "0",
+  "source": "screening_v4"
+ },
+ {
+  "id": "scrc09",
+  "word": "川",
+  "carrier": "川が話題になっていました。",
+  "reading": "カワ",
+  "accent_type": "尾高",
+  "shown_accent": "カワ￣",
+  "gold": "0",
+  "source": "screening_v4"
+ },
+ {
+  "id": "scr03",
+  "word": "バター",
+  "carrier": "バターのことをふと思い出したよ。",
+  "reading": "バター",
+  "accent_type": "頭高",
+  "shown_accent": "バタ'ー",
+  "gold": "0",
+  "source": "screening_20"
+ }
+]
