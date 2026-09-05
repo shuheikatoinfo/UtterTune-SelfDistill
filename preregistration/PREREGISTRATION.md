@@ -142,11 +142,13 @@ the **42 held-out refs42 speakers** (ReazonSpeech; ERes2Net→UMAP→k-means(42)
 filtered on SNR, pause spectral flatness, transcript CER and zero fraction; trimmed;
 `eval_speakers/selected_42.json`). Each **word-unit** — every arm of one word in one cell — is
 synthesized under speaker(s) fixed by a hash **before any audio was selected**:
-`spk(cell, word, k) = sha256("SPK:"+cell+":"+word+":"+k) mod 42`, k=1 re-hashed until it differs
-from k=0 (`items/speaker_assignment42.json`, `scripts/eval/assign_speakers42.py`). Cells A, C and D
-use two speakers per word (k = 0, 1); cell B uses one. Speaker is therefore nested in word-unit,
-the paired comparisons stay within a speaker, and the word-clustered bootstrap (§5) already
-accounts for it. The 42 voices replace the earlier two-voice design (§7.1); no voice is chosen by
+`spk(cell, word, k) = sha256("SPK:"+cell+":"+word+":"+k) mod 42`, k = 0 only
+(`items/speaker_assignment42.json`, `scripts/eval/assign_speakers42.py`): **one voice per word-unit in
+every cell**. (An earlier draft gave cells A, C and D a second voice, k = 1; it was dropped before any
+audio was selected, since with 27–31 voices per cell a second rendition of the same word adds no
+independent cluster while doubling rater cost.) Speaker is therefore nested in word-unit, the paired
+comparisons stay within a speaker, and the word-clustered bootstrap (§5) already accounts for it.
+The 42 voices replace the earlier two-voice design (§7.1); no voice is chosen by
 ear and none appears in any training or teacher-generation stage of any backbone. The released
 UtterTune adapter was trained on JSUT+JVS, so JVS is excluded as a reference everywhere.
 
@@ -320,10 +322,10 @@ any audio was selected, no result rests on that choice.
   would present a resolution limit as a finding. **E1 and E2 are therefore reported as a point
   estimate with a 95 % CI and no verdict**, and a reader who wants to apply a margin can apply
   their own to the interval.
-- **Bootstrap unit is the WORD, not the row.** Cells with two speakers present the same 50 words
-  twice; resampling rows independently treats two renditions of one word as two independent
-  observations and yields a CI roughly √2 too narrow. All intervals are cluster-bootstrapped by
-  word, 10,000 resamples.
+- **Bootstrap unit is the WORD, not the row.** The arms of a word are paired renditions of one
+  item, and the 23 duplicate-consistency items present a word a second time; resampling rows
+  independently would treat those as independent observations and narrow the CI. All intervals are
+  cluster-bootstrapped by word (and by rater, §4), 10,000 resamples.
 - **Effect sizes:** risk difference and odds ratio, both with 95% word-clustered bootstrap CI.
 - **Secondary automatic measure:** PASQA, in the bounded role fixed in §5.3. It is never a
   confirmatory outcome.
