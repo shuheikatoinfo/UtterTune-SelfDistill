@@ -1,0 +1,307 @@
+{
+ "cells": {
+  "A_sarashina_difficult": {
+   "units": 50,
+   "arms": 3
+  },
+  "B_cv2_datafree_vs_recorded": {
+   "units": 50,
+   "arms": 2
+  },
+  "C_irodori_difficult": {
+   "units": 50,
+   "arms": 2
+  },
+  "D_sarashina_katakana": {
+   "units": 50,
+   "arms": 2
+  }
+ },
+ "block_size_target": 90,
+ "checks_per_block": 5,
+ "raters_per_stimulus": 5,
+ "n_blocks": 5,
+ "order": "sha256(cell:index) ascending, dealt round-robin",
+ "blocks": [
+  {
+   "block": 0,
+   "stimuli": 90,
+   "checks": 5,
+   "judgments": 95,
+   "units": {
+    "A_sarashina_difficult": [
+     2,
+     4,
+     5,
+     6,
+     17,
+     20,
+     21,
+     25,
+     38,
+     44
+    ],
+    "B_cv2_datafree_vs_recorded": [
+     0,
+     10,
+     13,
+     15,
+     17,
+     18,
+     31,
+     34,
+     37,
+     41
+    ],
+    "C_irodori_difficult": [
+     6,
+     9,
+     12,
+     17,
+     20,
+     23,
+     25,
+     26,
+     36,
+     46
+    ],
+    "D_sarashina_katakana": [
+     4,
+     5,
+     14,
+     17,
+     21,
+     23,
+     27,
+     34,
+     41,
+     48
+    ]
+   }
+  },
+  {
+   "block": 1,
+   "stimuli": 90,
+   "checks": 5,
+   "judgments": 95,
+   "units": {
+    "A_sarashina_difficult": [
+     9,
+     13,
+     22,
+     26,
+     28,
+     29,
+     32,
+     34,
+     43,
+     45
+    ],
+    "B_cv2_datafree_vs_recorded": [
+     7,
+     20,
+     22,
+     23,
+     29,
+     33,
+     36,
+     40,
+     42,
+     47
+    ],
+    "C_irodori_difficult": [
+     2,
+     3,
+     10,
+     24,
+     27,
+     28,
+     32,
+     42,
+     44,
+     48
+    ],
+    "D_sarashina_katakana": [
+     0,
+     1,
+     9,
+     11,
+     30,
+     31,
+     35,
+     38,
+     43,
+     49
+    ]
+   }
+  },
+  {
+   "block": 2,
+   "stimuli": 90,
+   "checks": 5,
+   "judgments": 95,
+   "units": {
+    "A_sarashina_difficult": [
+     0,
+     7,
+     8,
+     10,
+     16,
+     18,
+     23,
+     24,
+     41,
+     47
+    ],
+    "B_cv2_datafree_vs_recorded": [
+     1,
+     4,
+     14,
+     19,
+     21,
+     30,
+     32,
+     35,
+     39,
+     44
+    ],
+    "C_irodori_difficult": [
+     4,
+     14,
+     16,
+     22,
+     31,
+     33,
+     39,
+     40,
+     43,
+     47
+    ],
+    "D_sarashina_katakana": [
+     3,
+     7,
+     8,
+     10,
+     20,
+     26,
+     36,
+     37,
+     42,
+     47
+    ]
+   }
+  },
+  {
+   "block": 3,
+   "stimuli": 90,
+   "checks": 5,
+   "judgments": 95,
+   "units": {
+    "A_sarashina_difficult": [
+     3,
+     27,
+     31,
+     35,
+     36,
+     37,
+     40,
+     42,
+     46,
+     48
+    ],
+    "B_cv2_datafree_vs_recorded": [
+     5,
+     6,
+     9,
+     25,
+     27,
+     38,
+     45,
+     46,
+     48,
+     49
+    ],
+    "C_irodori_difficult": [
+     1,
+     5,
+     8,
+     13,
+     15,
+     18,
+     30,
+     34,
+     37,
+     49
+    ],
+    "D_sarashina_katakana": [
+     2,
+     15,
+     16,
+     22,
+     24,
+     25,
+     29,
+     33,
+     39,
+     40
+    ]
+   }
+  },
+  {
+   "block": 4,
+   "stimuli": 90,
+   "checks": 5,
+   "judgments": 95,
+   "units": {
+    "A_sarashina_difficult": [
+     1,
+     11,
+     12,
+     14,
+     15,
+     19,
+     30,
+     33,
+     39,
+     49
+    ],
+    "B_cv2_datafree_vs_recorded": [
+     2,
+     3,
+     8,
+     11,
+     12,
+     16,
+     24,
+     26,
+     28,
+     43
+    ],
+    "C_irodori_difficult": [
+     0,
+     7,
+     11,
+     19,
+     21,
+     29,
+     35,
+     38,
+     41,
+     45
+    ],
+    "D_sarashina_katakana": [
+     6,
+     12,
+     13,
+     18,
+     19,
+     28,
+     32,
+     44,
+     45,
+     46
+    ]
+   }
+  }
+ ]
+}

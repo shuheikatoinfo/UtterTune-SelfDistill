@@ -1,0 +1,13 @@
+{
+ "source": "$DATA/_handoff/joyo-bench/data/common_kanji_source.jsonl",
+ "source_sha256": "32a843f662c55f1876baf64f8dc3475cc7b777c576a8fea6b43a2343ff46e897",
+ "n": 472,
+ "criterion": "pyopenjtalk run_frontend reading of the target morpheme != benchmark gold (CP6 canon)",
+ "order": "sha256(key) ascending, first n",
+ "stats": {
+  "no_span": 0,
+  "no_token": 0,
+  "g2p_correct": 12609,
+  "train_collision": 14
+ }
+}

@@ -1,0 +1,11 @@
+{
+ "source": "data/derived/set472/items.jsonl",
+ "n_items": 424,
+ "n_components": 231,
+ "unit": "connected component of the (word, reading) bipartite graph",
+ "rule": "sha256('COMP:'+representative) % 4 == 0 -> selection",
+ "selection": 105,
+ "test": 319,
+ "purpose": "the CV2 adapter (and any other model choice) is decided on SELECTION only; TEST carries the reported numbers and no selection touches it",
+ "frozen": "before any adapter was measured on this set"
+}

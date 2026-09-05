@@ -161,7 +161,7 @@ UtterTune adapter was trained on JSUT+JVS, so JVS is excluded as a reference eve
 
 Each word-unit is synthesized under the single voice its hash assigns (§3), so cells A–D span 27,
 31, 28 and 30 of the 42 held-out references respectively. The 472 judgements are split into **6
-blocks of 80** (§4), about 20 min each; with the 36-item screening a first session fits in half an
+blocks of 80** (§4), about 20 min each; with the 20-item screening a first session fits in half an
 hour. Each stimulus is judged by five raters: 30 block-assignments, about 10 h of judging in total
 (JPY ~50,000 at JPY 5,000/h) plus screening for roughly 10 admitted raters.
 
@@ -200,24 +200,41 @@ any audio was selected, no result rests on that choice.
   admitted are reported. Self-declared credentials are not a substitute for the test.
 
   *Amendment, 2026-09-05 (before any rater was admitted and before any listening data existed).*
-  The screening was **36 items** and the threshold **36/36 (100%)**, for two reasons.
-  (i) *Coverage.* The original 20 items test the position of a word-internal downstep only; their
-  own note records that heiban/odaka contrasts were excluded because the contrast is audible only
-  on the following particle. But the evaluation set is predominantly heiban, so the screening did
-  not test the distinction the study most depends on. 16 items were added: 8 heiban/odaka minimal
-  pairs (端・山・心・時計・紙・音・足・女), each word in one fixed carrier sentence with a following
-  particle, rendered once as heiban and once as odaka. The presented type alternates by word, so
-  the candidate must recognise odaka as a target and not merely detect whether a fall is present.
-  Gold is balanced 18/18 over the 36 items.
-  (ii) *Threshold.* Accent type here is a categorical judgment, not a noisy perceptual one: a
-  listener who can hear the contrast does not miss an unambiguous item by chance. A sub-100%
-  threshold therefore buys no protection against unlucky experts; it only admits candidates who
-  cannot hear one of the contrasts. The threshold is legitimate **only if no item is ambiguous**,
-  so the burden is placed on the items instead: every clip was verified by ASR to say the intended
-  word (7 of the first 16 did not — the base model rendered 花/妹/男/言葉 as different words
-  entirely — and those four pairs were replaced, not merely re-drawn), and the whole set was then
-  answered by the author in the deployed interface, with any item the author found ambiguous
-  removed before recruitment opened.
+  The screening is **20 items** and the threshold **19/20 (95%)**.
+
+  *Coverage.* The original 20 items test the position of a word-internal downstep only; their own
+  note records that heiban/odaka contrasts were excluded because the contrast is audible only on
+  the following particle. The evaluation set is predominantly heiban, so the screening did not test
+  the distinction the study most depends on. The frozen set is 5 items in each of 頭高 / 中高 /
+  平板 / 尾高, gold balanced 10/10.
+
+  *How the heiban/odaka items are built.* Not by requesting an accent. A first attempt asked the
+  adapter to render the same word once as heiban and once as odaka; that cannot work, and an
+  author dry run confirmed it did not — both members of all eight pairs were heard as the same
+  type. The contrast is realised on the following particle, outside the tagged span, so the control
+  signal cannot express it, and every word chosen happened to be odaka in the dictionary anyway.
+  The items that shipped instead have the base model read plain text, so each word comes out in its
+  dictionary type (pyopenjtalk: `acc==0` heiban, `acc==mora_size` odaka); the difficulty lies
+  entirely in what the rater is **shown** — that type, or the opposite member of the contrast. This
+  is the construction the original items already used, and it needs no controllable accent.
+
+  *Item validity.* An item is usable only if the audio actually carries the accent the item claims.
+  That does not follow from the synthesis request: of 36 candidates, **7 were dropped** — four
+  where the base did not render the dictionary accent (三時, 一人, 汁物, 二回), one whose reading
+  itself was wrong (茄子, rendered ナス), and two heiban words rendered with a fall (手紙, 魚).
+  Every clip was ASR-verified for its reading, and every clip was then judged by ear by the author
+  across two dry runs; the twenty items retained are those whose gold matched the author's verdict
+  in every run in which they appeared. The author's answers and the drop list are released with
+  the item files (`screening_dryrun_author.json`, `screening_dropped.json`).
+
+  This is validity filtering of an instrument, carried out before any listening data existed, and
+  it selects on nothing the study measures. It does mean the author's own dry-run score carries no
+  information about how hard the frozen set is: the set was defined by those answers.
+
+  *Threshold.* Accent type here is a categorical judgment, not a noisy perceptual one, so a listener
+  who hears the contrast does not miss an unambiguous item by chance, and the burden is placed on
+  the items rather than on a lenient cut-off. 19/20 leaves one item of slack for a mishandled
+  keypress or a moment of inattention without admitting a candidate who cannot hear a contrast.
 
   Grading is done **on the server** (the collection endpoint), not in the browser: the answer key
   is never sent to the client, so a candidate cannot read it out of the page. If the grading

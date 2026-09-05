@@ -1,0 +1,202 @@
+[
+ {
+  "id": "scrc07",
+  "word": "電車",
+  "carrier": "電車が話題になっていました。",
+  "reading": "デンシャ",
+  "accent_type": "平板",
+  "shown_accent": "デンシャ＼",
+  "gold": "0",
+  "source": "screening_v4"
+ },
+ {
+  "id": "scr12",
+  "word": "当番",
+  "carrier": "当番に興味を持つ人が増えている。",
+  "reading": "トーバン",
+  "accent_type": "頭高",
+  "shown_accent": "ト'ーバン",
+  "gold": "1",
+  "source": "screening_20"
+ },
+ {
+  "id": "scr10",
+  "word": "会議",
+  "carrier": "会議という話題で意見が分かれた。",
+  "reading": "カイギ",
+  "accent_type": "頭高",
+  "shown_accent": "カ'イギ",
+  "gold": "1",
+  "source": "screening_20"
+ },
+ {
+  "id": "scrc00",
+  "word": "桜",
+  "carrier": "桜が話題になっていました。",
+  "reading": "サクラ",
+  "accent_type": "平板",
+  "shown_accent": "サクラ￣",
+  "gold": "1",
+  "source": "screening_v4"
+ },
+ {
+  "id": "scr06",
+  "word": "靴下",
+  "carrier": "靴下のことがずっと気になっていた。",
+  "reading": "クツシタ",
+  "accent_type": "中高",
+  "shown_accent": "クツ'シタ",
+  "gold": "1",
+  "source": "screening_20"
+ },
+ {
+  "id": "scr07",
+  "word": "委員",
+  "carrier": "委員のことがずっと気になっていた。",
+  "reading": "イイン",
+  "accent_type": "頭高",
+  "shown_accent": "イイ'ン",
+  "gold": "0",
+  "source": "screening_20"
+ },
+ {
+  "id": "scrc04",
+  "word": "鳥",
+  "carrier": "鳥が話題になっていました。",
+  "reading": "トリ",
+  "accent_type": "平板",
+  "shown_accent": "トリ￣",
+  "gold": "1",
+  "source": "screening_v4"
+ },
+ {
+  "id": "scr00",
+  "word": "カシオ",
+  "carrier": "カシオに関する記事を読んでみた。",
+  "reading": "カシオ",
+  "accent_type": "頭高",
+  "shown_accent": "カ'シオ",
+  "gold": "1",
+  "source": "screening_20"
+ },
+ {
+  "id": "scrc11",
+  "word": "店",
+  "carrier": "店が話題になっていました。",
+  "reading": "ミセ",
+  "accent_type": "尾高",
+  "shown_accent": "ミセ￣",
+  "gold": "0",
+  "source": "screening_v4"
+ },
+ {
+  "id": "scrc01",
+  "word": "車",
+  "carrier": "車が話題になっていました。",
+  "reading": "クルマ",
+  "accent_type": "平板",
+  "shown_accent": "クルマ＼",
+  "gold": "0",
+  "source": "screening_v4"
+ },
+ {
+  "id": "scrc02",
+  "word": "名前",
+  "carrier": "名前が話題になっていました。",
+  "reading": "ナマエ",
+  "accent_type": "平板",
+  "shown_accent": "ナマエ￣",
+  "gold": "1",
+  "source": "screening_v4"
+ },
+ {
+  "id": "scrc10",
+  "word": "犬",
+  "carrier": "犬が話題になっていました。",
+  "reading": "イヌ",
+  "accent_type": "尾高",
+  "shown_accent": "イヌ＼",
+  "gold": "1",
+  "source": "screening_v4"
+ },
+ {
+  "id": "scrc08",
+  "word": "花",
+  "carrier": "花が話題になっていました。",
+  "reading": "ハナ",
+  "accent_type": "尾高",
+  "shown_accent": "ハナ＼",
+  "gold": "1",
+  "source": "screening_v4"
+ },
+ {
+  "id": "scrc13",
+  "word": "音",
+  "carrier": "音が話題になっていました。",
+  "reading": "オト",
+  "accent_type": "尾高",
+  "shown_accent": "オト￣",
+  "gold": "0",
+  "source": "screening_v4"
+ },
+ {
+  "id": "scr01",
+  "word": "ジャカルタ",
+  "carrier": "ジャカルタのことがずっと気になっていた。",
+  "reading": "ジャカルタ",
+  "accent_type": "中高",
+  "shown_accent": "ジャカル'タ",
+  "gold": "0",
+  "source": "screening_20"
+ },
+ {
+  "id": "scrc09",
+  "word": "川",
+  "carrier": "川が話題になっていました。",
+  "reading": "カワ",
+  "accent_type": "尾高",
+  "shown_accent": "カワ￣",
+  "gold": "0",
+  "source": "screening_v4"
+ },
+ {
+  "id": "scr05",
+  "word": "三冊",
+  "carrier": "ここに三冊並べておきました。",
+  "reading": "サンサツ",
+  "accent_type": "中高",
+  "shown_accent": "サンサ'ツ",
+  "gold": "0",
+  "source": "screening_20"
+ },
+ {
+  "id": "scr14",
+  "word": "胡椒",
+  "carrier": "胡椒をきっかけに会話がはずんだ。",
+  "reading": "コショー",
+  "accent_type": "中高",
+  "shown_accent": "コショ'ー",
+  "gold": "1",
+  "source": "screening_20"
+ },
+ {
+  "id": "scr03",
+  "word": "バター",
+  "carrier": "バターのことをふと思い出したよ。",
+  "reading": "バター",
+  "accent_type": "頭高",
+  "shown_accent": "バタ'ー",
+  "gold": "0",
+  "source": "screening_20"
+ },
+ {
+  "id": "scr13",
+  "word": "デパート",
+  "carrier": "デパートのことをていねいに教えてくれた。",
+  "reading": "デパート",
+  "accent_type": "中高",
+  "shown_accent": "デ'パート",
+  "gold": "0",
+  "source": "screening_20"
+ }
+]
