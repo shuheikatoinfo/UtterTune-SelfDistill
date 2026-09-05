@@ -1,0 +1,921 @@
+{
+ "pairs": [
+  {
+   "pair_id": "sarashina_difficult_00",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_01",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_02",
+   "set": "sarashina_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_difficult_03",
+   "set": "sarashina_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_difficult_04",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_05",
+   "set": "sarashina_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_difficult_06",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_07",
+   "set": "sarashina_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_difficult_08",
+   "set": "sarashina_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_difficult_09",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_10",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_11",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_12",
+   "set": "sarashina_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_difficult_13",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_14",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_15",
+   "set": "sarashina_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_difficult_16",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_17",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_18",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_19",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_20",
+   "set": "sarashina_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_difficult_21",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_22",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_23",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_24",
+   "set": "sarashina_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_difficult_25",
+   "set": "sarashina_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_difficult_26",
+   "set": "sarashina_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_difficult_27",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_28",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_29",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_30",
+   "set": "sarashina_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_difficult_31",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_32",
+   "set": "sarashina_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_difficult_33",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_34",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_35",
+   "set": "sarashina_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_difficult_36",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_37",
+   "set": "sarashina_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_difficult_38",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_39",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_40",
+   "set": "sarashina_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_difficult_41",
+   "set": "sarashina_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_difficult_42",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_43",
+   "set": "sarashina_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_difficult_44",
+   "set": "sarashina_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_difficult_45",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_46",
+   "set": "sarashina_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_difficult_47",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_difficult_48",
+   "set": "sarashina_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_difficult_49",
+   "set": "sarashina_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_00",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_01",
+   "set": "sarashina_easy",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_easy_02",
+   "set": "sarashina_easy",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_easy_03",
+   "set": "sarashina_easy",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_easy_04",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_05",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_06",
+   "set": "sarashina_easy",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_easy_07",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_08",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_09",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_10",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_11",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_12",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_13",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_14",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_15",
+   "set": "sarashina_easy",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_easy_16",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_17",
+   "set": "sarashina_easy",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_easy_18",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_19",
+   "set": "sarashina_easy",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_easy_20",
+   "set": "sarashina_easy",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_easy_21",
+   "set": "sarashina_easy",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_easy_22",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_23",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_24",
+   "set": "sarashina_easy",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_easy_25",
+   "set": "sarashina_easy",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_easy_26",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_27",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_28",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_29",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_30",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_31",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_32",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_33",
+   "set": "sarashina_easy",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_easy_34",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_35",
+   "set": "sarashina_easy",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_easy_36",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_37",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_38",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_39",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_40",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_41",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_42",
+   "set": "sarashina_easy",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_easy_43",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_44",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_45",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_46",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_47",
+   "set": "sarashina_easy",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "sarashina_easy_48",
+   "set": "sarashina_easy",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "sarashina_easy_49",
+   "set": "sarashina_easy",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_00",
+   "set": "irodori_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "irodori_difficult_01",
+   "set": "irodori_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "irodori_difficult_02",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_03",
+   "set": "irodori_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "irodori_difficult_04",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_05",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_06",
+   "set": "irodori_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "irodori_difficult_07",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_08",
+   "set": "irodori_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "irodori_difficult_09",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_10",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_11",
+   "set": "irodori_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "irodori_difficult_12",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_13",
+   "set": "irodori_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "irodori_difficult_14",
+   "set": "irodori_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "irodori_difficult_15",
+   "set": "irodori_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "irodori_difficult_16",
+   "set": "irodori_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "irodori_difficult_17",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_18",
+   "set": "irodori_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "irodori_difficult_19",
+   "set": "irodori_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "irodori_difficult_20",
+   "set": "irodori_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "irodori_difficult_21",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_22",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_23",
+   "set": "irodori_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "irodori_difficult_24",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_25",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_26",
+   "set": "irodori_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "irodori_difficult_27",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_28",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_29",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_30",
+   "set": "irodori_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "irodori_difficult_31",
+   "set": "irodori_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "irodori_difficult_32",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_33",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_34",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_35",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_36",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_37",
+   "set": "irodori_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "irodori_difficult_38",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_39",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_40",
+   "set": "irodori_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "irodori_difficult_41",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_42",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_43",
+   "set": "irodori_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "irodori_difficult_44",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_45",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  },
+  {
+   "pair_id": "irodori_difficult_46",
+   "set": "irodori_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "irodori_difficult_47",
+   "set": "irodori_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "irodori_difficult_48",
+   "set": "irodori_difficult",
+   "A_is": "noedit",
+   "B_is": "ours"
+  },
+  {
+   "pair_id": "irodori_difficult_49",
+   "set": "irodori_difficult",
+   "A_is": "ours",
+   "B_is": "noedit"
+  }
+ ],
+ "attention": [
+  {
+   "pair_id": "attn_00",
+   "set": "attention",
+   "degraded_side": "A"
+  },
+  {
+   "pair_id": "attn_01",
+   "set": "attention",
+   "degraded_side": "B"
+  },
+  {
+   "pair_id": "attn_02",
+   "set": "attention",
+   "degraded_side": "A"
+  }
+ ]
+}

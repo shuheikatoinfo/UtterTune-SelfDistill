@@ -1,0 +1,102 @@
+{
+ "generated": "2026-08-28",
+ "rule": "PREREGISTRATION.md §2 source hierarchy (tiers 1-4). Records the author's pre-audio verification of every target accent type. Source files in the orchestrator repo are NOT modified (their sha256 in provenance.json stays valid); corrections are applied downstream from this file, so original and corrected targets are both auditable.",
+ "sets": {
+  "difficult": {
+   "n_items": 50,
+   "n_ok": 42,
+   "n_fix": 1,
+   "n_other_source": 7,
+   "n_excluded": 0,
+   "non_ok_items": [
+    {
+     "item_id": "difficult:011",
+     "original_target": "シンシャク￣",
+     "verdict": "fix",
+     "corrected_target": "シ＼ンシャク"
+    },
+    {
+     "item_id": "difficult:024",
+     "original_target": "ドクセンジョー￣",
+     "verdict": "other_source",
+     "corrected_target": "ドクセンジョー￣",
+     "source": "NHK類推(独壇場)",
+     "note": "NHK掲載の異表記「独壇場」からの類推。独擅場自体の見出しなし"
+    },
+    {
+     "item_id": "difficult:026",
+     "original_target": "コワク￣",
+     "verdict": "other_source",
+     "corrected_target": "コワク￣",
+     "source": "大辞林"
+    },
+    {
+     "item_id": "difficult:028",
+     "original_target": "カイレー￣",
+     "verdict": "other_source",
+     "corrected_target": "カイレー￣",
+     "source": "著者(辞典見出しなし)",
+     "note": "どの典拠にも見出しなし。著者(母語話者)の既定読み。音声聴取前に確定"
+    },
+    {
+     "item_id": "difficult:031",
+     "original_target": "シュンドー￣",
+     "verdict": "other_source",
+     "corrected_target": "シュンドー￣",
+     "source": "著者(辞典見出しなし)",
+     "note": "同上"
+    },
+    {
+     "item_id": "difficult:041",
+     "original_target": "キョ＼ーシュ",
+     "verdict": "other_source",
+     "corrected_target": "キョ＼ーシュ",
+     "source": "大辞林"
+    },
+    {
+     "item_id": "difficult:042",
+     "original_target": "リクリョク￣",
+     "verdict": "other_source",
+     "corrected_target": "リクリョク￣",
+     "source": "著者(辞典見出しなし)",
+     "note": "同上"
+    },
+    {
+     "item_id": "difficult:049",
+     "original_target": "オーウツ￣",
+     "verdict": "other_source",
+     "corrected_target": "オーウツ￣",
+     "source": "大辞林"
+    }
+   ]
+  },
+  "katakana": {
+   "n_items": 50,
+   "n_ok": 48,
+   "n_fix": 1,
+   "n_other_source": 1,
+   "n_excluded": 0,
+   "non_ok_items": [
+    {
+     "item_id": "katakana:006",
+     "original_target": "ハンバ＼ーグ",
+     "verdict": "other_source",
+     "corrected_target": "ハンバ＼ーグ",
+     "source": "OJAD"
+    },
+    {
+     "item_id": "katakana:031",
+     "original_target": "チ＼ケット",
+     "verdict": "fix",
+     "corrected_target": "チケ＼ット"
+    }
+   ]
+  }
+ },
+ "sensitivity_set_excluded_item_ids": [
+  "difficult:024",
+  "difficult:028",
+  "difficult:031",
+  "difficult:042"
+ ]
+}

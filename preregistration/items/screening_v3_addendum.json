@@ -1,0 +1,146 @@
+[
+ {
+  "id": "scrb00",
+  "word": "端",
+  "carrier": "端が少し欠けていた。",
+  "spoken_accent": "ハシ",
+  "shown_accent": "ハシ",
+  "gold": "1",
+  "note": "heiban vs odaka on the same word and carrier; audible only on the following particle. shown is either the spoken type (gold=1) or its opposite (gold=0)."
+ },
+ {
+  "id": "scrb01",
+  "word": "端",
+  "carrier": "端が少し欠けていた。",
+  "spoken_accent": "ハシ'",
+  "shown_accent": "ハシ",
+  "gold": "0",
+  "note": "heiban vs odaka on the same word and carrier; audible only on the following particle. shown is either the spoken type (gold=1) or its opposite (gold=0)."
+ },
+ {
+  "id": "scrb02",
+  "word": "山",
+  "carrier": "山が見えてきましたね。",
+  "spoken_accent": "ヤマ",
+  "shown_accent": "ヤマ'",
+  "gold": "0",
+  "note": "heiban vs odaka on the same word and carrier; audible only on the following particle. shown is either the spoken type (gold=1) or its opposite (gold=0)."
+ },
+ {
+  "id": "scrb03",
+  "word": "山",
+  "carrier": "山が見えてきましたね。",
+  "spoken_accent": "ヤマ'",
+  "shown_accent": "ヤマ'",
+  "gold": "1",
+  "note": "heiban vs odaka on the same word and carrier; audible only on the following particle. shown is either the spoken type (gold=1) or its opposite (gold=0)."
+ },
+ {
+  "id": "scrb04",
+  "word": "心",
+  "carrier": "心が少し軽くなった。",
+  "spoken_accent": "ココロ",
+  "shown_accent": "ココロ",
+  "gold": "1",
+  "note": "heiban vs odaka on the same word and carrier; audible only on the following particle. shown is either the spoken type (gold=1) or its opposite (gold=0)."
+ },
+ {
+  "id": "scrb05",
+  "word": "心",
+  "carrier": "心が少し軽くなった。",
+  "spoken_accent": "ココロ'",
+  "shown_accent": "ココロ",
+  "gold": "0",
+  "note": "heiban vs odaka on the same word and carrier; audible only on the following particle. shown is either the spoken type (gold=1) or its opposite (gold=0)."
+ },
+ {
+  "id": "scrb06",
+  "word": "時計",
+  "carrier": "時計が止まっているようだ。",
+  "spoken_accent": "トケー",
+  "shown_accent": "トケー'",
+  "gold": "0",
+  "note": "heiban vs odaka on the same word and carrier; audible only on the following particle. shown is either the spoken type (gold=1) or its opposite (gold=0)."
+ },
+ {
+  "id": "scrb07",
+  "word": "時計",
+  "carrier": "時計が止まっているようだ。",
+  "spoken_accent": "トケー'",
+  "shown_accent": "トケー'",
+  "gold": "1",
+  "note": "heiban vs odaka on the same word and carrier; audible only on the following particle. shown is either the spoken type (gold=1) or its opposite (gold=0)."
+ },
+ {
+  "id": "scrb08",
+  "word": "紙",
+  "carrier": "紙が机の上に置いてある。",
+  "spoken_accent": "カミ",
+  "shown_accent": "カミ",
+  "gold": "1",
+  "note": "heiban vs odaka on the same word and carrier; audible only on the following particle. shown is either the spoken type (gold=1) or its opposite (gold=0)."
+ },
+ {
+  "id": "scrb09",
+  "word": "紙",
+  "carrier": "紙が机の上に置いてある。",
+  "spoken_accent": "カミ'",
+  "shown_accent": "カミ",
+  "gold": "0",
+  "note": "heiban vs odaka on the same word and carrier; audible only on the following particle. shown is either the spoken type (gold=1) or its opposite (gold=0)."
+ },
+ {
+  "id": "scrb10",
+  "word": "音",
+  "carrier": "音が少しずつ小さくなった。",
+  "spoken_accent": "オト",
+  "shown_accent": "オト'",
+  "gold": "0",
+  "note": "heiban vs odaka on the same word and carrier; audible only on the following particle. shown is either the spoken type (gold=1) or its opposite (gold=0)."
+ },
+ {
+  "id": "scrb11",
+  "word": "音",
+  "carrier": "音が少しずつ小さくなった。",
+  "spoken_accent": "オト'",
+  "shown_accent": "オト'",
+  "gold": "1",
+  "note": "heiban vs odaka on the same word and carrier; audible only on the following particle. shown is either the spoken type (gold=1) or its opposite (gold=0)."
+ },
+ {
+  "id": "scrb12",
+  "word": "足",
+  "carrier": "足が痛くなってきた。",
+  "spoken_accent": "アシ",
+  "shown_accent": "アシ",
+  "gold": "1",
+  "note": "heiban vs odaka on the same word and carrier; audible only on the following particle. shown is either the spoken type (gold=1) or its opposite (gold=0)."
+ },
+ {
+  "id": "scrb13",
+  "word": "足",
+  "carrier": "足が痛くなってきた。",
+  "spoken_accent": "アシ'",
+  "shown_accent": "アシ",
+  "gold": "0",
+  "note": "heiban vs odaka on the same word and carrier; audible only on the following particle. shown is either the spoken type (gold=1) or its opposite (gold=0)."
+ },
+ {
+  "id": "scrb14",
+  "word": "女",
+  "carrier": "女が静かに立っていた。",
+  "spoken_accent": "オンナ",
+  "shown_accent": "オンナ'",
+  "gold": "0",
+  "note": "heiban vs odaka on the same word and carrier; audible only on the following particle. shown is either the spoken type (gold=1) or its opposite (gold=0)."
+ },
+ {
+  "id": "scrb15",
+  "word": "女",
+  "carrier": "女が静かに立っていた。",
+  "spoken_accent": "オンナ'",
+  "shown_accent": "オンナ'",
+  "gold": "1",
+  "note": "heiban vs odaka on the same word and carrier; audible only on the following particle. shown is either the spoken type (gold=1) or its opposite (gold=0)."
+ }
+]

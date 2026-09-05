@@ -1,0 +1,58 @@
+[
+ {
+  "idx": 8,
+  "judged_target": "パイプオルガン",
+  "old_tag": "パイプオ'ルガン",
+  "new_edit_surface": "教会",
+  "new_tag": "キョーカイ"
+ },
+ {
+  "idx": 11,
+  "judged_target": "ブランコ",
+  "old_tag": "ブ'ランコ",
+  "new_edit_surface": "公園",
+  "new_tag": "コーエン"
+ },
+ {
+  "idx": 13,
+  "judged_target": "シンフォニー",
+  "old_tag": "シ'ンフォニー",
+  "new_edit_surface": "劇場",
+  "new_tag": "ゲキジョー"
+ },
+ {
+  "idx": 23,
+  "judged_target": "テレフォン",
+  "old_tag": "テ'レフォン",
+  "new_edit_surface": "大事",
+  "new_tag": "ダイジ"
+ },
+ {
+  "idx": 26,
+  "judged_target": "ホテル",
+  "old_tag": "ホ'テル",
+  "new_edit_surface": "穏やか",
+  "new_tag": "オダ'ヤカ"
+ },
+ {
+  "idx": 34,
+  "judged_target": "ランプ",
+  "old_tag": "ラ'ンプ",
+  "new_edit_surface": "静か",
+  "new_tag": "シ'ズカ"
+ },
+ {
+  "idx": 40,
+  "judged_target": "キャビン",
+  "old_tag": "キャ'ビン",
+  "new_edit_surface": "山小屋",
+  "new_tag": "ヤマゴヤ"
+ },
+ {
+  "idx": 42,
+  "judged_target": "ドミノ",
+  "old_tag": "ド'ミノ",
+  "new_edit_surface": "静か",
+  "new_tag": "シ'ズカ"
+ }
+]

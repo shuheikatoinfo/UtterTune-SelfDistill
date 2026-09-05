@@ -1,0 +1,182 @@
+[
+ {
+  "id": "scr00",
+  "word": "カシオ",
+  "carrier": "カシオに関する記事を読んでみた。",
+  "true_reading": "カ'シオ",
+  "shown_accent": "カ'シオ",
+  "gold": "1",
+  "note": "base (no edit) renders the dictionary accent; the shown type is either that same type (gold=1) or a word-internal nucleus shift (gold=0). heiban/odaka contrasts are excluded: they are only audible on a following particle."
+ },
+ {
+  "id": "scr01",
+  "word": "ジャカルタ",
+  "carrier": "ジャカルタのことがずっと気になっていた。",
+  "true_reading": "ジャカ'ルタ",
+  "shown_accent": "ジャカル'タ",
+  "gold": "0",
+  "note": "base (no edit) renders the dictionary accent; the shown type is either that same type (gold=1) or a word-internal nucleus shift (gold=0). heiban/odaka contrasts are excluded: they are only audible on a following particle."
+ },
+ {
+  "id": "scr02",
+  "word": "三時",
+  "carrier": "三時までに戻ってきてね。",
+  "true_reading": "サン'ジ",
+  "shown_accent": "サン'ジ",
+  "gold": "1",
+  "note": "base (no edit) renders the dictionary accent; the shown type is either that same type (gold=1) or a word-internal nucleus shift (gold=0). heiban/odaka contrasts are excluded: they are only audible on a following particle."
+ },
+ {
+  "id": "scr03",
+  "word": "バター",
+  "carrier": "バターのことをふと思い出したよ。",
+  "true_reading": "バ'ター",
+  "shown_accent": "バタ'ー",
+  "gold": "0",
+  "note": "base (no edit) renders the dictionary accent; the shown type is either that same type (gold=1) or a word-internal nucleus shift (gold=0). heiban/odaka contrasts are excluded: they are only audible on a following particle."
+ },
+ {
+  "id": "scr04",
+  "word": "一人",
+  "carrier": "一人分の席を用意しておいた。",
+  "true_reading": "ヒト'リ",
+  "shown_accent": "ヒト'リ",
+  "gold": "1",
+  "note": "base (no edit) renders the dictionary accent; the shown type is either that same type (gold=1) or a word-internal nucleus shift (gold=0). heiban/odaka contrasts are excluded: they are only audible on a following particle."
+ },
+ {
+  "id": "scr05",
+  "word": "三冊",
+  "carrier": "ここに三冊並べておきました。",
+  "true_reading": "サン'サツ",
+  "shown_accent": "サンサ'ツ",
+  "gold": "0",
+  "note": "base (no edit) renders the dictionary accent; the shown type is either that same type (gold=1) or a word-internal nucleus shift (gold=0). heiban/odaka contrasts are excluded: they are only audible on a following particle."
+ },
+ {
+  "id": "scr06",
+  "word": "靴下",
+  "carrier": "靴下のことがずっと気になっていた。",
+  "true_reading": "クツ'シタ",
+  "shown_accent": "クツ'シタ",
+  "gold": "1",
+  "note": "base (no edit) renders the dictionary accent; the shown type is either that same type (gold=1) or a word-internal nucleus shift (gold=0). heiban/odaka contrasts are excluded: they are only audible on a following particle."
+ },
+ {
+  "id": "scr07",
+  "word": "委員",
+  "carrier": "委員のことがずっと気になっていた。",
+  "true_reading": "イ'イン",
+  "shown_accent": "イイ'ン",
+  "gold": "0",
+  "note": "base (no edit) renders the dictionary accent; the shown type is either that same type (gold=1) or a word-internal nucleus shift (gold=0). heiban/odaka contrasts are excluded: they are only audible on a following particle."
+ },
+ {
+  "id": "scr08",
+  "word": "汁物",
+  "carrier": "旬の汁物をたっぷり味わった。",
+  "true_reading": "シル'モノ",
+  "shown_accent": "シル'モノ",
+  "gold": "1",
+  "note": "base (no edit) renders the dictionary accent; the shown type is either that same type (gold=1) or a word-internal nucleus shift (gold=0). heiban/odaka contrasts are excluded: they are only audible on a following particle."
+ },
+ {
+  "id": "scr09",
+  "word": "二冊",
+  "carrier": "全部で二冊になりました。",
+  "true_reading": "ニ'サツ",
+  "shown_accent": "ニサ'ツ",
+  "gold": "0",
+  "note": "base (no edit) renders the dictionary accent; the shown type is either that same type (gold=1) or a word-internal nucleus shift (gold=0). heiban/odaka contrasts are excluded: they are only audible on a following particle."
+ },
+ {
+  "id": "scr10",
+  "word": "会議",
+  "carrier": "会議という話題で意見が分かれた。",
+  "true_reading": "カ'イギ",
+  "shown_accent": "カ'イギ",
+  "gold": "1",
+  "note": "base (no edit) renders the dictionary accent; the shown type is either that same type (gold=1) or a word-internal nucleus shift (gold=0). heiban/odaka contrasts are excluded: they are only audible on a following particle."
+ },
+ {
+  "id": "scr11",
+  "word": "二回",
+  "carrier": "もう二回も使ってしまった。",
+  "true_reading": "ニ'カイ",
+  "shown_accent": "ニカ'イ",
+  "gold": "0",
+  "note": "base (no edit) renders the dictionary accent; the shown type is either that same type (gold=1) or a word-internal nucleus shift (gold=0). heiban/odaka contrasts are excluded: they are only audible on a following particle."
+ },
+ {
+  "id": "scr12",
+  "word": "当番",
+  "carrier": "当番に興味を持つ人が増えている。",
+  "true_reading": "ト'ーバン",
+  "shown_accent": "ト'ーバン",
+  "gold": "1",
+  "note": "base (no edit) renders the dictionary accent; the shown type is either that same type (gold=1) or a word-internal nucleus shift (gold=0). heiban/odaka contrasts are excluded: they are only audible on a following particle."
+ },
+ {
+  "id": "scr13",
+  "word": "デパート",
+  "carrier": "デパートのことをていねいに教えてくれた。",
+  "true_reading": "デパ'ート",
+  "shown_accent": "デ'パート",
+  "gold": "0",
+  "note": "base (no edit) renders the dictionary accent; the shown type is either that same type (gold=1) or a word-internal nucleus shift (gold=0). heiban/odaka contrasts are excluded: they are only audible on a following particle."
+ },
+ {
+  "id": "scr14",
+  "word": "胡椒",
+  "carrier": "胡椒をきっかけに会話がはずんだ。",
+  "true_reading": "コショ'ー",
+  "shown_accent": "コショ'ー",
+  "gold": "1",
+  "note": "base (no edit) renders the dictionary accent; the shown type is either that same type (gold=1) or a word-internal nucleus shift (gold=0). heiban/odaka contrasts are excluded: they are only audible on a following particle."
+ },
+ {
+  "id": "scr15",
+  "word": "ロンドン",
+  "carrier": "ロンドンがみんなの関心を集めている。",
+  "true_reading": "ロ'ンドン",
+  "shown_accent": "ロンド'ン",
+  "gold": "0",
+  "note": "base (no edit) renders the dictionary accent; the shown type is either that same type (gold=1) or a word-internal nucleus shift (gold=0). heiban/odaka contrasts are excluded: they are only audible on a following particle."
+ },
+ {
+  "id": "scr16",
+  "word": "スペイン",
+  "carrier": "スペインがみんなの関心を集めている。",
+  "true_reading": "スペ'イン",
+  "shown_accent": "スペ'イン",
+  "gold": "1",
+  "note": "base (no edit) renders the dictionary accent; the shown type is either that same type (gold=1) or a word-internal nucleus shift (gold=0). heiban/odaka contrasts are excluded: they are only audible on a following particle."
+ },
+ {
+  "id": "scr17",
+  "word": "ドイツ",
+  "carrier": "ドイツについての本を読んでみたい。",
+  "true_reading": "ド'イツ",
+  "shown_accent": "ドイ'ツ",
+  "gold": "0",
+  "note": "base (no edit) renders the dictionary accent; the shown type is either that same type (gold=1) or a word-internal nucleus shift (gold=0). heiban/odaka contrasts are excluded: they are only audible on a following particle."
+ },
+ {
+  "id": "scr18",
+  "word": "自動車",
+  "carrier": "自動車に興味を持つ人が増えている。",
+  "true_reading": "ジド'ーシャ",
+  "shown_accent": "ジド'ーシャ",
+  "gold": "1",
+  "note": "base (no edit) renders the dictionary accent; the shown type is either that same type (gold=1) or a word-internal nucleus shift (gold=0). heiban/odaka contrasts are excluded: they are only audible on a following particle."
+ },
+ {
+  "id": "scr19",
+  "word": "茄子",
+  "carrier": "茄子をよく見かけるようになりました。",
+  "true_reading": "ナ'スビ",
+  "shown_accent": "ナス'ビ",
+  "gold": "0",
+  "note": "base (no edit) renders the dictionary accent; the shown type is either that same type (gold=1) or a word-internal nucleus shift (gold=0). heiban/odaka contrasts are excluded: they are only audible on a following particle."
+ }
+]

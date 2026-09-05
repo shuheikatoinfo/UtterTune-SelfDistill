@@ -1,0 +1,19 @@
+{
+  "sampling": "none — all items in each source set are used",
+  "sets": {
+    "difficult": {
+      "source_plain": "$ITEM_SOURCE/test_difficult_50_vanilla.txt",
+      "source_accent": "$ITEM_SOURCE/test_difficult_50_with_accent.txt",
+      "sha256_plain": "015ed4778e9fde3f4309d3b8fd46117d1b934a444f4a7a1a91f4963e5aa24309",
+      "sha256_accent": "3aa6edf0a4b850b51023532d2d8c250b7f9e7192023cdccbae3027b403f6b284",
+      "n_items": 50
+    },
+    "katakana": {
+      "source_plain": "$ITEM_SOURCE/test_katakana_50.txt",
+      "source_accent": "$ITEM_SOURCE/test_katakana_50_with_accent.txt",
+      "sha256_plain": "e353b40ece7d5df1d57f72a35e04352aa9326d3149b849efbe1a1f25444684d0",
+      "sha256_accent": "8b8a0fd37a33541e1a128fc92092dd69b3f162e05d50b6422da4678ae1d05a50",
+      "n_items": 50
+    }
+  }
+}
