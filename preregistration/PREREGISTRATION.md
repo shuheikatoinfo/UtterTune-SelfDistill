@@ -223,6 +223,15 @@ any audio was selected, no result rests on that choice.
   **below 3/4** on these is reported and excluded from the primary analysis; the block's own
   duplicate pairs are reported as a within-rater agreement rate and are not an exclusion criterion.
 
+  *Block allocation and item order.* Each admitted rater is assigned a block explicitly when they
+  are invited, so the five blocks fill evenly; leaving it to a hash of the participant id does not
+  (with 25 raters the chance that every block reaches five is ~0.2%). Within a block the item order
+  is randomized **per rater**, seeded by the rater id: the build fixes one order per block, and
+  without a per-rater permutation all five raters of a block meet the same item at the same
+  position, so a position effect would land on the same arms for every one of them instead of
+  averaging out. The catch trials keep their build-time slots, which is what keeps them off the
+  first position and non-adjacent.
+
   *Two-stage recruitment.* The gate and the block are separate contracts on the platform, because
   the platform pays per contract: stage 1 is a task-format job for the gate alone, paid to every
   candidate whether or not they pass; stage 2 is a private project-format job opened by invitation
