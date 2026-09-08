@@ -223,6 +223,14 @@ any audio was selected, no result rests on that choice.
   **below 3/4** on these is reported and excluded from the primary analysis; the block's own
   duplicate pairs are reported as a within-rater agreement rate and are not an exclusion criterion.
 
+  *Incomplete sessions.* A rater may stop at any time; the judgements already made are kept and
+  enter the analysis if that session passes the catch-trial gate, so a block can end with unequal
+  numbers of raters per item and the per-item rater count is reported. A session that stopped
+  before reaching any catch trial cannot be verified either way; it is reported as unverifiable and
+  its judgements are excluded. Payment does not follow the analysis: an incomplete session is paid
+  (in full at or above 80% of a block, in proportion below that), because the work was done whether
+  or not the data can be used.
+
   *Analysis input.* Judgements are read from the study's own server-side store (the KV export), not
   from a spreadsheet; the consent record and the gate's own answers are dropped at the door, and the
   catch trials gate sessions without ever entering the outcome. Each rater's block is taken from the
