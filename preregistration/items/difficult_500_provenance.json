@@ -9,5 +9,15 @@
   "no_token": 0,
   "g2p_correct": 12609,
   "train_collision": 14
+ },
+ "accent": {
+  "source": "benchmark has readings only; the accent in the tag is not part of what this set measures",
+  "derivation": "front-end run on the correct reading, then checked item by item by the author (native speaker) in scripts/eval/review_accents_server.py",
+  "fixed_2026-09-09": [
+   "mora splitter counted a long vowel with the preceding kana while the accent index does not, so the nucleus sat one mora too far right on 69 of 344 marked items (拾 ジュー' -> ジュ'ー)",
+   "the router applied a registry entry to every occurrence; for evaluation it is limited to the item's own occurrence (registering 十 as トー otherwise fires on 十五 and 二十歳)"
+  ],
+  "phrase_scope": "accent belongs to the accent phrase, so where a preceding modifier absorbs the target (その外 -> ソノ'ホカ) the review names the span and the tag wraps it",
+  "reviewed_file": "preregistration/items/objective_accent_reviewed.json"
  }
 }
