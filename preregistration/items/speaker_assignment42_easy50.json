@@ -1,0 +1,161 @@
+{
+ "n_speakers": 42,
+ "n_items": 50,
+ "source": "$DATA/eval_speakers/selected_42.json",
+ "rule": "sha256('EASY50:'+item_index) mod 42, one voice per item",
+ "note": "Frozen 2026-09-06 before any easy-set audio was synthesized, for the naturalness listening test. The easy set is where the edit does NOT change the reading, so the two renditions of a sentence say the same thing and a preference is about the audio rather than about which word was heard.",
+ "cells": {
+  "EASY50": {
+   "0": [
+    30
+   ],
+   "1": [
+    13
+   ],
+   "2": [
+    13
+   ],
+   "3": [
+    10
+   ],
+   "4": [
+    21
+   ],
+   "5": [
+    38
+   ],
+   "6": [
+    29
+   ],
+   "7": [
+    11
+   ],
+   "8": [
+    39
+   ],
+   "9": [
+    5
+   ],
+   "10": [
+    28
+   ],
+   "11": [
+    24
+   ],
+   "12": [
+    24
+   ],
+   "13": [
+    41
+   ],
+   "14": [
+    6
+   ],
+   "15": [
+    9
+   ],
+   "16": [
+    34
+   ],
+   "17": [
+    24
+   ],
+   "18": [
+    35
+   ],
+   "19": [
+    10
+   ],
+   "20": [
+    17
+   ],
+   "21": [
+    36
+   ],
+   "22": [
+    37
+   ],
+   "23": [
+    20
+   ],
+   "24": [
+    34
+   ],
+   "25": [
+    22
+   ],
+   "26": [
+    15
+   ],
+   "27": [
+    33
+   ],
+   "28": [
+    9
+   ],
+   "29": [
+    3
+   ],
+   "30": [
+    37
+   ],
+   "31": [
+    16
+   ],
+   "32": [
+    13
+   ],
+   "33": [
+    2
+   ],
+   "34": [
+    11
+   ],
+   "35": [
+    35
+   ],
+   "36": [
+    26
+   ],
+   "37": [
+    4
+   ],
+   "38": [
+    15
+   ],
+   "39": [
+    6
+   ],
+   "40": [
+    6
+   ],
+   "41": [
+    32
+   ],
+   "42": [
+    28
+   ],
+   "43": [
+    18
+   ],
+   "44": [
+    35
+   ],
+   "45": [
+    37
+   ],
+   "46": [
+    33
+   ],
+   "47": [
+    28
+   ],
+   "48": [
+    11
+   ],
+   "49": [
+    7
+   ]
+  }
+ }
+}
