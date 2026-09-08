@@ -223,6 +223,30 @@ any audio was selected, no result rests on that choice.
   **below 3/4** on these is reported and excluded from the primary analysis; the block's own
   duplicate pairs are reported as a within-rater agreement rate and are not an exclusion criterion.
 
+  *Target accents on the objective set (added 2026-09-09, before any re-synthesis).* The Joyo
+  benchmark supplies readings, not accents, so the accent inside the tag was derived by running the
+  public front-end on the correct reading in isolation. Two defects were found and fixed: the mora
+  splitter counted a long vowel as part of the preceding mora while the accent index does not, which
+  put the nucleus one mora too far right on 69 of 344 marked items (拾 ジュー' → ジュ'ー); and the
+  router applied a registry entry to every occurrence in a sentence, which for a short surface is
+  wrong (registering 十 as トー also fires on 十五 and 二十歳) — for evaluation it is now limited to
+  the item's own occurrence, while deployment keeps the apply-everywhere behaviour that is the point
+  of a registry.
+
+  The remaining targets cannot all be dictionary-verified, and the reason is structural: the set was
+  built from the items a public G2P **misreads**, so it consists largely of rare compounds that no
+  accent dictionary lists (斎食, 葉茎, 水畔林). Where a dictionary covers the word the author checks
+  the target against it; where none does, the target follows the standard compound-accent rules the
+  front-end implements and is recorded as **rule-derived, not verified**. The counts of each are
+  reported. The author is never asked to invent an accent and call it a norm. Accent is not an
+  outcome on this set — it reports reading accuracy — but the tag is the method's input, and asking
+  for an accent no speaker would use handicaps the edited arm's own reading number.
+
+  A third case has no answer at the word level at all: accent belongs to the accent phrase, and a
+  preceding modifier can absorb the target (その外 is one phrase, ソノ'ホカ). For those the reviewer
+  names the span and its reading, and the tag wraps that span. This is a limitation of a word-scoped
+  control signal and is reported as such.
+
   *Naturalness (added 2026-09-09, before any naturalness data existed).* Same-sentence A/B
   preference between the unedited and the edited rendition, on the **easy** set — the set where the
   edit restates a reading the model already produces — for all four backbones, 195 pairs, one
