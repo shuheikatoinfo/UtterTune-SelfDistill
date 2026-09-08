@@ -223,6 +223,13 @@ any audio was selected, no result rests on that choice.
   **below 3/4** on these is reported and excluded from the primary analysis; the block's own
   duplicate pairs are reported as a within-rater agreement rate and are not an exclusion criterion.
 
+  *Analysis input.* Judgements are read from the study's own server-side store (the KV export), not
+  from a spreadsheet; the consent record and the gate's own answers are dropped at the door, and the
+  catch trials gate sessions without ever entering the outcome. Each rater's block is taken from the
+  judgement itself rather than from a separate block file, which had drifted out of date. The whole
+  pipeline was exercised on a simulated 25-rater study before recruitment opened, including a rater
+  who fails the catch trials.
+
   *Block allocation and item order.* Each admitted rater is assigned a block explicitly when they
   are invited, so the five blocks fill evenly; leaving it to a hash of the participant id does not
   (with 25 raters the chance that every block reaches five is ~0.2%). Within a block the item order
