@@ -223,6 +223,24 @@ any audio was selected, no result rests on that choice.
   **below 3/4** on these is reported and excluded from the primary analysis; the block's own
   duplicate pairs are reported as a within-rater agreement rate and are not an exclusion criterion.
 
+  *Naturalness (added 2026-09-09, before any naturalness data existed).* Same-sentence A/B
+  preference between the unedited and the edited rendition, on the **easy** set — the set where the
+  edit restates a reading the model already produces — for all four backbones, 195 pairs, one
+  held-out voice per sentence fixed by hash. The difficult set is not used for a human preference:
+  there the edit changes the reading by design, so a listener would be reporting which word they
+  recognised.
+
+  Two things are deliberately NOT done. Pairs are **not** filtered to those where both arms realise
+  the same reading. That filter drops overwhelmingly the pairs where the unedited arm read the word
+  wrongly — the cases where the edit did something — leaving the mildest possible intervention and
+  understating any cost the mechanism incurs when it acts; it is also selection on a post-treatment
+  outcome. Reading agreement is instead recorded per pair (ASR-verified: 56–84% by backbone) and
+  reported as a secondary stratum, and raters are told that pronunciation is not what is judged.
+  And no claim is made that naturalness raters are disjoint from accent raters: the platform cannot
+  enforce it. Accent raters are contracted individually so their accounts are known; naturalness
+  submissions from those accounts are reported and excluded, and the recruitment text asks prior
+  participants not to take part.
+
   *Incomplete sessions.* A rater may stop at any time; the judgements already made are kept and
   enter the analysis if that session passes the catch-trial gate, so a block can end with unequal
   numbers of raters per item and the per-item rater count is reported. A session that stopped
