@@ -259,8 +259,11 @@ any audio was selected, no result rests on that choice.
 
   *Naturalness (added 2026-09-09, before any naturalness data existed).* Same-sentence A/B
   preference between the unedited and the edited rendition, on the **easy** set — the set where the
-  edit restates a reading the model already produces — for all four backbones, 195 pairs, one
-  held-out voice per sentence fixed by hash. The difficult set is not used for a human preference:
+  edit restates a reading the model already produces — for all four backbones, 197 pairs
+  (sarashina 50, irodori 50, cv2 50, t5gemma 47), one held-out voice per sentence fixed by hash.
+  Which arm is presented first is fixed per pair and near-balanced across the set (97 pairs lead
+  with the edited arm, 100 with the unedited one), so a side preference cannot favour either arm in
+  aggregate. The difficult set is not used for a human preference:
   there the edit changes the reading by design, so a listener would be reporting which word they
   recognised.
 
@@ -275,13 +278,22 @@ any audio was selected, no result rests on that choice.
   submissions from those accounts are reported and excluded, and the recruitment text asks prior
   participants not to take part.
 
-  *Incomplete sessions.* A rater may stop at any time; the judgements already made are kept and
-  enter the analysis if that session passes the catch-trial gate, so a block can end with unequal
-  numbers of raters per item and the per-item rater count is reported. A session that stopped
-  before reaching any catch trial cannot be verified either way; it is reported as unverifiable and
-  its judgements are excluded. Payment does not follow the analysis: an incomplete session is paid
-  (in full at or above 80% of a block, in proportion below that), because the work was done whether
-  or not the data can be used.
+  *No catch trials in the naturalness task (stated 2026-09-09).* The accent panel carries eight
+  known-answer items; the naturalness set carries none, and no duplicated pairs either, because a
+  preference between two renditions has no known answer to hide among the others. There is
+  therefore no within-session quality check there. What is available instead is the balance of a
+  rater's own answers: the leading arm is near-balanced across pairs, so a rater who answers one
+  side throughout is uninformative and visible as such. That balance is **reported for every rater
+  and used to exclude no one** -- an exclusion rule written after seeing the responses would be
+  selection on the outcome. The naturalness result is reported with this limitation stated.
+
+  *Incomplete sessions.* A rater may stop at any time; the judgements already made are kept, so
+  items end with unequal numbers of raters and the per-item rater count is reported. In the accent
+  panel a session is additionally required to pass the catch-trial gate, and one that stopped
+  before reaching any catch trial is reported as unverifiable and its judgements excluded; the
+  naturalness task has no such gate (above), so its partial sessions are kept and counted. Payment
+  does not follow the analysis: an incomplete session is paid (in full at or above 80% of the set,
+  in proportion below that), because the work was done whether or not the data can be used.
 
   *Analysis input.* Judgements are read from the study's own server-side store (the KV export), not
   from a spreadsheet; the consent record and the gate's own answers are dropped at the door, and the
