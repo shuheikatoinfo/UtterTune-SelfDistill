@@ -292,8 +292,16 @@ any audio was selected, no result rests on that choice.
   panel a session is additionally required to pass the catch-trial gate, and one that stopped
   before reaching any catch trial is reported as unverifiable and its judgements excluded; the
   naturalness task has no such gate (above), so its partial sessions are kept and counted. Payment
-  does not follow the analysis: an incomplete session is paid (in full at or above 80% of the set,
-  in proportion below that), because the work was done whether or not the data can be used.
+  does not follow the analysis, but it does follow what the platform can do, and an earlier version
+  of this document promised a proportional payment that cannot be made. The naturalness task is
+  posted as a micro-task, where the only actions are approve at the full fee or reject at nothing;
+  and the completion code a submission needs appears only at the end, so a rater who stops partway
+  has no contract to be paid under. Anyone who does submit is approved in full, including someone
+  who reports a fault and gives their rater id instead of a code, which the posting invites. The
+  accent panel is an individual contract paid in advance into escrow: a rater who cannot finish is
+  paid in full, and the platform's amount-change request, which requires their agreement, is not
+  planned to be used. Partial judgements are kept in the analysis either way, so what a rater is
+  paid never depends on how much of their data is usable.
 
   *Analysis input.* Judgements are read from the study's own server-side store (the KV export), not
   from a spreadsheet; the consent record and the gate's own answers are dropped at the door, and the
