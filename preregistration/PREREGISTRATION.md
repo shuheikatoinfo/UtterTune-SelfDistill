@@ -202,17 +202,22 @@ any audio was selected, no result rests on that choice.
   not pass are compensated for the screening and not admitted; the number screened and the number
   admitted are reported. Self-declared credentials are not a substitute for the test.
 
-  *Screening fee, tiered (amended 2026-09-09, before any rater was admitted).* Every candidate who
-  completes the screening is paid: JPY 200 for completing it, and a further JPY 600 -- JPY 800 in
-  total -- at 18 or more correct of 20. Recruitment targets people who work with pitch accent
-  professionally, and that claim cannot be verified: nothing on the platform distinguishes a
-  narrator from someone who types "narrator". A flat fee therefore pays the same for a claim as for
-  the ability, and the open call showed what that buys. The tier makes the false claim the cheaper
-  option without penalising an honest candidate who simply misses the cut, and it is stated in the
-  posting before anyone starts. Payment is never contingent on *which* way a candidate answers, only
-  on accuracy against a fixed key; no bonus attaches to agreeing with any system. The admission
-  threshold is unchanged at 19/20 and is not the payment cut, so the fee structure moves no
-  measurement. Fees paid, by tier, are reported.
+  *Recruitment by selection, not by fee (amended 2026-09-09, before any rater was admitted).* The
+  screening is offered through an individual contract rather than an open micro-task: candidates
+  apply, are selected on their platform profile -- stated occupation, work history, portfolio
+  samples, client ratings, identity verification -- together with a written statement of their work
+  with Japanese pitch accent, and only then receive the screening. A profile is evidence, not proof,
+  so it decides who is offered the screening and never who is admitted.
+  A tiered fee -- paying less below a score -- was considered first and rejected: the sitting is ten
+  minutes, so any fee low enough to deter someone who cannot do the task is too low to pay someone
+  who honestly tried, and any fee high enough to be fair is worth a stranger's ten minutes anyway.
+  Selection puts the filter before the work instead of after it, and fabricating a portfolio costs
+  far more than typing a job title. The fee is therefore flat: **JPY 1,500** to every candidate who
+  completes the screening, whatever they score, which is the panel's rate applied to the whole
+  involvement (applying, contracting, sitting, delivering) rather than to the ten minutes alone.
+  Selection is on the application only; it never uses screening answers, and the 19/20 gate decides
+  admission exactly as registered. The number applying, the number selected, the number screened and
+  the number admitted are all reported.
 
   *Amendment, 2026-09-05 (before any rater was admitted and before any listening data existed).*
   The gate is **20 items** at **19/20**, and each block additionally carries **4 catch trials**.
