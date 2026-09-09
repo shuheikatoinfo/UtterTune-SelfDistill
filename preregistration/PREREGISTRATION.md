@@ -365,6 +365,25 @@ any audio was selected, no result rests on that choice.
   boundary resets pitch, and a listener may hear the target's contour differently than in a fluent
   rendition. This is reported with the per-cell counts above.
 
+  *Instruction to answer on first impression (added 2026-09-10, mid-collection).* The consent
+  screen and the answer panel now ask for the first impression rather than a considered analysis:
+  raters are told that what is wanted is how the rendition sounds on an ordinary listen, that some
+  items are genuinely hard, that no option is the safe one, that ten seconds an item is a guide they
+  may beat, and that "cannot judge" is for when they truly cannot. What the instruction does **not**
+  say is that accuracy does not matter, and it names no default option -- a hint toward "matches"
+  would manufacture the acquiescence that disqualified the open-call population.
+
+  This was added because the two admitted raters were pacing themselves very differently -- 8.3 s
+  and 40.6 s per item at the median -- with nothing in the instructions to settle it. Where the task
+  is perceptual, a deliberated answer is a different measurement from a perceived one, and leaving
+  the choice to each rater put both kinds in the same pool.
+
+  It is disclosed as a mid-collection change, and it is not applied evenly: the first rater had
+  already completed all 481 judgements before it existed, and the second was 200 in. The primary
+  analysis keeps every rater; the per-rater median response time is reported alongside the results
+  so a reader can see whether pace tracks agreement, and a registered secondary repeats the
+  comparison on raters admitted after the change once there are enough of them to support it.
+
   *Incomplete sessions.* A rater may stop at any time; the judgements already made are kept, so
   items end with unequal numbers of raters and the per-item rater count is reported. In the accent
   panel a session is additionally required to pass the catch-trial gate, and one that stopped
