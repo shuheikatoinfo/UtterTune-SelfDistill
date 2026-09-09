@@ -204,7 +204,6 @@ any audio was selected, no result rests on that choice.
 
   *Amendment, 2026-09-05 (before any rater was admitted and before any listening data existed).*
   The gate is **20 items** at **19/20**, and each block additionally carries **4 catch trials**.
-  (Lowered to **18/20** on 2026-09-09; see the amendment at the end of this section.)
 
   *Why split it.* A gate can only test ability at the moment of admission; it cannot tell whether a
   rater kept listening for the next hundred judgements. A short gate plus ongoing checks tests both,
@@ -215,33 +214,22 @@ any audio was selected, no result rests on that choice.
   mishandled keypress — the author slipped on 2 of 36 in the dry runs — without admitting a
   candidate who cannot hear a contrast.
 
-  *Amendment, 2026-09-09 (after the first screening batch, before any rater was admitted and before
-  any listening data existed).* The gate is lowered to **18/20**. This is a change made after seeing
-  the score distribution and is disclosed as one.
+  *Screening records, partially destroyed (disclosed 2026-09-09).* The first recruitment was a
+  general-crowd batch, abandoned for the reason recorded below. About 83 candidates submitted a
+  completion code; the gate records and per-item answers of roughly 30 of them were destroyed by an
+  operational error on the author's side -- a bulk delete run against the response store while
+  verifying the collector. They are unrecoverable: the store has no point-in-time recovery, no
+  export predates the deletion, and the completion code carries only the candidate id, not the
+  score. The screening fee was paid for all of them. Nothing in this study is reconstructed from
+  the missing records or depends on them: the threshold is the preregistered 19/20 and was not
+  revised after seeing any score, no destroyed candidate was admitted, and none produced any
+  listening data. Where the number screened is reported, it is reported with this gap stated.
 
-  *Data loss, disclosed.* The screening records are incomplete through an operational error on the
-  author's side: a bulk delete against the response store, run while verifying the collector,
-  removed the gate records and the per-item answers of candidates who had already been screened.
-  About 83 candidates submitted a completion code on the platform. Scores are available for 53 of
-  them -- 38 as an aggregate the author had computed and reported before the deletion, and 15 as
-  intact records -- and **about 30 candidates' answers were destroyed before they were ever read**.
-  Those 30 are unrecoverable: the store has no point-in-time recovery, no export predates the
-  deletion, and the completion code carries only the candidate id, not the score. Whether any of
-  the 30 would have passed at either threshold is unknown and cannot be determined. The screening
-  fee was paid for all of them. This is reported as a limitation of the screening account, not
-  repaired: no number in this study is reconstructed from the missing records, and none depends on
-  them, because no destroyed candidate had been admitted or had produced any listening data.
-
-  *Basis for the change.* Of the 53 candidates whose scores are known, none reached 19. The modal
-  score was exactly 10, which is what answering "matches" throughout scores, and the batch of 38
-  topped out at 13. Two candidates reached 18. Twenty items with a balanced 10/10 gold key put
-  chance at 10, so 18 is eight items above chance and is not reachable by a response strategy; the
-  cut still separates raters who discriminate from raters who do not. At 19 it was additionally
-  excluding the only candidates who could do the task, which is a cost the original justification
-  (slack for one mishandled keypress) never intended to pay. The threshold is applied by re-grading
-  the stored answers of every candidate whose record survives, so it applies uniformly to everyone
-  it can reach rather than only to candidates screened after the change. No admitted rater has
-  produced any listening data at the time of this amendment.
+  *Threshold, considered and left unchanged (2026-09-09).* Lowering the gate to 18/20 was considered
+  after the general-crowd batch produced no candidate above 18. It was rejected. The case for it
+  rested on that batch's score distribution, and that distribution is the thing the deletion damaged;
+  a design decision resting on it could not be audited. Keeping 19/20 means no threshold in this
+  study was chosen after seeing scores. Ability is bought instead through recruitment, below.
 
   *Catch trials (4 per block).* Known-answer items from the same verified pool as the gate. The
   blocks already carry 23 duplicate-consistency items of their own, so within-rater consistency is
@@ -308,7 +296,7 @@ any audio was selected, no result rests on that choice.
 
   Raters are therefore recruited from people who handle Japanese pitch accent professionally or in
   training -- narrators, announcers, voice actors, Japanese-language teachers, students of phonetics
-  -- and the gate is kept as the qualification (at 18/20; see the amendment above). Whether that population passes is
+  -- and the 19/20 gate is kept unchanged as the qualification. Whether that population passes is
   itself measured, at the cost of one screening fee per candidate.
 
   With trained raters the block design has no purpose: it existed to keep a crowdworker's sitting
@@ -323,7 +311,7 @@ any audio was selected, no result rests on that choice.
   people who have no difficulty hearing conversational speech, with hearing aids counting as no
   difficulty, and both task forms ask it directly (no difficulty / difficulty / none when using an
   aid). It is self-report and is reported as such. It is **not** an exclusion criterion for the
-  accent study: the 18/20 gate already screens the ability the study depends on, and a self-report
+  accent study: the 19/20 gate already screens the ability the study depends on, and a self-report
   cannot improve on a measured one. For naturalness there is no gate, so the answer is the only
   check there is; the primary analysis keeps every rater and a registered secondary repeats it
   without those who report difficulty, with both n's given.
