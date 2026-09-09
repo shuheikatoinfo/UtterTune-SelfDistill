@@ -202,6 +202,18 @@ any audio was selected, no result rests on that choice.
   not pass are compensated for the screening and not admitted; the number screened and the number
   admitted are reported. Self-declared credentials are not a substitute for the test.
 
+  *Screening fee, tiered (amended 2026-09-09, before any rater was admitted).* Every candidate who
+  completes the screening is paid: JPY 200 for completing it, and a further JPY 600 -- JPY 800 in
+  total -- at 18 or more correct of 20. Recruitment targets people who work with pitch accent
+  professionally, and that claim cannot be verified: nothing on the platform distinguishes a
+  narrator from someone who types "narrator". A flat fee therefore pays the same for a claim as for
+  the ability, and the open call showed what that buys. The tier makes the false claim the cheaper
+  option without penalising an honest candidate who simply misses the cut, and it is stated in the
+  posting before anyone starts. Payment is never contingent on *which* way a candidate answers, only
+  on accuracy against a fixed key; no bonus attaches to agreeing with any system. The admission
+  threshold is unchanged at 19/20 and is not the payment cut, so the fee structure moves no
+  measurement. Fees paid, by tier, are reported.
+
   *Amendment, 2026-09-05 (before any rater was admitted and before any listening data existed).*
   The gate is **20 items** at **19/20**, and each block additionally carries **4 catch trials**.
 
