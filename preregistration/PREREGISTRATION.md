@@ -221,6 +221,7 @@ any audio was selected, no result rests on that choice.
 
   *Amendment, 2026-09-05 (before any rater was admitted and before any listening data existed).*
   The gate is **20 items** at **19/20**, and each block additionally carries **4 catch trials**.
+  (One item was withdrawn from the key on 2026-09-09, leaving 19 scored at 18/19; see below.)
 
   *Why split it.* A gate can only test ability at the moment of admission; it cannot tell whether a
   rater kept listening for the next hundred judgements. A short gate plus ongoing checks tests both,
@@ -247,6 +248,35 @@ any audio was selected, no result rests on that choice.
   rested on that batch's score distribution, and that distribution is the thing the deletion damaged;
   a design decision resting on it could not be audited. Keeping 19/20 means no threshold in this
   study was chosen after seeing scores. Ability is bought instead through recruitment, below.
+
+  *One gate item withdrawn after re-listening (amended 2026-09-09, before any rater was admitted
+  and before any listening data existed).* Twenty-one candidates had been screened with no pass, and
+  the per-item breakdown showed only two items that the leading candidates also missed. The author
+  re-listened to both against the norm, having decided in advance that the responses could not
+  settle either one.
+
+  **scr05 (三冊, displayed サンサ＼ツ) stands.** The rendition is 頭高 against a 中高 display, so
+  "differs" is the correct answer, even though 16 of 21 candidates — including both leading ones —
+  heard it as matching. The item is kept and scored unchanged. It is worth recording that it does
+  not separate the able: candidates who answered it correctly averaged 11.2 of 20 against 11.8 for
+  those who did not.
+
+  **scr07 (委員, displayed イイ＼ン) is withdrawn from the key.** 中高 is admissible for 委員, so the
+  rendition neither matches nor differs from what was displayed; the author cannot determine the
+  answer against the norm, which means it was never a known-answer item. It is credited to every
+  candidate, past and future: that is the only treatment that cannot cost anyone a point. Re-keying
+  it to "matches" was rejected because it would have demoted the five who answered "differs" and
+  would have let the score distribution pick the answer.
+
+  The gate is therefore **19 scored items**, and the registered rule — one item of slack for a
+  mishandled keypress — makes that **18/19**. The rule is unchanged; only the denominator moved.
+  Candidates already screened are re-scored on the same 19 items, so everyone is judged by one
+  instrument. No candidate's pass/fail flips by losing a point here: the threshold falls with the
+  denominator. Two candidates pass, at 18/19; the next best is 15/19. Both were admitted knowing
+  they missed scr05, so they are the strongest available listeners rather than verified experts,
+  and the panel's eight catch trials, its duplicate items and Fleiss' kappa remain the check on
+  whether that is good enough. The number screened, the number admitted, and this withdrawal are
+  reported.
 
   *Catch trials (4 per block).* Known-answer items from the same verified pool as the gate. The
   blocks already carry 23 duplicate-consistency items of their own, so within-rater consistency is
