@@ -265,6 +265,15 @@ any audio was selected, no result rests on that choice.
   averaging out. The catch trials keep their build-time slots, which is what keeps them off the
   first position and non-adjacent.
 
+  *Hearing (added 2026-09-09, before any rater was admitted).* Both studies state that they are for
+  people who have no difficulty hearing conversational speech, with hearing aids counting as no
+  difficulty, and both task forms ask it directly (no difficulty / difficulty / none when using an
+  aid). It is self-report and is reported as such. It is **not** an exclusion criterion for the
+  accent study: the 19/20 gate already screens the ability the study depends on, and a self-report
+  cannot improve on a measured one. For naturalness there is no gate, so the answer is the only
+  check there is; the primary analysis keeps every rater and a registered secondary repeats it
+  without those who report difficulty, with both n's given.
+
   *Two-stage recruitment.* The gate and the block are separate contracts on the platform, because
   the platform pays per contract: stage 1 is a task-format job for the gate alone, paid to every
   candidate whether or not they pass; stage 2 is a private project-format job opened by invitation
