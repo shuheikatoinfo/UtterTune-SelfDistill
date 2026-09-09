@@ -268,9 +268,10 @@ any audio was selected, no result rests on that choice.
   *Two-stage recruitment.* The gate and the block are separate contracts on the platform, because
   the platform pays per contract: stage 1 is a task-format job for the gate alone, paid to every
   candidate whether or not they pass; stage 2 is a private project-format job opened by invitation
-  to those who passed. The study site enforces the split (`?s=1` ends at the gate; `?s=2` skips the
-  gate for a rater the server records as having passed), so no one can be walked into an unpaid
-  block, and no one who failed can start one. Rates are JPY 400 for the gate (~10 min) and JPY 1,100
+  to those who passed. The study site enforces the split: only `?s=2` opens a block, and it does so only for a rater the
+  server records as having passed. Every other way of arriving -- `?s=1`, or a bare link with the
+  query string stripped -- ends at the gate. So no one can be walked into a block nobody contracted
+  or paid for, and no one who failed can start one. Rates are JPY 400 for the gate (~10 min) and JPY 1,100
   for a block (~25 min) as posted, from which the platform deducts 22% before the worker is paid.
 
   *Coverage.* The original 20 items test the position of a word-internal downstep only; their own
