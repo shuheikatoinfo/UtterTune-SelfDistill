@@ -10,133 +10,49 @@
   "block": 0,
   "blind_id": "c001",
   "kind": "known",
-  "source": "scr15",
+  "source": "scr17",
   "gold": "0"
  },
  {
   "block": 0,
   "blind_id": "c002",
   "kind": "known",
-  "source": "scr17",
-  "gold": "0"
+  "source": "scr16",
+  "gold": "1"
  },
  {
   "block": 0,
   "blind_id": "c003",
   "kind": "known",
-  "source": "scrc12",
-  "gold": "1"
- },
- {
-  "block": 1,
-  "blind_id": "c100",
-  "kind": "known",
-  "source": "scr17",
-  "gold": "0"
- },
- {
-  "block": 1,
-  "blind_id": "c101",
-  "kind": "known",
-  "source": "scrc06",
-  "gold": "1"
- },
- {
-  "block": 1,
-  "blind_id": "c102",
-  "kind": "known",
-  "source": "scrc15",
-  "gold": "0"
- },
- {
-  "block": 1,
-  "blind_id": "c103",
-  "kind": "known",
   "source": "scrc14",
   "gold": "1"
  },
  {
-  "block": 2,
-  "blind_id": "c200",
-  "kind": "known",
-  "source": "scrc14",
-  "gold": "1"
- },
- {
-  "block": 2,
-  "blind_id": "c201",
+  "block": 0,
+  "blind_id": "c004",
   "kind": "known",
   "source": "scr15",
   "gold": "0"
  },
  {
-  "block": 2,
-  "blind_id": "c202",
-  "kind": "known",
-  "source": "scrc06",
-  "gold": "1"
- },
- {
-  "block": 2,
-  "blind_id": "c203",
+  "block": 0,
+  "blind_id": "c005",
   "kind": "known",
   "source": "scrc05",
   "gold": "0"
  },
  {
-  "block": 3,
-  "blind_id": "c300",
+  "block": 0,
+  "blind_id": "c006",
   "kind": "known",
-  "source": "scrc06",
+  "source": "scr18",
   "gold": "1"
  },
  {
-  "block": 3,
-  "blind_id": "c301",
-  "kind": "known",
-  "source": "scr09",
-  "gold": "0"
- },
- {
-  "block": 3,
-  "blind_id": "c302",
-  "kind": "known",
-  "source": "scrc05",
-  "gold": "0"
- },
- {
-  "block": 3,
-  "blind_id": "c303",
-  "kind": "known",
-  "source": "scrc14",
-  "gold": "1"
- },
- {
-  "block": 4,
-  "blind_id": "c400",
+  "block": 0,
+  "blind_id": "c007",
   "kind": "known",
   "source": "scrc12",
   "gold": "1"
- },
- {
-  "block": 4,
-  "blind_id": "c401",
-  "kind": "known",
-  "source": "scr17",
-  "gold": "0"
- },
- {
-  "block": 4,
-  "blind_id": "c402",
-  "kind": "known",
-  "source": "scr09",
-  "gold": "0"
- },
- {
-  "block": 4,
-  "blind_id": "c403",
-  "kind": "known",
-  "source": "scrc07",
-  "gold": "0"
  }
 ]

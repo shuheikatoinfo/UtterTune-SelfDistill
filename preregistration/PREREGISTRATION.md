@@ -265,6 +265,31 @@ any audio was selected, no result rests on that choice.
   averaging out. The catch trials keep their build-time slots, which is what keeps them off the
   first position and non-adjacent.
 
+  *Design reverted to a full-overlap panel, and the rater population changed (2026-09-09, after the
+  first screening batch and before any listening data existed).* The gate was posted to the general
+  crowd at JPY 400 for 90 places. 38 people completed it and **none passed**; scores ran 7–13 of 20
+  with a mode of exactly 10. The cause was not difficulty but response bias: items whose correct
+  answer was "matches" were answered correctly 75% of the time, items whose correct answer was
+  "differs" 26%, and 14 of the 38 answered "matches" on nine items in ten. Answering "matches"
+  throughout scores exactly 10. The instrument was verified intact -- every shipped clip is
+  byte-identical to the source its gold refers to -- so what failed is the fit between the task and
+  an untrained population. This is why the gate exists, and it caught the problem before any
+  main-study judgement was bought: the same yes/no format carries the same bias, so an untrained
+  panel would have produced 473 judgements of nothing.
+
+  Raters are therefore recruited from people who handle Japanese pitch accent professionally or in
+  training -- narrators, announcers, voice actors, Japanese-language teachers, students of phonetics
+  -- and the 19/20 gate is kept unchanged as the qualification. Whether that population passes is
+  itself measured, at the cost of one screening fee per candidate.
+
+  With trained raters the block design has no purpose: it existed to keep a crowdworker's sitting
+  near twenty minutes. Each rater now judges **all 473 stimuli** (481 with the eight known-answer
+  catch trials), about 50 minutes, which is the full-overlap panel this document specified before
+  the block revision. Target 5 raters, minimum 3. That restores Fleiss' kappa over the entire
+  stimulus set rather than pooled within blocks, removes block assignment and its balance problem
+  entirely, and removes the per-block catch placement. The bootstrap continues to resample words and
+  raters. Fees rise to JPY 800 for the gate and JPY 6,000 for the panel.
+
   *Hearing (added 2026-09-09, before any rater was admitted).* Both studies state that they are for
   people who have no difficulty hearing conversational speech, with hearing aids counting as no
   difficulty, and both task forms ask it directly (no difficulty / difficulty / none when using an
