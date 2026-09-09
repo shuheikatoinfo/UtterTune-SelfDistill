@@ -217,16 +217,31 @@ any audio was selected, no result rests on that choice.
 
   *Amendment, 2026-09-09 (after the first screening batch, before any rater was admitted and before
   any listening data existed).* The gate is lowered to **18/20**. This is a change made after seeing
-  the score distribution and is disclosed as one. Of 53 candidates screened, none reached 19. The
-  modal score was exactly 10, which is what answering "matches" throughout scores, and the first
-  batch of 38 topped out at 13. Two candidates reached 18. Twenty items with a balanced 10/10 gold
-  key put chance at 10, so 18 is eight items above chance and is not reachable by a response
-  strategy; the cut still separates raters who discriminate from raters who do not. At 19 it was
-  additionally excluding the only candidates who could do the task, which is a cost the original
-  justification (slack for one mishandled keypress) never intended to pay. The threshold is applied
-  by re-grading the stored answers of every candidate already screened, so it applies uniformly to
-  everyone rather than only to candidates screened after the change. No admitted rater has produced
-  any listening data at the time of this amendment.
+  the score distribution and is disclosed as one.
+
+  *Data loss, disclosed.* The screening records are incomplete through an operational error on the
+  author's side: a bulk delete against the response store, run while verifying the collector,
+  removed the gate records and the per-item answers of candidates who had already been screened.
+  About 83 candidates submitted a completion code on the platform. Scores are available for 53 of
+  them -- 38 as an aggregate the author had computed and reported before the deletion, and 15 as
+  intact records -- and **about 30 candidates' answers were destroyed before they were ever read**.
+  Those 30 are unrecoverable: the store has no point-in-time recovery, no export predates the
+  deletion, and the completion code carries only the candidate id, not the score. Whether any of
+  the 30 would have passed at either threshold is unknown and cannot be determined. The screening
+  fee was paid for all of them. This is reported as a limitation of the screening account, not
+  repaired: no number in this study is reconstructed from the missing records, and none depends on
+  them, because no destroyed candidate had been admitted or had produced any listening data.
+
+  *Basis for the change.* Of the 53 candidates whose scores are known, none reached 19. The modal
+  score was exactly 10, which is what answering "matches" throughout scores, and the batch of 38
+  topped out at 13. Two candidates reached 18. Twenty items with a balanced 10/10 gold key put
+  chance at 10, so 18 is eight items above chance and is not reachable by a response strategy; the
+  cut still separates raters who discriminate from raters who do not. At 19 it was additionally
+  excluding the only candidates who could do the task, which is a cost the original justification
+  (slack for one mishandled keypress) never intended to pay. The threshold is applied by re-grading
+  the stored answers of every candidate whose record survives, so it applies uniformly to everyone
+  it can reach rather than only to candidates screened after the change. No admitted rater has
+  produced any listening data at the time of this amendment.
 
   *Catch trials (4 per block).* Known-answer items from the same verified pool as the gate. The
   blocks already carry 23 duplicate-consistency items of their own, so within-rater consistency is
