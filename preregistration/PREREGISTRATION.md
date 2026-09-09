@@ -310,8 +310,15 @@ any audio was selected, no result rests on that choice.
   understating any cost the mechanism incurs when it acts; it is also selection on a post-treatment
   outcome. Reading agreement is instead recorded per pair (ASR-verified: 56–84% by backbone) and
   reported as a secondary stratum, and raters are told that pronunciation is not what is judged.
-  And no claim is made that naturalness raters are disjoint from accent raters: the platform cannot
-  enforce it. Accent raters are contracted individually so their accounts are known; naturalness
+  And no claim is made that naturalness raters are disjoint from each other or from accent raters:
+  the platform cannot enforce either. The naturalness task is open at its URL -- there is no
+  invitation link and no contract in front of it, because the task needs no qualification -- so the
+  posting caps who is *paid*, not who takes part. More sittings were completed than slots were
+  posted, and every completed sitting is kept: whether a rater could still submit for payment is a
+  fact about the platform's slot counter, not about their judgements, and discarding them on that
+  basis would be selection. It also means one person could sit it twice from two browsers and go
+  undetected; the rater id is minted client-side and nothing identifying is collected, by design.
+  The number of sittings and the number paid are both reported, and their difference with it. Accent raters are contracted individually so their accounts are known; naturalness
   submissions from those accounts are reported and excluded, and the recruitment text asks prior
   participants not to take part.
 
@@ -323,6 +330,12 @@ any audio was selected, no result rests on that choice.
   side throughout is uninformative and visible as such. That balance is **reported for every rater
   and used to exclude no one** -- an exclusion rule written after seeing the responses would be
   selection on the outcome. The naturalness result is reported with this limitation stated.
+
+  *One rater's judgements outside their group (recorded 2026-09-09).* A rater who returned to
+  re-sync was handed a different group by the assignment endpoint, saw an empty progress bar, and
+  answered three pairs of it before the bug was fixed. Those three judgements are real and are
+  kept; the per-item rater count already varies by design, and dropping them would be selection.
+  One rater therefore contributes to two groups.
 
   *Incomplete sessions.* A rater may stop at any time; the judgements already made are kept, so
   items end with unequal numbers of raters and the per-item rater count is reported. In the accent
