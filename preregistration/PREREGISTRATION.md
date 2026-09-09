@@ -337,6 +337,27 @@ any audio was selected, no result rests on that choice.
   kept; the per-item rater count already varies by design, and dropping them would be selection.
   One rater therefore contributes to two groups.
 
+  *Long internal pauses, measured and accepted (recorded 2026-09-10).* Clip durations were checked
+  against sentence length after listening began. Speaking rate is 0.211 s per character at the
+  median; a handful of clips run to four times that, and the longest two sit at exactly 18.02 s,
+  the generation ceiling. The extra length is not extra speech: the worst pair carries 3.68 s of
+  voiced audio inside 18.02 s, and the surplus is one internal pause of 9.88 s against a median
+  longest-pause of 0.60 s. **40 of 501 clips (8%) hold an internal pause of 2 s or more.**
+
+  These are kept. A pause is a rendition the model produced for the prescribed text, not a failure
+  to produce speech, and the accent judgement is made on the target word, which is present and
+  intact. Removing them would be selection on a post-hoc property of the output; re-synthesising
+  them mid-study would mean the raters already judging heard different stimuli from those who come
+  later, which is a worse defect than the one it fixes.
+
+  What is conceded is that a long pause can introduce an accent-phrase boundary, and a boundary
+  resets pitch, so a listener may hear the target's contour differently than in a fluent rendition.
+  That is a property of the material and is reported with the count above rather than repaired.
+
+  The degeneracy guard did not flag these because it does not look for them: `audio_reason` tests
+  total duration, overall silence fraction, peak and RMS, but never the longest *run* of silence
+  inside a clip. That gap is recorded here as a limitation of the guard, not fixed retroactively.
+
   *Incomplete sessions.* A rater may stop at any time; the judgements already made are kept, so
   items end with unequal numbers of raters and the per-item rater count is reported. In the accent
   panel a session is additionally required to pass the catch-trial gate, and one that stopped
