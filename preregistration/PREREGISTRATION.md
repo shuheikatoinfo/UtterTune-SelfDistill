@@ -278,6 +278,13 @@ any audio was selected, no result rests on that choice.
   whether that is good enough. The number screened, the number admitted, and this withdrawal are
   reported.
 
+  *A passing candidate who cannot be admitted (recorded 2026-09-09).* Of the two candidates who
+  reached 18/19, one never submitted a completion code on the platform and does not appear in the
+  closed posting's submissions. The rater id is minted in the browser and the server holds no
+  mapping to any platform account -- by design, since nothing identifying is collected -- so there
+  is no way to contact or pay them. They are reported as passed and not admitted, with the reason,
+  and they are not counted toward the panel. Screened 23, passed 2, contactable 1.
+
   *Catch trials (4 per block).* Known-answer items from the same verified pool as the gate. The
   blocks already carry 23 duplicate-consistency items of their own, so within-rater consistency is
   measured there and is not duplicated here; what those duplicates cannot do is separate a careful
