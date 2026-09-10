@@ -384,6 +384,25 @@ any audio was selected, no result rests on that choice.
   so a reader can see whether pace tracks agreement, and a registered secondary repeats the
   comparison on raters admitted after the change once there are enough of them to support it.
 
+  *Recruitment routes, reported separately (added 2026-09-10).* Candidates reached the screening by
+  three routes: an open micro-task on a Japanese crowdsourcing platform (abandoned, see above); an
+  individual contract on the same platform, selected from applications and profiles; and direct
+  approach by the author to people who work with pitch accent, including acquaintances. The counts
+  admitted by each route are reported, and so is the number screened by each.
+
+  **Every candidate sat the same screening and was held to the same threshold, whatever the route.**
+  No one was admitted on acquaintance, on credential, or on recommendation; the gate is the only
+  path in, and candidates were told so before they started. This is the whole of the protection
+  against the obvious objection, so it is stated rather than assumed: a directly approached rater
+  who had failed would have been paid and not admitted, exactly like anyone else.
+
+  Nothing about the stimuli or the task differs by route. Raters are not told which rendition comes
+  from which system, or what the study predicts, and the author does not discuss the material with
+  them. A rater who knows the author still cannot tell which answer would please them.
+
+  As of this entry: 32 screened, 5 passed. Of those, 2 came from the open task, 2 from the
+  individual contract, and 1 from direct approach.
+
   *Incomplete sessions.* A rater may stop at any time; the judgements already made are kept, so
   items end with unequal numbers of raters and the per-item rater count is reported. In the accent
   panel a session is additionally required to pass the catch-trial gate, and one that stopped
