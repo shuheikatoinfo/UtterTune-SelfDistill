@@ -318,9 +318,28 @@ any audio was selected, no result rests on that choice.
   fact about the platform's slot counter, not about their judgements, and discarding them on that
   basis would be selection. It also means one person could sit it twice from two browsers and go
   undetected; the rater id is minted client-side and nothing identifying is collected, by design.
-  The number of sittings and the number paid are both reported, and their difference with it. Accent raters are contracted individually so their accounts are known; naturalness
-  submissions from those accounts are reported and excluded, and the recruitment text asks prior
-  participants not to take part.
+  The number of sittings and the number paid are both reported, and their difference with it. Accent raters recruited on the platform are contracted
+  individually, so their accounts are known and naturalness submissions from those accounts are
+  reported and excluded; a rater approached directly has no platform account to check against, and
+  the recruitment text asks prior participants not to take part.
+
+  *Naturalness as run, against what was registered (recorded 2026-09-11).* Several registered parts
+  of the naturalness procedure were not carried out, and they are listed here rather than left to be
+  inferred from the paper:
+
+  - **The secondary 5-point rating was not collected.** The question text fixed above was never
+    shown; only the A/B/no-difference preference was run. No absolute naturalness number exists.
+  - **No dichotic headphone check and no anchor training were implemented.** The consent screen asks
+    for headphones or earphones; nothing tests it, and no covariate for it exists.
+  - **Collection fell short of the registered size.** Registered: at least 15 independent judgements
+    per pair, about 90 workers, about 4,500 judgements. Run: 197 pairs, 28 completed sittings of 33
+    started, 1,447 judgements, **6 to 9 per pair (median 7); no pair reaches 15**. Further sittings may
+    still complete by browser re-sync; the final counts are reported.
+
+  None of these is repaired after the fact. The primary non-inferiority test is run as registered on
+  the data collected, and the per-pair judgement count is reported beside it, because at 6 to 9
+  judgements a pair the interval is wider than the registered design anticipated and a reader should
+  see that before reading the result.
 
   *No catch trials in the naturalness task (stated 2026-09-09).* The accent panel carries eight
   known-answer items; the naturalness set carries none, and no duplicated pairs either, because a
