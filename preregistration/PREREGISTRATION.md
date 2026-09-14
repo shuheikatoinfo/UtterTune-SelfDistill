@@ -425,11 +425,15 @@ any audio was selected, no result rests on that choice.
   *Teacher-take selection was not uniform across backbones (recorded 2026-09-14, after all listening
   data was collected).* The paper had described one recipe applied to four backbones. Reviewing the
   generation scripts against the paper showed that how a teacher take is chosen differed:
-  Sarashina and Irodori keep the first take that passes the degeneracy guard, with no selection
-  (Sarashina additionally applies a uniform teacher-length filter, 20 to 600 semantic tokens, at
-  training time); CosyVoice2 keeps the lowest-CER of three takes against the front-end reading and
-  rejects the teacher if that CER exceeds 0.15; T5Gemma keeps the lowest of two and rejects above
-  0.35, with four carriers per word rather than ten. All of this acts on training data only. It is
+  Sarashina and Irodori use ten carriers a word and keep the first take that passes the degeneracy
+  guard, with no selection (4,830 teachers, none dropped; Sarashina additionally applies a uniform
+  teacher-length filter, 20 to 600 semantic tokens, at training time). CosyVoice2 and T5Gemma use
+  four carriers a word and keep the lowest-CER take against the front-end reading: of three on
+  CosyVoice2, rejected above CER 0.15 (43 of 1,892 dropped); of two on T5Gemma, rejected above 0.35,
+  where 1,068 of 1,932 candidate pairs had no take under the cap, leaving 864 teachers over 427 of
+  the 483 words. The generation logs are the source for these counts. The T5Gemma figure is the
+  reason selection exists there: without it the base reads more than half the carriers too badly to
+  yield a teacher at all. All of this acts on training data only. It is
   not repaired, because every listening judgement was collected on the adapters as trained; it is
   disclosed in the paper's method section, and the sentence claiming a recipe transferred without
   per-backbone adjustment is corrected. The direction of the asymmetry is noted: the two backbones
