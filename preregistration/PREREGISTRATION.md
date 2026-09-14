@@ -341,13 +341,15 @@ any audio was selected, no result rests on that choice.
   judgements a pair the interval is wider than the registered design anticipated and a reader should
   see that before reading the result.
 
-  *Naturalness collection resumed to the registered size (2026-09-14).* An interim analysis on
-  1,447 judgements (6 to 9 per pair) was computed and seen by the author before this decision; its
-  figures are in the paper as submitted. Collection then resumed with the aim of reaching the
-  registered 15 judgements per pair, which needs about 32 more completed sittings, balanced across
-  the four groups by the assignment endpoint. Nothing about the task, stimuli or groups changes.
-  The registered non-inferiority test is run once more on the full set and reported, and because
-  the interim look was taken, both the interim and the final figures are reported side by side.
+  *Naturalness collection resumed to the registered size (2026-09-14).* Collection had been
+  closed at 24 completed sittings without checking the registered size of 15 judgements per pair;
+  on checking, pairs had 6 to 9. By then an analysis of those 1,447 judgements had been computed
+  and its figures entered into a paper draft. The decision to resume was taken on the shortfall
+  alone: the registered size is the stopping rule, and it had not been reached. Collection resumed
+  with the aim of 15 judgements per pair, which needs about 32 more completed sittings, balanced
+  across the four groups by the assignment endpoint. Nothing about the task, stimuli or groups
+  changes. The registered non-inferiority test is run once more on the full set, and because an
+  analysis of the incomplete data exists, its figures are reported beside the final ones.
 
   *No catch trials in the naturalness task (stated 2026-09-09).* The accent panel carries eight
   known-answer items; the naturalness set carries none, and no duplicated pairs either, because a
