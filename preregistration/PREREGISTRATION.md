@@ -351,6 +351,21 @@ any audio was selected, no result rests on that choice.
   changes. The registered non-inferiority test is run once more on the full set, and because an
   analysis of the incomplete data exists, its figures are reported beside the final ones.
 
+  *Naturalness closed at the registered size; one duplicate account (2026-09-15).* The second
+  posting filled its 40 slots; 52 sittings completed on the server in that window, so 12 could not
+  claim a slot and are kept, as stated above. Final counts: 86 sittings started, 79 complete,
+  3,949 judgements, 17 to 22 per pair (median 21). Before any analysis of the new data, the two
+  postings' worker lists were intersected by account name. One account appears in both: an
+  incomplete first sitting (31 judgements, one group) and a complete second sitting (47 judgements,
+  another group). The rule stated before the lists were compared -- a second sitting by the same
+  account is excluded whole, whichever group it fell in -- is applied: the second sitting is
+  excluded, the first kept. Without the exclusion no estimate moves by more than 0.01. The analysis
+  is `scripts/analysis/analyze_naturalness.py`; the interim figures are reproduced from the same
+  export with `--until`, and both are in the paper. Result on the full set: the unedited-minus-edited
+  preference is -0.12 [-0.26, +0.02] on Sarashina (within the 0.15 margin; the interval now covers
+  zero, where the interim interval did not), +0.48 on Irodori, +0.31 on CosyVoice2, +0.23 on T5Gemma.
+  One rater answered one side on 41 of 47 pairs; reported, not excluded, as registered.
+
   *No catch trials in the naturalness task (stated 2026-09-09).* The accent panel carries eight
   known-answer items; the naturalness set carries none, and no duplicated pairs either, because a
   preference between two renditions has no known answer to hide among the others. There is
