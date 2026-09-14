@@ -433,7 +433,9 @@ any audio was selected, no result rests on that choice.
   where 1,068 of 1,932 candidate pairs had no take under the cap, leaving 864 teachers over 427 of
   the 483 words. The generation logs are the source for these counts. The T5Gemma figure is the
   reason selection exists there: without it the base reads more than half the carriers too badly to
-  yield a teacher at all. All of this acts on training data only. It is
+  yield a teacher at all. For CosyVoice2 the logs quantify only the post-selection rejection; the
+  author's experience with that backbone (the UtterTune preprint) was that single takes often carry
+  artefacts, which is why best-of-three was written in, but no single-take rate was measured here. All of this acts on training data only. It is
   not repaired, because every listening judgement was collected on the adapters as trained; it is
   disclosed in the paper's method section, and the sentence claiming a recipe transferred without
   per-backbone adjustment is corrected. The direction of the asymmetry is noted: the two backbones
