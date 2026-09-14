@@ -366,18 +366,24 @@ any audio was selected, no result rests on that choice.
   zero, where the interim interval did not), +0.48 on Irodori, +0.31 on CosyVoice2, +0.23 on T5Gemma.
   One rater answered one side on 41 of 47 pairs; reported, not excluded, as registered.
 
-  *Speeders (rule written 2026-09-15, after the data were seen; a sensitivity analysis, not the
-  primary).* Server receipt times match the client timestamps, so response intervals are real. Three
-  sittings have a median interval between consecutive judgements below 4.7 s, the two clips of the
-  shortest pair played once (51 judgements in 69 s; 51 in effectively 2 minutes around one break;
-  47 in 4 minutes, that rater also answering one side on 41 of 47). They cannot have heard both
-  clips of a typical pair (median 11.5 s). The next-fastest sitting is at 8.7 s, so the threshold
-  is set by the stimuli, not fitted to the data, and it reads timestamps only. Because the rule
-  postdates the data, the registered analysis (every judgement kept) remains primary and the
-  speeder-excluded figures are reported beside it: -0.13 / +0.50 / +0.33 / +0.24, no estimate
-  moving by more than 0.02; on the interim set, one speeder, -0.18 / +0.56 / +0.38 / +0.27.
-  `analyze_naturalness.py --exclude-speeders`. Two of the three sittings were never paid (no slot);
-  the third is a pending submission on the second posting and is the client's to accept or not.
+  *Speeders (rule written 2026-09-15, after the data were seen).* Server receipt times match the
+  client timestamps, so response intervals are real. Three sittings have a median interval between
+  consecutive judgements below 4.7 s, the two clips of the shortest pair played once (51 judgements
+  in 69 s; 51 in effectively 2 minutes around one break; 47 in 4 minutes, that rater also answering
+  one side on 41 of 47). They cannot have heard both clips of a typical pair (median 11.5 s). The
+  next-fastest sitting is at 8.7 s, so the threshold is set by the stimuli, not fitted to the data,
+  and it reads timestamps only, never the answers or the arm key. **Decision: these three sittings
+  are excluded from the primary analysis**, by the author's decision, as the ordinary quality step
+  for crowdsourced listening that this document should have fixed in advance and did not; the
+  omission is recorded here, and the rule is added to the standing design for future studies. The
+  registered all-judgement figures are reported beside the primary ones: primary (speeders and the
+  duplicate sitting excluded) -0.13 [-0.27, +0.01] / +0.50 / +0.33 / +0.24 on 3,800 judgements,
+  15 to 22 per pair; all judgements kept -0.12 / +0.48 / +0.31 / +0.23 on 3,949; no estimate moves by
+  more than 0.02. The interim figures under the same rule (one speeder among the first sittings):
+  -0.18 [-0.34, -0.01] / +0.56 / +0.38 / +0.27 on 1,396. `analyze_naturalness.py --exclude-speeders`
+  is the primary run; `data/analysis/naturalness_report.json` holds it and
+  `naturalness_report_allkept.json` the registered run. Two of the three sittings were never paid
+  (no slot); the third is a pending submission on the second posting.
 
   *No catch trials in the naturalness task (stated 2026-09-09).* The accent panel carries eight
   known-answer items; the naturalness set carries none, and no duplicated pairs either, because a
