@@ -422,6 +422,20 @@ any audio was selected, no result rests on that choice.
   As of this entry: 32 screened, 5 passed. Of those, 2 came from the open task, 2 from the
   individual contract, and 1 from direct approach.
 
+  *Teacher-take selection was not uniform across backbones (recorded 2026-09-14, after all listening
+  data was collected).* The paper had described one recipe applied to four backbones. Reviewing the
+  generation scripts against the paper showed that how a teacher take is chosen differed:
+  Sarashina and Irodori keep the first take that passes the degeneracy guard, with no selection
+  (Sarashina additionally applies a uniform teacher-length filter, 20 to 600 semantic tokens, at
+  training time); CosyVoice2 keeps the lowest-CER of three takes against the front-end reading and
+  rejects the teacher if that CER exceeds 0.15; T5Gemma keeps the lowest of two and rejects above
+  0.35, with four carriers per word rather than ten. All of this acts on training data only. It is
+  not repaired, because every listening judgement was collected on the adapters as trained; it is
+  disclosed in the paper's method section, and the sentence claiming a recipe transferred without
+  per-backbone adjustment is corrected. The direction of the asymmetry is noted: the two backbones
+  with the more curated teachers are among those on which the channel transfers less, so the
+  asymmetry does not favour the backbone the recipe was developed on.
+
   *Incomplete sessions.* A rater may stop at any time; the judgements already made are kept, so
   items end with unequal numbers of raters and the per-item rater count is reported. In the accent
   panel a session is additionally required to pass the catch-trial gate, and one that stopped
