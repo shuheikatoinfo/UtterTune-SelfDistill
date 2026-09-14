@@ -366,6 +366,19 @@ any audio was selected, no result rests on that choice.
   zero, where the interim interval did not), +0.48 on Irodori, +0.31 on CosyVoice2, +0.23 on T5Gemma.
   One rater answered one side on 41 of 47 pairs; reported, not excluded, as registered.
 
+  *Speeders (rule written 2026-09-15, after the data were seen; a sensitivity analysis, not the
+  primary).* Server receipt times match the client timestamps, so response intervals are real. Three
+  sittings have a median interval between consecutive judgements below 4.7 s, the two clips of the
+  shortest pair played once (51 judgements in 69 s; 51 in effectively 2 minutes around one break;
+  47 in 4 minutes, that rater also answering one side on 41 of 47). They cannot have heard both
+  clips of a typical pair (median 11.5 s). The next-fastest sitting is at 8.7 s, so the threshold
+  is set by the stimuli, not fitted to the data, and it reads timestamps only. Because the rule
+  postdates the data, the registered analysis (every judgement kept) remains primary and the
+  speeder-excluded figures are reported beside it: -0.13 / +0.50 / +0.33 / +0.24, no estimate
+  moving by more than 0.02; on the interim set, one speeder, -0.18 / +0.56 / +0.38 / +0.27.
+  `analyze_naturalness.py --exclude-speeders`. Two of the three sittings were never paid (no slot);
+  the third is a pending submission on the second posting and is the client's to accept or not.
+
   *No catch trials in the naturalness task (stated 2026-09-09).* The accent panel carries eight
   known-answer items; the naturalness set carries none, and no duplicated pairs either, because a
   preference between two renditions has no known answer to hide among the others. There is
