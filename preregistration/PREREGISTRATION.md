@@ -366,6 +366,17 @@ any audio was selected, no result rests on that choice.
   zero, where the interim interval did not), +0.48 on Irodori, +0.31 on CosyVoice2, +0.23 on T5Gemma.
   One rater answered one side on 41 of 47 pairs; reported, not excluded, as registered.
 
+  *Training words inside the naturalness set (found 2026-09-15, after the naturalness data were
+  analysed).* The teacher scripts' evaluation-disjointness filter covered the difficult, katakana and
+  Joyo sets. The CosyVoice2 script also excluded the easy (naturalness) set's targets and dropped 10
+  more words (473 words, 1,892 candidate takes); the Sarashina, Irodori and T5Gemma scripts did not,
+  so on those backbones 10, 10 and 9 of the easy pairs edit a word that was in their training
+  inventory (空, 星, 音, 心, 橋, 教室, 写真, 机, 絨毯). Nothing is repaired: the pairs stay in the
+  primary result, and the result without them is reported beside it -- Sarashina -0.08 [-0.24, +0.08]
+  (margin still met), Irodori +0.43, T5Gemma +0.30; on the trained-word pairs alone Sarashina -0.29,
+  Irodori +0.74, T5Gemma +0.01. `data/analysis/naturalness_trainedword_sensitivity.json`. The paper's
+  disjointness statement is narrowed to the three sets the filter covered.
+
   *Speeders (rule written 2026-09-15, after the data were seen).* Server receipt times match the
   client timestamps, so response intervals are real. Three sittings have a median interval between
   consecutive judgements below 4.7 s, the two clips of the shortest pair played once (51 judgements
