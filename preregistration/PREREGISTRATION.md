@@ -382,6 +382,22 @@ any audio was selected, no result rests on that choice.
   `naturalness_trainedword_sensitivity.json`). The paper's disjointness statement is narrowed to
   the three sets the filter covered.
 
+  *Teacher reading audit (run 2026-09-15, after all listening data; descriptive, changes nothing).*
+  The Sarashina and Irodori teacher sets kept the first take passing the degeneration guard with no
+  reading check. Every stored teacher was decoded (Sarashina: semantic tokens through the frozen
+  flow/vocoder under one held-out reference; Irodori: codec latents through the same DACVAE codec)
+  and scored with the ASR and canonicalisation of the metric of record
+  (`scripts/eval/audit_teachers_{sarashina,irodori}.py`). Target reading heard: Sarashina 4,071/4,830
+  = 0.843, Irodori 4,313/4,830 = 0.893. Words misread in every take: Sarashina 10 (南瓜, 料金所, 牛車,
+  目覚まし, 硝子, 脛, 茄子, 蒲団, 蓮根, 饂飩), Irodori 15 (adds キヤノン, ヤマハ, 牙医, 給油所, 絵具, 胡瓜,
+  蜜柑; lacks 硝子, 饂飩); 8 shared. Most are everyday words in uncommon kanji spellings that the base
+  reads character by character (南瓜, 硝子, 饂飩, 蒲団, 蓮根), so the premise "a common word the base
+  pronounces correctly" fails for about 2--3% of the inventory, and those teachers contradict their
+  tag. One inventory reading is itself wrong (目覚まし given as メザメマシ; the base says メザマシ). Many
+  remaining misses are single-consonant ASR confusions (デンキュー heard as テンキュー), so the rates are
+  lower bounds. Nothing is removed or retrained: the adapters evaluated were trained on these sets,
+  and the paper states the audit figures.
+
   *Speeders (rule written 2026-09-15, after the data were seen).* Server receipt times match the
   client timestamps, so response intervals are real. Three sittings have a median interval between
   consecutive judgements below 4.7 s, the two clips of the shortest pair played once (51 judgements
