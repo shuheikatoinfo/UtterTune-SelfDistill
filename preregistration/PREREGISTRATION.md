@@ -398,6 +398,15 @@ any audio was selected, no result rests on that choice.
   lower bounds. Nothing is removed or retrained: the adapters evaluated were trained on these sets,
   and the paper states the audit figures.
 
+  *Why T5Gemma receives no rater time (restated 2026-09-15).* §0 gives the budget reason (two
+  paradigms answer the cross-architecture claim; four listening tables do not fit). The same decision
+  has a substantive reason that was also on record when it was taken (the T5Gemma teacher set of
+  2026-09-01, 1,068 of 1,932 takes rejected, documented 2026-09-05 alongside §0): T5Gemma's channel
+  was trained on the half of its teacher set that survived, so an accent judgement there would grade
+  the recipe's floor on that backbone, not the channel. Rater time went to the two backbones where the
+  recipe ran as designed and to the one with a recorded-data comparator. The paper now says so; the
+  decision itself is unchanged.
+
   *Speeders (rule written 2026-09-15, after the data were seen).* Server receipt times match the
   client timestamps, so response intervals are real. Three sittings have a median interval between
   consecutive judgements below 4.7 s, the two clips of the shortest pair played once (51 judgements
