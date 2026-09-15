@@ -473,7 +473,7 @@ any audio was selected, no result rests on that choice.
   guard, with no selection (4,830 teachers, none dropped; Sarashina additionally applies a uniform
   teacher-length filter, 20 to 600 semantic tokens, at training time). CosyVoice2 and T5Gemma use
   four carriers a word and keep the lowest-CER take against the front-end reading: of three on
-  CosyVoice2, rejected above CER 0.15 (43 of 1,892 dropped); of two on T5Gemma, rejected above 0.35,
+  CosyVoice2, rejected above CER 0.15 (50 of 1,892 takes dropped, leaving 1,842 teachers over 472 words; the figure 43 given here until 2026-09-15 was wrong, corrected from the teacher-set provenance record); of two on T5Gemma, rejected above 0.35,
   where 1,068 of 1,932 candidate pairs had no take under the cap, leaving 864 teachers over 427 of
   the 483 words. The generation logs are the source for these counts. The T5Gemma figure is the
   reason selection exists there: without it the base reads more than half the carriers too badly to
