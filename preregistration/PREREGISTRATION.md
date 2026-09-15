@@ -371,11 +371,16 @@ any audio was selected, no result rests on that choice.
   Joyo sets. The CosyVoice2 script also excluded the easy (naturalness) set's targets and dropped 10
   more words (473 words, 1,892 candidate takes); the Sarashina, Irodori and T5Gemma scripts did not,
   so on those backbones 10, 10 and 9 of the easy pairs edit a word that was in their training
-  inventory (空, 星, 音, 心, 橋, 教室, 写真, 机, 絨毯). Nothing is repaired: the pairs stay in the
-  primary result, and the result without them is reported beside it -- Sarashina -0.08 [-0.24, +0.08]
-  (margin still met), Irodori +0.43, T5Gemma +0.30; on the trained-word pairs alone Sarashina -0.29,
-  Irodori +0.74, T5Gemma +0.01. `data/analysis/naturalness_trainedword_sensitivity.json`. The paper's
-  disjointness statement is narrowed to the three sets the filter covered.
+  inventory (空, 星, 音, 心, 橋, 教室, 写真, 机, 絨毯). **Decision (author, 2026-09-15): those 29 pairs are excluded from the primary
+  naturalness result**, as a training--evaluation contamination that the filter should have caught,
+  by the same identity-based logic as the training-set filter itself (the rule reads the teacher
+  inventory, not the judgements). Primary: 168 pairs, 3,228 judgements -- Sarashina -0.08
+  [-0.24, +0.08] (margin met), Irodori +0.43, CosyVoice2 +0.33, T5Gemma +0.30; same-reading stratum
+  127 pairs, -0.07 / +0.41 / +0.36 / +0.34. All-pairs figures for the record: Sarashina -0.13
+  [-0.27, +0.01], Irodori +0.50, T5Gemma +0.24; on the trained-word pairs alone Sarashina -0.29,
+  Irodori +0.74, T5Gemma +0.01 (`naturalness_report_allpairs.json`,
+  `naturalness_trainedword_sensitivity.json`). The paper's disjointness statement is narrowed to
+  the three sets the filter covered.
 
   *Speeders (rule written 2026-09-15, after the data were seen).* Server receipt times match the
   client timestamps, so response intervals are real. Three sittings have a median interval between
