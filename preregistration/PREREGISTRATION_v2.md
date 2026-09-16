@@ -50,6 +50,9 @@ not reading-checked) with one design applied identically to all four backbones.
    memory oversubscribed while three jobs shared the local GPU) and was killed at 16:15 and restarted from
    scratch with the identical command (`v2_chain.sh sarashina_train`); the stalled run's log is kept as
    `logs/sarashina_train_stalled_1558.log` and nothing of it is used.
+   Irodori's adapter training (2,000 steps, identical config, base checkpoint and command) runs on the
+   RunPod pod that generated its teachers (16:39 JST) and the checkpoint is copied back for the local
+   synthesis; no local Irodori training run is used.
 3. **One speaker rule.** No speaker enters where the backbone can synthesize from text alone
    (Sarashina, T5Gemma: text-only teachers, as in round 1). Where it cannot, **the same 2,000
    self-sampled synthetic voices are cycled over carriers on both speaker-conditioned backbones**:
