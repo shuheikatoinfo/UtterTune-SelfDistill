@@ -1037,3 +1037,5 @@ begins. The paper cites the commit hash. **【OPEN — see §0.3】** Whether an
 OSF registration is filed is to be decided.
 
 Recorded at timestamp: `<commit hash>` — to be filled at tagging.
+
+**Note added 2026-09-16 15:30 JST (round-2 finding).** The round-1 T5Gemma teacher QC (`scripts/t5gemma/gen_teachers_t5gemma.py`, kana-whisper CER <= 0.35) fed 44.1 kHz audio to the transformers pipeline's raw-input path, whose resampling distorts 44.1 kHz audio (a target word misheard on a test utterance; 24 kHz audio is transcribed faithfully). The QC therefore rejected more takes than a faithful transcript would have; kept takes are ones that survived a stricter, noisier check. The objective measurement of record (`measure_reading_all.py`) resampled via `asr_audio.to_asr_input` and is unaffected. Round 2 uses a checker that resamples to 16 kHz first.

@@ -30,6 +30,17 @@ not reading-checked) with one design applied identically to all four backbones.
    contention): the same script, rule and seeds, rows sharded over pods (`scripts/teachers/runpod_t5gemma.py`);
    the local partial pass is discarded whole and no row of it enters; with the pods the five takes are
    expected to finish before the cutoff, which stays in force.
+   **Checker implementation defect, found 15:20 JST on 09-16 and fixed before any teacher set was
+   inspected beyond its counts:** `reading_check.Checker` handed raw audio with its native rate to the
+   transformers pipeline, whose resampling is faithful at 24 and 16 kHz but distorts 44.1 kHz
+   (target word misheard) and 48 kHz (unintelligible) audio; verified on one Irodori utterance whose
+   file-path transcript is correct at every rate once librosa resamples to 16 kHz first. The fix resamples
+   in the checker. Consequences: Sarashina and CosyVoice 2 (24 kHz) are unaffected and their sets stand;
+   Irodori (48 kHz; 200 carriers done, 10 kept) and T5Gemma (44.1 kHz; pods about 35 min in) are
+   regenerated from scratch with the fixed checker and their partial outputs are discarded whole.
+   The same raw-rate path was used by the round-1 T5Gemma teacher QC (CER at 44.1 kHz), which is
+   noted in `PREREGISTRATION.md`; the objective measurement of record (`measure_reading_all.py`)
+   already resampled via `asr_audio.to_asr_input` and is unaffected.
 3. **One speaker rule.** No speaker enters where the backbone can synthesize from text alone
    (Sarashina, T5Gemma: text-only teachers, as in round 1). Where it cannot, **the same 2,000
    self-sampled synthetic voices are cycled over carriers on both speaker-conditioned backbones**:
