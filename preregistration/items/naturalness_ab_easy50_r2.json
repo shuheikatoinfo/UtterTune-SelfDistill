@@ -1,5 +1,5 @@
 {
- "n": 95,
+ "n": 98,
  "report": {
   "sarashina": {
    "pairs": 23,
@@ -16,14 +16,14 @@
   "irodori": {
    "pairs": 25,
    "excluded_inaudible": 0,
-   "same_reading": 21,
-   "same_reading_rate": 0.84
+   "same_reading": 18,
+   "same_reading_rate": 0.72
   },
   "t5gemma": {
-   "pairs": 22,
-   "excluded_inaudible": 3,
-   "same_reading": 18,
-   "same_reading_rate": 0.818
+   "pairs": 25,
+   "excluded_inaudible": 0,
+   "same_reading": 20,
+   "same_reading_rate": 0.8
   }
  },
  "note": "A/B side fixed by hash; the mapping lives here and is never shipped to raters.",
@@ -83,7 +83,7 @@
    "sentence": "朝焼け染まる空に小鳥がさえずり始めて、一日が静かに動き出した。",
    "target_reading": "ソラ",
    "same_reading": true,
-   "hyp_noedit": "アサヤケソマルソラニコトリガサエズリハジメテ",
+   "hyp_noedit": "アサヤケソマルソラニコトリガサエズリハジメテイチニチガシズカニウゴキダシタ",
    "hyp_ours": "アサヤケソマルソラニコトリガサエズリハジメテイチニチガシズカニウゴキダシ",
    "A": "noedit",
    "B": "ours"
@@ -107,8 +107,8 @@
    "sentence": "温かい紅茶を飲むと、冷えた指先がじんわり温まった。",
    "target_reading": "コーチャ",
    "same_reading": false,
-   "hyp_noedit": "アタタカイコーチャオノムトヒエタユビサキガジンワリアタタマッタカット",
-   "hyp_ours": "アタタカイコーチョーオノムトヒエタユビサキガジンワリアタタマッタト",
+   "hyp_noedit": "アタタカイコーチャオマムトヒエタユビサキガジンワリアタタマッタ",
+   "hyp_ours": "アタタカイコーチョーオノムトヒエタユビサキガジンワリアタタマッタアト",
    "A": "noedit",
    "B": "ours"
   },
@@ -119,7 +119,7 @@
    "sentence": "夜空に瞬く星を数えて、願い事をそっと唱えた。",
    "target_reading": "ホシ",
    "same_reading": true,
-   "hyp_noedit": "ヨゾラニマタタクホシオカゾエテ",
+   "hyp_noedit": "ヨゾラニマタタクホシオカゾエテネガイゴトオソットトナエタ",
    "hyp_ours": "ヨゾラニマタタクホシオカゾエテネガイゴトオソットトナエタ",
    "A": "ours",
    "B": "noedit"
@@ -151,17 +151,41 @@
   {
    "id": "m010",
    "backbone": "t5gemma",
-   "idx": 39,
-   "sentence": "海辺で拾った貝殻を耳に当てると、遠くの波音がそっとささやいていた。",
-   "target_reading": "カイガラ",
+   "idx": 20,
+   "sentence": "砂浜に描いたハートを波がさらって、思わず笑ってしまった。",
+   "target_reading": "ハート",
    "same_reading": true,
-   "hyp_noedit": "ウミベデヒロッタカイガラオミミニアテルト",
-   "hyp_ours": "ウミベデヒロッタカイガラオ",
+   "hyp_noedit": "スナハマニエガイタハートオナミダサラッテオモワズワラッテシマッタ",
+   "hyp_ours": "スナハマニカイタハートオナミガサラッテオモワズワラッテシマッタ",
    "A": "noedit",
    "B": "ours"
   },
   {
    "id": "m011",
+   "backbone": "t5gemma",
+   "idx": 39,
+   "sentence": "海辺で拾った貝殻を耳に当てると、遠くの波音がそっとささやいていた。",
+   "target_reading": "カイガラ",
+   "same_reading": true,
+   "hyp_noedit": "ウミベデヒロッタカイガラオミミニアテルトトークノナミオトガソットササヤイテイタ",
+   "hyp_ours": "ウミベデヒロッタカイガラオ",
+   "A": "noedit",
+   "B": "ours"
+  },
+  {
+   "id": "m012",
+   "backbone": "t5gemma",
+   "idx": 31,
+   "sentence": "駅のベンチで次の電車を待ちながら読書していたら、知らぬ間に夢中になった。",
+   "target_reading": "アイダ",
+   "same_reading": false,
+   "hyp_noedit": "エキノベンチデツギノデンシャオマチナガラドクショシテイタラシラヌマニムチューニナッタ",
+   "hyp_ours": "エキノベンチデ",
+   "A": "noedit",
+   "B": "ours"
+  },
+  {
+   "id": "m013",
    "backbone": "cv2",
    "idx": 12,
    "sentence": "夜空に瞬く星を数えて、願い事をそっと唱えた。",
@@ -169,11 +193,11 @@
    "same_reading": false,
    "hyp_noedit": "ニョーゾラニマタタカホシオカゾエテネガイゴトオソットトナエタ",
    "hyp_ours": "ヨーゾラニマタタク",
-   "A": "noedit",
-   "B": "ours"
+   "A": "ours",
+   "B": "noedit"
   },
   {
-   "id": "m012",
+   "id": "m014",
    "backbone": "sarashina",
    "idx": 44,
    "sentence": "キャンプの夜に焚き火を囲んで語り合うと、揺れる炎が顔を優しく照らした。",
@@ -185,7 +209,7 @@
    "B": "ours"
   },
   {
-   "id": "m013",
+   "id": "m015",
    "backbone": "sarashina",
    "idx": 20,
    "sentence": "砂浜に描いたハートを波がさらって、思わず笑ってしまった。",
@@ -197,7 +221,7 @@
    "B": "noedit"
   },
   {
-   "id": "m014",
+   "id": "m016",
    "backbone": "cv2",
    "idx": 49,
    "sentence": "夕暮れ時に鳴るチャイムを聞いて帰り道を急ぐと、家の灯りが温かく迎えた。",
@@ -205,11 +229,11 @@
    "same_reading": false,
    "hyp_noedit": "ユーグレドキニナルチャイムオキーテカエリミチオイソグトイエノトモリガアタタカクムカ",
    "hyp_ours": "ユーグレジニナルチャイムオキーテカエリミチオイソグトイエノトーリガアタタカク",
-   "A": "noedit",
-   "B": "ours"
+   "A": "ours",
+   "B": "noedit"
   },
   {
-   "id": "m015",
+   "id": "m017",
    "backbone": "sarashina",
    "idx": 38,
    "sentence": "夜更けに聞こえる虫の声が静かな部屋に響き、休んだ心をさらに落ち着かせた。",
@@ -221,7 +245,7 @@
    "B": "noedit"
   },
   {
-   "id": "m016",
+   "id": "m018",
    "backbone": "cv2",
    "idx": 21,
    "sentence": "友達から届いたはがきを読んで、遠い街を身近に感じた。",
@@ -233,19 +257,19 @@
    "B": "noedit"
   },
   {
-   "id": "m017",
+   "id": "m019",
    "backbone": "t5gemma",
    "idx": 4,
    "sentence": "静かな図書館で物語を読んで時間を忘れていた。",
    "target_reading": "モノガタリ",
    "same_reading": false,
-   "hyp_noedit": "シズカナトショカンデモノガタリオヨンデジカンオワスレテイタ",
+   "hyp_noedit": "シズカナトショカンデジカンオワスレテイタ",
    "hyp_ours": "ハイ",
-   "A": "ours",
-   "B": "noedit"
+   "A": "noedit",
+   "B": "ours"
   },
   {
-   "id": "m018",
+   "id": "m020",
    "backbone": "cv2",
    "idx": 22,
    "sentence": "涼しい木陰で昼寝をすると、蝉の声が子守歌になった。",
@@ -253,11 +277,11 @@
    "same_reading": false,
    "hyp_noedit": "スズシーコカゲデヒルネオスルトセミノコエガコモモノハニナッタオー",
    "hyp_ours": "スズシーコカゲデヒルネオスルト",
-   "A": "ours",
-   "B": "noedit"
+   "A": "noedit",
+   "B": "ours"
   },
   {
-   "id": "m019",
+   "id": "m021",
    "backbone": "cv2",
    "idx": 45,
    "sentence": "静かな寺の石段を登り切ると、風鈴の澄んだ音が木立の間で冴え渡った。",
@@ -269,7 +293,7 @@
    "B": "ours"
   },
   {
-   "id": "m020",
+   "id": "m022",
    "backbone": "irodori",
    "idx": 10,
    "sentence": "バス停で並ぶ人々の上を、涼しい風が通り過ぎた。",
@@ -277,11 +301,11 @@
    "same_reading": true,
    "hyp_noedit": "バステーデナラブヒトビトノウエオスズシーカゼガトーリスギタ",
    "hyp_ours": "バステーデナラブヒトビトノウエオスズシーカゼガトーリスギタ",
-   "A": "noedit",
-   "B": "ours"
+   "A": "ours",
+   "B": "noedit"
   },
   {
-   "id": "m021",
+   "id": "m023",
    "backbone": "irodori",
    "idx": 27,
    "sentence": "夕方の川辺で涼しい風を感じながら友達と並んで橋の影を眺めた。",
@@ -289,23 +313,23 @@
    "same_reading": true,
    "hyp_noedit": "ユーガタノカワベデスズシーカゼオカンジナガラトモダチトナランデハシノカゲオナガメタ",
    "hyp_ours": "ユーガタノカワベデスズシーカゼオカンジナガラトモダチトナランデハスノカゲオナガメタ",
-   "A": "noedit",
-   "B": "ours"
+   "A": "ours",
+   "B": "noedit"
   },
   {
-   "id": "m022",
+   "id": "m024",
    "backbone": "t5gemma",
    "idx": 7,
    "sentence": "母が煮込んだシチューの匂いが家中に広がっていた。",
    "target_reading": "ニオイ",
    "same_reading": true,
-   "hyp_noedit": "ハハガニコンダシチューノニオイガカチューニヒロガッテイタ",
+   "hyp_noedit": "ハハガニコンダシチューノニオイガイエチューニヒロガッテイタ",
    "hyp_ours": "ハハガニコンダシチューノニオイガカチューニヒロガッテイタ",
    "A": "ours",
    "B": "noedit"
   },
   {
-   "id": "m023",
+   "id": "m025",
    "backbone": "sarashina",
    "idx": 11,
    "sentence": "教室の窓から見えた雲が、羊のような形をしていた。",
@@ -317,7 +341,7 @@
    "B": "noedit"
   },
   {
-   "id": "m024",
+   "id": "m026",
    "backbone": "t5gemma",
    "idx": 21,
    "sentence": "友達から届いたはがきを読んで、遠い街を身近に感じた。",
@@ -329,7 +353,7 @@
    "B": "noedit"
   },
   {
-   "id": "m025",
+   "id": "m027",
    "backbone": "sarashina",
    "idx": 41,
    "sentence": "学校のグラウンドで風に舞う落ち葉を追いかけて、子どもたちが賑やかに遊んだ。",
@@ -337,11 +361,11 @@
    "same_reading": true,
    "hyp_noedit": "スガッコーノグラウンドデカゼニマウオチバオオイカケテコドモタチガニギヤカニアソンダ",
    "hyp_ours": "ガッコーノグラウンドデカゼニマウオチバオオイカケテコドモタチガニギヤカニアソンダ",
-   "A": "ours",
-   "B": "noedit"
+   "A": "noedit",
+   "B": "ours"
   },
   {
-   "id": "m026",
+   "id": "m028",
    "backbone": "cv2",
    "idx": 28,
    "sentence": "図書館の静かな席で物語を読んでいると、時間がゆっくり流れていった。",
@@ -353,7 +377,7 @@
    "B": "noedit"
   },
   {
-   "id": "m027",
+   "id": "m029",
    "backbone": "cv2",
    "idx": 16,
    "sentence": "机に広げた地図を眺め、次の旅の計画を練っていた。",
@@ -365,7 +389,7 @@
    "B": "ours"
   },
   {
-   "id": "m028",
+   "id": "m030",
    "backbone": "t5gemma",
    "idx": 42,
    "sentence": "新しい靴を履いて歩くと足取りが軽くなり、街の景色まで明るく変わった。",
@@ -373,11 +397,11 @@
    "same_reading": true,
    "hyp_noedit": "アタラシークツオハイテアルクトアシドリガカルクナリマチノケシキマデアカルクカワッタ",
    "hyp_ours": "アタラシークツオハイテアルクトアシドリガカルクナリマチノケシキマデアカルクカワッタ",
-   "A": "ours",
-   "B": "noedit"
+   "A": "noedit",
+   "B": "ours"
   },
   {
-   "id": "m029",
+   "id": "m031",
    "backbone": "irodori",
    "idx": 1,
    "sentence": "朝の空に小鳥が飛び交い、新しい一日が始まった。",
@@ -385,35 +409,35 @@
    "same_reading": true,
    "hyp_noedit": "アサノソラニコトリガトビカイアタラシーイチニチガハジマッタ",
    "hyp_ours": "アサノソラニコトリガトビカイアタラシーイチニチガハジマッタ",
-   "A": "noedit",
-   "B": "ours"
-  },
-  {
-   "id": "m030",
-   "backbone": "irodori",
-   "idx": 20,
-   "sentence": "砂浜に描いたハートを波がさらって、思わず笑ってしまった。",
-   "target_reading": "ハート",
-   "same_reading": true,
-   "hyp_noedit": "スナハマニエガイタハートオナミガサラッテオモワズワラッテシマッタ",
-   "hyp_ours": "スナハマニカイタハートオナミガサラッテオモワズワラッテシマッタ",
-   "A": "noedit",
-   "B": "ours"
-  },
-  {
-   "id": "m031",
-   "backbone": "irodori",
-   "idx": 6,
-   "sentence": "花壇のチューリップが風に揺れ鮮やかに咲いている。",
-   "target_reading": "チューリップ",
-   "same_reading": true,
-   "hyp_noedit": "ゲダンノチューリップガカゼニユレアザヤカニサイテイルト",
-   "hyp_ours": "ゲダンノチューリップガカゼニユレアザヤカニサイテイル",
    "A": "ours",
    "B": "noedit"
   },
   {
    "id": "m032",
+   "backbone": "irodori",
+   "idx": 20,
+   "sentence": "砂浜に描いたハートを波がさらって、思わず笑ってしまった。",
+   "target_reading": "ハート",
+   "same_reading": true,
+   "hyp_noedit": "スナハマニカイタハートオナミガサラッテオモワズワラッテシマッタ",
+   "hyp_ours": "スナハマニカイタハートオナミガサラッテオモワズワラッテシマッタ",
+   "A": "ours",
+   "B": "noedit"
+  },
+  {
+   "id": "m033",
+   "backbone": "irodori",
+   "idx": 6,
+   "sentence": "花壇のチューリップが風に揺れ鮮やかに咲いている。",
+   "target_reading": "チューリップ",
+   "same_reading": false,
+   "hyp_noedit": "ゲダンノチューリップガカゼニユレアザヤカニサイテイル",
+   "hyp_ours": "ゲダンノツーリップガカゼニユレアザヤカニサイテユレ",
+   "A": "noedit",
+   "B": "ours"
+  },
+  {
+   "id": "m034",
    "backbone": "sarashina",
    "idx": 22,
    "sentence": "涼しい木陰で昼寝をすると、蝉の声が子守歌になった。",
@@ -421,23 +445,23 @@
    "same_reading": false,
    "hyp_noedit": "スズシーコカゲデヒルネオスルトセミノコエガコモリウタニナッタ",
    "hyp_ours": "スズシーコカゲデヒルネオスルトセミノコエガコモリカッコニナッタ",
-   "A": "ours",
-   "B": "noedit"
+   "A": "noedit",
+   "B": "ours"
   },
   {
-   "id": "m033",
+   "id": "m035",
    "backbone": "t5gemma",
    "idx": 30,
    "sentence": "コーヒーの香りが漂う喫茶店で、静かに流れる音楽を聴きつつ休憩した。",
    "target_reading": "カオリ",
    "same_reading": true,
-   "hyp_noedit": "コーヒーノカオリガタダヨウキッサテンデ",
+   "hyp_noedit": "コーヒーノカオリガタダヨウキッサテンデシズカニナガレルオンガクオキキツツキューケーシタ",
    "hyp_ours": "コーヒーノカオリガタダヨウキッサテンデシズカニナガレルオンガクオキキツツキューケーシタ",
    "A": "noedit",
    "B": "ours"
   },
   {
-   "id": "m034",
+   "id": "m036",
    "backbone": "cv2",
    "idx": 17,
    "sentence": "スマホのタイマーが鳴って、オーブンのケーキが焼き上がった。",
@@ -449,7 +473,7 @@
    "B": "ours"
   },
   {
-   "id": "m035",
+   "id": "m037",
    "backbone": "t5gemma",
    "idx": 1,
    "sentence": "朝の空に小鳥が飛び交い、新しい一日が始まった。",
@@ -457,11 +481,11 @@
    "same_reading": true,
    "hyp_noedit": "アサノソラニコドリガトビカイアタラシーイチニチガハジマッタ",
    "hyp_ours": "アサノソラニコドリガトビカイアタラシーイチニチガハジマッタ",
-   "A": "noedit",
-   "B": "ours"
+   "A": "ours",
+   "B": "noedit"
   },
   {
-   "id": "m036",
+   "id": "m038",
    "backbone": "irodori",
    "idx": 28,
    "sentence": "図書館の静かな席で物語を読んでいると、時間がゆっくり流れていった。",
@@ -469,11 +493,11 @@
    "same_reading": true,
    "hyp_noedit": "トショカンノシズカナセキデモノガタリオヨンデイルトジカンガユックリナガレテイッタ",
    "hyp_ours": "トショカンノシズカナセキデモノガタリオヨンデイルトジカンガユックリナガレテイッタ",
-   "A": "noedit",
-   "B": "ours"
+   "A": "ours",
+   "B": "noedit"
   },
   {
-   "id": "m037",
+   "id": "m039",
    "backbone": "t5gemma",
    "idx": 28,
    "sentence": "図書館の静かな席で物語を読んでいると、時間がゆっくり流れていった。",
@@ -485,7 +509,7 @@
    "B": "noedit"
   },
   {
-   "id": "m038",
+   "id": "m040",
    "backbone": "sarashina",
    "idx": 18,
    "sentence": "橋の上から見た川の流れが月明かりに白く光った。",
@@ -493,36 +517,12 @@
    "same_reading": true,
    "hyp_noedit": "ハシノウエカラミタカワノナガレガスキアカリニシロクヒカッタ",
    "hyp_ours": "ハッパガアルノハシノウエカラミタカワノナガレガツキアカリニシロクヒカッタ",
-   "A": "ours",
-   "B": "noedit"
-  },
-  {
-   "id": "m039",
-   "backbone": "t5gemma",
-   "idx": 5,
-   "sentence": "波の音を聞きながら、浜辺を裸足で歩いて涼んだ。",
-   "target_reading": "オト",
-   "same_reading": true,
-   "hyp_noedit": "ナミノオトオキキナガラハマベオハダシデアルイテスズンダ",
-   "hyp_ours": "ナミノオトオキキナガラハマベオハダシデアルイテスズンダ",
-   "A": "ours",
-   "B": "noedit"
-  },
-  {
-   "id": "m040",
-   "backbone": "sarashina",
-   "idx": 28,
-   "sentence": "図書館の静かな席で物語を読んでいると、時間がゆっくり流れていった。",
-   "target_reading": "ジカン",
-   "same_reading": true,
-   "hyp_noedit": "トショカンノシズカナセキデモノガタリオヨンデイルトジカンガユックリナガレテイッ",
-   "hyp_ours": "トショカンノシズカナセキデモノガタリオヨンデイルトジカンガユックリナガレテイッタ",
    "A": "noedit",
    "B": "ours"
   },
   {
    "id": "m041",
-   "backbone": "irodori",
+   "backbone": "t5gemma",
    "idx": 5,
    "sentence": "波の音を聞きながら、浜辺を裸足で歩いて涼んだ。",
    "target_reading": "オト",
@@ -534,6 +534,30 @@
   },
   {
    "id": "m042",
+   "backbone": "sarashina",
+   "idx": 28,
+   "sentence": "図書館の静かな席で物語を読んでいると、時間がゆっくり流れていった。",
+   "target_reading": "ジカン",
+   "same_reading": true,
+   "hyp_noedit": "トショカンノシズカナセキデモノガタリオヨンデイルトジカンガユックリナガレテイッ",
+   "hyp_ours": "トショカンノシズカナセキデモノガタリオヨンデイルトジカンガユックリナガレテイッタ",
+   "A": "noedit",
+   "B": "ours"
+  },
+  {
+   "id": "m043",
+   "backbone": "irodori",
+   "idx": 5,
+   "sentence": "波の音を聞きながら、浜辺を裸足で歩いて涼んだ。",
+   "target_reading": "オト",
+   "same_reading": true,
+   "hyp_noedit": "ナミノオトオキキナガラハマベオハダシデアルイテスズンダ",
+   "hyp_ours": "ナミノオトオキキナガラハマベオハダシデアルイテスズンダ",
+   "A": "ours",
+   "B": "noedit"
+  },
+  {
+   "id": "m044",
    "backbone": "irodori",
    "idx": 22,
    "sentence": "涼しい木陰で昼寝をすると、蝉の声が子守歌になった。",
@@ -541,11 +565,11 @@
    "same_reading": false,
    "hyp_noedit": "スズシーコカゲデヒルネオスルトセミノコエガコモリウタニナッタ",
    "hyp_ours": "スズシーコカゲデヒルネオスルトセミノコエガコモリカニナッタ",
-   "A": "noedit",
-   "B": "ours"
+   "A": "ours",
+   "B": "noedit"
   },
   {
-   "id": "m043",
+   "id": "m045",
    "backbone": "sarashina",
    "idx": 39,
    "sentence": "海辺で拾った貝殻を耳に当てると、遠くの波音がそっとささやいていた。",
@@ -557,7 +581,7 @@
    "B": "noedit"
   },
   {
-   "id": "m044",
+   "id": "m046",
    "backbone": "t5gemma",
    "idx": 29,
    "sentence": "雨上がりの道に残る水たまりが夕日の光を映してキラキラ輝いていた。",
@@ -569,19 +593,19 @@
    "B": "noedit"
   },
   {
-   "id": "m045",
+   "id": "m047",
    "backbone": "t5gemma",
    "idx": 46,
    "sentence": "朝顔のつるが窓辺を彩り開いた花びらが、夏の訪れを爽やかに告げている。",
    "target_reading": "ハナビラ",
    "same_reading": true,
-   "hyp_noedit": "アサガオノツルガマドベオイロドリヒライタハナビラガナツノオトズレオサワヤカニツゲテイル",
+   "hyp_noedit": "アサガワノツルガマドベオイロドリヒライタハナビラガナツノオトズレオサワヤカニツゲテイル",
    "hyp_ours": "アサガオノツルガマドベオイロドリヒライタハナビラガナツノオトズレオサワヤカニツゲテイル",
    "A": "ours",
    "B": "noedit"
   },
   {
-   "id": "m046",
+   "id": "m048",
    "backbone": "sarashina",
    "idx": 26,
    "sentence": "朝焼け染まる空に小鳥がさえずり始めて、一日が静かに動き出した。",
@@ -593,7 +617,7 @@
    "B": "noedit"
   },
   {
-   "id": "m047",
+   "id": "m049",
    "backbone": "cv2",
    "idx": 4,
    "sentence": "静かな図書館で物語を読んで時間を忘れていた。",
@@ -601,11 +625,11 @@
    "same_reading": true,
    "hyp_noedit": "シズカナトショカンデモノガタリオヨンデジカンオワスレテイタ",
    "hyp_ours": "シズカナトショカンデモノガタリオヨンデジカンオワスレテ",
-   "A": "ours",
-   "B": "noedit"
+   "A": "noedit",
+   "B": "ours"
   },
   {
-   "id": "m048",
+   "id": "m050",
    "backbone": "t5gemma",
    "idx": 8,
    "sentence": "新しいノートに最初の一行を書くと胸が弾んだ。",
@@ -613,11 +637,11 @@
    "same_reading": true,
    "hyp_noedit": "アタラシーノートニサイショノイッキョーオカクトムネガハズンダ",
    "hyp_ours": "アタラシーノートニサイショノイッキョーオカクトムネガハズンダ",
-   "A": "ours",
-   "B": "noedit"
+   "A": "noedit",
+   "B": "ours"
   },
   {
-   "id": "m049",
+   "id": "m051",
    "backbone": "cv2",
    "idx": 35,
    "sentence": "夜空に上がった花火が大輪を咲かせて、町中から歓声が一斉に響き渡った。",
@@ -625,11 +649,11 @@
    "same_reading": false,
    "hyp_noedit": "ヨゾラニアガッタハナビガタイリンオサカセテマチジューカラカンセーガイッセーニ",
    "hyp_ours": "ヨゾラニアガッタ",
-   "A": "noedit",
-   "B": "ours"
+   "A": "ours",
+   "B": "noedit"
   },
   {
-   "id": "m050",
+   "id": "m052",
    "backbone": "cv2",
    "idx": 11,
    "sentence": "教室の窓から見えた雲が、羊のような形をしていた。",
@@ -637,35 +661,35 @@
    "same_reading": false,
    "hyp_noedit": "キョーシツノマドカラミエタクノガヒツジノヨーナカタチオシテイタ",
    "hyp_ours": "ヒョーシツノマドカラミエタクモガヒツジノヨーナカタチオシテイタ",
-   "A": "noedit",
-   "B": "ours"
-  },
-  {
-   "id": "m051",
-   "backbone": "t5gemma",
-   "idx": 44,
-   "sentence": "キャンプの夜に焚き火を囲んで語り合うと、揺れる炎が顔を優しく照らした。",
-   "target_reading": "ホノオ",
-   "same_reading": false,
-   "hyp_noedit": "キャンプノヨルニ",
-   "hyp_ours": "キャンプノヨルニタキビオカコンデカタリアウトユレルホノーガカオオヤサシクテラシタ",
-   "A": "ours",
-   "B": "noedit"
-  },
-  {
-   "id": "m052",
-   "backbone": "irodori",
-   "idx": 14,
-   "sentence": "駅前のベーカリーで焼き立てのパンを買って頬張った。",
-   "target_reading": "エキマエ",
-   "same_reading": true,
-   "hyp_noedit": "エキマエノパーカリーデヤキタテノパンオカッテオワッタ",
-   "hyp_ours": "エキマエノバカリーデヤキタテノパンオカッテホーバッパワー",
    "A": "ours",
    "B": "noedit"
   },
   {
    "id": "m053",
+   "backbone": "t5gemma",
+   "idx": 44,
+   "sentence": "キャンプの夜に焚き火を囲んで語り合うと、揺れる炎が顔を優しく照らした。",
+   "target_reading": "ホノオ",
+   "same_reading": false,
+   "hyp_noedit": "キャンプノヨルニタキビオカコンデカタリアウトユレルホノーガカオオヤサシクテラシタ",
+   "hyp_ours": "キャンプノヨルニタキビオカコンデカタリアウトユレルホノーガカオオヤサシクテラシタ",
+   "A": "noedit",
+   "B": "ours"
+  },
+  {
+   "id": "m054",
+   "backbone": "irodori",
+   "idx": 14,
+   "sentence": "駅前のベーカリーで焼き立てのパンを買って頬張った。",
+   "target_reading": "エキマエ",
+   "same_reading": false,
+   "hyp_noedit": "ヘキマエノベーカリーデヤキタテノパンオカッテホーバッタハ",
+   "hyp_ours": "エキマエノバカリーデヤキタテノパンオカッテホーバッパワー",
+   "A": "noedit",
+   "B": "ours"
+  },
+  {
+   "id": "m055",
    "backbone": "cv2",
    "idx": 1,
    "sentence": "朝の空に小鳥が飛び交い、新しい一日が始まった。",
@@ -677,7 +701,7 @@
    "B": "ours"
   },
   {
-   "id": "m054",
+   "id": "m056",
    "backbone": "irodori",
    "idx": 32,
    "sentence": "母が作った温かい味噌汁をすすった瞬間に、体の疲れがふっと軽くなった。",
@@ -685,23 +709,23 @@
    "same_reading": true,
    "hyp_noedit": "ハハガツクッタアタタカイミソシルオススッタシュンカンニカラダノツカレガフットカルクナッタ",
    "hyp_ours": "ハハガツクッタアタタカイミソシルオススッタシュンカンニカラダノツカレガフットカルクナッタ",
-   "A": "noedit",
-   "B": "ours"
+   "A": "ours",
+   "B": "noedit"
   },
   {
-   "id": "m055",
+   "id": "m057",
    "backbone": "irodori",
    "idx": 36,
    "sentence": "小さな子犬が転げ回りながら尻尾を振って、家族みんなを笑顔にした。",
    "target_reading": "エガオ",
-   "same_reading": true,
-   "hyp_noedit": "チーサナコイヌガコロゲマワリナガラシッポオフッテカゾクミンナオエガオニシタ",
+   "same_reading": false,
+   "hyp_noedit": "チーサナコイヌガコロゲマワリナガラシッポオフッテカゾクミンナオエーガオニシタ",
    "hyp_ours": "チーサナコイヌガコロゲマワリナガラシッポオフッテカゾクミンナオエガオニシタ",
    "A": "noedit",
    "B": "ours"
   },
   {
-   "id": "m056",
+   "id": "m058",
    "backbone": "sarashina",
    "idx": 34,
    "sentence": "畑で採れた真っ赤なトマトを丸かじりすると、甘い汁が口いっぱいに広がった。",
@@ -709,11 +733,11 @@
    "same_reading": true,
    "hyp_noedit": "エーハタケデトレタマッカナトマトオマルカジレスルトアマイシルガクチイッパイニヒロガッタ",
    "hyp_ours": "ハタケデトレタマッカナトマトオマルカジリスルトアマイシルガクチイッパイニヒロガッタ",
-   "A": "ours",
-   "B": "noedit"
+   "A": "noedit",
+   "B": "ours"
   },
   {
-   "id": "m057",
+   "id": "m059",
    "backbone": "cv2",
    "idx": 3,
    "sentence": "雨上がりの道で水たまりが空をきらきら映した。",
@@ -725,43 +749,43 @@
    "B": "ours"
   },
   {
-   "id": "m058",
+   "id": "m060",
    "backbone": "t5gemma",
    "idx": 40,
    "sentence": "バス停で見上げた空に虹がかかり、通りすがりの人々が嬉しそうに写真を撮った。",
    "target_reading": "シャシン",
    "same_reading": false,
-   "hyp_noedit": "バステーデミアゲタソラニニジガカカリ",
+   "hyp_noedit": "バステーデミアゲタソラニニジガカカリトーリスガリノヒトビトガウレシソーニシャシンオトッタ",
    "hyp_ours": "バステーデミアゲタソラニニジガカカリ",
    "A": "noedit",
    "B": "ours"
   },
   {
-   "id": "m059",
+   "id": "m061",
    "backbone": "irodori",
    "idx": 17,
    "sentence": "スマホのタイマーが鳴って、オーブンのケーキが焼き上がった。",
    "target_reading": "ケーキ",
    "same_reading": true,
-   "hyp_noedit": "スマホノタイマーガナッテオーブンノケーキガヤキアガッタア",
-   "hyp_ours": "スマホンノタイマーガナッテオーブンノケーキガヤキアガッタ",
+   "hyp_noedit": "スマホノタイマーガナッテオーブンノケーキガヤキアガッタ",
+   "hyp_ours": "スマホノタイマーガナッテオーブンノケーキガヤキアガッタ",
    "A": "noedit",
    "B": "ours"
   },
   {
-   "id": "m060",
+   "id": "m062",
    "backbone": "irodori",
    "idx": 18,
    "sentence": "橋の上から見た川の流れが月明かりに白く光った。",
    "target_reading": "ハシ",
    "same_reading": true,
-   "hyp_noedit": "アハシノウエカラミタカワノナガレガツキアカリニシロクヒカッタ",
-   "hyp_ours": "ハシノウエカラミタカワノナガレガツキアカリニシロクヒカッタ",
-   "A": "noedit",
-   "B": "ours"
+   "hyp_noedit": "ハシノウエカラミタカワノナガレガツキアカリニシロクヒカッタ",
+   "hyp_ours": "ハシノウエカラミタカワノナガレガフキアカリニシロクヒカッタ",
+   "A": "ours",
+   "B": "noedit"
   },
   {
-   "id": "m061",
+   "id": "m063",
    "backbone": "cv2",
    "idx": 47,
    "sentence": "商店街のパン屋から漂う焼きたての香りにつられて、ついクロワッサンを買った。",
@@ -773,7 +797,7 @@
    "B": "ours"
   },
   {
-   "id": "m062",
+   "id": "m064",
    "backbone": "sarashina",
    "idx": 48,
    "sentence": "図工の時間に描いた水彩画が教室の壁に貼られ、友達から褒められて嬉しかった。",
@@ -781,11 +805,11 @@
    "same_reading": true,
    "hyp_noedit": "エーズコーノジカンニエガイタスイサイガガキョーシツノカベニハラレトモダチカラホメラレテウレシカッタ",
    "hyp_ours": "ズコーノジカニエガイタスイサイガナキョーシツノカベニハラレトモダチカラホメラレテウレシカッタ",
-   "A": "ours",
-   "B": "noedit"
+   "A": "noedit",
+   "B": "ours"
   },
   {
-   "id": "m063",
+   "id": "m065",
    "backbone": "irodori",
    "idx": 46,
    "sentence": "朝顔のつるが窓辺を彩り開いた花びらが、夏の訪れを爽やかに告げている。",
@@ -793,11 +817,11 @@
    "same_reading": true,
    "hyp_noedit": "アサガオノツルガマドベオイロドリヒライタハナビラガナツノオトズレオサワヤカニツゲテイル",
    "hyp_ours": "アサガオノツルガマドベオイロドリヒライタハナビラガナツノオトズレオサワヤカニツゲテイル",
-   "A": "noedit",
-   "B": "ours"
+   "A": "ours",
+   "B": "noedit"
   },
   {
-   "id": "m064",
+   "id": "m066",
    "backbone": "cv2",
    "idx": 6,
    "sentence": "花壇のチューリップが風に揺れ鮮やかに咲いている。",
@@ -809,7 +833,7 @@
    "B": "ours"
   },
   {
-   "id": "m065",
+   "id": "m067",
    "backbone": "cv2",
    "idx": 23,
    "sentence": "運動後に飲んだ水が体に染み込み元気が戻ってきた。",
@@ -821,19 +845,19 @@
    "B": "noedit"
   },
   {
-   "id": "m066",
+   "id": "m068",
    "backbone": "irodori",
    "idx": 31,
    "sentence": "駅のベンチで次の電車を待ちながら読書していたら、知らぬ間に夢中になった。",
    "target_reading": "アイダ",
    "same_reading": false,
-   "hyp_noedit": "エキノベンチデツギノデンシャオマチナガラドクショシテイタラシラヌマニムチューニナッタ",
+   "hyp_noedit": "エキノベンチデツギノデンシャオマチナガラドクショシテイタラシラヌマニムチューニナッタンンン",
    "hyp_ours": "エキノベンチデツギノデンシャオマチナガラドクショシテイタラシラヌアイダニムチューニナッタ",
    "A": "noedit",
    "B": "ours"
   },
   {
-   "id": "m067",
+   "id": "m069",
    "backbone": "cv2",
    "idx": 38,
    "sentence": "夜更けに聞こえる虫の声が静かな部屋に響き、休んだ心をさらに落ち着かせた。",
@@ -845,7 +869,7 @@
    "B": "noedit"
   },
   {
-   "id": "m068",
+   "id": "m070",
    "backbone": "cv2",
    "idx": 30,
    "sentence": "コーヒーの香りが漂う喫茶店で、静かに流れる音楽を聴きつつ休憩した。",
@@ -853,11 +877,11 @@
    "same_reading": true,
    "hyp_noedit": "コーヒーノカオリガタダヨーキッサテンデシズカニナガレルオンガクオキキツツキューケーシタ",
    "hyp_ours": "オーヒーノカオリガタダヨーキッサテンデシズカニナガレルオンガクオキキツツチューケーシタ",
-   "A": "noedit",
-   "B": "ours"
+   "A": "ours",
+   "B": "noedit"
   },
   {
-   "id": "m069",
+   "id": "m071",
    "backbone": "cv2",
    "idx": 0,
    "sentence": "今日はみんなで公園を散歩して風を感じた。",
@@ -865,11 +889,11 @@
    "same_reading": true,
    "hyp_noedit": "キョーワミンナデコーエンオサンポシテカゼオカンジ",
    "hyp_ours": "キョーワミンナデコーエンオサンポシテカゼオカンジ",
-   "A": "ours",
-   "B": "noedit"
+   "A": "noedit",
+   "B": "ours"
   },
   {
-   "id": "m070",
+   "id": "m072",
    "backbone": "irodori",
    "idx": 23,
    "sentence": "運動後に飲んだ水が体に染み込み元気が戻ってきた。",
@@ -881,7 +905,7 @@
    "B": "noedit"
   },
   {
-   "id": "m071",
+   "id": "m073",
    "backbone": "sarashina",
    "idx": 13,
    "sentence": "温かい紅茶を飲むと、冷えた指先がじんわり温まった。",
@@ -889,11 +913,11 @@
    "same_reading": true,
    "hyp_noedit": "アタタカイコーチャオノムトヒエタユビサキガジンマリアタタマッタ",
    "hyp_ours": "アタタカイコーチャオノムトヒエタユビサキガジンワリアタタマッタ",
-   "A": "noedit",
-   "B": "ours"
+   "A": "ours",
+   "B": "noedit"
   },
   {
-   "id": "m072",
+   "id": "m074",
    "backbone": "sarashina",
    "idx": 49,
    "sentence": "夕暮れ時に鳴るチャイムを聞いて帰り道を急ぐと、家の灯りが温かく迎えた。",
@@ -901,23 +925,23 @@
    "same_reading": false,
    "hyp_noedit": "ユーグレドキニナルチャイムオキーテカエリミチオイソグトイエノアカリガアタタカクムカエタ",
    "hyp_ours": "ユーグレズニナルチャイムオキーテカエリミチオイソグトイエノアカリガアッタカクムカエタ",
-   "A": "ours",
-   "B": "noedit"
+   "A": "noedit",
+   "B": "ours"
   },
   {
-   "id": "m073",
+   "id": "m075",
    "backbone": "irodori",
    "idx": 19,
    "sentence": "レモンの香りが広がる部屋で深呼吸すると、気分が晴れた。",
    "target_reading": "キブン",
    "same_reading": true,
-   "hyp_noedit": "レモンノカオリガヒロガルヘヤデシンコキュースルトキブンガハレタ",
-   "hyp_ours": "レモンノカオリガヒロガルヘヤデシンコキュースルトキブンガハレタス",
-   "A": "ours",
-   "B": "noedit"
+   "hyp_noedit": "レモンノカオリガヒロガルヘヤデシンコキュースルトキブンガハレタデス",
+   "hyp_ours": "レモンノカオリガヒロガルヘヤデシンコキュースルトキブンガハレタ",
+   "A": "noedit",
+   "B": "ours"
   },
   {
-   "id": "m074",
+   "id": "m076",
    "backbone": "cv2",
    "idx": 36,
    "sentence": "小さな子犬が転げ回りながら尻尾を振って、家族みんなを笑顔にした。",
@@ -925,11 +949,11 @@
    "same_reading": true,
    "hyp_noedit": "チーサナコイヌワコロゲマワリナガラシッポオフッテカゾクミンナオエガオニシ",
    "hyp_ours": "チーサナコイヌガコロゲマワリナガラシッポオフッテカゾクミンナオエガオニ",
-   "A": "noedit",
-   "B": "ours"
+   "A": "ours",
+   "B": "noedit"
   },
   {
-   "id": "m075",
+   "id": "m077",
    "backbone": "sarashina",
    "idx": 43,
    "sentence": "古い写真アルバムを開くと、懐かしい思い出が鮮やかに蘇り心が温かくなった。",
@@ -937,11 +961,11 @@
    "same_reading": true,
    "hyp_noedit": "フルイシャシンアレバモヒラクトナツカシーオモイデガアザヤカニヨミガエリココロガアタタカクナッタ",
    "hyp_ours": "フルイシャシンアルバムオヒラクトナツカシーオモイデガアザヤカニヨミガエリシンガアタタカクナッタ",
-   "A": "noedit",
-   "B": "ours"
+   "A": "ours",
+   "B": "noedit"
   },
   {
-   "id": "m076",
+   "id": "m078",
    "backbone": "t5gemma",
    "idx": 3,
    "sentence": "雨上がりの道で水たまりが空をきらきら映した。",
@@ -949,11 +973,11 @@
    "same_reading": true,
    "hyp_noedit": "アメアガリノミチデミズタマリガソラオキラキラウツシタ",
    "hyp_ours": "アメアガリノミチデミズタマリガソラオキラキラウツシタ",
-   "A": "ours",
-   "B": "noedit"
+   "A": "noedit",
+   "B": "ours"
   },
   {
-   "id": "m077",
+   "id": "m079",
    "backbone": "sarashina",
    "idx": 40,
    "sentence": "バス停で見上げた空に虹がかかり、通りすがりの人々が嬉しそうに写真を撮った。",
@@ -965,32 +989,8 @@
    "B": "noedit"
   },
   {
-   "id": "m078",
-   "backbone": "sarashina",
-   "idx": 37,
-   "sentence": "山頂から見た雲海が真っ白な絨毯のようで、息を呑むほど美しかった。",
-   "target_reading": "ジュータン",
-   "same_reading": true,
-   "hyp_noedit": "サンチョーカラミタウンカイガマッシロナジュータンノヨーデイキオノムホドウツクシカッタ",
-   "hyp_ours": "サンチョーカラミタウンカイガマッシロナジュータンノヨーデイキオノムホドウツクシカッタ",
-   "A": "noedit",
-   "B": "ours"
-  },
-  {
-   "id": "m079",
-   "backbone": "t5gemma",
-   "idx": 38,
-   "sentence": "夜更けに聞こえる虫の声が静かな部屋に響き、休んだ心をさらに落ち着かせた。",
-   "target_reading": "シズカ",
-   "same_reading": true,
-   "hyp_noedit": "ヨフケニキコエルムシノコエガシズカナヘヤニヒビキヤスンダココロオサラニオチツカセタ",
-   "hyp_ours": "ヨフケニキコエルムシノコエガシズカナヘヤニヒビキヤスンダココロオサラニオチツカセタ",
-   "A": "ours",
-   "B": "noedit"
-  },
-  {
    "id": "m080",
-   "backbone": "irodori",
+   "backbone": "sarashina",
    "idx": 37,
    "sentence": "山頂から見た雲海が真っ白な絨毯のようで、息を呑むほど美しかった。",
    "target_reading": "ジュータン",
@@ -1002,18 +1002,42 @@
   },
   {
    "id": "m081",
+   "backbone": "t5gemma",
+   "idx": 38,
+   "sentence": "夜更けに聞こえる虫の声が静かな部屋に響き、休んだ心をさらに落ち着かせた。",
+   "target_reading": "シズカ",
+   "same_reading": true,
+   "hyp_noedit": "ヨフケニキコエルムシノコエガシズカナヘヤニヒビキヤスンダココロオサラニオチツカセタ",
+   "hyp_ours": "ヨフケニキコエルムシノコエガシズカナヘヤニヒビキヤスンダココロオサラニオチツカセタ",
+   "A": "ours",
+   "B": "noedit"
+  },
+  {
+   "id": "m082",
+   "backbone": "irodori",
+   "idx": 37,
+   "sentence": "山頂から見た雲海が真っ白な絨毯のようで、息を呑むほど美しかった。",
+   "target_reading": "ジュータン",
+   "same_reading": true,
+   "hyp_noedit": "サンチョーカラミタウンカイガマッシロナジュータンノヨーデイキオノムホドウツクシカッタ",
+   "hyp_ours": "サンチョーカラミタウンカイガマッシロナジュータンノヨーデイキオノムホドウツクシカッタ",
+   "A": "noedit",
+   "B": "ours"
+  },
+  {
+   "id": "m083",
    "backbone": "irodori",
    "idx": 21,
    "sentence": "友達から届いたはがきを読んで、遠い街を身近に感じた。",
    "target_reading": "ミジカ",
    "same_reading": true,
    "hyp_noedit": "トモダチカラトドイタハガキオヨンデトーイマチオミジカニカンジタ",
-   "hyp_ours": "トモダチカラトドイタハガキオヨンデトーイマチオミジカニカンジタ",
-   "A": "ours",
-   "B": "noedit"
+   "hyp_ours": "トモダチカラトドエタハガキオヨンデトーイマチオミジカニカンジタ",
+   "A": "noedit",
+   "B": "ours"
   },
   {
-   "id": "m082",
+   "id": "m084",
    "backbone": "cv2",
    "idx": 42,
    "sentence": "新しい靴を履いて歩くと足取りが軽くなり、街の景色まで明るく変わった。",
@@ -1025,7 +1049,7 @@
    "B": "ours"
   },
   {
-   "id": "m083",
+   "id": "m085",
    "backbone": "cv2",
    "idx": 25,
    "sentence": "今日は広い公園の池で鴨がゆったり泳いでいて、心がとてもほっとした。",
@@ -1037,19 +1061,19 @@
    "B": "ours"
   },
   {
-   "id": "m084",
+   "id": "m086",
    "backbone": "t5gemma",
    "idx": 22,
    "sentence": "涼しい木陰で昼寝をすると、蝉の声が子守歌になった。",
    "target_reading": "コモリカ",
    "same_reading": false,
-   "hyp_noedit": "スズシーコカゲデヒルネオスルトセミノコエガコモリウタ",
+   "hyp_noedit": "スズシーコカゲデヒルネオスルトセミノコエガコモリウタニナッタ",
    "hyp_ours": "スズシーコカゲデヒルネオスルトセミノコエガコモリカニナッタ",
    "A": "noedit",
    "B": "ours"
   },
   {
-   "id": "m085",
+   "id": "m087",
    "backbone": "sarashina",
    "idx": 27,
    "sentence": "夕方の川辺で涼しい風を感じながら友達と並んで橋の影を眺めた。",
@@ -1061,19 +1085,19 @@
    "B": "ours"
   },
   {
-   "id": "m086",
+   "id": "m088",
    "backbone": "irodori",
    "idx": 33,
    "sentence": "窓から差し込む陽光が机のノートを照らして、文字がより美しく見えた。",
    "target_reading": "ツクエ",
    "same_reading": false,
-   "hyp_noedit": "マドカラサシコムヨーコーガスクエノノートオテラシテモジガヨリウツクシクニエタ",
+   "hyp_noedit": "マドカラサシコムヨーコーガスクエノノートオテラシテモジガヨリウツクシクミエタ",
    "hyp_ours": "マドカラサシコムヨーコーガツクエノノートオテラシテモジガヨリウツクシクミエタ",
-   "A": "noedit",
-   "B": "ours"
+   "A": "ours",
+   "B": "noedit"
   },
   {
-   "id": "m087",
+   "id": "m089",
    "backbone": "t5gemma",
    "idx": 15,
    "sentence": "公園の噴水が光を浴びて、小さな虹を作り出していた。",
@@ -1085,7 +1109,19 @@
    "B": "ours"
   },
   {
-   "id": "m088",
+   "id": "m090",
+   "backbone": "t5gemma",
+   "idx": 25,
+   "sentence": "今日は広い公園の池で鴨がゆったり泳いでいて、心がとてもほっとした。",
+   "target_reading": "ココロ",
+   "same_reading": true,
+   "hyp_noedit": "キョーワヒロイコーエンノイケデカモガユッタリオヨイデイテココロガトテモホットシタ",
+   "hyp_ours": "キョーワヒロイコーエンノイケデカモガユッタリオヨイデイテココロガトテモホットシタ",
+   "A": "noedit",
+   "B": "ours"
+  },
+  {
+   "id": "m091",
    "backbone": "irodori",
    "idx": 7,
    "sentence": "母が煮込んだシチューの匂いが家中に広がっていた。",
@@ -1093,11 +1129,11 @@
    "same_reading": true,
    "hyp_noedit": "ハハガニコンダシチューノニオイガイエジューニヒロガッテイタ",
    "hyp_ours": "エーハハガニコンダシチューノニオイガイエジューニヒロガッテイタ",
-   "A": "ours",
-   "B": "noedit"
+   "A": "noedit",
+   "B": "ours"
   },
   {
-   "id": "m089",
+   "id": "m092",
    "backbone": "irodori",
    "idx": 0,
    "sentence": "今日はみんなで公園を散歩して風を感じた。",
@@ -1109,7 +1145,7 @@
    "B": "ours"
   },
   {
-   "id": "m090",
+   "id": "m093",
    "backbone": "t5gemma",
    "idx": 10,
    "sentence": "バス停で並ぶ人々の上を、涼しい風が通り過ぎた。",
@@ -1121,7 +1157,7 @@
    "B": "ours"
   },
   {
-   "id": "m091",
+   "id": "m094",
    "backbone": "sarashina",
    "idx": 14,
    "sentence": "駅前のベーカリーで焼き立てのパンを買って頬張った。",
@@ -1133,7 +1169,7 @@
    "B": "ours"
   },
   {
-   "id": "m092",
+   "id": "m095",
    "backbone": "irodori",
    "idx": 30,
    "sentence": "コーヒーの香りが漂う喫茶店で、静かに流れる音楽を聴きつつ休憩した。",
@@ -1141,11 +1177,11 @@
    "same_reading": true,
    "hyp_noedit": "コーヒーノカオリガタダヨウキッサテンデシズカニナガレルオンガクオキキツツキューケーシタ",
    "hyp_ours": "コーヒーノカオリガタダヨウキッサテンデシズカニナガレルオンガクオキキツツキューケーシタ",
-   "A": "noedit",
-   "B": "ours"
+   "A": "ours",
+   "B": "noedit"
   },
   {
-   "id": "m093",
+   "id": "m096",
    "backbone": "sarashina",
    "idx": 30,
    "sentence": "コーヒーの香りが漂う喫茶店で、静かに流れる音楽を聴きつつ休憩した。",
@@ -1153,11 +1189,11 @@
    "same_reading": true,
    "hyp_noedit": "コーヒーノカオリガタダヨウキッサテンデシズカニナガレルオンガクオキキツツキューケーシタコーヒータカミヤジョージンカ",
    "hyp_ours": "コーヒーカオリガタダヨウキッサテンデシズカニナガレルオンガクオキキツツキューケーシタ",
-   "A": "noedit",
-   "B": "ours"
+   "A": "ours",
+   "B": "noedit"
   },
   {
-   "id": "m094",
+   "id": "m097",
    "backbone": "cv2",
    "idx": 34,
    "sentence": "畑で採れた真っ赤なトマトを丸かじりすると、甘い汁が口いっぱいに広がった。",
@@ -1165,8 +1201,8 @@
    "same_reading": false,
    "hyp_noedit": "タタケデトレタマッカナトマトオマルカジリスルトアマイシルガクチイッパイニヒロガッ",
    "hyp_ours": "ハタケデトレタマッカナトマトオマルカジリスルトアマイチルガクチイッパイニヒロ",
-   "A": "noedit",
-   "B": "ours"
+   "A": "ours",
+   "B": "noedit"
   }
  ]
 }

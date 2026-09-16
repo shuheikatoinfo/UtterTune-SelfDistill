@@ -90,6 +90,10 @@ not reading-checked) with one design applied identically to all four backbones.
    The exclusion therefore helps the method on Sarashina and hurts it on T5Gemma. Both counts are reported
    per backbone and per arm in the paper, so the filter is a result rather than a hidden step; no pair is
    replaced and the hash selection is untouched. Groups: 49 and 46.
+   **Superseded 09-17 06:40 JST by the rebuild under amendment 5:** with both sides of every pair from
+   round 2, the T5Gemma no-edit clips are audible and only the two Sarashina pairs whose EDITED clip is
+   silent (items 23 and 29) fall out: **98 of 100 pairs**, groups 51 and 47, deployed at
+   jp-accent-naturalness-r2.pages.dev. Every shipped clip was verified against its round-2 source.
 
 ## 4. Amendment, 2026-09-16 20:00 JST — every listening arm is synthesized in round 2
 
