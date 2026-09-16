@@ -25,7 +25,11 @@ not reading-checked) with one design applied identically to all four backbones.
    12:20 JST; one at 13:40 because of T5Gemma's speed; two at 14:35 as passes over earlier drops;
    three at 14:55; five at 15:05. Cutoff: T5Gemma's later takes stop at 2026-09-17 20:00 JST, whatever
    was finished by then is kept and the cut is recorded, so that the panel can be built on 09-18.) No best-of, no CER threshold, no per-word cap. The number kept per
-   backbone is reported, however small.
+   backbone is reported, however small. **T5Gemma's teacher generation runs on rented RunPod GPUs**
+   (decided 14:00 JST on 09-16 with 151 of 4,710 carriers done locally at 30 s per row under GPU
+   contention): the same script, rule and seeds, rows sharded over pods (`scripts/teachers/runpod_t5gemma.py`);
+   the local partial pass is discarded whole and no row of it enters; with the pods the five takes are
+   expected to finish before the cutoff, which stays in force.
 3. **One speaker rule.** No speaker enters where the backbone can synthesize from text alone
    (Sarashina, T5Gemma: text-only teachers, as in round 1). Where it cannot, **the same 2,000
    self-sampled synthetic voices are cycled over carriers on both speaker-conditioned backbones**:
