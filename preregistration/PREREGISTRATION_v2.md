@@ -58,6 +58,12 @@ not reading-checked) with one design applied identically to all four backbones.
    the local syntheses. CosyVoice 2's LoRA training (1,000 steps, identical command) runs on one of its
    teacher pods once the four shards are collected (from 17:30 JST); the adapter is copied back for the
    local syntheses. Idle pods are terminated once their outputs are on local storage.
+   Irodori's easy-50 synthesis (18:05 JST) first produced 45 of 50 items: its case loader derives the
+   target word from the vanilla-vs-yomi diff, which is empty for the five katakana targets (items 6, 8,
+   17, 20, 47), while the other three backbones read the tagged word from the shared _lora file. The
+   loader now falls back to that word when the diff is empty (a one-line change in run_blockB1.py, kept
+   with a dated backup), and the easy set was re-synthesized in full with the same seeds; the 45-item
+   run is kept beside it as `easy_run1_45of50` and is not used.
 3. **One speaker rule.** No speaker enters where the backbone can synthesize from text alone
    (Sarashina, T5Gemma: text-only teachers, as in round 1). Where it cannot, **the same 2,000
    self-sampled synthetic voices are cycled over carriers on both speaker-conditioned backbones**:
