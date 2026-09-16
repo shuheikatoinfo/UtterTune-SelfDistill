@@ -67,6 +67,15 @@ not reading-checked) with one design applied identically to all four backbones.
    T5Gemma's four evaluation syntheses (18:31 JST) also run on its pod with the identical commands, item
    files, speaker assignments and the 42 held-out evaluation voices copied to the pod; outputs are copied
    back into the same directory layout. The in-synthesis guard is unchanged from round 1.
+   **Audit 18:45 JST:** the base weights the pods downloaded from Hugging Face were compared tensor by
+   tensor with the local copies used for synthesis (Irodori-TTS-500M-v3 model.safetensors, CosyVoice2-0.5B
+   llm/flow/hift + both ONNX files byte-wise, T5Gemma-TTS-2b-2b ckpt/pretrained.pth): all identical.
+   Two small execution facts: (i) T5Gemma teacher seeds are `1234 + 131*take + i` with i the row's index
+   within its shard (rows i::8), not the global index; every shard used the same layout, so the seeds are
+   fixed and reproducible from the shard assignment, which is recorded in `t5gemma/runpod_pods.json`;
+   Irodori and CosyVoice 2 seeds and voices are keyed on the global row index. (ii) The CosyVoice 2 prompt
+   clips reached the pods as 16-bit FLAC copies of the 24 kHz pool wavs (PCM_16 quantisation of float
+   audio); the VAD-trimmed prompt copies were rebuilt on the pods from those.
 3. **One speaker rule.** No speaker enters where the backbone can synthesize from text alone
    (Sarashina, T5Gemma: text-only teachers, as in round 1). Where it cannot, **the same 2,000
    self-sampled synthetic voices are cycled over carriers on both speaker-conditioned backbones**:
