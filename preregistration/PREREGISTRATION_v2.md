@@ -76,8 +76,8 @@ not reading-checked) with one design applied identically to all four backbones.
 
 ## 1. Decision points already taken (so they are not taken later)
 
-* Round-2 raters who decline payment (direct approach) are recorded as having declined; payment is
-  offered to everyone.
+* Candidates reached through the platform are paid whatever they score, as in round 1. Volunteers
+  approached directly may take part without payment; whether each did is recorded and stated.
 * A backbone whose v2 teacher set has fewer than 300 carriers is still trained and evaluated; the
   size is stated in the paper.
 * If the round-2 accent panel gets only three raters, the design stands (registered minimum).
