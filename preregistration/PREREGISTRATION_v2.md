@@ -19,10 +19,11 @@ not reading-checked) with one design applied identically to all four backbones.
    the plain kanji carrier; the take is kept iff it passes the degeneration guard (Sarashina: 20 to
    600 semantic tokens; others: audio >= 0.5 s and valid codes) **and** the ASR of record
    (kana-whisper) hears the target word's reading in it, judged with the paper's canonicalisation;
-   otherwise the carrier is dropped and logged with its transcript (**one take per carrier**; fixed
-   at 13:40 JST on 2026-09-16 before any teacher set was complete, replacing a two-take rule chosen at
-   12:20 because T5Gemma needs about 9 s per take and two takes would not finish in time; runs launched
-   with two takes keep their first take only, so every backbone follows the one-take rule). No best-of, no CER threshold, no per-word cap. The number kept per
+   otherwise the seed is bumped once and the carrier gets exactly one more take (**up to two takes**);
+   a carrier with no passing take is dropped and logged with both transcripts. (History: two takes at
+   12:20 JST; one take at 13:40 because of T5Gemma's speed; back to two at 14:35, run as a second pass
+   over the carriers the first pass dropped, which costs only the failed share; all before any teacher
+   set was complete.) No best-of, no CER threshold, no per-word cap. The number kept per
    backbone is reported, however small.
 3. **One speaker rule.** No speaker enters where the backbone can synthesize from text alone
    (Sarashina, T5Gemma). Where it cannot, **five self-sampled synthetic voices are cycled over
