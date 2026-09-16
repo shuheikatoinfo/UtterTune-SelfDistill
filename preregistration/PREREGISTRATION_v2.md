@@ -44,7 +44,12 @@ not reading-checked) with one design applied identically to all four backbones.
    **Irodori's teacher generation also moved to RunPod** (15:30 JST on 09-16, at the user's direction, for
    time): same script, rule, seeds and voice assignment (both keyed on the global row index), rows sharded
    over four pods; the local run (restarted 15:17 with the fixed checker) is stopped once the pods deliver
-   and its partial output is discarded whole. CosyVoice 2 stays local (24 kHz, unaffected checker).
+   and its partial output is discarded whole. CosyVoice 2's teacher generation moved to RunPod as well
+   (15:50 JST; same script, rule, seeds and prompt-voice assignment keyed on the global row index; four
+   shards). Execution note: the Sarashina training started 15:05 stalled at step 4,880 from 15:58 (GPU
+   memory oversubscribed while three jobs shared the local GPU) and was killed at 16:15 and restarted from
+   scratch with the identical command (`v2_chain.sh sarashina_train`); the stalled run's log is kept as
+   `logs/sarashina_train_stalled_1558.log` and nothing of it is used.
 3. **One speaker rule.** No speaker enters where the backbone can synthesize from text alone
    (Sarashina, T5Gemma: text-only teachers, as in round 1). Where it cannot, **the same 2,000
    self-sampled synthetic voices are cycled over carriers on both speaker-conditioned backbones**:
