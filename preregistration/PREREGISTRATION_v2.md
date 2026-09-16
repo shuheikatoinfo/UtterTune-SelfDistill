@@ -27,14 +27,15 @@ not reading-checked) with one design applied identically to all four backbones.
    was finished by then is kept and the cut is recorded, so that the panel can be built on 09-18.) No best-of, no CER threshold, no per-word cap. The number kept per
    backbone is reported, however small.
 3. **One speaker rule.** No speaker enters where the backbone can synthesize from text alone
-   (Sarashina, T5Gemma). Where it cannot, **2,000 self-sampled synthetic voices are cycled over
-   carriers** on both speaker-conditioned backbones: Irodori the first 2,000 anchor-bank references
-   in name order (as in round 1); CosyVoice 2 its fictional bootstrap bank extended from 20 to 2,000
-   by the same nested draws from the round-1 Gaussian (`scripts/bootstrap_speaker_more.py --total
-   2000`; the existing 20 are untouched). (History, before any Irodori or CosyVoice 2 teacher
-   existed: five voices at 12:20 JST; each backbone's whole bank at 13:20; 2,000 on both at 13:45 so
-   that the two match.) Irodori's unconditional path was probed on 2026-09-16 and produces noise
-   under every guidance scale, step count and unconditional mode, so it is speaker-conditioned.
+   (Sarashina, T5Gemma: text-only teachers, as in round 1). Where it cannot, **the same 2,000
+   self-sampled synthetic voices are cycled over carriers on both speaker-conditioned backbones**:
+   Irodori's anchor bank `bank_spk_00001..02000` (voices Irodori itself synthesized from written
+   captions; no recording), used by Irodori as reference latents and by CosyVoice 2 as prompt clips
+   with each clip's own transcript (`v2/shared_voices/pool.json`). (History, before any Irodori or
+   CosyVoice 2 teacher existed: five voices at 12:20 JST; each backbone's own bank at 13:20; 2,000 on
+   both at 13:45; one shared set at 14:10 so that the two backbones hear identical voices.)
+   Irodori's unconditional path was probed on 2026-09-16 and produces noise under every guidance
+   scale, step count and unconditional mode, so it is speaker-conditioned.
 4. **Training** exactly as in round 1 per backbone (same scripts, ranks, alphas, step counts:
    Sarashina 20k, CosyVoice 2 1k, Irodori 2k, T5Gemma 400), with the v2 teacher sets. No tuning on
    any evaluation number. If a backbone's teacher set is small (T5Gemma is expected to lose most
