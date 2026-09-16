@@ -232,3 +232,16 @@ teacher provenance files (`*.provenance.json`) carry every dropped carrier with 
 Fixed 2026-09-16 13:00 JST; git history of this file is the record. Teacher generation for
 Sarashina and T5Gemma started at 12:20 JST under this rule (before this text was finished, after
 the rule was); no output had been inspected beyond the four-carrier smoke tests recorded above.
+
+## 6. Amendment, 2026-09-17 08:05 JST — the naturalness study uses all 50 easy pairs per backbone
+
+Item 8 registered 25 pairs per backbone, chosen by hash, to halve the crowd. Before any naturalness judgement
+was collected, a variance decomposition of the round-1 judgements (per-pair true-preference SD 0.37 to 0.65
+against a within-pair judgement SD of 0.70 to 0.88) showed that the 95% interval of the preference is set
+almost entirely by the number of pairs, not by the number of judgements per pair: at 25 pairs the half-width
+is 0.16 to 0.26 whatever the crowd size, against a non-inferiority margin of 0.15; at 50 pairs it is 0.11 to
+0.19. The user therefore restored the round-1 size: **all 50 easy pairs per backbone, no hash selection, four
+groups of about 50 pairs, one group per sitting, at least 15 judgements per pair**, everything else in item 8
+unchanged. 198 pairs ship (the two Sarashina pairs with a silent edited clip are excluded as before); groups
+51/51/48/48. Both sides of every pair are round-2 audio (amendment 5). Deployed 08:05 JST; no judgement had
+been recorded on the earlier 98-pair build.
