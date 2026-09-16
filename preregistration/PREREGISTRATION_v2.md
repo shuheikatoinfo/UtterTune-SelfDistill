@@ -27,11 +27,14 @@ not reading-checked) with one design applied identically to all four backbones.
    was finished by then is kept and the cut is recorded, so that the panel can be built on 09-18.) No best-of, no CER threshold, no per-word cap. The number kept per
    backbone is reported, however small.
 3. **One speaker rule.** No speaker enters where the backbone can synthesize from text alone
-   (Sarashina, T5Gemma). Where it cannot, **five self-sampled synthetic voices are cycled over
-   carriers**: CosyVoice 2 (the five fictional bootstrap voices of round 1) and Irodori (the first
-   five anchor-bank references in name order). Irodori's unconditional path was probed on
-   2026-09-16 and produces noise (guidance 0/1/5, 20/32 steps), so it is treated as speaker-
-   conditioned; round 1 cycled 2,000 voices there, and that difference is recorded.
+   (Sarashina, T5Gemma). Where it cannot, **the backbone's whole bank of self-sampled synthetic
+   voices is cycled over carriers**, exactly as in round 1: CosyVoice 2 its 20 fictional bootstrap
+   voices, Irodori the first 2,000 anchor-bank references in name order. (At 12:20 JST this said
+   five voices for both; changed at 13:20 JST, before any Irodori or CosyVoice 2 teacher existed,
+   because five voices is the CosyVoice 2 dose-experiment minimum, not a rule, and Irodori's round-1
+   set showed no reference dependence with 2,000.) Irodori's unconditional path was probed on
+   2026-09-16 and produces noise under every guidance scale, step count and unconditional mode, so
+   it is treated as speaker-conditioned.
 4. **Training** exactly as in round 1 per backbone (same scripts, ranks, alphas, step counts:
    Sarashina 20k, CosyVoice 2 1k, Irodori 2k, T5Gemma 400), with the v2 teacher sets. No tuning on
    any evaluation number. If a backbone's teacher set is small (T5Gemma is expected to lose most
