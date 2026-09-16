@@ -41,6 +41,10 @@ not reading-checked) with one design applied identically to all four backbones.
    The same raw-rate path was used by the round-1 T5Gemma teacher QC (CER at 44.1 kHz), which is
    noted in `PREREGISTRATION.md`; the objective measurement of record (`measure_reading_all.py`)
    already resampled via `asr_audio.to_asr_input` and is unaffected.
+   **Irodori's teacher generation also moved to RunPod** (15:30 JST on 09-16, at the user's direction, for
+   time): same script, rule, seeds and voice assignment (both keyed on the global row index), rows sharded
+   over four pods; the local run (restarted 15:17 with the fixed checker) is stopped once the pods deliver
+   and its partial output is discarded whole. CosyVoice 2 stays local (24 kHz, unaffected checker).
 3. **One speaker rule.** No speaker enters where the backbone can synthesize from text alone
    (Sarashina, T5Gemma: text-only teachers, as in round 1). Where it cannot, **the same 2,000
    self-sampled synthetic voices are cycled over carriers on both speaker-conditioned backbones**:
