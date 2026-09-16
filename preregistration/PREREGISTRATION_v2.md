@@ -33,8 +33,10 @@ not reading-checked) with one design applied identically to all four backbones.
 3. **One speaker rule.** No speaker enters where the backbone can synthesize from text alone
    (Sarashina, T5Gemma: text-only teachers, as in round 1). Where it cannot, **the same 2,000
    self-sampled synthetic voices are cycled over carriers on both speaker-conditioned backbones**:
-   Irodori's anchor bank `bank_spk_00001..02000` (voices Irodori itself synthesized from written
-   captions; no recording), used by Irodori as reference latents and by CosyVoice 2 as prompt clips
+   Irodori's anchor bank `bank_spk_00001..02000` (voices sampled by Irodori-TTS-500M-v2 with no reference,
+   one fixed seed and one anchor sentence per voice, then stored as reference latents; the profile captions
+   in the bank's log are labels, not conditions, as the 500M base has no caption input; no recording.
+   Correction 2026-09-16 15:00 JST of the earlier wording "synthesized from written captions"), used by Irodori as reference latents and by CosyVoice 2 as prompt clips
    with each clip's own transcript (`v2/shared_voices/pool.json`). (History, before any Irodori or
    CosyVoice 2 teacher existed: five voices at 12:20 JST; each backbone's own bank at 13:20; 2,000 on
    both at 13:45; one shared set at 14:10 so that the two backbones hear identical voices.)
