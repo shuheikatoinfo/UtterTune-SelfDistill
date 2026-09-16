@@ -168,7 +168,8 @@ the change is which implementation of one disclosed filter runs, and it now runs
    difficult-50 set, **every backbone x {kana, tag}, plus {no edit} on Sarashina only**, one held-out
    voice per word fixed by hash (A2/B2/C2 reuse the round-1 assignment of the same backbone, D2 is
    hashed the same way), 450 stimuli + 8 known-answer catch trials + 5% duplicate items. Same
-   raters as round 1 (four admitted at 18/19 on the screening gate) plus any new candidate who
+   raters as round 1 (the gate admitted five of 34 candidates: three at 19/19 and two at 18/19 on the
+   19 scored items; four of the five judged in round 1) plus any new candidate who
    passes the same gate before the kit closes; minimum three raters, all judging everything.
    Judged blind, randomized order, whole sentences, prescribed accent shown; the rater UI, catch
    trials, screening definition and payment are those of round 1.
