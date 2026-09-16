@@ -90,6 +90,32 @@ not reading-checked) with one design applied identically to all four backbones.
    The exclusion therefore helps the method on Sarashina and hurts it on T5Gemma. Both counts are reported
    per backbone and per arm in the paper, so the filter is a result rather than a hidden step; no pair is
    replaced and the hash selection is untouched. Groups: 49 and 46.
+
+## 4. Amendment, 2026-09-16 20:00 JST — every listening arm is synthesized in round 2
+
+**Why.** Items 5 and 6 reused the round-1 no-edit and kana arms on the ground that they do not depend
+on the adapter. Auditing the tree before the panel opened showed that is true of the *weights* but not
+of the *procedure*: the round-1 listening wavs (`sweep42/`) were produced on 09-02, and the shared
+degeneracy guard (`scripts/eval/degenerate.py`, retry on no-speech / repetition / low-variety, cap 6)
+entered the synthesis scripts on 09-05. The round-2 tag arm therefore had up to six attempts to avoid a
+degenerate take while the reused comparators had one. The guard fired on 6 of 50 items in the round-2
+Sarashina tag arm and on 1 of 50 in CosyVoice 2, so the asymmetry was live, and it runs in the method's
+favour. Irodori's kana arm was worse placed still: round 1 built it with a different script
+(`synthesize_routed.py`), one fixed seed for every item, and no guard at all.
+
+**What changes.** Every arm of every listening cell is now synthesized in round 2, with the same script,
+the same seed rule and the same guard as that cell's tag arm, in the same session:
+Sarashina A2 (no-edit, kana, tag) and CosyVoice 2 B2 (tag) already existed from the round-2 runs;
+CosyVoice 2's kana arm and Irodori's kana arm were synthesized at 19:45 JST (Irodori's as the base arm
+over the kana sentences, `run_blockB1.py --arms noedit`, seed base 5000, cap 6 — identical to its tag
+arm); T5Gemma D2 was round-2 on both arms already. No round-1 listening audio enters round 2. The
+round-1 wavs stay on disk untouched.
+
+**What does not change.** Items, voices, assignment, arms, tests, rater rules and exclusions are as
+registered. The objective table (item 5) still reuses round-1 arms as registered; the same audit applies
+to it, so the round-2 comparator arms are being synthesized there too and the table will be reported on
+round-2 arms throughout, with the round-1-arm version kept as a sensitivity check.
+
 3. **One speaker rule.** No speaker enters where the backbone can synthesize from text alone
    (Sarashina, T5Gemma: text-only teachers, as in round 1). Where it cannot, **the same 2,000
    self-sampled synthetic voices are cycled over carriers on both speaker-conditioned backbones**:
