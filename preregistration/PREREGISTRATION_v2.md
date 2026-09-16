@@ -83,6 +83,13 @@ not reading-checked) with one design applied identically to all four backbones.
    (481 items per rater: 450 stimuli, 23 duplicates, 8 catch trials). Its two endpoints were probed once
    with a dummy account `probe_selfcheck`, which failed screening and never entered the panel; its two
    records were exported and deleted from the store the same minute.
+   **Naturalness pair set, built 19:28 JST: 95 of the 100 registered pairs.** Five pairs hold one clip
+   that cannot be judged (peak below 0.05 at full scale) and are excluded by the round-1 audibility rule,
+   which item 8 did not list: Sarashina items 23 and 29, where the EDITED clip is silent (the adapter ran
+   to the token cap), and T5Gemma items 20, 25 and 31, where the UNEDITED clip is silent (a base failure).
+   The exclusion therefore helps the method on Sarashina and hurts it on T5Gemma. Both counts are reported
+   per backbone and per arm in the paper, so the filter is a result rather than a hidden step; no pair is
+   replaced and the hash selection is untouched. Groups: 49 and 46.
 3. **One speaker rule.** No speaker enters where the backbone can synthesize from text alone
    (Sarashina, T5Gemma: text-only teachers, as in round 1). Where it cannot, **the same 2,000
    self-sampled synthetic voices are cycled over carriers on both speaker-conditioned backbones**:
