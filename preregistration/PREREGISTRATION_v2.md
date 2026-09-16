@@ -141,6 +141,16 @@ still time. All three are now closed, and every affected arm is re-synthesized o
 No item, voice, assignment, arm, test or exclusion rule changes. Nothing is selected on an outcome:
 the change is which implementation of one disclosed filter runs, and it now runs identically everywhere.
 
+**Execution record, 09-16 20:47 to 09-17 06:35 JST.** The queue ran on the local GPU in this order, each
+with the same guard: CosyVoice 2 easy no-edit (50), T5Gemma easy no-edit (50), CosyVoice 2 obj319 no-edit and
+kana (319 each), Irodori obj319 tag, no-edit and kana (319 each; the tag arm redone under the shared guard),
+T5Gemma obj319 no-edit and kana. The last step failed at once because the queue had exported
+`HF_HUB_OFFLINE=1` for Irodori and T5Gemma's tokenizer load needs the hub; it was rerun at 06:35 on 09-17
+without the flag, nothing else changed. The naturalness pair set was rebuilt on 09-17 from round-2 clips on
+both sides for all four backbones (every staged clip verified as the item's assigned-voice round-2
+rendition), and the objective table is measured with `data/analysis/v2/arms_obj319_round2.json`;
+`arms_obj319_v2.json` (round-1 comparators) is the sensitivity check.
+
 3. **One speaker rule.** No speaker enters where the backbone can synthesize from text alone
    (Sarashina, T5Gemma: text-only teachers, as in round 1). Where it cannot, **the same 2,000
    self-sampled synthetic voices are cycled over carriers on both speaker-conditioned backbones**:
