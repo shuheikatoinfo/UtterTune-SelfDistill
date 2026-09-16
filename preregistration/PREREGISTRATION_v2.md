@@ -64,6 +64,9 @@ not reading-checked) with one design applied identically to all four backbones.
    loader now falls back to that word when the diff is empty (a one-line change in run_blockB1.py, kept
    with a dated backup), and the easy set was re-synthesized in full with the same seeds; the 45-item
    run is kept beside it as `easy_run1_45of50` and is not used.
+   T5Gemma's four evaluation syntheses (18:31 JST) also run on its pod with the identical commands, item
+   files, speaker assignments and the 42 held-out evaluation voices copied to the pod; outputs are copied
+   back into the same directory layout. The in-synthesis guard is unchanged from round 1.
 3. **One speaker rule.** No speaker enters where the backbone can synthesize from text alone
    (Sarashina, T5Gemma: text-only teachers, as in round 1). Where it cannot, **the same 2,000
    self-sampled synthetic voices are cycled over carriers on both speaker-conditioned backbones**:
