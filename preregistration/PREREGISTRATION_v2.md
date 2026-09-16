@@ -76,6 +76,13 @@ not reading-checked) with one design applied identically to all four backbones.
    Irodori and CosyVoice 2 seeds and voices are keyed on the global row index. (ii) The CosyVoice 2 prompt
    clips reached the pods as 16-bit FLAC copies of the 24 kHz pool wavs (PCM_16 quantisation of float
    audio); the VAD-trimmed prompt copies were rebuilt on the pods from those.
+   Two further checks at 19:00 JST, both clean: every round-2 listening stimulus exists for all four cells
+   and all arms (A2 150, B2/C2/D2 100 each) under the item's assigned voice; and all 200 naturalness
+   no-edit clips are byte-identical to the round-1 easy-50 rendition under that item's assigned voice,
+   so each A/B pair holds one voice fixed. The round-2 panel site was deployed at 19:10 JST
+   (481 items per rater: 450 stimuli, 23 duplicates, 8 catch trials). Its two endpoints were probed once
+   with a dummy account `probe_selfcheck`, which failed screening and never entered the panel; its two
+   records were exported and deleted from the store the same minute.
 3. **One speaker rule.** No speaker enters where the backbone can synthesize from text alone
    (Sarashina, T5Gemma: text-only teachers, as in round 1). Where it cannot, **the same 2,000
    self-sampled synthetic voices are cycled over carriers on both speaker-conditioned backbones**:
