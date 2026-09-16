@@ -53,6 +53,9 @@ not reading-checked) with one design applied identically to all four backbones.
    Irodori's adapter training (2,000 steps, identical config, base checkpoint and command) runs on the
    RunPod pod that generated its teachers (16:39 JST) and the checkpoint is copied back for the local
    synthesis; no local Irodori training run is used.
+   T5Gemma's materialize/train/export (400 steps, identical scripts including the local trainer patch)
+   likewise run on the pod that generated its teachers (17:25 JST); the merged model is copied back for
+   the local syntheses. Idle pods are terminated once their outputs are on local storage.
 3. **One speaker rule.** No speaker enters where the backbone can synthesize from text alone
    (Sarashina, T5Gemma: text-only teachers, as in round 1). Where it cannot, **the same 2,000
    self-sampled synthetic voices are cycled over carriers on both speaker-conditioned backbones**:
