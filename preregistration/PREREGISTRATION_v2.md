@@ -243,5 +243,7 @@ is 0.16 to 0.26 whatever the crowd size, against a non-inferiority margin of 0.1
 0.19. The user therefore restored the round-1 size: **all 50 easy pairs per backbone, no hash selection, four
 groups of about 50 pairs, one group per sitting, at least 15 judgements per pair**, everything else in item 8
 unchanged. 198 pairs ship (the two Sarashina pairs with a silent edited clip are excluded as before); groups
-51/51/48/48. Both sides of every pair are round-2 audio (amendment 5). Deployed 08:05 JST; no judgement had
-been recorded on the earlier 98-pair build.
+51/51/48/48. Both sides of every pair are round-2 audio (amendment 5). Built and deployed 07:38 JST (file
+times 07:37:50 to 07:38:02); the CrowdWorks task opened at 07:46 JST and every sitting since answers ids of
+the 198-pair build (each rater's answered set lies inside exactly one of its four groups; the 98-pair build
+had ids m000 to m097 only). No judgement was recorded on the earlier build.
