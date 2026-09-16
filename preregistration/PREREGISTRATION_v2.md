@@ -112,9 +112,34 @@ arm); T5Gemma D2 was round-2 on both arms already. No round-1 listening audio en
 round-1 wavs stay on disk untouched.
 
 **What does not change.** Items, voices, assignment, arms, tests, rater rules and exclusions are as
-registered. The objective table (item 5) still reuses round-1 arms as registered; the same audit applies
-to it, so the round-2 comparator arms are being synthesized there too and the table will be reported on
-round-2 arms throughout, with the round-1-arm version kept as a sensitivity check.
+registered.
+
+## 5. Amendment, 2026-09-16 20:10 JST — one guard implementation on all four backbones
+
+The audit above left three asymmetries standing, all of which the user asked to remove while there was
+still time. All three are now closed, and every affected arm is re-synthesized on the local GPU.
+
+1. **Irodori ran a weaker guard.** Sarashina, CosyVoice 2 and T5Gemma redraw a take when the waveform
+   is degenerate **or** when kana-whisper's transcript is (`text_reason`: no speech, a repetition run,
+   or a mora inventory under 25%). Irodori redrew on length alone. `run_blockB1.py` now calls the same
+   `synth_valid()` from `scripts/eval/degenerate.py`, with the same seed bump (+1000 per take), the same
+   cap (6), the same waveform thresholds and the same ASR, and writes the same `guard_takes.json`
+   record; the patched file is kept in the repository as
+   `scripts/irodori/run_blockB1_guarded_20260916.py` and the original beside it as a dated backup.
+   Every Irodori arm is therefore re-synthesized: listening C2 (tag, kana), the naturalness easy set
+   (tag, no edit) and the objective 319 set (tag, kana, no edit).
+2. **The naturalness no-edit clips came from 09-08.** They were guarded, but from a different session
+   than the edited clips. The no-edit arm is now synthesized in round 2 for every backbone
+   (Sarashina and Irodori already had it; CosyVoice 2 and T5Gemma are queued), so both sides of every
+   A/B pair come from the same session, the same script and the same guard.
+3. **The objective comparators came from 09-04**, before the shared guard reached the scripts. The
+   no-edit and kana arms of the 319-item table are re-synthesized in round 2 for CosyVoice 2, Irodori
+   and T5Gemma (Sarashina already had all three), on the local GPU, with the item voices and seeds
+   unchanged. The table is reported on round-2 arms throughout; the round-1-arm version is kept as a
+   sensitivity check.
+
+No item, voice, assignment, arm, test or exclusion rule changes. Nothing is selected on an outcome:
+the change is which implementation of one disclosed filter runs, and it now runs identically everywhere.
 
 3. **One speaker rule.** No speaker enters where the backbone can synthesize from text alone
    (Sarashina, T5Gemma: text-only teachers, as in round 1). Where it cannot, **the same 2,000
