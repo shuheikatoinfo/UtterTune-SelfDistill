@@ -378,3 +378,9 @@ GPU. No edit 0.436, kana 0.906, tag 0.815; tag − kana −0.091 [−0.133, −0
 [+0.298, +0.463]; inaudible outputs: tag 4 of 319, comparators 0. The earlier round-2 T5Gemma row
 (0.442 / 0.909 / 0.824) is the sensitivity check. All six pods terminated by 13:05 JST.
 
+**Naturalness re-collection opened.** The CrowdWorks task for `jp-accent-naturalness-r3` was posted by the author at
+about 13:40 JST on 2026-09-17 (90 slots, 1,000 yen, posting text as in the recruitment artifact: only the URL and the
+stated duration changed from the 07:46 task). The 07:46 site (`-r2`) was rebuilt with `--closed` and redeployed at
+13:42 JST (groups and clips unchanged, verified), so nobody new starts a sitting that the superseded collection would
+neither use nor pay for; raters with stored answers can still finish and re-sync.
+
