@@ -643,3 +643,12 @@ the section-12 criterion (local, `scripts/eval/sarahyp_P4_full.sh`); P7, the *re
 same filter (1,965 rows, 453 words), to see whether the filter alone suffices without the extra carriers; P9, the
 section-12 set filtered at 8 instead of 5.5 tokens per character (18,372 rows), to see how sharp the threshold is.
 Four pods terminated at 02:33; two remain for P7 and P9. All exploratory; Table 1 is unchanged.
+
+**Panel, registered minimum reached (2026-09-18 02:38 JST).** A third valid rater (R3) completed all 481 items at
+22:33 on 09-17 (catch 6/8, consistency 20/23). The registered analysis was run without the interim flag
+(`data/analysis/v2/listening_report_3raters_20260918_0234.json`; KV export `v2/responses_panel_r2_20260918_0234.json`):
+Fleiss' kappa 0.89 over 437 stimuli, no ties. Tag vs kana: Sarashina 0.65 vs 0.56 (Holm p 0.85), CosyVoice 2 0.83 vs
+0.38 (Holm p 1e-4), Irodori 0.86 vs 0.48 (Holm p 1e-4), T5Gemma 0.78 vs 0.57 (raw p 0.041, Holm p 0.12); Sarashina tag
+vs no edit 0.65 vs 0.67. A fourth rater (R4) is at 139 of 481; if that rater completes before the panel is
+closed, the analysis is rerun on all complete valid raters and that run replaces this one, whatever it shows. The
+panel closes when the author closes recruitment; no result decides that.
