@@ -424,7 +424,7 @@ with `&b=2`), blind, same UI and instructions, for an additional payment stated 
 share of words with the prescribed accent realized, round-1 tag stimuli vs round-2 tag stimuli vs kana, descriptive
 only (one rater). `scripts/rater_ui/panel_r2_block2.py`; key kept out of the deployment.
 
-## 11. Finding, 2026-09-17 17:10 JST — the preliminary round's Sarashina tag arm was not the clean-room adapter
+## 11. Finding, 2026-09-17 16:35 JST — the preliminary round's Sarashina tag arm was not the clean-room adapter
 
 Auditing why the round-2 Sarashina adapter runs away where the preliminary round's did not
 (`scripts/eval/diag_which_adapter.py`; base loaded once, each candidate adapter merged onto a restored copy, same
@@ -455,7 +455,7 @@ site. (iv) The within-rater comparison computed at the interim look (the same ra
 recipe. The other three backbones' round-1 arms were synthesized with explicit clean-room model paths
 (`scripts/sweep42_one.sh`) and are not affected.
 
-## 12. Exploratory follow-up, 2026-09-17 17:45 JST — Sarashina with five times the carriers
+## 12. Exploratory follow-up, 2026-09-17 16:45 JST — Sarashina with five times the carriers
 
 **Why.** Section 11 leaves one construction difference between the earlier, unreleased adapter, which does not run away,
 and both clean-room adapters, which do: its teacher set held 25,000 carriers over 500 words (50 per word, longer and
