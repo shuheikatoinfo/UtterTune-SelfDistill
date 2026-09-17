@@ -484,3 +484,33 @@ at most 6 of 319 items (2%), exhausts the takes on none, and reads at least 0.80
 the registered adapter's 4,000-step checkpoint needed 11 redraws) only decides whether the other three backbones'
 extended teacher sets are generated tonight (yes unless it is about 10 again); it is not reported as a result.
 
+## 13. Amendment, 2026-09-17 19:00 JST — 74 of the 319 objective tag inputs were malformed; corrected and re-synthesized
+
+- **Defect.** The author noticed `ご令<PHON_START>ゴレーエン<PHON_END>` in a synthesis log. The accent review of 09-09 had
+  widened 96 objective targets to a phrase (足痕 → アシア'ト, 弓状 → キュージョー) and written correct tagged lines, but the
+  routing step run afterwards (`scripts/eval/route_ours_inputs.py`) took the span to wrap from the plain-versus-kana
+  diff, which still names only the original kanji. On the 319-item test half, 61 inputs therefore carried the phrase's
+  reading on the one-kanji span (`足<アシア'ト>`, the neighbour said twice) and 13 had an absorbed suffix's reading
+  appended to a reading that already contained it (`キュージョージョー`): **74 malformed tag inputs**, on all four
+  backbones' tag arms, in both rounds since 09-09. Irodori's own case loader made the same choice at run time. The
+  inputs before routing contain no such case; the listening (difficult-50) and naturalness (easy-50) inputs and the
+  training carriers carry no widened reading and are unaffected (checked: 0 of 50 and 0 of 50 spans change under the
+  corrected rule; the two apparent repeats in difficult-50 are real reduplications, 粛々 and 延々).
+- **Fix.** Both the routing script and Irodori's loader now take the span from the tagged line itself. The corrected
+  file replaces the tag exactly by the reviewed span with the reviewed reading on 319 of 319 items
+  (`test_obj319_lora_fixed20260917.txt`, now the canonical `test_obj319_lora.txt`; the malformed file is kept as
+  `test_obj319_lora.dupbug_20260909.txt`; the 74 indices in `changed_by_fix20260917.json`). The kana and no-edit
+  inputs, the truth targets, voices, seeds, guard and adapters are unchanged.
+- **Re-synthesis and re-measurement.** The tag arm of the 74 items is re-synthesized on all four backbones with the
+  registered adapters (`scripts/eval/obj319_inputfix_resynth.sh`; earlier clips kept under `obj319_dupbug`), and the
+  objective table is re-measured (`reading_obj319_round2_inputfix.json`). That table is the record; the table on
+  the malformed inputs is kept as a sensitivity check. On the malformed inputs the tag-minus-kana gap was already
+  present on the 245 well-formed items (Sarashina -0.06, CosyVoice 2 -0.18, Irodori -0.03, T5Gemma -0.10), and
+  Sarashina's redraw rate on them was 18% against 23% and 31% on the two malformed kinds, so the defect is not what
+  produces either finding; the corrected numbers are reported whatever they show.
+- **Section 12, early read (not a result).** The 50-carrier adapter's 4,000-step checkpoint needed a redraw on about
+  11 of 100 items, as the registered adapter's did; by the rule fixed at 18:32 the other three backbones' extended
+  teacher sets are not generated tonight. Its training was restarted from scratch after the first run lost its GPU
+  memory to a diagnostic run beside it (1 step/s instead of 5); the restart follows the re-synthesis above, alone on
+  the GPU, and its evaluation uses the corrected inputs.
+
