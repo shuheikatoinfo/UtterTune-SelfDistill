@@ -474,3 +474,13 @@ the tag arm's redraw and cap-exhaustion rates and reading accuracy on the 319 ob
 guard. Stopping rule fixed now: if no result exists by 2026-09-19 the follow-up is dropped and said so. Whatever it
 shows is reported in one to three sentences.
 
+**Success criterion for section 12, fixed 2026-09-17 18:32 JST, before any output of the 50-carrier adapter existed**
+(training at step ~3,300 of 20,000; the first checkpoint not yet written). Reference values under the same 319 items,
+voices, seeds and guard: Sarashina no edit 3/319 redraws and kana 3/319, the earlier, unreleased adapter's tag arm 2/233,
+CosyVoice 2's tag arm 3/319, Irodori's 0/319, none of them with an item exhausting the six takes; the registered
+Sarashina adapter's tag arm 61/319 with 24 exhausted. **Success:** the 20,000-step adapter's tag arm needs a redraw on
+at most 6 of 319 items (2%), exhausts the takes on none, and reads at least 0.80 (registered adapter 0.755, kana 0.843).
+**Partial:** redraws above 2% but at most about 8%. **No effect:** 10% or more. The 4,000-step early read (100 items;
+the registered adapter's 4,000-step checkpoint needed 11 redraws) only decides whether the other three backbones'
+extended teacher sets are generated tonight (yes unless it is about 10 again); it is not reported as a result.
+
