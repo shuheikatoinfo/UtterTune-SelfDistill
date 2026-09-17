@@ -542,3 +542,32 @@ to the sentence CER change (`naturalness_r3_cer.json`), sentence damage on the l
 (`difficult50_cer_tag_vs_kana.json`) and UTMOSv2 on the pairs (margin 0.20 from the preliminary registration;
 `utmosv2_naturalness_pairs_r3.json`).
 
+
+## 14. Exploratory cause hunt, 2026-09-17 20:45 JST — five Sarashina teacher-set variants trained in parallel
+
+**Why.** Sections 11 to 13 leave the Sarashina runaway unexplained: code and configuration are identical to the
+earlier, unreleased adapter's, carrier count does not move it at 4,000 steps, and the malformed inputs were not the cause.
+Three measurable properties of the clean-room teacher sets differ from the earlier, unreleased set: the tagged word opens
+the sentence in most carriers, some teachers contain long runs of one repeated speech token, and some teachers are
+slow (many speech tokens per character). The author asked for these to be tested tonight, in parallel on rented GPUs,
+because 2026-09-18 is the last day on which listeners for a further registered round could still be recruited.
+
+**What (written before any of these adapters produced output; all five were at most a few hundred steps into
+training).** Registered trainer and settings (`train_lora_sarashina.py`, 20,000 steps, alpha 64), one RTX 5090 pod each,
+public backbone weights pinned to the commit of the local copy (sha256 of the large file checked). Variants are filters
+of the section-12 teacher set (22,729 rows; clean-room only, no data of the earlier, unreleased set leaves the local machine):
+P1 tag never sentence-initial (8,755 rows, 465 words); P2 no run of 25 or more identical speech tokens (20,750);
+P4 at most 5.5 speech tokens per character (12,870); P5 all three filters (6,378); P3 the registered teacher set
+unchanged, stopped after 3,000 steps, to read checkpoints at 1,000 / 2,000 / 3,000 steps. Each adapter is read on the
+first 100 objective items' tag arm (corrected inputs, registered voices, seeds and guard;
+`runpod_bundle_sarahyp/RUNPOD_RUN.sh`), at 20,000 and 4,000 steps. References on the same 100 items: registered adapter
+at 4,000 steps 11 redraws, at 12,000 steps 21; the 50-carrier adapter at 4,000 steps 10; on all 319 items the registered
+adapter 60 redraws (19%), Sarashina's unedited and kana arms 3 each (1%).
+
+**Criterion, fixed now.** A variant counts as **removing the runaway** only if its 20,000-step adapter needs a redraw
+on at most 2 of the 100 items and exhausts the six takes on none. 3 to 6 is **partial**; 7 or more is **no effect**.
+A variant that meets the criterion is then measured on all 319 items against the section-12 criterion before anything
+is said about it. These runs are exploratory, select among variants after seeing results, and **do not replace any
+registered number**; if one succeeds, the author decides whether a further registered round (recipe change applied to
+all four backbones, new stimuli, new judgements) is feasible, and the present round's results stay on record either way.
+If none succeeds, the paper reports the Sarashina failure as it stands and says which causes were ruled out.
