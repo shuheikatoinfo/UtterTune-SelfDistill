@@ -837,3 +837,12 @@ without claiming an effect for this part. Sarashina's round-3 adapter is therefo
 v5 + v5b pool with the slow-teacher filter (M2 was trained on 11 of 12 v5 shards; the twelfth is regenerated first);
 P4 is superseded for round 3. Untagged copies (M3) are not part of the recipe. The v5/v5b teachers of the three
 backbones are generated on the same pods right after their section-12 shards, same generator and rule.
+
+**Section 16, Sarashina step count chosen on the selection split (08:44 JST, rule fixed before the round-3 adapter
+exists).** The registered step counts were fixed a priori and never tuned. For Sarashina, whose round-3 adapter is
+being retrained anyway, the checkpoint (4,000 / 8,000 / 12,000 / 16,000 / 20,000 steps) is chosen on the two
+validation sets by **mean sentence kana CER of the tag arm over the 144 items (lower is better)**; a checkpoint within
+0.005 of the best is a tie, and ties go to the higher mean UTMOSv2 of the tag arm; a checkpoint that needs a redraw on
+more than 2% of the 105 selection items or exhausts the takes on any is excluded. The choice is written here before
+any round-3 Sarashina stimulus is synthesized. The other three backbones keep their registered (untuned) step counts;
+the paper says so.
