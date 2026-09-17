@@ -519,3 +519,12 @@ amendment 10 before section 11 withdrew it. The block (the 50 round-1 Sarashina 
 back on the site so that the contract can be honoured and paid; its judgements are archived and **not analysed or
 reported**, since section 11 shows those stimuli came from a different adapter. No other block or rater is affected.
 
+**Objective table of record after amendment 13 (measured 2026-09-17 19:40 to 19:51 JST,
+`reading_obj319_round2_inputfix.json`).** No edit / kana / tag: Sarashina 0.511 / 0.843 / 0.771, CosyVoice 2
+0.282 / 0.850 / 0.690 (released UtterTune 0.856), Irodori 0.586 / 0.909 / 0.871, T5Gemma 0.436 / 0.906 / 0.809.
+Tag - kana: -0.072 [-0.120, -0.019], -0.160 [-0.212, -0.107], -0.038 [-0.075, +0.000], -0.097 [-0.137, -0.058];
+tag - none: +0.260, +0.408, +0.285, +0.373 (all p < 1e-12); tag - UtterTune on CosyVoice 2: -0.166 [-0.226, -0.106].
+The correction moved the tag arm by +0.016, +0.003, +0.003 and -0.006; no conclusion changes. Sarashina's tag arm
+still needs a redraw on 60 of 319 items and exhausts the six takes on 20 (61 and 24 on the malformed inputs), so
+the malformed inputs were not the cause of the runaway.
+
