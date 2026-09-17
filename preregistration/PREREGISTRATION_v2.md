@@ -338,3 +338,22 @@ item truth, the round-1 comparator arms reproduce the round-1 numbers exactly. R
    collection on the 198-pair build (104 sittings) is superseded as the record and is reported only as a
    sensitivity check, per backbone. Nothing else in item 8 changes.
 
+**Execution record, amendment 9 item 1 (panel), 2026-09-17 12:20 JST.** Kit rebuilt from the corrected-guard
+Irodori and T5Gemma difficult arms (`scripts/teachers/v2_kit_and_site_b.sh`); A2/B2 clips verified byte-identical
+to the deployed kit; cells renamed C2b/D2b; the earlier C2/D2 clip directories are kept in the deployment so a
+session opened on the earlier build keeps playing. Stimuli whose audio changed with the corrected guard
+(byte-different and not the same take under float noise): C2b 38 of 105 (17 tag, 19 kana, 2 duplicates), D2b 32 of
+105; these 70 form block 1, which only the rater who had completed the block judges (invitation URL with `&b=1`).
+Every other rater judges block 0 (481 items, A2, B2, C2b, D2b); the assignment endpoint is called with one unit so
+that no new rater is ever handed block 1. Store: the completed rater's 140 judgements on unchanged C2/D2 stimuli were
+re-keyed to C2b/D2b (same clip, same answer; `rekeyed_from` kept in each record) and their 70 judgements on changed
+stimuli removed (exported first to `superseded_c2d2_R1_*.json`). A second rater had started at 12:04 JST
+(32 judgements); at the author's decision they restart the block: their 10 C2/D2 judgements were exported and
+removed, their 22 A2/B2 judgements stand. Deployed 12:20 JST and probed end to end with a dummy passing account
+for both blocks (block 0: 481 items; block 1: 70 items), whose records were deleted afterwards.
+
+**Objective, Irodori, under the corrected guard (12:22 JST, `reading_obj319_round2_irodori_gf.json`):** no edit
+0.586, kana 0.909, tag 0.868; tag − kana −0.041 [−0.079, −0.003], p = 0.029; tag − none +0.282 [+0.212, +0.357].
+No item of any arm needed a redraw; the no-edit and kana values coincide with the round-1 comparators (first take
+everywhere). The earlier round-2 Irodori row (0.580 / 0.912 / 0.865) is the sensitivity check.
+
