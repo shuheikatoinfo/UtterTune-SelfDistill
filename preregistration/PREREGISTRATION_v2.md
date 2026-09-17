@@ -424,3 +424,34 @@ with `&b=2`), blind, same UI and instructions, for an additional payment stated 
 share of words with the prescribed accent realized, round-1 tag stimuli vs round-2 tag stimuli vs kana, descriptive
 only (one rater). `scripts/rater_ui/panel_r2_block2.py`; key kept out of the deployment.
 
+## 11. Finding, 2026-09-17 17:10 JST — the preliminary round's Sarashina tag arm was not the clean-room adapter
+
+Auditing why the round-2 Sarashina adapter runs away where the preliminary round's did not
+(`scripts/eval/diag_which_adapter.py`; base loaded once, each candidate adapter merged onto a restored copy, same
+reference voice, inputs, seeds and sampling as the round-1 synthesis script):
+
+- The preliminary round's Sarashina **listening** tag stimuli (`sweep42/sarashina/*/ours`, 09-02) are reproduced
+  **bit for bit** by `_handoff/adapters/lora_faithful2_tf457/ckpt_20000` and by no clean-room checkpoint
+  (`lora_cleanroom_apostrophe_v2/ckpt_4000..20000`, `lora_cleanroom_apostrophe/ckpt_20000`). The no-edit arm is
+  reproduced bit for bit by the base, so the comparison is sound.
+- The preliminary round's Sarashina **objective** tag arm (`obj42g/sarashina/*/ours`) is a mixture: of four items
+  checked, three are bit-identical to `lora_faithful2_tf457` and one to the clean-room v2 adapter (the partial
+  re-synthesis of 09-09).
+- `lora_faithful2_tf457` is the earlier, unreleased adapter, trained on an earlier, unreleased teacher set. It is
+  the **default** of `SARA_ADAPTER_OURS` in `blockA_sarashina_difficult_4spk.py`, and was the adapter in effect when
+  the round-1 stimuli were synthesized; the clean-room adapter the round-1 paper describes was not the one heard.
+- Under today's conditions the clean-room v2 adapter of the preliminary round runs to the token cap on the same
+  items as the round-2 adapter (first two listening items at every checkpoint 4k to 20k; 15 of 88 objective items
+  needing a redraw, against 61 of 319 for the round-2 adapter). The round-2 Sarashina result is therefore what the
+  clean-room recipe gives on this backbone, in both rounds; it is not a bad training draw.
+
+**Consequences.** (i) Round 2 set `SARA_ADAPTER_OURS` explicitly for every Sarashina synthesis (`v2_chain.sh`), so
+its Sarashina arms are the registered adapter; nothing in round 2 changes. (ii) The preliminary round's Sarashina tag
+results (accent 0.89 vs 0.57, naturalness non-inferior, reading 0.821) are **withdrawn as evidence for the method**:
+they describe a different adapter. They are not reported in the paper as the method's result. (iii) Amendment 10's
+bridge block would bridge to that other adapter and is withdrawn before anyone judged it; block 2 is removed from the
+site. (iv) The within-rater comparison computed at the interim look (the same raters scoring the round-1 tag stimuli
+0.84 to 0.86 and the round-2 ones 0.60 to 0.64) stands as a fact about the two adapters, not about two draws of one
+recipe. The other three backbones' round-1 arms were synthesized with explicit clean-room model paths
+(`scripts/sweep42_one.sh`) and are not affected.
+
