@@ -406,3 +406,21 @@ task closes when its posted slots are filled, and the final numbers replace the 
 What the interim look shows is unfavourable to the method on Sarashina (tag 0.62 vs kana 0.55, tag vs no edit
 0.61 vs 0.64) and on naturalness (non-inferiority met on no backbone) and is reported as such.
 
+## 10. Amendment, 2026-09-17 16:00 JST — exploratory bridge block: the preliminary round's Sarashina tag stimuli
+
+**Why.** The interim look (above) shows the round-2 Sarashina adapter not separating from kana, where the
+preliminary round's adapter had (0.89 vs 0.57, a different panel of four raters). Construction was audited and is
+the same in both rounds (trainer, LoRA configuration, steps, teacher sampling and format, tag-token embeddings); the
+teacher set's composition and the training run's randomness differ. To tell an adapter difference from a panel
+difference, the author adds one exploratory measurement; it is not part of the confirmatory family, changes no
+registered cell, and is reported whatever it shows.
+
+**What.** Block 2 of the panel site: the 50 Sarashina tag stimuli that the preliminary round's raters heard, byte for
+byte (round-1 kit, loudness-normalised clips), shown with the round-2 display of the same item (no prescribed accent
+differs between the two kits). The round-1 kana and no-edit Sarashina stimuli are the same renditions as round 2's A2
+(per arm 33 byte-identical and 17 same take under float noise), so the rater's own A2 judgements are the
+comparators. Judged only by the rater the author recruits additionally (after that rater's block 0, invitation URL
+with `&b=2`), blind, same UI and instructions, for an additional payment stated to the rater. Analysis: that rater's
+share of words with the prescribed accent realized, round-1 tag stimuli vs round-2 tag stimuli vs kana, descriptive
+only (one rater). `scripts/rater_ui/panel_r2_block2.py`; key kept out of the deployment.
+
