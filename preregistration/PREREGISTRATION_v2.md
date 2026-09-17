@@ -571,3 +571,14 @@ is said about it. These runs are exploratory, select among variants after seeing
 registered number**; if one succeeds, the author decides whether a further registered round (recipe change applied to
 all four backbones, new stimuli, new judgements) is feasible, and the present round's results stay on record either way.
 If none succeeds, the paper reports the Sarashina failure as it stands and says which causes were ruled out.
+
+**Section 14, sixth variant added 21:18 JST (before any output of the first five).** Asked by the author whether
+training and evaluation voices were separated for the earlier, unreleased adapter, the generators were compared: neither
+teacher set contains a speaker (both are the base's text-only continuations), so no voice can leak; but the
+earlier, unreleased set was taken **without selection** (first take of every carrier), while the clean-room recipe keeps
+only takes that pass the guard and the reading check (registered Sarashina set: 3,846 of 4,508 rows are first takes,
+662 are redraws, 202 carriers dropped). P6 tests that difference: the registered 4,710 carriers, first take of each
+with the registered sampler and seeds, no guard, no reading check (`runpod_bundle_sarahyp6/scripts/gen_unfiltered.py`),
+then the registered trainer and the same 100-item reading. Same criterion as the other five. Note for any later use:
+an unselected teacher set contains carriers the base misreads, so P6 is a diagnostic of the runaway, not a candidate
+recipe, unless its reading accuracy also holds.
