@@ -357,3 +357,17 @@ for both blocks (block 0: 481 items; block 1: 70 items), whose records were dele
 No item of any arm needed a redraw; the no-edit and kana values coincide with the round-1 comparators (first take
 everywhere). The earlier round-2 Irodori row (0.580 / 0.912 / 0.865) is the sensitivity check.
 
+**Execution record, amendment 9 item 2 (naturalness, third build), 2026-09-17 12:50 JST.** Irodori easy (tag,
+no edit; 11:50 to 11:53 JST, local) and T5Gemma easy (tag 12:16 to 12:32, no edit to 12:44 JST, local) re-synthesized
+under the corrected guard with the same items, voices and seeds; the earlier arms kept as `*_guardraw`. Pair set
+`preregistration/items/naturalness_ab_easy50_r3.json` (ids p000 to p197; 198 pairs: Sarashina 48 with the same two
+silent-edit exclusions, others 50; A/B by hash as before). Against the 198-pair build of 07:38: every Sarashina and
+CosyVoice 2 clip byte-identical; Irodori 17 no-edit and 24 tag clips changed, T5Gemma 17 and 21 (the T5Gemma
+counts include same-take float-noise differences, the earlier T5Gemma easy arms having been pod-generated).
+Loudness-normalised as before (396 clips, -23.0 LUFS), four content-derived groups 51/51/48/48. Deployed as a new
+project, `https://jp-accent-naturalness-r3.pages.dev`, 12:47 JST; served clips verified byte-identical to the build;
+the consent-to-judging path exercised with a dummy id in a headless browser (48-item group rendered with both
+players), whose records were deleted. The group-assignment endpoint shares the store with the 07:46 task, so its
+"emptiest group" count starts from that task's 55/55/54/56; new arrivals are still balanced. Pods for the T5Gemma
+easy arms (t5gs-5) and the slow objective host (t5gs-2, t5gs-3) were terminated unused at 12:52 JST.
+
