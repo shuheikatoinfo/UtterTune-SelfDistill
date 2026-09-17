@@ -528,3 +528,17 @@ The correction moved the tag arm by +0.016, +0.003, +0.003 and -0.006; no conclu
 still needs a redraw on 60 of 319 items and exhausts the six takes on 20 (61 and 24 on the malformed inputs), so
 the malformed inputs were not the cause of the runaway.
 
+**Naturalness re-collection closed, 2026-09-17 20:05 JST.** The author closed the CrowdWorks task; the `-r3` site was
+rebuilt with `--closed` and redeployed (groups unchanged, verified live). Store exported to
+`responses_final_nat_r3_20260917.json`; registered analysis (`analyze_naturalness.py --exclude-speeders`,
+`data/analysis/v2/naturalness_report_r3.json`): 114 sittings started, 105 complete, two excluded by the speed rule,
+5,194 judgements on 198 pairs (24 to 29 per pair). Unedited minus edited preference: Sarashina +0.34 [+0.19, +0.49],
+CosyVoice 2 +0.29 [+0.13, +0.44], Irodori +0.15 [+0.04, +0.27], T5Gemma +0.28 [+0.10, +0.44]; the 0.15 margin is met on
+none. Same-reading stratum (151 pairs): +0.26, +0.33, +0.15, +0.26. The numbers equal the interim look's, no judgement
+having arrived after it. The duplicate-account exclusion (second sitting by one platform account) is applied when the
+author supplies the platform's worker list; until then the figures are reported as before that check.
+Exploratory, not registered: the pair-level breakdown (`naturalness_r3_per_pair.json`), the relation of the preference
+to the sentence CER change (`naturalness_r3_cer.json`), sentence damage on the listening stimuli
+(`difficult50_cer_tag_vs_kana.json`) and UTMOSv2 on the pairs (margin 0.20 from the preliminary registration;
+`utmosv2_naturalness_pairs_r3.json`).
+
