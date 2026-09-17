@@ -791,3 +791,12 @@ C2 adapter on the local GPU gave 0.077 / heard 0.81 against the pod's 0.082 / 0.
 calibrates the noise: differences of this size between conditions are not differences. So far the carrier
 distribution does not move the validation CER; the blind check and the 20,000-step read decide whether v5/v5b are
 added to section 16 (they would be an addition to the section-12 carriers, applied to all four backbones).
+
+**Section 16, note (07:43 JST, before any round-3 teacher of the three backbones was collected).** The expectation
+written in item 2 ("almost nothing on Irodori and T5Gemma") was wrong: applied to the round-2 teacher sets the rule
+would drop 43% of Irodori's (median 0.211 s/char, 90th percentile 0.284), 36% of CosyVoice 2's (0.181 / 0.319), 8% of
+T5Gemma's (0.194 / 0.220), and 56% of Sarashina's (0.234 / 0.450). **The rule is kept as registered**: one number,
+0.22 s per character, on every backbone; with 50 carriers per word every backbone keeps more teachers than it had in
+round 2. Filter: `scripts/eval/round3_filter_teachers.py`; training and stimulus synthesis:
+`scripts/eval/round3_train_local.sh` (round-2 commands, round-3 paths; Sarashina's adapter is P4, hash in
+`v2/sara_hyp/P4_adapter_sha256.txt`, its stimuli synthesized 07:08 to 07:18).
