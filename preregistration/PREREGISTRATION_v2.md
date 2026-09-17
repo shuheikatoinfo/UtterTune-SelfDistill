@@ -315,10 +315,19 @@ item truth, the round-1 comparator arms reproduce the round-1 numbers exactly. R
 
 ## 9. Amendment, 2026-09-17 12:05 JST — the author's decisions on amendment 8
 
-1. **Listening C2 and D2 are replaced.** No C2/D2 judgement exists (verified again before deployment); the
-   re-synthesized Irodori and T5Gemma difficult arms (tag, kana; same items, voices, seeds) replace the deployed
-   stimuli on the same site. A2 and B2 are unchanged. Raters already admitted keep their admission; nobody has
-   started the block.
+1. **Listening C2 and D2 are replaced.** The re-synthesized Irodori and T5Gemma difficult arms (tag, kana; same
+   items, voices, seeds) replace the deployed stimuli on the same site, as cells **C2b** and **D2b**; A2 and B2
+   are unchanged (the rebuilt clips are checked byte-identical to the deployed ones before deployment).
+   **Correction at 12:00 JST:** one rater had already completed the whole block (473 judgements, 10:32 to
+   11:18 JST) on the earlier C2/D2 stimuli before the store was checked again. The author's decision (12:00 JST,
+   option A): the replacement goes ahead; that rater's A2/B2 judgements stand; their 210 C2/D2 judgements on the
+   superseded stimuli are exported to the backup and removed from the working store, reported as a sensitivity
+   check, and the rater is asked to judge C2b/D2b (210 items) for a proportional additional payment. The other
+   admitted raters had not started. Under the corrected guard none of the Irodori difficult or objective items
+   needed a redraw: every redraw the defective guard triggered on Irodori was spurious, so 17 of 50 tag and 19 of
+   50 kana C2 stimuli change take (seed) with this replacement. The registered speed exclusion (median
+   inter-response interval below the shortest stimulus) is the only speed rule applied; a rater may answer as
+   soon as the accent is heard, so short intervals as such are not a ground for exclusion.
 2. **Naturalness is re-collected in full, all four backbones** (the author's decision, 12:20 JST, for one
    clean collection under one design). The Irodori and T5Gemma easy arms (tag and no edit on both) are
    re-synthesized under the corrected guard (`scripts/eval/round2_guardfix_easy.sh`, same items, voices and
