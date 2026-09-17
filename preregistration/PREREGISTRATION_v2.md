@@ -652,3 +652,29 @@ Fleiss' kappa 0.89 over 437 stimuli, no ties. Tag vs kana: Sarashina 0.65 vs 0.5
 vs no edit 0.65 vs 0.67. A fourth rater (R4) is at 139 of 481; if that rater completes before the panel is
 closed, the analysis is rerun on all complete valid raters and that run replaces this one, whatever it shows. The
 panel closes when the author closes recruitment; no result decides that.
+
+## 15. Exploratory, 2026-09-18 02:46 JST — validation on the selection split; carriers matched to running text
+
+**Author's decision (2026-09-18 02:46).** Beyond the runaway, look on Sarashina for a teacher-set condition that lowers the
+damage the edit does to the rest of the sentence (sentence kana CER), which sections 9 to 13 found associated with the
+naturalness preference. Naturalness cannot be searched objectively; CER can. Conditions are compared **only on the
+selection split** (`preregistration/items/objective_selection.jsonl`, 105 items, component-disjoint from the 319 test
+items, frozen before any adapter was measured, registered purpose: model choice), tag inputs routed by the corrected
+router (`data/derived/sel105_routed/`), one voice per item by `sha256('SEL105:'+key) mod 42`
+(`speaker_assignment42_sel105.json`, fixed before any audio). Measures: redraws and exhausted items under the
+registered guard; sentence kana CER of the tag arm against the kana and unedited arms of the same items and voices;
+whether the target reading is heard. A condition that does not run away and lowers the validation CER is then checked
+by the author by ear, and only then applied to the other three backbones. The 319 test items and the listening sets are
+not used to choose anything from here on. (Section 14's variants were read on the first 100 *test* items; that was a
+diagnosis of a failure, and it is disclosed as selection on test data for the runaway criterion only.)
+
+**Hypothesis of the author.** Teachers should follow the distribution the edit meets in use: in the registered
+teacher set the tagged word opens the sentence in 93% of carriers and carriers are 14 to 19 characters long, while in
+running text an edited word sits anywhere in a sentence of ordinary length. Matching these is a property of the
+deployment condition, not of test items. **v5 carriers** (`scripts/teachers/build_text_v5.py`): the same 471 words
+and readings, 24 new neutral and 16 new counter frames written before any output and without consulting evaluation
+sentences, word at relative position 0.43 / 0.56 / 0.69 (10th / 50th / 90th percentile), length 24 / 27 / 31
+characters; 10,868 carriers; teachers by the registered rule (guard, reading check, five takes) on six pods.
+Planned adapters, all with the slow-teacher filter of section 14 (at most 5.5 speech tokens per character), registered
+trainer and settings: **M2** section-12 pool plus v5; **M3** the same, resampled so that relative tag position is
+flat over thirds of the sentence. Baselines on the same split: registered adapter, section-12 adapter, P4.
