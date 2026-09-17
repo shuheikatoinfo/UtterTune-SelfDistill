@@ -182,8 +182,8 @@ rendition), and the objective table is measured with `data/analysis/v2/arms_obj3
    difficult-50 set, **every backbone x {kana, tag}, plus {no edit} on Sarashina only**, one held-out
    voice per word fixed by hash (A2/B2/C2 reuse the round-1 assignment of the same backbone, D2 is
    hashed the same way), 450 stimuli + 8 known-answer catch trials + 5% duplicate items. Same
-   raters as round 1 (the gate admitted five of 34 candidates: three at 19/19 and two at 18/19 on the
-   19 scored items; four of the five judged in round 1) plus any new candidate who
+   raters as round 1 (the gate as amended in §7 admits six of 34 candidates: 20/20, two at 19/20,
+   three at 18/20; four of the six judged in round 1) plus any new candidate who
    passes the same gate before the kit closes; minimum three raters, all judging everything.
    Judged blind, randomized order, whole sentences, prescribed accent shown; the rater UI, catch
    trials, screening definition and payment are those of round 1.
@@ -254,3 +254,31 @@ tag-derived reading; it was discarded once the same files re-measured differentl
 item truth, the round-1 comparator arms reproduce the round-1 numbers exactly. Results (all-round-2 arms): tag − none
 +0.25 / +0.40 / +0.29 / +0.38 (Sarashina / CosyVoice 2 / Irodori / T5Gemma, all p < 1e-10); tag − kana −0.09 / −0.16 /
 −0.05 / −0.09, all below zero at the 95% level. `data/analysis/v2/obj319_round2_contrasts.md`.
+
+## 7. Amendment, 2026-09-16 20:30 JST — screening key restored to 20 items, pass line 18 of 20
+
+- **What changed.** On 2026-09-09 item `scr07` (委員, shown as 頭高) had been withdrawn from the
+  screening key and credited to every candidate, because the author, re-listening, could not decide
+  whether the rendition matched the display (the note said 中高 was admissible). That call was wrong:
+  a 中高 word starts low on its first mora, and this rendition does not. Measured on 2026-09-16 with
+  YIN over the carrier's first word, F0 holds about 220 Hz through the first mora and falls to about
+  174 Hz across the second and third: the rendition is 頭高 against the display, "differs" is the
+  correct answer, and the original key stands. The set is scored as a clean 20.
+- **Pass line.** The slack widens from one item to two at the same time (18 of 20, written as a
+  count, not a fraction), on the author's decision, so that restoring the item cannot demote anyone
+  already admitted. Under 18/20 all five previously admitted candidates remain admitted, and one
+  candidate rejected at 17/19, who had answered `scr07` correctly, is admitted: six of 34 in total.
+  Nobody is dropped on a rule change made after the fact. Every stored gate record was regraded from
+  its own stored answers against the 20-item key; the rule and the key are in
+  `scripts/rater_ui/gen_collector.py` and the generated `functions/api/screen.js`, deployed to the
+  round-2 panel site at the same time.
+- **Incident, 2026-09-17 morning: admitted raters could not reach the judging block.** The regrade
+  wrote each gate record through a helper that already JSON-serialises its argument, and passed it a
+  pre-serialised string, so all 33 records were stored as JSON string literals. The site's gate
+  endpoint then returned `found` without `pass`, and the page treated every rater, admitted or not, as
+  failed. Reported by an invited rater; diagnosed and repaired 2026-09-17 morning by rewriting all 33
+  records as objects from the same stored answers (no answer or verdict changed; six pass, 27 fail,
+  every record re-checked against the 18/20 rule). No judgements were lost: the block had not been
+  reachable, so none had been made. The window during which invited raters were turned away is the
+  invitation time to the repair; they are being told the link now works.
+
