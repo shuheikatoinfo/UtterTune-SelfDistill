@@ -594,3 +594,14 @@ Exploratory, results-driven, not in Table 1. Redraws again concentrate on a few 
 spk20 7 of 10, spk14 5 of 12), the same voices on which the registered adapter runs away (spk14 11 of 12, spk20 8 of
 10, spk16 8 of 11, spk3 6 of 8; 21 of 42 voices never needed a redraw) and the only voices on which the unedited and
 kana arms needed redraws at all.
+
+**Section 14, first reads and two further diagnostics (2026-09-17 21:47 JST).** P3 (registered teachers, early
+checkpoints), 100 items each: 1,000 steps 14 redraws / 3 exhausted, 2,000 steps 15 / 2, 3,000 steps 12 / 3. The
+runaway is present from the first thousand steps at the level it keeps later, so it is not a late over-training
+effect and no stopping point removes it. Mid-training reads of P1 and P2 at 8,000 steps (progress checks, not
+results): 15 / 6 and 10 / 0. Two diagnostics started at 21:46, before any output: **L1**, today's trainer and
+environment on the earlier, unreleased teacher set (local machine only, that set never leaves it; internal control, never
+reported as a result: if L1 runs away the cause is in today's code, environment or inputs, if it does not the cause
+is in the clean-room teacher data); **no-tag inputs**, the registered 20,000-step adapter loaded but fed the untagged
+plain and kana sentences of the same 100 items (if it runs away there too, the adapter has damaged the model's
+stopping behaviour in general for some voices; if not, the tagged span triggers it).
