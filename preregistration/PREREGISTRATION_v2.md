@@ -543,7 +543,7 @@ to the sentence CER change (`naturalness_r3_cer.json`), sentence damage on the l
 `utmosv2_naturalness_pairs_r3.json`).
 
 
-## 14. Exploratory cause hunt, 2026-09-17 20:45 JST — five Sarashina teacher-set variants trained in parallel
+## 14. Exploratory cause hunt, 2026-09-17 20:38 JST — five Sarashina teacher-set variants trained in parallel
 
 **Why.** Sections 11 to 13 leave the Sarashina runaway unexplained: code and configuration are identical to the
 earlier, unreleased adapter's, carrier count does not move it at 4,000 steps, and the malformed inputs were not the cause.
