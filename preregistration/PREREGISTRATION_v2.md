@@ -582,3 +582,15 @@ with the registered sampler and seeds, no guard, no reading check (`runpod_bundl
 then the registered trainer and the same 100-item reading. Same criterion as the other five. Note for any later use:
 an unselected teacher set contains carriers the base misreads, so P6 is a diagnostic of the runaway, not a candidate
 recipe, unless its reading accuracy also holds.
+
+**Section 12, result (measured 2026-09-17 20:56 to 21:36 JST; `data/analysis/v2/reading_obj319_sarashina_v4.json`,
+adapter `v2/sarashina_v4/lora/ckpt_20000` given explicitly, corrected inputs, registered voices, seeds and guard).**
+The 50-carrier adapter's tag arm needed a redraw on **41 of 319** items (12.9%) and exhausted the six takes on **12**
+(registered adapter 60 and 20); 12 outputs were inaudible. By the criterion fixed at 18:32 this is **no effect on the
+runaway** (10% or more). Reading accuracy of the tag arm was 0.850 against the registered adapter's 0.771 and plain
+kana's 0.843 (tag - kana +0.006 [-0.044, +0.059]); voice disagreement 0.200. So five times the carriers raises the
+objective reading accuracy to the kana baseline's level but does not remove the failure that matters to a listener.
+Exploratory, results-driven, not in Table 1. Redraws again concentrate on a few reference voices (spk3 7 of 8 items,
+spk20 7 of 10, spk14 5 of 12), the same voices on which the registered adapter runs away (spk14 11 of 12, spk20 8 of
+10, spk16 8 of 11, spk3 6 of 8; 21 of 42 voices never needed a redraw) and the only voices on which the unedited and
+kana arms needed redraws at all.
