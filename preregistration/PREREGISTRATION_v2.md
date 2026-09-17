@@ -371,3 +371,10 @@ players), whose records were deleted. The group-assignment endpoint shares the s
 "emptiest group" count starts from that task's 55/55/54/56; new arrivals are still balanced. Pods for the T5Gemma
 easy arms (t5gs-5) and the slow objective host (t5gs-2, t5gs-3) were terminated unused at 12:52 JST.
 
+**Objective, T5Gemma, under the corrected guard (13:10 JST, `reading_obj319_round2_t5gemma_gf.json`):** synthesized
+on RunPod 5090 pods (`runpod_bundle_t5gsynth`, four index shards; the slow host's two shards were taken over by the
+two fast pods with the same script and seeds, and the pod logs are kept under `t5gsynth/logs`), measured on the local
+GPU. No edit 0.436, kana 0.906, tag 0.815; tag − kana −0.091 [−0.133, −0.050], p = 1.5e-5; tag − none +0.379
+[+0.298, +0.463]; inaudible outputs: tag 4 of 319, comparators 0. The earlier round-2 T5Gemma row
+(0.442 / 0.909 / 0.824) is the sensitivity check. All six pods terminated by 13:05 JST.
+
