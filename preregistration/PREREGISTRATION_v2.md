@@ -704,3 +704,5 @@ and long sentences. **v5b** (`scripts/teachers/build_text_v5b.py`, 10,655 carrie
 fills these: length 10 / 26 / 39, position 0.07 / 0.25 / 0.63. Only these summary statistics of the evaluation sets
 were used; no evaluation sentence was read for the purpose. Six further pods generate v5b with the registered rule.
 The planned adapters M2 and M3 now draw on the section-12 pool plus v5 plus v5b.
+
+**Panel hold, 2026-09-18 03:00 JST.** At the author's request the one invited rater who has not started (R5) sees the hold screen again (`index.json` hold list), because a further round may replace the stimuli; the rater in progress (R4, 139 of 481, last active 22:48) is not affected. No rater was active at deployment; stimuli and order unchanged.
