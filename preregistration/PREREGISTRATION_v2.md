@@ -247,3 +247,10 @@ unchanged. 198 pairs ship (the two Sarashina pairs with a silent edited clip are
 times 07:37:50 to 07:38:02); the CrowdWorks task opened at 07:46 JST and every sitting since answers ids of
 the 198-pair build (each rater's answered set lies inside exactly one of its four groups; the 98-pair build
 had ids m000 to m097 only). No judgement was recorded on the earlier build.
+
+**Objective table measured 2026-09-17 09:44 JST** with the metric of record (truth = the item's registered
+reading via `TARGETS_FILE`, as fixed on 09-09). A first run at 09:00 had omitted that variable and judged against the
+tag-derived reading; it was discarded once the same files re-measured differently from the 09-09 record. With the
+item truth, the round-1 comparator arms reproduce the round-1 numbers exactly. Results (all-round-2 arms): tag − none
++0.25 / +0.40 / +0.29 / +0.38 (Sarashina / CosyVoice 2 / Irodori / T5Gemma, all p < 1e-10); tag − kana −0.09 / −0.16 /
+−0.05 / −0.09, all below zero at the 95% level. `data/analysis/v2/obj319_round2_contrasts.md`.
