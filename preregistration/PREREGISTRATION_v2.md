@@ -605,3 +605,41 @@ reported as a result: if L1 runs away the cause is in today's code, environment 
 is in the clean-room teacher data); **no-tag inputs**, the registered 20,000-step adapter loaded but fed the untagged
 plain and kana sentences of the same 100 items (if it runs away there too, the adapter has damaged the model's
 stopping behaviour in general for some voices; if not, the tagged span triggers it).
+
+**Section 14, results (read 2026-09-18 02:31 JST; pods finished between about 22:10 and 23:50 on 09-17; all files under
+`v2/sara_hyp/pods/`).** Tag arm, first 100 objective items, registered voices, seeds and guard; redraws / items
+exhausting the six takes:
+
+| variant | teachers | 20,000 steps | 4,000 steps |
+|---|---|---|---|
+| P1 tag never sentence-initial | 8,755 | 11 / 2 | 13 / 3 |
+| P2 no long runs of one speech token | 20,750 | 14 / 3 | 9 / 0 |
+| P3 registered set, early checkpoints | 4,508 | (1,000: 14 / 3; 2,000: 15 / 2; 3,000: 12 / 3) | |
+| **P4 at most 5.5 speech tokens per character** | 12,870 | **1 / 0** | 2 / 0 |
+| P5 all three filters | 6,378 | crashed at item 73 (vocoder on a two-token output), 2 redraws until then | 4 / 0 |
+| P6 teachers without selection | 4,710 | 18 / 3 | 16 / 5 |
+| L1 today's code on the earlier, unreleased self-distilled set (local) | 25,000 | 9 / 0 | 14 / 1 |
+| no-tag inputs, registered adapter | | plain 16 / 2, kana 16 / 3 | |
+
+By the criterion fixed at 20:38, **P4 removes the runaway on the 100 items; P1, P2 and P6 have no effect**; P5 is
+unread at 20,000 steps. Readings: the registered adapter runs away on untagged input as often as on tagged input, so
+the adapter has shifted the model's stopping behaviour in general and the tagged span is not the trigger; the
+runaway is present from the first thousand steps; selection of teachers by the reading check is not the cause (P6);
+the one property that matters is **slow teachers**: the base's text-only continuations are often slow (registered
+set: 56% of teachers above 5.5 speech tokens per character, 27% above 8, 7% above 12), and an adapter trained on
+them lengthens every output until, on a few reference voices, generation no longer stops.
+
+**Correction to section 11.** Section 11 and later notes called `lora_faithful2_tf457` an adapter trained on the
+earlier, unreleased self-distilled set. `docs/internal/HANDOFF.md` and the file itself show otherwise: its teacher file
+`faithful_teachers.jsonl` holds 14,970 rows keyed by JSUT utterance ids, that is, **speech tokens of real
+recordings**. The one Sarashina adapter that never ran away was therefore trained on recorded speech, and L1 shows
+that the earlier, unreleased *self-distilled* set runs away under today's code as the clean-room sets do (9 of 100). This
+removes the puzzle of section 11: nothing was lost between the rounds; self-distilled text-only teachers had this
+failure on Sarashina all along, and the preliminary round never exercised them. It also makes the withdrawal of the
+preliminary Sarashina results doubly necessary (their adapter used recorded speech, which the method excludes).
+
+**Follow-ups started 02:30 to 02:33 JST on 09-18, before any output:** P4's 20,000-step adapter on all 319 items against
+the section-12 criterion (local, `scripts/eval/sarahyp_P4_full.sh`); P7, the *registered* 4,508-row set with the
+same filter (1,965 rows, 453 words), to see whether the filter alone suffices without the extra carriers; P9, the
+section-12 set filtered at 8 instead of 5.5 tokens per character (18,372 rows), to see how sharp the threshold is.
+Four pods terminated at 02:33; two remain for P7 and P9. All exploratory; Table 1 is unchanged.
