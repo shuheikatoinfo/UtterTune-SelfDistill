@@ -455,3 +455,22 @@ site. (iv) The within-rater comparison computed at the interim look (the same ra
 recipe. The other three backbones' round-1 arms were synthesized with explicit clean-room model paths
 (`scripts/sweep42_one.sh`) and are not affected.
 
+## 12. Exploratory follow-up, 2026-09-17 17:45 JST — Sarashina with five times the carriers
+
+**Why.** Section 11 leaves one construction difference between the earlier, unreleased adapter, which does not run away,
+and both clean-room adapters, which do: its teacher set held 25,000 carriers over 500 words (50 per word, longer and
+more varied sentences) against 4,830 / 4,508 over 483 / 461 words (10 per word, frame-built). The author decided, after
+seeing the round-2 Sarashina result, to test whether carrier count explains the failure. This is a results-driven
+change and is reported only as exploratory; **Table 1 keeps the registered round-2 Sarashina adapter**, and no
+listening or naturalness judgement is collected on the follow-up adapter.
+
+**What.** Same 471 words, readings and frame-times-word construction; up to 50 carriers per word
+(`scripts/teachers/build_text_v4.py`: the registered 10 kept, 18,839 added from the existing hand-authored frame banks
+plus 42 new neutral and 40 new counter frames written before any output; odaka words take only frames with a
+particle after the target). Same teacher rule (guard + reading check, five takes; `gen_sarashina_v2.py --max-takes 5`,
+shards 0 to 3 on the local GPU, 4 to 11 on RunPod 5090 pods with the local environment's package versions and the local
+weights copied to the pods), same trainer, LoRA configuration and 20,000 steps, adapter path given explicitly. Measured:
+the tag arm's redraw and cap-exhaustion rates and reading accuracy on the 319 objective items, same voices, seeds and
+guard. Stopping rule fixed now: if no result exists by 2026-09-19 the follow-up is dropped and said so. Whatever it
+shows is reported in one to three sentences.
+
