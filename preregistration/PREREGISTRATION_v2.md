@@ -678,3 +678,12 @@ characters; 10,868 carriers; teachers by the registered rule (guard, reading che
 Planned adapters, all with the slow-teacher filter of section 14 (at most 5.5 speech tokens per character), registered
 trainer and settings: **M2** section-12 pool plus v5; **M3** the same, resampled so that relative tag position is
 flat over thirds of the sentence. Baselines on the same split: registered adapter, section-12 adapter, P4.
+
+**Section 14, P4 on all 319 items (2026-09-18 02:50 JST; `data/analysis/v2/reading_obj319_sarashina_P4.json`, adapter
+`v2/sara_hyp/pods/shy-3r/hyp/P4_not_slow/lora/ckpt_20000` given explicitly).** Redraws **4 of 319** (1.3%), none
+exhausting the six takes, no inaudible output; tag reading accuracy **0.875** (kana 0.843, registered adapter 0.771;
+tag - kana +0.031 [-0.016, +0.080]); voice disagreement 0.147; sentence kana CER from the guard's stored transcripts
+0.077 against kana's 0.074 and the registered adapter's 0.173. All three parts of the section-12 criterion are met
+(at most 6 redraws, none exhausted, reading at least 0.80). Caveat, stated once: P4 was chosen among six variants on
+the first 100 of these 319 items, so this table is not an unbiased test result; it is exploratory and replaces
+nothing. From here on choices are made on the selection split only (section 15).
