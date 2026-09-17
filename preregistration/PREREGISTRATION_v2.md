@@ -826,3 +826,14 @@ for all conditions; all conditions are re-synthesized on the reviewed inputs and
 For round 3 (section 16) the listening and naturalness inputs are the round-2 files (author-verified against the NHK
 dictionary in round 1, `data/author_verification/nhk_difficult.json`), unchanged; Irodori's loader routes them at run
 time and the router change can only affect an item whose tag abuts a raw-kanji suffix.
+
+**Section 16, amendment (08:35 JST, author's decision on design grounds, before any round-3 teacher of the three
+backbones was collected).** Item 1 (carriers) now reads: the section-12 text **plus the v5 and v5b carriers of
+section 15** (21,523 more carriers: word in the middle or late in the sentence, sentences of running-text length), on
+all four backbones. The validation reads of section 15 showed no measurable gain from these carriers (M2 within the
+noise of P4 and C2 on 144 items); the author adds them because the teacher distribution should follow the
+distribution the edit meets in use, not because of an effect, and the paper will describe the carrier set as it is
+without claiming an effect for this part. Sarashina's round-3 adapter is therefore retrained on the full section-12 +
+v5 + v5b pool with the slow-teacher filter (M2 was trained on 11 of 12 v5 shards; the twelfth is regenerated first);
+P4 is superseded for round 3. Untagged copies (M3) are not part of the recipe. The v5/v5b teachers of the three
+backbones are generated on the same pods right after their section-12 shards, same generator and rule.
