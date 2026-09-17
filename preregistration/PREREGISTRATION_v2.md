@@ -811,3 +811,18 @@ used the pre-review marks, identically for all conditions, so the comparisons st
 The side-effect set's 39 tags come from the front-end (pyopenjtalk) and were read through by the author's assistant
 item by item; they are standard Tokyo accents; the author can inspect them on the listening page, where each item's tag
 is shown in brackets.
+
+**Section 15, author's review of the validation inputs applied (08:13 JST).** The author reviewed all 144 validation
+targets in the click-through review UI (`preregistration/items/val_accent_reviewed.json`): 61 of 105 selection tags and
+2 of 39 side-effect tags changed (22 by span, the rest by nucleus position; readings of the spans as the author wrote
+them; list in `data/derived/sel105_routed/val_review_changes_20260918.json`). The inputs are rebuilt from the review
+(`test_sel105_lora.txt`, `test_deveasy_lora.txt` and its kana line; previous files kept as `*.before_review_20260918.txt`).
+**Router change (2026-09-18, `phon_router.py`, backup `.bak_20260918`):** when the router absorbs a following raw-kanji
+suffix into the tag, a registry entry written for the merged span now wins outright; otherwise the suffix reading is
+appended as before, the head's nucleus is kept, and the router reports the merged span as accent-unverified so that a
+reviewer decides (the 09-18 review answered the five such spans in the selection split). On the reviewed selection
+inputs the router changes no line. Every validation number so far was measured on the pre-review inputs, identically
+for all conditions; all conditions are re-synthesized on the reviewed inputs and the earlier numbers are superseded.
+For round 3 (section 16) the listening and naturalness inputs are the round-2 files (author-verified against the NHK
+dictionary in round 1, `data/author_verification/nhk_difficult.json`), unchanged; Irodori's loader routes them at run
+time and the router change can only affect an item whose tag abuts a raw-kanji suffix.
