@@ -706,3 +706,13 @@ were used; no evaluation sentence was read for the purpose. Six further pods gen
 The planned adapters M2 and M3 now draw on the section-12 pool plus v5 plus v5b.
 
 **Panel hold, 2026-09-18 03:00 JST.** At the author's request the one invited rater who has not started (R5) sees the hold screen again (`index.json` hold list), because a further round may replace the stimuli; the rater in progress (R4, 139 of 481, last active 22:48) is not affected. No rater was active at deployment; stimuli and order unchanged.
+
+**Section 15, two further conditions (03:07 JST, decided by the author before any validation number existed).**
+Independent of the carrier-distribution hypothesis, two conditions that need no new teachers, each on the P4 pool
+(12,870 rows), registered trainer and settings, read on the two validation sets only:
+**C1 clean sentences**: the registered reading check looks at the target word only, so a teacher whose *rest* is
+garbled passes; C1 keeps teachers whose whole-sentence kana CER (stored generation transcript against the front-end
+reading of the carrier with the target reading substituted) is at most 0.05, a threshold fixed now: 8,125 rows (in
+the pool 36% exceed 0.05 and 10% exceed 0.10). **C2 untagged copies**: all 12,870 tagged rows plus an untagged copy
+(plain text as the prompt, same speech tokens) of a seeded random 30% (3,862 rows), so that the adapter is also
+trained to leave untagged text alone. **C3** both (10,559 rows). Files `v2/sara_hyp/teachers_C*.jsonl`.
