@@ -282,3 +282,34 @@ item truth, the round-1 comparator arms reproduce the round-1 numbers exactly. R
   reachable, so none had been made. The window during which invited raters were turned away is the
   invitation time to the repair; they are being told the link now works.
 
+## 8. Amendment, 2026-09-17 11:40 JST — the guard's ASR half saw native-rate audio on Irodori and T5Gemma
+
+- **Defect.** The shared guard (`scripts/eval/degenerate.py`, amendment 5) rejects a take on the waveform
+  (silent, too quiet, mostly silent, under 0.5 s, runaway to the cap) **or** on kana-whisper's transcript
+  (no speech, a repetition run, a mora inventory under 25%). The transcript half is fed by a per-backbone
+  wrapper. On Irodori (`run_blockB1.py`, 48 kHz) and T5Gemma (`blockA_t5gemma.py`, 44.1 kHz) that wrapper
+  passed the raw array with its native rate to the transformers pipeline, which in the transformers 4.57
+  used by both environments does not resample: kana-whisper heard the audio at three times (Irodori) or
+  2.76 times (T5Gemma) its speed. Verified 11:20 JST inside both environments on round-2 files: the same
+  waveform transcribes as garbage at its native rate and correctly once resampled to 16 kHz. Sarashina and
+  CosyVoice 2 (24 kHz) were checked the same way inside their environments and are faithful. This is the
+  raw-rate defect of item 2 (the teacher checker), present in a second place. **The metric of record was
+  never on this path**: `measure_reading_all.py` resamples through `asr_audio.to_asr_input`, and the round-2
+  objective transcripts are correct.
+- **Effect.** On Irodori and T5Gemma the transcript half of the guard fired on garbage: `repetition` and
+  `low_variety` rejections there are noise with respect to the take's content, and a genuinely looping take
+  was not caught by it. The waveform half worked. The guard was applied identically to every arm of a
+  backbone, so no arm was favoured within a backbone, and nothing was selected on the measured outcome; but
+  the guard on these two backbones was in effect weaker than on the other two, which is the asymmetry
+  amendment 5 was meant to remove. Retry records: Irodori objective 135 of 638 (tag + no edit) and 65 of 319
+  (kana) items retried, 27 and 9 to the cap; T5Gemma objective 51 of 319 base items and 7 + 46 tag items retried.
+- **Fix and re-synthesis.** Both wrappers now resample through `to_asr_input` (the Irodori synthesis wrapper backed up
+  as `run_blockB1.py.bak_guardasr_20260917`; repo copy and `blockA_t5gemma.py` patched the same minute). The
+  following arms are re-synthesized on the local GPU with the same items, voices, seeds, cap and scripts,
+  the earlier outputs kept beside them under `*_guardraw` for a sensitivity check: Irodori objective 319
+  (tag, no edit, kana) and listening C2 (tag, kana); T5Gemma objective 319 (tag, no edit, kana) and listening
+  D2 (tag, kana). The objective table of record is the re-synthesized one. The naturalness easy sets cannot be
+  re-synthesized (judgements were collected on them from 07:46 JST); their guard state is disclosed. Whether
+  the re-synthesized C2 and D2 stimuli replace the deployed ones is decided by the author before any C2/D2
+  judgement exists (none exists at 11:40 JST); the panel is not redeployed on the author's initiative.
+
