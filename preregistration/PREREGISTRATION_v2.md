@@ -800,3 +800,14 @@ T5Gemma's (0.194 / 0.220), and 56% of Sarashina's (0.234 / 0.450). **The rule is
 round 2. Filter: `scripts/eval/round3_filter_teachers.py`; training and stimulus synthesis:
 `scripts/eval/round3_train_local.sh` (round-2 commands, round-3 paths; Sarashina's adapter is P4, hash in
 `v2/sara_hyp/P4_adapter_sha256.txt`, its stimuli synthesized 07:08 to 07:18).
+
+**Section 15, validation inputs checked (2026-09-18 07:52 JST).** Asked by the author whether the validation sets'
+readings and accents were verified: the selection split's tags were written on 09-03 and the author's accent review of
+09-09 (`objective_accent_review.tsv`, all 424 items) had been applied to the test half only; on the selection half 89 of
+105 tags equal the reviewed accent and 16 differ only in where the accent mark sits relative to a long-vowel mark
+(ショー'ジョー against reviewed ショ'ージョー), readings identical on all 105. The reviewed marks are now applied to
+`test_sel105_lora.txt` (previous file kept as `*.prereview_20260918.txt`); every validation number reported so far
+used the pre-review marks, identically for all conditions, so the comparisons stand; later runs use the reviewed file.
+The side-effect set's 39 tags come from the front-end (pyopenjtalk) and were read through by the author's assistant
+item by item; they are standard Tokyo accents; the author can inspect them on the listening page, where each item's tag
+is shown in brackets.
