@@ -783,3 +783,11 @@ voice, sides and order shuffled with a fixed seed, condition hidden until the ta
 "A / B more natural", "no difference", "A / B has an error". The author's judgements choose among conditions on the
 validation split only and **never enter a reported number**; the round-3 recipe (section 16) is not changed by them
 unless a change is written here before use.
+
+**Section 15, early read of M2/M3 at 4,000 steps (2026-09-18 07:31 JST; not a result, the 20,000-step adapters follow).**
+Selection split: M2 1 redraw / 0 exhausted, heard 0.85, CER 0.077; M3 3 / 0, 0.87, 0.070 (P4 2 / 0, 0.80, 0.089; C2
+1 / 0, 0.87, 0.082). Side-effect set: M2 0, 0.97, 0.041; M3 0, 0.97, 0.044 (P4 0, 0.92, 0.043). A re-synthesis of the
+C2 adapter on the local GPU gave 0.077 / heard 0.81 against the pod's 0.082 / 0.87 on the same items and seeds, which
+calibrates the noise: differences of this size between conditions are not differences. So far the carrier
+distribution does not move the validation CER; the blind check and the 20,000-step read decide whether v5/v5b are
+added to section 16 (they would be an addition to the section-12 carriers, applied to all four backbones).
