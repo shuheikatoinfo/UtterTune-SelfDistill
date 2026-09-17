@@ -687,3 +687,10 @@ tag - kana +0.031 [-0.016, +0.080]); voice disagreement 0.147; sentence kana CER
 (at most 6 redraws, none exhausted, reading at least 0.80). Caveat, stated once: P4 was chosen among six variants on
 the first 100 of these 319 items, so this table is not an unbiased test result; it is exploratory and replaces
 nothing. From here on choices are made on the selection split only (section 15).
+
+**Section 15, second validation set (02:53 JST, before any audio of it).** The naturalness deficit was measured on
+words the base already reads right, so side effects are also validated on such words: `data/derived/deveasy/`, 39
+common words in ordinary sentences (length 18 / 21 / 24 characters, relative tag position 0.14 / 0.40 / 0.65), tags
+from the front-end's own reading and accent, words disjoint from the 471 teacher words and from the targets of the
+easy-50 and difficult-50 sets (`scripts/eval/build_deveasy.py`; 61 candidates written, 22 dropped by the disjointness
+rule). Measure: sentence kana CER of the tagged rendition minus the unedited rendition of the same sentence and voice.
