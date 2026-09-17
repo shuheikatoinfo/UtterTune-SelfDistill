@@ -716,3 +716,29 @@ reading of the carrier with the target reading substituted) is at most 0.05, a t
 the pool 36% exceed 0.05 and 10% exceed 0.10). **C2 untagged copies**: all 12,870 tagged rows plus an untagged copy
 (plain text as the prompt, same speech tokens) of a seeded random 30% (3,862 rows), so that the adapter is also
 trained to leave untagged text alone. **C3** both (10,559 rows). Files `v2/sara_hyp/teachers_C*.jsonl`.
+
+**Section 15, validation results (read 2026-09-18 06:50 JST; the session that watched the runs died at about 03:30 and
+the pods sat idle until 06:45; all outputs are dated on the pods). `scripts/eval/sarahyp_val_summary.py`, sentence
+kana CER from the guard's stored transcripts. Selection split, 105 items (unedited CER 0.109, kana 0.098, target
+heard 0.59 / 0.84) and side-effect set, 39 items (unedited 0.058, kana 0.044, target heard 1.00 / 1.00):
+
+| tag arm | sel105 redraw / exhausted | heard | CER | tag - unedited | deveasy redraw | heard | CER | tag - unedited |
+|---|---|---|---|---|---|---|---|---|
+| registered adapter | 26 / 11 | 0.73 | 0.196 | +0.087 | 5 (2 exhausted) | 0.85 | 0.127 | +0.069 |
+| section-12 (50 carriers) | 21 / 6 | 0.79 | 0.137 | +0.027 | 7 | 1.00 | 0.037 | -0.021 |
+| P4 slow teachers removed | 2 / 0 | 0.80 | 0.089 | -0.020 | 0 | 0.92 | 0.043 | -0.015 |
+| C1 clean sentences | 1 / 0 | 0.84 | 0.092 | -0.017 | 0 | 0.95 | 0.045 | -0.013 |
+| C2 untagged copies | 1 / 0 | 0.87 | 0.082 | -0.027 | 0 | 0.97 | 0.039 | -0.019 |
+| C3 both | 0 / 0 | 0.83 | 0.081 | -0.028 | 0 | 0.95 | 0.050 | -0.009 |
+
+Reading: on both validation sets the registered adapter is the outlier (CER twice the kana arm's, target heard less
+often than kana, runaway on a fifth of the items); every condition with the slow-teacher filter sits at the kana
+arm's CER on both sets. Among P4, C1, C2 and C3 the differences (0.081 to 0.092; 0.039 to 0.050) are within what 105
+and 39 items can resolve and are not read as differences. C2 is nominally best on both sets and hears the target
+most often (0.87; 0.97). On the side-effect set the edit still loses the target word itself on 1 to 3 of 39 items
+under P4, C1 and C3 (heard 0.92 to 0.95 against 1.00 unedited), on 1 under C2. Section-14 follow-ups on the first
+100 test items: P7 (registered set, filter only, 1,965 rows) 8 redraws / 1 exhausted, so the filter alone on the
+small registered set is not enough; P9 (threshold 8 instead of 5.5, 18,372 rows) 1 / 0, like P4.
+Teacher shards v5 and v5b: 11 of 12 pods finished (kept 1,717 to 1,762 of about 1,776 each); shard 00's pod failed
+with a CUDA error and the shard is being regenerated; M2 (pool + v5 + v5b, slow removed) and M3 (M2 plus 30%
+untagged copies) train as soon as it lands, on the two pods kept for that.
