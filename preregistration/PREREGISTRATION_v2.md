@@ -393,3 +393,16 @@ the block shown (`nDone` in the page and both templates); redeployed 15:20 JST; 
 finish the ten items. No answer was lost or altered. The rater still on the earlier build, and block 1, are not
 affected (their stored answers all belong to the block they are shown).
 
+**Interim look, 2026-09-17 15:30 JST (at the author's request, to draft the paper).** Store exported to
+`responses_interim_20260917_1530.json`. Panel: two raters complete (R1, R2); the registered
+analysis refuses confirmatory tests below three raters, so it was run with the explicit `--interim-min-raters 2`
+flag added for this purpose, which stamps the report as interim and exploratory
+(`data/analysis/v2/listening_report_interim_2raters.json`; cells C2b/D2b presented to the script under their
+registered names by `scripts/analysis/prep_round2_panel.py`, judgements on the superseded C2/D2 stimuli dropped,
+the incomplete third rater left out). Naturalness: the registered script on the re-collection as it stood, task
+not yet closed, duplicate-account check not yet possible (`naturalness_report_r3_interim.json`). No design, item,
+rater or stopping decision depends on this look: every admitted rater still judges everything, the naturalness
+task closes when its posted slots are filled, and the final numbers replace the interim ones whatever they show.
+What the interim look shows is unfavourable to the method on Sarashina (tag 0.62 vs kana 0.55, tag vs no edit
+0.61 vs 0.64) and on naturalness (non-inferiority met on no backbone) and is reported as such.
+
