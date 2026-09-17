@@ -514,3 +514,8 @@ extended teacher sets are generated tonight (yes unless it is about 10 again); i
   memory to a diagnostic run beside it (1 step/s instead of 5); the restart follows the re-synthesis above, alone on
   the GPU, and its evaluation uses the corrected inputs.
 
+**Block 2 restored, 2026-09-17 19:45 JST.** The author had already contracted one rater for the bridge block of
+amendment 10 before section 11 withdrew it. The block (the 50 round-1 Sarashina tag stimuli, byte for byte) is put
+back on the site so that the contract can be honoured and paid; its judgements are archived and **not analysed or
+reported**, since section 11 shows those stimuli came from a different adapter. No other block or rater is affected.
+
