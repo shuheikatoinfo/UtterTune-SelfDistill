@@ -384,3 +384,12 @@ stated duration changed from the 07:46 task). The 07:46 site (`-r2`) was rebuilt
 13:42 JST (groups and clips unchanged, verified), so nobody new starts a sitting that the superseded collection would
 neither use nor pay for; raters with stored answers can still finish and re-sync.
 
+**Panel page defect found and fixed, 2026-09-17 15:20 JST.** The page counted progress as the number of stored
+answers in the browser, not the number of answered items of the current block. For the rater who restarted on the
+rebuilt block (amendment 9), the browser still held ten answers to the superseded C2/D2 cells, so the page showed
+the completion screen at 471 of 481 real answers (the ten unanswered items: A2 2, B2 2, C2b 5, D2b 1). Found from
+the store (463 of 473 stimuli plus catch trials, then no movement). The counter now counts only answers to items of
+the block shown (`nDone` in the page and both templates); redeployed 15:20 JST; the rater is asked to reload and
+finish the ten items. No answer was lost or altered. The rater still on the earlier build, and block 1, are not
+affected (their stored answers all belong to the block they are shown).
+
