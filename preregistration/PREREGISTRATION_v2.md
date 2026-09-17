@@ -742,3 +742,33 @@ small registered set is not enough; P9 (threshold 8 instead of 5.5, 18,372 rows)
 Teacher shards v5 and v5b: 11 of 12 pods finished (kept 1,717 to 1,762 of about 1,776 each); shard 00's pod failed
 with a CUDA error and the shard is being regenerated; M2 (pool + v5 + v5b, slow removed) and M3 (M2 plus 30%
 untagged copies) train as soon as it lands, on the two pods kept for that.
+
+## 16. Round 3, registered 2026-09-18 06:58 JST — one recipe change on all four backbones, before any round-3 output
+
+**Decision (author, 06:55).** Sections 14 and 15 found the Sarashina failure's cause (slow self-distilled teachers) and
+a condition that removes it and brings the edit's sentence damage to the kana arm's level on both validation sets.
+The author decided to apply the change as **one recipe change to all four backbones** and to re-collect the listening
+and naturalness judgements on new stimuli. The change is fixed now, before any round-3 teacher, adapter or stimulus
+exists, and is applied identically:
+1. **Carriers:** the section-12 text (the registered 471 words, up to 50 carriers per word, `teachers_text_v3.jsonl`
+   plus `teachers_text_v4_new.jsonl`), on every backbone. Teachers by each backbone's registered generator and rule
+   (guard, reading check, five takes), unchanged.
+2. **Slow-teacher filter:** a teacher is dropped when its speech representation runs longer than **0.22 seconds per
+   character of the plain carrier** (Sarashina 5.5 semantic tokens at 25 Hz, the P4 rule; CosyVoice 2 by the teacher
+   waveform's duration; Irodori 5.5 latent frames at 25 Hz; T5Gemma 11 codec frames at 50 Hz). The rule is the same
+   number on every backbone whatever it removes (expected: about half on Sarashina, a smaller share on CosyVoice 2,
+   almost nothing on Irodori and T5Gemma, whose teachers are generated with a voice prompt and are not slow).
+3. **Training, guard, synthesis, voices, seeds, inputs, evaluation and analysis:** exactly as registered for round 2
+   (sections 1 to 13), adapter paths given explicitly and recorded with a hash.
+Not part of the change (validated as within noise, section 15): untagged copies (C2), whole-sentence teacher
+selection (C1), mid/late-position carriers (v5/v5b). If M2/M3 (section 15) finish before the round-3 adapters are
+trained and show a clear gain on both validation sets, the author may add v5/v5b carriers to item 1 for all four
+backbones and will say so here before use; otherwise they are not used.
+**Stimuli and judgements:** new difficult-50 listening stimuli and easy-50 naturalness pairs on all four backbones,
+same items, voices, seeds, kits, screening, catch trials, exclusions and analyses as round 2; naturalness pay 700
+yen per sitting (round 2: 1,000), a change of payment only. The round-2 panel (three raters, section "registered
+minimum reached") and naturalness results stay on record as round 2; round 3 replaces them in the paper only if
+its data are complete; otherwise the paper reports round 2 and says round 3 was started.
+**Objective table:** the 319 test items are measured once per backbone with the round-3 adapters, after the
+adapters are frozen, and reported as round 3's table of record; the selection split remains the only place where
+anything was chosen.
