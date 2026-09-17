@@ -772,3 +772,14 @@ its data are complete; otherwise the paper reports round 2 and says round 3 was 
 **Objective table:** the 319 test items are measured once per backbone with the round-3 adapters, after the
 adapters are frozen, and reported as round 3's table of record; the selection split remains the only place where
 anything was chosen.
+
+**Section 15, M2/M3 started 07:10 JST; author's blind check.** At the author's request M2 and M3 were built without
+waiting for the twelfth v5 shard (its pod failed twice; 19,136 of about 20,900 v5/v5b rows are in): pool 41,865 rows,
+15,246 removed as slow, **M2 26,619 rows** (relative tag position 0.00 / 0.28 / 0.63, length 16 / 24 / 32), **M3
+34,531** (M2 plus 30% untagged copies). Training started 07:09 on two pods, validation on both sets follows in the
+same chain. **Blind check by the author** (`scripts/eval/build_val_blind_page.py`, local page): for every
+validation item, the edited rendition of one condition against the unedited rendition of the same sentence and
+voice, sides and order shuffled with a fixed seed, condition hidden until the tally is requested; choices are
+"A / B more natural", "no difference", "A / B has an error". The author's judgements choose among conditions on the
+validation split only and **never enter a reported number**; the round-3 recipe (section 16) is not changed by them
+unless a change is written here before use.
