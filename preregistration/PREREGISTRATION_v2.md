@@ -694,3 +694,13 @@ common words in ordinary sentences (length 18 / 21 / 24 characters, relative tag
 from the front-end's own reading and accent, words disjoint from the 471 teacher words and from the targets of the
 easy-50 and difficult-50 sets (`scripts/eval/build_deveasy.py`; 61 candidates written, 22 dropped by the disjointness
 rule). Measure: sentence kana CER of the tagged rendition minus the unedited rendition of the same sentence and voice.
+
+**Section 15, carriers v5b (02:58 JST, before any v5 or v5b output).** Asked by the author whether v5 matches the
+evaluation sentences: alone it does not. Summary statistics (length in characters and relative tag position, 10th /
+50th / 90th percentile): objective 319 items 13 / 20 / 26 and 0.08 / 0.43 / 0.73; easy-50 22 / 29 / 36 and 0.00 / 0.35 /
+0.74; difficult-50 21 / 24 / 32 and 0.06 / 0.18 / 0.47; registered teachers 14 / 16 / 19 with the tag first in 99%; v5
+24 / 27 / 31 and 0.43 / 0.56 / 0.69. v5 leaves uncovered short sentences with a late word, words early but not first,
+and long sentences. **v5b** (`scripts/teachers/build_text_v5b.py`, 10,655 carriers, 24 neutral and 12 counter frames)
+fills these: length 10 / 26 / 39, position 0.07 / 0.25 / 0.63. Only these summary statistics of the evaluation sets
+were used; no evaluation sentence was read for the purpose. Six further pods generate v5b with the registered rule.
+The planned adapters M2 and M3 now draw on the section-12 pool plus v5 plus v5b.
