@@ -313,3 +313,17 @@ item truth, the round-1 comparator arms reproduce the round-1 numbers exactly. R
   the re-synthesized C2 and D2 stimuli replace the deployed ones is decided by the author before any C2/D2
   judgement exists (none exists at 11:40 JST); the panel is not redeployed on the author's initiative.
 
+## 9. Amendment, 2026-09-17 12:05 JST — the author's decisions on amendment 8
+
+1. **Listening C2 and D2 are replaced.** No C2/D2 judgement exists (verified again before deployment); the
+   re-synthesized Irodori and T5Gemma difficult arms (tag, kana; same items, voices, seeds) replace the deployed
+   stimuli on the same site. A2 and B2 are unchanged. Raters already admitted keep their admission; nobody has
+   started the block.
+2. **Naturalness is re-collected for Irodori and T5Gemma.** Their easy arms (tag and no edit on both) are
+   re-synthesized under the corrected guard (`scripts/eval/round2_guardfix_easy.sh`, same items, voices and
+   seeds) and their 100 pairs are re-judged in a new CrowdWorks task under the rules of item 8 and amendment 6
+   (two groups of about 50, at least 15 judgements per pair, same exclusions, same payment). The 09-17
+   judgements on the Irodori and T5Gemma pairs of the 198-pair build are superseded and are not analysed except
+   as a sensitivity check. The Sarashina and CosyVoice 2 pairs are unaffected (24 kHz; guard verified faithful
+   in their environments) and their 09-17 judgements stand as the record. Nothing else in item 8 changes.
+
