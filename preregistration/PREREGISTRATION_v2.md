@@ -319,11 +319,13 @@ item truth, the round-1 comparator arms reproduce the round-1 numbers exactly. R
    re-synthesized Irodori and T5Gemma difficult arms (tag, kana; same items, voices, seeds) replace the deployed
    stimuli on the same site. A2 and B2 are unchanged. Raters already admitted keep their admission; nobody has
    started the block.
-2. **Naturalness is re-collected for Irodori and T5Gemma.** Their easy arms (tag and no edit on both) are
+2. **Naturalness is re-collected in full, all four backbones** (the author's decision, 12:20 JST, for one
+   clean collection under one design). The Irodori and T5Gemma easy arms (tag and no edit on both) are
    re-synthesized under the corrected guard (`scripts/eval/round2_guardfix_easy.sh`, same items, voices and
-   seeds) and their 100 pairs are re-judged in a new CrowdWorks task under the rules of item 8 and amendment 6
-   (two groups of about 50, at least 15 judgements per pair, same exclusions, same payment). The 09-17
-   judgements on the Irodori and T5Gemma pairs of the 198-pair build are superseded and are not analysed except
-   as a sensitivity check. The Sarashina and CosyVoice 2 pairs are unaffected (24 kHz; guard verified faithful
-   in their environments) and their 09-17 judgements stand as the record. Nothing else in item 8 changes.
+   seeds); the Sarashina and CosyVoice 2 easy clips are unchanged (24 kHz; guard verified faithful in their
+   environments). The 200 pairs are rebuilt with the same rules (audibility exclusion, A/B by hash), deployed as
+   a new site, and judged in a new CrowdWorks task under item 8 and amendment 6 (four groups of about 50, at
+   least 15 judgements per pair, same exclusions, same payment, new raters not required). The complete 09-17
+   collection on the 198-pair build (104 sittings) is superseded as the record and is reported only as a
+   sensitivity check, per backbone. Nothing else in item 8 changes.
 
