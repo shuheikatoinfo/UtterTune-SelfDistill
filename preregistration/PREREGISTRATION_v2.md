@@ -951,3 +951,11 @@ round-3 kits** (author's decision 15:22): the silence-trimming rule of 10:56 is 
 with it; clips ship as synthesized after loudness normalisation, as in round 2. (3) The T5Gemma 5090 training stopped
 at step 1,000 while writing that checkpoint (no error in the log; the file is truncated); checkpoints 200, 400, 600
 and 800 exist and the rule chooses among those read in time.
+
+**Author's blind check on the round-3 stimuli sample (2026-09-18 15:35 JST, `data/analysis/v2/author_blind_r3sample_20260918.json`).**
+Ten difficult-50 and ten easy-50 items per backbone (fixed seed), backbone hidden. Difficult, tag vs kana, "right =
+reading and accent": tag right only / kana right only / both right / both wrong: CosyVoice 2 5 / 0 / 2 / 3, Irodori
+6 / 1 / 3 / 0, Sarashina 6 / 0 / 2 / 2. Easy, tag vs no edit, more natural: edited / unedited / no difference:
+CosyVoice 2 2 / 6 / 2, Irodori 1 / 0 / 9, Sarashina 0 / 5 / 5. No catastrophic failure; the accent channel works on all
+three; the naturalness cost remains audible on CosyVoice 2 and, in this sample, on Sarashina's P4 stimuli, while
+Irodori is a tie. These judgements choose nothing and enter no reported number.
