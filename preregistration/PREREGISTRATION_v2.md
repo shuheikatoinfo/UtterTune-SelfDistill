@@ -1049,3 +1049,6 @@ redraws 4 / 0 / 0 of 319, none exhausted, no inaudible output. **Check on the Sa
 rate rule was chosen on the first 100 of the 319 items; on the 219 items never used for that choice the tag reads
 0.904 against kana's 0.868 (first 100: 0.810 against 0.790), so the row shows no sign of an optimistic selection
 effect; the caveat stays in the paper with this figure beside it.
+Intervals for that split (same clustered bootstrap and exact McNemar as the table, `reading_obj319_sarashina_r3_split100_219.json`):
+219 unused items, 150 components: tag 0.904 [0.858, 0.944], tag - kana +0.037 [-0.026, +0.101] (p 0.26, discordant 23
+vs 15), tag - none +0.402 [+0.308, +0.491]; first 100 items: tag 0.810 [0.708, 0.900], tag - kana +0.020 [-0.048, +0.088].
