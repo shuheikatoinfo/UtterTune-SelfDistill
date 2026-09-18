@@ -864,3 +864,15 @@ stimuli were synthesized 07:08 to 07:18; the retrained adapter on the wider pool
 validated) is kept as exploratory. Irodori's training is restarted on the section-12 rows only (13,901 of 22,548 after
 the filter); CosyVoice 2 and T5Gemma use their section-12 shards only. The v5/v5b teachers already generated are kept
 for later exploratory use and enter nothing here.
+
+**Section 16, stimulus preparation (10:56 JST, before any round-3 kit exists).** The author noticed clips that open
+with long silence. Measured on the round-2 kits: leading silence over 1 s occurs in 16 to 19 of 50 Sarashina clips in
+every arm (no edit, kana, tag; up to 9.9 s; a base-model behaviour with some reference voices), in 0 CosyVoice 2 and
+Irodori clips, and in 0 to 2 T5Gemma clips; the round-3 Sarashina tag arm (P4) shows the same share as its base arms.
+Since such silence is unrelated to the edit and could sway a naturalness or accent judgement, **every round-3 clip of
+every arm and backbone is trimmed identically after loudness normalisation: leading silence over 0.3 s and trailing
+silence over 0.5 s are cut (silence = below 1% of the clip's peak; `scripts/eval/trim_silence.py`, report written
+into the kit)**. Round-2 clips were not trimmed; the difference is stated with the round-3 results. Kit and site:
+`scripts/eval/round3_kit_and_site.sh` (kit profile round3: tag arms from synth_r3, base arms the round-2 base-model
+clips, cell names unchanged so the registered analysis applies). Training of CosyVoice 2 and T5Gemma runs on pods
+(`round3_cv2_pods.py`, `round3_t5gemma_pods.py`) with the checkpoint grids and validation reads of 08:55.
