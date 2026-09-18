@@ -1060,3 +1060,14 @@ tag - kana -0.113 [-0.154, -0.073] (p 1e-7), tag - none +0.357 [+0.275, +0.437];
 outputs inaudible after six takes and scored as misses (round 2: 4); voice disagreement tag 0.327. Unfavourable and
 reported as it is: on T5Gemma the round-3 recipe does not improve the objective reading score. The four-backbone
 single-pass read (`reading_obj319_round3.json`) follows as the table of record and is checked against these values.
+
+**Exploratory, 2026-09-18 20:50 JST — why the objective reading score and the listening result differ
+(`data/analysis/v2/asr_vs_raters_reading_r3_interim.json`).** On the 400 round-3 listening stimuli both measures exist:
+the guard's kana-whisper transcript (target reading found or not) and the raters' verdict (interim, two raters; a
+clip counts as "reading wrong" if either rater answered 3). Tag arms: ASR misses the target on 42 of 200 clips,
+raters call the reading wrong on 3; kana arms: 35 and 1. The ASR score is therefore a conservative measure of
+reading, about equally so for both arms (21% against 17.5% of clips), and the objective tag - kana gap is not read
+as a gap in what a listener hears. T5Gemma's 66 objective misses concentrate on few reference voices (32 on 8 of
+the 42 voices, where kana reads 0.60 to 1.00), and 7 are inaudible outputs. Threshold sensitivity quoted in the
+paper: section 14's P9 (8 speech tokens per character, about 0.32 s) removed the runaway as P4 did (1 redraw in 100).
+Exploratory; the counts are recomputed on the final panel.
