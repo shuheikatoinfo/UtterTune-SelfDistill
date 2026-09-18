@@ -1039,3 +1039,13 @@ decision depends on it. Raters R2 (catch 8/8, consistency 23/23) and R1 (7/8, 23
 Sarashina 0.80 vs 0.57 (Holm p 0.026), CosyVoice 2 0.88 vs 0.40 (Holm p < 1e-4), Irodori 0.85 vs 0.45 (Holm p < 1e-4),
 T5Gemma 0.93 vs 0.60 (Holm p 0.0016); Sarashina tag vs no edit 0.78 vs 0.63 (p 0.17). The final run on all complete
 valid raters replaces it whatever it shows.
+
+**Section 16, objective table, three backbones (2026-09-18 19:42 JST, `data/analysis/v2/reading_obj319_round3_partial3.json`,
+`obj319_round3_partial3_contrasts.md`; T5Gemma's tag arm still synthesizing, to be read in the same way).** Tag arm
+with the round-3 adapters (paths and hashes in `v2/logs/round3_obj319.log`), unedited, kana and UtterTune arms the
+round-2 clips, one ASR pass: Sarashina 0.875 (tag - kana +0.031 [-0.016, +0.080], p 0.20), CosyVoice 2 0.784 (-0.066
+[-0.114, -0.019], p 0.009; tag - UtterTune -0.072 [-0.122, -0.021]), Irodori 0.868 (-0.041 [-0.076, -0.007], p 0.019);
+redraws 4 / 0 / 0 of 319, none exhausted, no inaudible output. **Check on the Sarashina caveat of section 14:** the
+rate rule was chosen on the first 100 of the 319 items; on the 219 items never used for that choice the tag reads
+0.904 against kana's 0.868 (first 100: 0.810 against 0.790), so the row shows no sign of an optimistic selection
+effect; the caveat stays in the paper with this figure beside it.
