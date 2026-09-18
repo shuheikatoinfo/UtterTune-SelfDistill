@@ -910,3 +910,10 @@ any step (the gated base model's token was not passed, then a quoting error in t
 The T5Gemma checkpoint for round 3 is chosen by the rule of 08:55 among the checkpoints whose validation reads are
 complete when the listening kit has to be built (200-step checkpoints arrive every 18 minutes from about 13:58);
 later checkpoints are read afterwards and reported, and the paper says which checkpoint was used and why.
+
+**Section 16, correction of the epoch comparison (13:45 JST).** T5Gemma's trainer batches by a token budget (20,000
+tokens per step, about 40 carriers), not by the nominal batch of 4; the round-2 log shows 400 steps = 9 epochs of the
+4,529-row set, and 400 steps of the round-3 set (18,781 rows) are about 0.85 epoch, 1,600 about 3.4 epochs. The
+"batch 16" run of 11:22 would not have changed the step size and is withdrawn. Today's rate (0.19 steps/s on a 5090
+with activation checkpointing) equals round 2's. To finish in time, a second batch-4 run without activation
+checkpointing runs on an H100 (labels hs200 ... hs1600); the 5090 run continues; both enter the same rule.
