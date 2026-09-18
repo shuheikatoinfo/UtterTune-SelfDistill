@@ -881,3 +881,8 @@ clips, cell names unchanged so the registered analysis applies). Training of Cos
 backbone's validation reads are complete (`scripts/eval/round3_choose.py`, choice written to `r3/<bb>/*_choice.json`),
 and the stimuli are synthesized at once; the author's blind listening runs in parallel and can overrule a choice, in
 which case the stimuli are re-synthesized with the overruled checkpoint and this note says so.
+
+**Section 16, checkpoint grids widened (11:20 JST, before any of these adapters existed).** Asked by the author
+whether the registered step counts might all be too small, the grids are doubled at the top: T5Gemma 200 to 1,600
+steps (every 200; registered 400), CosyVoice 2 250 / 500 / 1,000 / 2,000 / 4,000 (registered 1,000); Irodori keeps 500
+to 4,000 (registered 2,000; run already in progress). Same rule of 08:55 chooses among them.
