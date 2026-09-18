@@ -927,3 +927,9 @@ counts against the edit on those items. The author reviews all 50 easy tags now 
 `preregistration/items/easy50_accent_reviewed.json`); corrected items are re-synthesized on every backbone before the
 round-3 naturalness kit is built, and the round-2 naturalness numbers are reported with this defect stated (a
 sensitivity analysis excluding the three items will be added).
+
+**Easy-50 tags reviewed (15:07 JST).** The author reviewed all 50 easy-50 tags; 10 changed
+(`data/derived/easy50_r3/`, list in `changed_items.json`): three readings (子守歌 コモリ'ウタ, 心 ココ'ロ, 夕暮れ時
+ユーグレドキ), one word (間 マ), six nucleus positions (一日, 音, 上, 駅前, 疲れ, 貝殻). Round 3 uses the reviewed file for
+the naturalness pairs (the tag arm of the 10 items is re-synthesized on every backbone, same voices, seeds and guard);
+rounds 1 and 2 used the unreviewed tags, which is stated with their results.
