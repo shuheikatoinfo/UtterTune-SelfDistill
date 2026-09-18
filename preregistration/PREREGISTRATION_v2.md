@@ -895,3 +895,10 @@ budgets be extended. **CosyVoice 2**: the grid gains 8,000 and 16,000 steps (abo
 second training run with batch 16 and 3,200 steps (about 3 epochs, checkpoints every 400, labels b16s400 ...
 b16s3200) runs in parallel with the batch-4 run; both enter the same rule. If the longer run's best checkpoint arrives
 after the listening kit is built, the kit is rebuilt with it before the task is posted, and this note says so.
+
+**Section 16, Irodori checkpoint chosen (2026-09-18 12:02 JST, `r3/irodori/irodori_choice.json`).** Teacher set
+13,901 rows (section-12 carriers, 8,647 dropped as slow). Validation CER over 144 items: 500 steps 0.077, 1,000
+0.064, 2,000 0.058, 4,000 0.059; redraws on the selection split 2 / 0 / 1 / 1, none exhausted. 2,000 and 4,000 tie
+within 0.005; UTMOSv2 of the tag arm 2.806 against 2.730 → **2,000 steps** (the registered value). Stimuli synthesis
+started 12:02. Irodori's kana baseline on the validation sets is the base arm over the kana sentences
+(`round3_irodori_kana_base.sh`), as in round 2.
