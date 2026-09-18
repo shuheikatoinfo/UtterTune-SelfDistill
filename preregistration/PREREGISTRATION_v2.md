@@ -854,3 +854,13 @@ registered adapter 3 / 13 / 23 (5 flagged); section-12 6 / 8 / 25 (1); P4 5 / 5 
 25 (0); M3 5 / 7 / 27 (0). The author's ear agrees with the CER: only the registered adapter loses to its own unedited
 rendition; every condition with the slow-teacher filter is a tie, and P4, C2, M2 and M3 are not distinguishable. These
 judgements choose nothing beyond confirming section 16's recipe and never enter a reported number.
+
+**Section 16, amendment withdrawn (10:48 JST, author's decision after the blind check; before any round-3 stimulus
+of the three backbones).** The v5/v5b carriers (amendment of 08:40) are **not** added: on the validation sets and in the
+author's blind check they were indistinguishable from the slow-teacher filter alone, and their teacher generation on
+CosyVoice 2 and T5Gemma is the slowest step. Item 1 stands as first registered: the section-12 carriers on all four
+backbones. Sarashina's round-3 adapter is **P4** (section 14; hash in `v2/sara_hyp/P4_adapter_sha256.txt`), whose
+stimuli were synthesized 07:08 to 07:18; the retrained adapter on the wider pool (R3_sarashina, five checkpoints
+validated) is kept as exploratory. Irodori's training is restarted on the section-12 rows only (13,901 of 22,548 after
+the filter); CosyVoice 2 and T5Gemma use their section-12 shards only. The v5/v5b teachers already generated are kept
+for later exploratory use and enter nothing here.
