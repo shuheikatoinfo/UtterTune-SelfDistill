@@ -917,3 +917,13 @@ tokens per step, about 40 carriers), not by the nominal batch of 4; the round-2 
 "batch 16" run of 11:22 would not have changed the step size and is withdrawn. Today's rate (0.19 steps/s on a 5090
 with activation checkpointing) equals round 2's. To finish in time, a second batch-4 run without activation
 checkpointing runs on an H100 (labels hs200 ... hs1600); the 5090 run continues; both enter the same rule.
+
+**Finding, 2026-09-18 15:02 JST — three easy-50 tags carry a wrong reading.** During the round-3 dry run the author
+noticed the easy-50 tag `コモリ/カ` (item 22, 子守歌); a listing of all 50 tags shows two more: item 43 (心 in 心が温かく)
+tagged シン, item 49 (夕暮れ時) tagged ユーグレ'ジ. The easy-50 targets were never dictionary-verified (round 1 verified
+the difficult and katakana targets only); these tags came from the front-end and were used unchanged in rounds 1 and
+2, so in the round-2 naturalness study the edited rendition of these three items asked for a wrong reading, which
+counts against the edit on those items. The author reviews all 50 easy tags now (click-through UI,
+`preregistration/items/easy50_accent_reviewed.json`); corrected items are re-synthesized on every backbone before the
+round-3 naturalness kit is built, and the round-2 naturalness numbers are reported with this defect stated (a
+sensitivity analysis excluding the three items will be added).
