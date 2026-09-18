@@ -1052,3 +1052,11 @@ effect; the caveat stays in the paper with this figure beside it.
 Intervals for that split (same clustered bootstrap and exact McNemar as the table, `reading_obj319_sarashina_r3_split100_219.json`):
 219 unused items, 150 components: tag 0.904 [0.858, 0.944], tag - kana +0.037 [-0.026, +0.101] (p 0.26, discordant 23
 vs 15), tag - none +0.402 [+0.308, +0.491]; first 100 items: tag 0.810 [0.708, 0.900], tag - kana +0.020 [-0.048, +0.088].
+
+**Section 16, objective table, T5Gemma (2026-09-18 20:26 JST, `reading_obj319_round3_t5g.json`, `obj319_round3_t5g_contrasts.md`).**
+Step-600 model exported locally from the training bundle (hash in `v2/logs/round3_obj319.log`; missing keys 0), tag
+arm synthesized 19:08 to 20:21, unedited and kana arms the round-2 clips, one ASR pass: tag 0.793 (round 2: 0.809),
+tag - kana -0.113 [-0.154, -0.073] (p 1e-7), tag - none +0.357 [+0.275, +0.437]; redraws 32 of 319 (round 2: 30), 7
+outputs inaudible after six takes and scored as misses (round 2: 4); voice disagreement tag 0.327. Unfavourable and
+reported as it is: on T5Gemma the round-3 recipe does not improve the objective reading score. The four-backbone
+single-pass read (`reading_obj319_round3.json`) follows as the table of record and is checked against these values.
