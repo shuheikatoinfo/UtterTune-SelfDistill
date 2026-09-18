@@ -846,3 +846,11 @@ validation sets by **mean sentence kana CER of the tag arm over the 144 items (l
 more than 2% of the 105 selection items or exhausts the takes on any is excluded. The choice is written here before
 any round-3 Sarashina stimulus is synthesized. The other three backbones keep their registered (untuned) step counts;
 the paper says so.
+
+**Section 15, author's blind check on the side-effect set (2026-09-18, judged 10:00 to 10:40 JST, file
+`data/analysis/v2/author_blind_deveasy_20260918.json`).** 39 items x 6 conditions, edited against unedited, sides and
+order shuffled, condition hidden. Prefer edited / prefer unedited / no difference (edited flagged as having an error):
+registered adapter 3 / 13 / 23 (5 flagged); section-12 6 / 8 / 25 (1); P4 5 / 5 / 29 (1); C2 9 / 9 / 21 (0); M2 7 / 7 /
+25 (0); M3 5 / 7 / 27 (0). The author's ear agrees with the CER: only the registered adapter loses to its own unedited
+rendition; every condition with the slow-teacher filter is a tie, and P4, C2, M2 and M3 are not distinguishable. These
+judgements choose nothing beyond confirming section 16's recipe and never enter a reported number.
