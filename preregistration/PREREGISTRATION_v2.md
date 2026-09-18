@@ -933,3 +933,10 @@ sensitivity analysis excluding the three items will be added).
 ユーグレドキ), one word (間 マ), six nucleus positions (一日, 音, 上, 駅前, 疲れ, 貝殻). Round 3 uses the reviewed file for
 the naturalness pairs (the tag arm of the 10 items is re-synthesized on every backbone, same voices, seeds and guard);
 rounds 1 and 2 used the unreviewed tags, which is stated with their results.
+
+**Section 16, CosyVoice 2 checkpoint chosen (2026-09-18 15:10 JST, `r3/cv2/cv2_choice.json`).** Teacher set 13,751 rows
+(section-12 carriers, 7,644 dropped as slow). Validation CER over 144 items: 500 steps 0.179, 1,000 0.166, 2,000 0.185,
+4,000 0.186, 8,000 0.205, 16,000 0.234; no redraws anywhere. Unedited / kana: selection split 0.204 / 0.113, side-effect
+set 0.078 / 0.100. **1,000 steps** (the registered value) is chosen; the provisional choice of 14:49 (same checkpoint)
+already synthesized the stimuli. Note: on the side-effect set every budget's tag arm (0.139 to 0.182) is above the
+unedited arm (0.078), i.e. on CosyVoice 2 the edit still damages sentences the base reads correctly, unlike Sarashina.
