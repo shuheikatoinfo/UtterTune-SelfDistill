@@ -959,3 +959,83 @@ reading and accent": tag right only / kana right only / both right / both wrong:
 CosyVoice 2 2 / 6 / 2, Irodori 1 / 0 / 9, Sarashina 0 / 5 / 5. No catastrophic failure; the accent channel works on all
 three; the naturalness cost remains audible on CosyVoice 2 and, in this sample, on Sarashina's P4 stimuli, while
 Irodori is a tie. These judgements choose nothing and enter no reported number.
+
+**Section 16, T5Gemma checkpoint chosen (2026-09-18 16:07 JST, `round3_choose.py t5gemma`, `$V/r3/t5gemma/t5gemma_choice.json`).**
+Validation reads complete at kit time: steps 400 and 600 (step 200 base arms and step 800 still being read; reported
+when they land). Tag-arm kana CER on the 144 validation items: step 400 0.1352 (selection 0.1365, easy 0.1317), step
+600 0.1353 (selection 0.1336, easy 0.1397); no redraw and no exhausted item on either. The gap is within the 0.005 tie
+margin, so the UTMOSv2 tie-break applies: step 400 2.794, step 600 2.866. **Step 600 is the round-3 T5Gemma
+checkpoint** (about 1.3 epochs of the filtered round-3 set at the 20,000-token batch). The stimuli for both candidates
+were synthesized in parallel on the pods holding the merged models (started 15:46); the step-600 difficult-50 and
+easy-50 tag arms (easy-50 with the reviewed tags of `data/derived/easy50_r3/`) go into the kits; the step-400 stimuli
+are kept but not used. Steps 800 and 1,000 and later training were not available in time; this is stated with the
+results. Training bundles for steps 200 to 1,000 are copied to `$V/r3/t5gemma/readlora_pth/` before the pod is cut.
+
+**Section 16, round-3 sites released (2026-09-18, listening 16:13 JST, naturalness 16:28 JST; `round3_deploy.sh`).**
+Listening: `jp-accent-listening-r3.pages.dev`, KV `worker-RATER_R3PROD`; four cells A2/B2/C2/D2 (158/105/105/105 items,
+same arms, attention duplicates and catch items E as the round-2 site, byte-identical E clips and screening set), block
+0 = 481 items, no hold. Verified before release: for all 473 cell items the key's source path (cell, arm, item
+index), the kit copy (byte-identical to the source), the normalised clip and the served clip (byte-identical) form one
+chain; rater-facing target word, reading and prescribed accent match the key and the difficult-50 text; within each
+item the arms share the voice; all 501 served files fetched from the live host with matching sizes; a test
+save written to and removed from the live store. Naturalness: `jp-accent-naturalness-round3.pages.dev`, KV
+`worker-NAT_R3PROD`, 200 pairs (50 per backbone, all easy-50 items), 400 clips, 4 groups, fee 700 yen; the same
+chain check on all 400 clips (registered items -> synth_r3 tag arm / round-2 unedited arm -> kit -> normalised ->
+served), sentences equal to the reviewed easy-50 text, test save written and removed. Side assignment is the
+registered deterministic hash of the pair id (as round 2); it gives A = unedited on 25/21/24/27 of 50 pairs
+(Sarashina / CosyVoice 2 / Irodori / T5Gemma; binomial two-sided p >= 0.32), which is kept as the rule gives it.
+T5Gemma stimuli in both sites are the step-600 checkpoint (choice of 16:07). No trimming; loudness normalisation only.
+
+**Panel decision (16:35 JST).** Rater R4 (round-2 gate 20/20) is at 379 of 481 round-2 items (last
+answer 14:47 JST today). The author asks this rater to move to round 3 and pays the round-2 work as done; the
+round-2 judgements stay incomplete and, under the registered rule (complete valid raters only), do not enter the
+round-2 analysis, which stands at three raters unless that rater finishes on their own. Round-2 raters who passed
+the gate enter round 3 at the main task (invitation URL with `s=2`); new raters take the screening first.
+
+**Section 16, T5Gemma step 800 read afterwards (pulled 16:15 JST, after the kit build of 16:12).** Tag-arm kana CER on
+the 144 validation items: 0.1387 (selection 0.1221, easy 0.1835), no redraw. This lies within the 0.005 tie band of
+steps 400 (0.1352) and 600 (0.1353): had it been read in time, the rule would have put it into the UTMOSv2 tie-break
+(its UTMOSv2 is computed and recorded below). It was not available when the kit was built, so step 600 stands as the
+round-3 checkpoint under the rule of 13:42; the step-800 numbers are reported with the results. The pattern is
+noted, not interpreted: step 800 reads the selection split better and the easy split worse than 400 and 600.
+
+**Section 16, step-800 UTMOSv2 (recorded 17:10 JST).** Mean UTMOSv2 over the 144 validation clips: step 800 2.832 (step 400 2.794, step 600 2.866). Under the rule this would have left step 600 chosen; the round-3 checkpoint remains step 600 as chosen at 16:07.
+
+**Section 16, gate records carried over (17:15 JST).** The round-3 site keeps its own KV, so a round-2 rater opening a
+`s=2` invitation without a gate record there is shown the 20-item screening again before the block. Rater
+R2 met this at 17:00 and passed it again (19/20; the screening items are the same 20 as round 2) before
+entering block 0. To spare the other three the repeat and the risk of a second, binding attempt, their round-2 gate
+records (R1 19/20, R3 18/20, R4 20/20) were copied verbatim into the round-3
+KV and verified through the live gate endpoint; they enter block 0 directly. The gate outcome of every round-3 rater
+is the round-2 one; R2's repeat is recorded and changes nothing.
+
+**Section 16, pods closed (17:34 JST).** All RunPod pods are terminated. On local storage: CosyVoice 2 adapters for every grid
+step (250 to 16,000; chosen 1,000); T5Gemma training bundles for steps 200, 400 and 600 (model, optimizer, scheduler;
+chosen 600, which loads); the step-800 bundle was not copied in full and was discarded (its validation read and
+UTMOSv2 are recorded above), the step-1000 file was truncated by the training crash. The step-200 base-arm read on
+the validation set was stopped unfinished (no registered number depends on it). Irodori checkpoints are local.
+
+**Section 16, naturalness recruitment target (17:50 JST, before any result is looked at).** The registered minimum of
+15 judgements per pair stands; the author sets the recruitment target at 20 valid complete sittings per group (80 in
+all), so that every pair has at least 20 judgements after the registered exclusions. The task stays open until every
+group reaches it; additional postings, if any, target the groups that are short. The analysis uses every valid
+complete sitting, as registered; the target changes the number of raters, not the rule.
+
+**Section 16, naturalness interim look (2026-09-18 18:23 JST, `analyze_naturalness.py --exclude-speeders`,
+`data/analysis/v2/naturalness_report_round3_interim_20260918_1823.json`, export `v2/responses_nat_round3_interim_20260918_1823.json`).**
+Taken at the author's request to see how many sittings the registered exclusions remove; the task stays open until
+the 107 assigned sittings finish, as decided at 17:50, and no design, item, rater or stopping decision depends on
+this look. 105 sittings started, about 99 complete, 5,031 judgements; two sittings excluded by the speed rule (median
+interval below the shortest pair, 6.1 s), 4,964 judgements kept, 23 to 26 per pair; the duplicate-account check
+waits for the platform's worker list. Unedited minus edited: Sarashina -0.008 [-0.146, +0.133] (margin met),
+Irodori +0.193 [+0.074, +0.305], CosyVoice 2 +0.200 [+0.042, +0.352], T5Gemma +0.259 [+0.095, +0.417]; same-reading
+stratum -0.03 / +0.21 / +0.22 / +0.19. Interim; the final run on the closed task replaces it whatever it shows.
+
+**Section 16, listening interim look (2026-09-18 18:28 JST, two complete raters, `analyze_listening.py --round2
+--interim-min-raters 2`, `data/analysis/v2/listening_report_round3_interim_20260918_1828.json`).** Taken at the
+author's request; below the registered minimum of three raters, so exploratory, and no rater, item or stopping
+decision depends on it. Raters R2 (catch 8/8, consistency 23/23) and R1 (7/8, 23/23); kappa
+0.93 over 441 stimuli; with two raters a disagreement is a tie, 14 tied stimuli excluded as registered. Tag vs kana:
+Sarashina 0.80 vs 0.57 (Holm p 0.026), CosyVoice 2 0.88 vs 0.40 (Holm p < 1e-4), Irodori 0.85 vs 0.45 (Holm p < 1e-4),
+T5Gemma 0.93 vs 0.60 (Holm p 0.0016); Sarashina tag vs no edit 0.78 vs 0.63 (p 0.17). The final run on all complete
+valid raters replaces it whatever it shows.
