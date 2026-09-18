@@ -1071,3 +1071,11 @@ as a gap in what a listener hears. T5Gemma's 66 objective misses concentrate on 
 the 42 voices, where kana reads 0.60 to 1.00), and 7 are inaudible outputs. Threshold sensitivity quoted in the
 paper: section 14's P9 (8 speech tokens per character, about 0.32 s) removed the runaway as P4 did (1 redraw in 100).
 Exploratory; the counts are recomputed on the final panel.
+
+**Note on authorship of this document (2026-09-18 21:40 JST).** This registration, including every amendment and
+execution note, was drafted with a generative AI assistant (Claude, Anthropic) working under the author's direction;
+the same assistant wrote and ran the experiment, evaluation and analysis code. Every design and analysis decision
+recorded here was made or approved by the author (entries say "the author decided" where the decision was the
+author's own initiative), and the author is responsible for the content. What fixes a decision in time is the
+repository's commit history, not the prose. The paper discloses the same in its acknowledgments, as the IEEE policy
+on AI-generated content requires.
