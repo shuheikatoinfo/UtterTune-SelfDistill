@@ -886,3 +886,12 @@ which case the stimuli are re-synthesized with the overruled checkpoint and this
 whether the registered step counts might all be too small, the grids are doubled at the top: T5Gemma 200 to 1,600
 steps (every 200; registered 400), CosyVoice 2 250 / 500 / 1,000 / 2,000 / 4,000 (registered 1,000); Irodori keeps 500
 to 4,000 (registered 2,000; run already in progress). Same rule of 08:55 chooses among them.
+
+**Section 16, training budgets compared in epochs (11:23 JST, before any of these adapters existed).** The registered
+step counts are not comparable across backbones: in samples seen (steps x batch) over each backbone's round-3 teacher
+set, Sarashina's 20,000 steps are about 12 epochs, Irodori's 4,000 about 18, CosyVoice 2's 4,000 about 2.5 (1,000
+registered: 0.6) and T5Gemma's 1,600 at batch 4 about 0.4 (400 registered: 0.1). The author asked that the smaller
+budgets be extended. **CosyVoice 2**: the grid gains 8,000 and 16,000 steps (about 5 and 10 epochs). **T5Gemma**: a
+second training run with batch 16 and 3,200 steps (about 3 epochs, checkpoints every 400, labels b16s400 ...
+b16s3200) runs in parallel with the batch-4 run; both enter the same rule. If the longer run's best checkpoint arrives
+after the listening kit is built, the kit is rebuilt with it before the task is posted, and this note says so.
