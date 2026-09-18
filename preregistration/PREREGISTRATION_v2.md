@@ -940,3 +940,14 @@ rounds 1 and 2 used the unreviewed tags, which is stated with their results.
 set 0.078 / 0.100. **1,000 steps** (the registered value) is chosen; the provisional choice of 14:49 (same checkpoint)
 already synthesized the stimuli. Note: on the side-effect set every budget's tag arm (0.139 to 0.182) is above the
 unedited arm (0.078), i.e. on CosyVoice 2 the edit still damages sentences the base reads correctly, unlike Sarashina.
+
+**Findings, 2026-09-18 15:23 JST.** (1) **CosyVoice 2 drops the final mora.** On the round-2 clips the kana-whisper
+transcript lacks the sentence's last mora in 29 of 50 kana-arm clips and 24 of 50 unedited easy clips; on the round-3
+tag arm in 45 of 50 difficult and 8 of 10 sampled easy clips (Sarashina 3 to 4 of 50 in every arm, Irodori 3 of 50).
+The synthesis path passes the whole sentence with stream=False and nothing in the repository crops the waveform, so
+this is the backbone's own early stop in this setup; it is present in both arms and stronger in the tag arm, it is
+audible as a clipped ending, and it is stated with the CosyVoice 2 naturalness results. (2) **No trimming in the
+round-3 kits** (author's decision 15:22): the silence-trimming rule of 10:56 is withdrawn before any kit was built
+with it; clips ship as synthesized after loudness normalisation, as in round 2. (3) The T5Gemma 5090 training stopped
+at step 1,000 while writing that checkpoint (no error in the log; the file is truncated); checkpoints 200, 400, 600
+and 800 exist and the rule chooses among those read in time.
