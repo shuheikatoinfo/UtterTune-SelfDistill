@@ -876,3 +876,8 @@ into the kit)**. Round-2 clips were not trimmed; the difference is stated with t
 `scripts/eval/round3_kit_and_site.sh` (kit profile round3: tag arms from synth_r3, base arms the round-2 base-model
 clips, cell names unchanged so the registered analysis applies). Training of CosyVoice 2 and T5Gemma runs on pods
 (`round3_cv2_pods.py`, `round3_t5gemma_pods.py`) with the checkpoint grids and validation reads of 08:55.
+
+**Section 16, execution (11:10 JST).** To save time, the checkpoint rule of 08:55 is applied automatically the moment a
+backbone's validation reads are complete (`scripts/eval/round3_choose.py`, choice written to `r3/<bb>/*_choice.json`),
+and the stimuli are synthesized at once; the author's blind listening runs in parallel and can overrule a choice, in
+which case the stimuli are re-synthesized with the overruled checkpoint and this note says so.
