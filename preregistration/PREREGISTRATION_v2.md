@@ -902,3 +902,11 @@ after the listening kit is built, the kit is rebuilt with it before the task is 
 within 0.005; UTMOSv2 of the tag arm 2.806 against 2.730 → **2,000 steps** (the registered value). Stimuli synthesis
 started 12:02. Irodori's kana baseline on the validation sets is the base arm over the kana sentences
 (`round3_irodori_kana_base.sh`), as in round 2.
+
+**Section 16, T5Gemma execution note (13:42 JST).** The batch-4 training on a 5090 pod runs at about 0.19 steps per
+second (gradient checkpointing), so 1,600 steps would take 2.4 hours; the batch-16 run of 11:22 (3,200 steps) is
+abandoned as infeasible today and its pod is used for validation reads. Two earlier training attempts failed before
+any step (the gated base model's token was not passed, then a quoting error in the chain); about 80 minutes were lost.
+The T5Gemma checkpoint for round 3 is chosen by the rule of 08:55 among the checkpoints whose validation reads are
+complete when the listening kit has to be built (200-step checkpoints arrive every 18 minutes from about 13:58);
+later checkpoints are read afterwards and reported, and the paper says which checkpoint was used and why.
