@@ -1115,3 +1115,10 @@ second sitting by one platform account within a collection is not applied to the
 worker list was obtained. Participation by raters of earlier collections was allowed by the registration ("new raters
 not required"), and every edited clip of round 3 is new. The figures of 10:14 JST stand as the result of record; if a
 worker list is obtained later, the exclusion is applied and reported beside them.
+
+**Correction to the note above on the duplicate-account exclusion (2026-09-21).** That note misstated the author's
+position. The round-3 naturalness task on CrowdWorks is limited by the platform to one submission per worker, so a
+second sitting by one account within the collection cannot occur and the registered exclusion has nothing to
+remove; it is satisfied by the task setting, not waived. Raters who took part in an earlier collection may take part
+again, as the registration allows ("new raters not required"); they are not excluded. No worker list is needed, and
+the figures of 10:14 JST are final.
