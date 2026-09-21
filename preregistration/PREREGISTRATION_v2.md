@@ -1079,3 +1079,19 @@ recorded here was made or approved by the author (entries say "the author decide
 author's own initiative), and the author is responsible for the content. What fixes a decision in time is the
 repository's commit history, not the prose. The paper discloses the same in its acknowledgments, as the IEEE policy
 on AI-generated content requires.
+
+**Section 16, listening: registered analysis on the complete panel (2026-09-21 10:09 JST, `analyze_listening.py --round2`,
+no interim flag; `data/analysis/v2/listening_report_round3_4raters_20260921_1009.json`, export
+`v2/responses_panel_r3_final_20260921_1009.json`).** All four invited raters completed the 481 items (R2 and
+R1 on 09-18, R3 and R4 by 09-20); catch trials 8/8, 7/8, 6/8, 8/8, duplicate
+consistency 23/23, 23/23, 23/23, 22/23, none excluded by the catch or speed rule. Fleiss' kappa 0.89 over 441 stimuli;
+13 stimuli tied 2-2 and excluded as registered, 428 consensus items. Confirmatory family (McNemar exact, Holm): tag vs
+kana Sarashina 0.80 vs 0.57 (+0.24 [+0.09, +0.39], discordant 14 vs 3, Holm p 0.025), CosyVoice 2 0.89 vs 0.38 (+0.51
+[+0.36, +0.67], 23 vs 0, Holm p 1.2e-6), Irodori 0.85 vs 0.47 (+0.38 [+0.26, +0.53], 18 vs 0, Holm p 3.1e-5), T5Gemma
+0.93 vs 0.60 (+0.33 [+0.19, +0.49], 15 vs 1, Holm p 0.0016); Sarashina tag vs no edit 0.81 vs 0.67 (+0.15 [-0.02,
++0.31], 13 vs 6, p 0.17, not significant). Four of the five registered hypotheses are supported; H-n is not and is
+reported as such. Secondary, accent only (reading failures removed): 0.84 vs 0.57, 0.89 vs 0.38, 0.85 vs 0.47, 0.93 vs
+0.60; Sarashina tag vs no edit 0.82 vs 0.94 on 33 words. This run replaces the two-rater interim look of 09-18. The
+panel is closed. Exploratory recount of ASR misses against the raters' reading verdicts on the 400 stimuli
+(`asr_vs_raters_reading_r3_final.json`): ASR misses 42 tag and 35 kana clips; a majority of the four raters calls the
+reading wrong on 2 and 0 (any rater: 5 and 1).
