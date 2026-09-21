@@ -1095,3 +1095,17 @@ reported as such. Secondary, accent only (reading failures removed): 0.84 vs 0.5
 panel is closed. Exploratory recount of ASR misses against the raters' reading verdicts on the 400 stimuli
 (`asr_vs_raters_reading_r3_final.json`): ASR misses 42 tag and 35 kana clips; a majority of the four raters calls the
 reading wrong on 2 and 0 (any rater: 5 and 1).
+
+**Section 16, naturalness: registered analysis on the closed collection (2026-09-21 10:14 JST, `analyze_naturalness.py
+--exclude-speeders`; `data/analysis/v2/naturalness_report_round3_final_20260921_1014.json`, export
+`v2/responses_nat_round3_final_20260921_1014.json`).** The author closed the collection (no answer since 09-19). 108
+sittings started, 102 complete after the exclusions; two sittings excluded by the registered speed rule (median
+interval below the shortest pair, 6.1 s: one complete sitting, median 4.6 s, 62% of answers faster than the shorter
+clip alone; one abandoned at 19 answers); 5,116 judgements on 200 pairs, 24 to 27 per pair (target of 20 met on every
+pair). Unedited minus edited, ties split: Sarashina -0.010 [-0.152, +0.130] (margin 0.15 met), Irodori +0.188 [+0.069,
++0.301], CosyVoice 2 +0.201 [+0.041, +0.349], T5Gemma +0.258 [+0.089, +0.411]; same-reading stratum -0.03 / +0.21 /
++0.22 / +0.19. All-kept run beside it (`..._allkept_...`): -0.011, +0.187, +0.199, +0.257, same verdicts. The paper
+shows the statistic with the opposite sign (edited minus unedited). **Not yet applied:** the duplicate-account
+exclusion, which needs the platform's worker list; the figures are reported as before that check until the list
+arrives, as in round 2. Pace was measured on the client-side answer time (`ts`), as the registered script does; the
+server-side receipt time is unusable for this because the site re-sends stored answers in bulk at completion.
