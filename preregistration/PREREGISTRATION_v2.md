@@ -1109,3 +1109,9 @@ shows the statistic with the opposite sign (edited minus unedited). **Not yet ap
 exclusion, which needs the platform's worker list; the figures are reported as before that check until the list
 arrives, as in round 2. Pace was measured on the client-side answer time (`ts`), as the registered script does; the
 server-side receipt time is unusable for this because the site re-sends stored answers in bulk at completion.
+
+**Section 16, duplicate-account exclusion not applied (author's decision, 2026-09-21).** The registered exclusion of a
+second sitting by one platform account within a collection is not applied to the round-3 naturalness collection: no
+worker list was obtained. Participation by raters of earlier collections was allowed by the registration ("new raters
+not required"), and every edited clip of round 3 is new. The figures of 10:14 JST stand as the result of record; if a
+worker list is obtained later, the exclusion is applied and reported beside them.
