@@ -1122,3 +1122,12 @@ second sitting by one account within the collection cannot occur and the registe
 remove; it is satisfied by the task setting, not waived. Raters who took part in an earlier collection may take part
 again, as the registration allows ("new raters not required"); they are not excluded. No worker list is needed, and
 the figures of 10:14 JST are final.
+
+**Bootstrap resamples unified at 10,000 (2026-09-24, author's decision).** The listening analysis used 10,000
+resamples (section 5); the objective contrasts (`obj319_contrasts_v2.py`) and the naturalness analysis
+(`analyze_naturalness.py`) had used 4,000, the latter kept equal to the interim look of 09-11 for comparability. Both
+are set to 10,000 (seeds unchanged: 20260901 and 0) and the round-3 results re-run: `obj319_round3_contrasts.md`,
+`reading_obj319_sarashina_r3_split100_219.json` (10k entry added), `naturalness_report_round3_final_10k.json`, which
+replaces `naturalness_report_round3_final_20260921_1014.json` as the record. Point estimates, exclusions and every
+verdict are unchanged; interval limits move by at most 0.004 (third decimal). The paper reports the 10,000-resample
+intervals and states the count in the table captions.
