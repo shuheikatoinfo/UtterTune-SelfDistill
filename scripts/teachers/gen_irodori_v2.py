@@ -8,11 +8,13 @@ Speaker: Irodori's unconditional (no_ref) output is unintelligible (probed 2026-
 20/32 steps, all noise), so like CosyVoice 2 it takes a reference; the rule shared by the two
 speaker-conditioned backbones is the backbone's whole self-sampled voice bank cycled over carriers, as in
 round 1 (CosyVoice 2: 20 fictional voices; Irodori: the first 2,000 anchor-bank references in name
-order), disclosed as the one backbone-specific element.
+order), disclosed as the one backbone-specific element. The voices are the released dataset's
+shared voices ($DATASET_DIR/shared_voices/latents, unless --ref-dir names another directory).
 
-Manifest schema matches train.py (text/latent_path/num_frames/speaker_id/original_text/...).
+Manifest schema matches the upstream train.py (text/latent_path/num_frames/speaker_id/original_text/...),
+plus ref_latent_path, which irodori/upstream.patch conditions on.
 
-    cd <Irodori experiments dir> && .venv/bin/python <repo>/scripts/teachers/gen_irodori_v2.py \
+    irodori/upstream/.venv/bin/python scripts/teachers/gen_irodori_v2.py \
         --base-checkpoint <model.safetensors> --text .../teachers_text_v3.jsonl \
         --out-latent-dir .../v2/irodori/latents --out-manifest .../v2/irodori/train.jsonl
 """
@@ -23,7 +25,7 @@ REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 sys.path.insert(0, REPO + "/scripts/teachers")
 sys.path.insert(0, os.path.join(REPO, "scripts"))  # for paths.py
 import paths
-sys.path.insert(0, paths.IRODORI_DIR)  # irodori_tts package, in the Irodori code of this repo
+sys.path.insert(0, os.path.join(REPO, "irodori", "upstream"))  # irodori_tts, pinned by irodori/setup.sh
 import torch
 from irodori_tts.inference_runtime import InferenceRuntime, RuntimeKey, SamplingRequest
 from reading_check import Checker
@@ -47,11 +49,13 @@ def main() -> None:
     p.add_argument("--codec-device", default="cuda")
     p.add_argument("--codec-precision", default="fp32")
     p.add_argument("--codec-repo", default="Aratako/Semantic-DACVAE-Japanese-32dim")
-    p.add_argument("--ref-dir", type=Path, default=Path("data/uttertune_anchor_bank/bootstrap_refs"))
+    p.add_argument("--ref-dir", type=Path, help="voice reference latents (default: $DATASET_DIR/shared_voices/latents)")
     p.add_argument("--num-voices", type=int, default=2000)
     p.add_argument("--shard", default="0/1", help="i/n: process rows i::n (merge shards afterwards); voice index stays the global row index")
     p.add_argument("--name-prefix", default="", help="latent file name prefix (per shard)")
     a = p.parse_args()
+    if a.ref_dir is None:
+        a.ref_dir = Path(paths.DATASET_DIR) / "shared_voices" / "latents"
     refs = sorted(a.ref_dir.glob("bank_spk_*.pt"))[: a.num_voices]
     assert len(refs) == a.num_voices, f"need {a.num_voices} refs under {a.ref_dir}, found {len(refs)}"
     a.out_latent_dir.mkdir(parents=True, exist_ok=True)
@@ -65,6 +69,9 @@ def main() -> None:
     runtime = InferenceRuntime.from_key(RuntimeKey(
         checkpoint=str(a.base_checkpoint), model_device=a.model_device, model_precision=a.model_precision,
         codec_device=a.codec_device, codec_precision=a.codec_precision, codec_repo=a.codec_repo))
+    # The teachers were made in an environment without SilentCipher; the pinned environment has it, and
+    # a watermark in the teacher audio would end up in the teacher latents.
+    runtime.watermarker.model = None
     codec = runtime.codec
     checker = Checker(device=0)
     written, dropped, takes_hist, drops = 0, 0, {}, []

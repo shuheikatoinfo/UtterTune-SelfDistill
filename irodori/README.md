@@ -43,6 +43,7 @@ patch a row's own `ref_latent_path` is used when present.
 ```bash
 $PY irodori/prepare_tag_model.py --work-dir WORK      # WORK/tokenizer_pron_tags, WORK/init_pron_tags.pt
 bash irodori/train.sh WORK MANIFEST                    # WORK/checkpoints/checkpoint_0002000.pt, ...
+bash irodori/train.sh WORK ROOT/teachers/irodori/train_filtered.jsonl --data-root ROOT   # released dataset
 ```
 
 Round-3 settings (`train_round3.yaml`): full fine-tune, no LoRA; Muon (AdamW for embeddings and

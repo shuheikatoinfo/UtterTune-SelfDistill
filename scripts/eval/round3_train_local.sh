@@ -4,7 +4,7 @@
 # order the teacher sets land (sentinel $V/r3/<bb>/TEACHERS_READY written by the collection step). Commands are the
 # round-2 commands (v2_chain_locked4.sh) with round-3 paths; base arms are reused from round 2 where they are base-model.
 set -uo pipefail
-. "$(dirname "$0")/../paths.sh"; require_env DATA ITEM_SOURCE COSYVOICE_DIR IRODORI_DIR T5GEMMA_DIR
+. "$(dirname "$0")/../paths.sh"; require_env DATA ITEM_SOURCE COSYVOICE_DIR T5GEMMA_DIR
 R=$REPO_ROOT; T=$DATA; V=$T/v2; ITEMS=$R/preregistration/items
 TD=$ITEM_SOURCE; L=$V/logs/round3_train_local.log
 say(){ echo "[r3] $1 $(date +%F_%T)" | tee -a $L; }; cd $R; export EVAL_SPEAKERS_JSON=$T/eval_speakers/selected_42.json
@@ -23,15 +23,14 @@ while [ $(echo $done_bb | wc -w) -lt 3 ]; do
       TEST_SET=easy_50 ITEM_SPK_JSON=$ITEMS/speaker_assignment42_easy50.json ITEM_SPK_CELL=EASY50 BLOCKA_CV2_OUT=$V/synth_r3/cv2/easy $PY scripts/cv/blockA_cv2_difficult.py > $V/logs/r3_cv2_synth_easy.log 2>&1; say "cv2 easy rc=$?"
       unset ARMS CV2_LORA ;;
     irodori)
-      # train.py, its configs and run_blockB1.py live in the Irodori code of this repo ($IRODORI_DIR).
-      ID=$IRODORI_DIR; PY=$ID/.venv/bin/python
-      BASE=$IRODORI_DIR/downloads/Irodori-TTS-500M-v3/model.safetensors
+      # Irodori code: irodori/ (setup.sh, prepare_tag_model.py, train.sh + train_round3.yaml, run_blockB1.py).
+      PY=$IRODORI_PY; WORK=$V/r3/irodori/work
       export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_DATASETS_OFFLINE=1
-      ( cd $ID && $PY $ID/train.py --config $ID/configs/train_500m_v3_phon_anchorbank_10k_better3k.yaml --manifest $V/r3/irodori/train_filtered.jsonl --init-checkpoint $BASE --output-dir $V/r3/irodori/phon --max-steps 2000 ) > $V/logs/r3_irodori_train.log 2>&1
+      ( $PY $IRODORI/prepare_tag_model.py --work-dir $WORK && bash $IRODORI/train.sh $WORK $V/r3/irodori/train_filtered.jsonl --output-dir $V/r3/irodori/phon --max-steps 2000 ) > $V/logs/r3_irodori_train.log 2>&1
       CK=$V/r3/irodori/phon/checkpoint_final.pt; [ -f "$CK" ] || { say "irodori TRAIN FAILED"; done_bb="$done_bb $bb"; continue; }
       say "irodori train done"
       for job in "difficult_50 $ITEMS/speaker_assignment42.json C2_irodori_difficult difficult" "easy_50 $ITEMS/speaker_assignment42_easy50.json EASY50 easy"; do
-        set -- $job; ( cd $ID && SET=difficult TEST_DIR=$TD TEST_SET=$1 ITEM_SPK_JSON=$2 ITEM_SPK_CELL=$3 BLOCKB1_OUT=$V/synth_r3/irodori/$4 $PY $IRODORI_DIR/run_blockB1.py --arms ours --phon-checkpoint $CK --skip-eval ) > $V/logs/r3_irodori_synth_$4.log 2>&1; say "irodori $4 rc=$?"
+        set -- $job; ( SET=difficult TEST_DIR=$TD TEST_SET=$1 ITEM_SPK_JSON=$2 ITEM_SPK_CELL=$3 BLOCKB1_OUT=$V/synth_r3/irodori/$4 $PY $IRODORI/run_blockB1.py --arms ours --phon-checkpoint $CK --skip-eval ) > $V/logs/r3_irodori_synth_$4.log 2>&1; say "irodori $4 rc=$?"
       done; unset HF_HUB_OFFLINE TRANSFORMERS_OFFLINE HF_DATASETS_OFFLINE ;;
     t5gemma)
       T5G=$T5GEMMA_DIR; PY=$T5G/.venv_t5gemma/bin/python
