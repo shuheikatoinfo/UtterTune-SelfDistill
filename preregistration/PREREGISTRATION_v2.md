@@ -437,7 +437,8 @@ reference voice, inputs, seeds and sampling as the round-1 synthesis script):
 - The preliminary round's Sarashina **objective** tag arm (`obj42g/sarashina/*/ours`) is a mixture: of four items
   checked, three are bit-identical to `lora_faithful2_tf457` and one to the clean-room v2 adapter (the partial
   re-synthesis of 09-09).
-- `lora_faithful2_tf457` is the earlier, unreleased adapter, trained on an earlier, unreleased teacher set. It is
+- `lora_faithful2_tf457` is the earlier, unreleased adapter, trained on speech tokens of real JSUT and JVS
+  recordings (`faithful_teachers.jsonl`, 14,970 rows: 9,997 JVS, 4,973 JSUT), not on self-distilled teachers. (This line first said otherwise; that was wrong. See "Correction to section 11" after section 14.) It is
   the **default** of `SARA_ADAPTER_OURS` in `blockA_sarashina_difficult_4spk.py`, and was the adapter in effect when
   the round-1 stimuli were synthesized; the clean-room adapter the round-1 paper describes was not the one heard.
 - Under today's conditions the clean-room v2 adapter of the preliminary round runs to the token cap on the same
@@ -631,8 +632,8 @@ them lengthens every output until, on a few reference voices, generation no long
 
 **Correction to section 11.** Section 11 and later notes called `lora_faithful2_tf457` an adapter trained on the
 earlier, unreleased self-distilled set. `docs/internal/HANDOFF.md` and the file itself show otherwise: its teacher file
-`faithful_teachers.jsonl` holds 14,970 rows keyed by JSUT utterance ids, that is, **speech tokens of real
-recordings**. The one Sarashina adapter that never ran away was therefore trained on recorded speech, and L1 shows
+`faithful_teachers.jsonl` holds 14,970 rows keyed by JSUT and JVS utterance ids (9,997 JVS, 4,973 JSUT; first written
+here as JSUT only), that is, **speech tokens of real recordings**. The one Sarashina adapter that never ran away was therefore trained on recorded speech, and L1 shows
 that the earlier, unreleased *self-distilled* set runs away under today's code as the clean-room sets do (9 of 100). This
 removes the puzzle of section 11: nothing was lost between the rounds; self-distilled text-only teachers had this
 failure on Sarashina all along, and the preliminary round never exercised them. It also makes the withdrawal of the
