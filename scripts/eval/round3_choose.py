@@ -6,7 +6,7 @@ that needed a redraw on more than 2% of the 105 selection items or exhausted the
 exists). Also prints the table and writes <bb>_choice.json. The author's blind listening is a check on top of this.
     python3 scripts/eval/round3_choose.py <cv2|irodori|t5gemma> [--dry]
 Layouts: cv2  r3val/cv2/<set>/s<N>/guard_takes.json (arm field; s250 also holds noedit and kana)
-         irodori r3val/irodori/<set>/{base,base_kana,s<N>}/guard_takes.json (one arm per dir, no arm field)
+         irodori r3val/irodori/<set>/{base,base_kana,s<N>}/guard_takes.json (one arm per dir; the arm field is not read)
          t5gemma r3val/t5gemma/<set>/{base,s<N>}/**/<arm>/meta.json (records with hyp_kana)"""
 import glob, json, os, re, sys, statistics as st
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # scripts/, for paths.py

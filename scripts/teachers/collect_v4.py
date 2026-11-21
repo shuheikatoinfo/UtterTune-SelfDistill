@@ -43,7 +43,7 @@ if JOB == "t5gv4":
     old = [l for l in open(f"{V}/t5gemma/teachers_generic/teachers.jsonl", encoding="utf-8") if l.strip()]
     open(f"{OUT}/teachers_all_v4.jsonl", "w", encoding="utf-8").writelines(old + rows); n_new, n_old = len(rows), len(old)
 elif JOB == "irov4":
-    REF = f"{paths.IRODORI_DIR}/data/uttertune_anchor_bank/bootstrap_refs/"   # in the Irodori code of this repo
+    REF = f"{paths.DATASET_DIR}/shared_voices/latents/"   # the shared voices' reference latents
     rows = []
     for p, d in got:
         for l in open(f"{d}/train.jsonl", encoding="utf-8"):

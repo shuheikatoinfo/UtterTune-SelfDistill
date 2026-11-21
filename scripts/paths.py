@@ -12,8 +12,11 @@ other path (the same rule as ${VAR:?} in scripts/paths.sh).
                    sentence files (test_<set>_{vanilla,lora,yomi,...}.txt).
     COSYVOICE_DIR  CosyVoice checkout, with the CosyVoice 2 model under pretrained_models/.
     T5GEMMA_DIR    T5Gemma-TTS checkout.
-    IRODORI_DIR    the Irodori code of this repository (run_blockB1.py, train.py, irodori_tts).
+    DATASET_DIR    root of the released teacher dataset (self-distilled-pron-accent-data); paths
+                   inside its files are relative to this root.
     SARASHINA_DIR  Sarashina2.2-TTS code (the directory that holds the sarashina_tts package).
+
+The Irodori code is in this repository (irodori/, set up by irodori/setup.sh), so it needs no variable.
 
 Scripts outside scripts/ itself put scripts/ on sys.path and then `import paths`.
 """
@@ -21,7 +24,7 @@ import os
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-_VARIABLES = ("DATA", "ITEM_SOURCE", "COSYVOICE_DIR", "T5GEMMA_DIR", "IRODORI_DIR", "SARASHINA_DIR")
+_VARIABLES = ("DATA", "ITEM_SOURCE", "COSYVOICE_DIR", "T5GEMMA_DIR", "DATASET_DIR", "SARASHINA_DIR")
 
 
 def __getattr__(name):

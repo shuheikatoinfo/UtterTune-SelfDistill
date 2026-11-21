@@ -4,17 +4,16 @@
 # Same items, voices, seeds, guard and scripts as round 2; unedited, kana and UtterTune arms are the round-2 clips.
 # Every adapter path is given explicitly and logged with its hash. One job at a time on the shared GPU.
 set -uo pipefail
-. "$(dirname "$0")/../paths.sh"; require_env DATA COSYVOICE_DIR IRODORI_DIR T5GEMMA_DIR
+. "$(dirname "$0")/../paths.sh"; require_env DATA COSYVOICE_DIR T5GEMMA_DIR
 R=$REPO_ROOT; T=$DATA; V=$T/v2
 OBJ=$R/data/derived/obj319_routed; ITEMS=$R/preregistration/items; L=$V/logs/round3_obj319.log
 say(){ echo "[r3obj] $1 $(date +%F_%T)" | tee -a $L; }; cd $R
 export EVAL_SPEAKERS_JSON=$T/eval_speakers/selected_42.json
 CK_I=$(cat $V/r3/irodori/CHOSEN_CKPT); CK_C=$(cat $V/r3/cv2/CHOSEN_CKPT); B_T=$V/r3/t5gemma/readlora_pth/bundle_step600.pth
 say "adapters: irodori $CK_I $(md5sum $CK_I | cut -c1-12) | cv2 $CK_C $(md5sum $CK_C/adapter_model.safetensors | cut -c1-12) | t5gemma $B_T $(md5sum $B_T | cut -c1-12)"
-# run_blockB1.py lives in the Irodori code of this repo ($IRODORI_DIR).
-C=$IRODORI_DIR
-( cd $C && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_DATASETS_OFFLINE=1 SET=difficult TEST_DIR=$OBJ TEST_SET=obj319 ITEM_SPK_JSON=$ITEMS/speaker_assignment42_obj319.json ITEM_SPK_CELL=OBJ319 \
-    BLOCKB1_OUT=$V/synth_r3/irodori/obj319 $C/.venv/bin/python $IRODORI_DIR/run_blockB1.py --arms ours --phon-checkpoint $CK_I --skip-eval ) > $V/logs/r3_irodori_obj319.log 2>&1
+# run_blockB1.py is in irodori/ (environment from irodori/setup.sh).
+( HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_DATASETS_OFFLINE=1 SET=difficult TEST_DIR=$OBJ TEST_SET=obj319 ITEM_SPK_JSON=$ITEMS/speaker_assignment42_obj319.json ITEM_SPK_CELL=OBJ319 \
+    BLOCKB1_OUT=$V/synth_r3/irodori/obj319 $IRODORI_PY $IRODORI/run_blockB1.py --arms ours --phon-checkpoint $CK_I --skip-eval ) > $V/logs/r3_irodori_obj319.log 2>&1
 say "irodori rc=$? ours=$(ls $V/synth_r3/irodori/obj319/ours/*.wav 2>/dev/null | wc -l)"
 ARMS=ours CV2_LORA=$CK_C TEST_DIR=$OBJ TEST_SET=obj319 ITEM_SPK_JSON=$ITEMS/speaker_assignment42_obj319.json ITEM_SPK_CELL=OBJ319 BLOCKA_CV2_OUT=$V/synth_r3/cv2/obj319 \
   $COSYVOICE_DIR/.venv/bin/python scripts/cv/blockA_cv2_difficult.py > $V/logs/r3_cv2_obj319.log 2>&1
