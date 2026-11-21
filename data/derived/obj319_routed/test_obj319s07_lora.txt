@@ -1,0 +1,4 @@
+その絵画は、色彩の<PHON_START>エンレ'ー<PHON_END>さで観客を圧倒した。
+彼の家には、高価な陶器が<PHON_START>イ'ッツイ<PHON_END>保存されている。
+地味な色なので、あまり<PHON_START>ハエ'<PHON_END>ないかもしれない。
+彼は海に深く<PHON_START>モグ'ル<PHON_END>。

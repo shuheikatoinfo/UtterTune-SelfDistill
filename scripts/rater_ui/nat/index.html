@@ -1,0 +1,275 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>音声の自然さ比較</title>
+<style>
+  :root{--bg:#f7f6f3;--card:#fff;--ink:#1a1a1a;--sub:#6b6b6b;--line:#e4e1da;--ok:#2f6f4f;--warn:#8a6d1f}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Hiragino Sans","Noto Sans JP",system-ui,sans-serif;background:var(--bg);
+       color:var(--ink);min-height:100vh;padding:1.2rem}
+  .wrap{max-width:720px;margin:0 auto}
+  header{display:flex;align-items:baseline;gap:.8rem;flex-wrap:wrap;margin-bottom:.8rem}
+  h1{font-size:1rem;font-weight:600}
+  .sub{font-size:.8rem;color:var(--sub)} .prog{margin-left:auto;font-size:.85rem;color:var(--sub)}
+  .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:1.2rem}
+  .bar>div{height:100%;background:var(--ok);width:0;transition:width .2s}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:2rem}
+  .qid{font-size:.75rem;color:var(--sub);letter-spacing:.05em;margin-bottom:1rem}
+  .lab{font-size:.9rem;color:var(--sub);text-align:center;margin-bottom:.3rem}
+  .sent{font-size:1.05rem;text-align:center;margin:.2rem 0 1.2rem;line-height:1.7}
+  .side{border:1px solid var(--line);border-radius:10px;padding:.9rem;margin-bottom:.8rem}
+  .side b{font-size:1.1rem;margin-right:.6rem}
+  audio{width:100%}
+  .btns{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.2rem}
+  button{font-family:inherit;font-size:1.05rem;padding:.85rem 1.8rem;border-radius:10px;
+         border:1px solid var(--line);background:var(--card);cursor:pointer}
+  button.ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+button.sel{outline:3px solid #1a1a1a;outline-offset:2px}
+button.sel::before{content:'✓ '}
+.unans{font-size:.8rem;color:#a8442c;text-align:center;margin-top:.6rem}
+  .left{font-size:.8rem;color:#8a6d1f;text-align:center;margin-top:.8rem}
+  button.jump{background:#8a6d1f;color:#fff;border-color:#8a6d1f;font-size:.85rem;padding:.45rem 1rem}
+  button.x{background:var(--warn);color:#fff;border-color:var(--warn);font-size:.9rem;padding:.6rem 1.2rem}
+  button.nav{font-size:.85rem;padding:.4rem 1rem}
+  .key{opacity:.7;font-size:.75rem;margin-left:.4em}
+  .foot{display:flex;justify-content:space-between;margin-top:1.4rem}
+  .done{text-align:center;padding:3rem 1rem}
+  .hint{font-size:.78rem;color:var(--sub);text-align:center;margin-top:.8rem}
+</style>
+<div class="wrap">
+  <header><h1>音声の自然さ比較</h1><span class="sub" id="who"></span><span class="prog" id="prog"></span><span class="sub" id="sync"></span></header>
+  <div class="bar"><div id="fill"></div></div>
+  <div id="main"></div>
+</div>
+<script>
+let ITEMS=[],STATE={},idx=0,CFG=null,RATER=null,REVIEW=false;
+// Every judgement used to be posted with `fetch(...).catch(()=>{})`: nothing retried, nothing
+// noticed, and the completion code came from localStorage alone -- so a rater could finish, be shown
+// a code, and leave the server short. It did happen, though not the way that bug would have caused
+// it: a bulk delete run against the store during the study removed everything written before
+// 11:49 JST, and fifteen sittings in progress lost their earlier answers. The browser still holds
+// them, which is why boot now pushes local state back to the server instead of trusting it to be
+// there. UNSENT/flush is the accent page's pattern, brought over.
+const UNSENT=new Map();
+function syncNote(t){ const e=document.getElementById('sync'); if(e) e.textContent=t; }
+function post(kit,id,verdict,ts){
+  const body={rater:RATER,kit:kit,blind_id:id,verdict:verdict,
+              ts:new Date(ts||Date.now()).toISOString()};
+  return fetch(API('save'),{method:'POST',headers:{'Content-Type':'application/json'},
+                            body:JSON.stringify(body)})
+    .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); UNSENT.delete(kit+'|'+id); return true; })
+    .catch(()=>{ UNSENT.set(kit+'|'+id,body); return false; });
+}
+function flush(){
+  if(!UNSENT.size) return Promise.resolve();
+  const [k,body]=UNSENT.entries().next().value;
+  return post(body.kit,body.blind_id,body.verdict,body.ts).then(ok=>{
+    syncNote(UNSENT.size?`未送信 ${UNSENT.size} 件`:'');
+    if(ok && UNSENT.size) return flush();
+  });
+}
+// Push what the browser holds back to the server, in small batches so a long set does not stall the
+// page. Keys are per judgement, so a resend overwrites and never duplicates.
+async function resync(){
+  const local=loadLocal(); const ids=Object.keys(local);
+  if(!ids.length) return;
+  syncNote('保存を確認中…');
+  let sent=0;
+  for(let i=0;i<ids.length;i+=6){
+    await Promise.all(ids.slice(i,i+6).map(id=>{
+      const st=local[id]; sent++;
+      return post('nat',id,st&&st.verdict,st&&st.ts);
+    }));
+    syncNote(`保存を確認中… ${Math.min(sent,ids.length)}/${ids.length}`);
+  }
+  let cts=null; try{ cts=localStorage.getItem('natconsent__'+RATER); }catch(e){}
+  if(cts) await post('natmeta','consent','agreed',cts);
+  syncNote(UNSENT.size?`未送信 ${UNSENT.size} 件（自動で再送します）`:'保存済み');
+  if(UNSENT.size) flush();
+}
+const LS=k=>`nat__${RATER}__${k}`;
+function loadLocal(){ try{return JSON.parse(localStorage.getItem(LS('resp'))||'{}')}catch(e){return {}} }
+function saveLocal(){ try{localStorage.setItem(LS('resp'),JSON.stringify(STATE))}catch(e){} }
+const API=p=>'/api/'+p;
+function consented(){ try{return !!localStorage.getItem('natconsent__'+RATER)}catch(e){return false} }
+// A blank page is the worst failure mode: the worker sees nothing, we learn nothing. Anything that
+// throws during start-up is shown on the page instead, with the detail needed to fix it.
+function fatal(e){
+  document.getElementById('main').innerHTML=
+    '<div class="card"><b>読み込みに失敗しました。</b>'+
+    '<div style="margin-top:.8rem;font-size:.9rem">お手数ですが、この画面をそのまま撮って'+
+    'お知らせください。ページの再読み込みで直ることもあります。</div>'+
+    `<pre style="margin-top:1rem;font-size:.8rem;white-space:pre-wrap;color:#a8442c">${(e&&(e.stack||e.message))||e}</pre></div>`;
+}
+window.addEventListener('error',ev=>fatal(ev.error||ev.message));
+window.addEventListener('unhandledrejection',ev=>fatal(ev.reason));
+async function boot(){ try{ await boot_(); }catch(e){ fatal(e); } }
+async function boot_(){
+  const q=new URLSearchParams(location.search);
+  RATER=q.get('r')||'';
+  if(!RATER){ RATER=localStorage.getItem('natpid')||'';
+    if(!RATER){ RATER='n'+Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+      try{localStorage.setItem('natpid',RATER)}catch(e){} } }
+  // cache-bust: a stale index.json against a fresh page (or the reverse) is a silent mismatch
+  const r=await fetch('index.json?v='+Date.now(),{cache:'no-store'});
+  if(!r.ok) throw new Error('index.json HTTP '+r.status);
+  CFG=await r.json();
+  document.getElementById('who').textContent='判定者: '+RATER;
+  // Recruitment closed: the posting caps who can be PAID, but the URL keeps working, so a new
+  // visitor would spend half an hour on work no slot can settle. Anyone who already has answers
+  // stored is a returning rater who still needs them pushed back to the server, so they go through.
+  if(CFG.closed && !Object.keys(loadLocal()).length && !consented()){
+    document.getElementById('main').innerHTML=
+      '<div class="card done"><b>この募集は終了しました。</b>'+
+      '<div style="margin-top:.9rem;font-size:.9rem;line-height:1.9">'+
+      'たいへん申し訳ありませんが、募集人数に達したため、新たなご参加は受け付けておりません。'+
+      'このままお進みいただいても報酬をお支払いできないため、ここで閉じさせていただいています。'+
+      '<br><br>すでに作業をされた方で、この画面が出てしまう場合は、'+
+      '<b>前回と同じ端末・同じブラウザ</b>でお開きください。'+
+      'それでも出る場合は、お手数ですがご連絡ください。</div></div>';
+    return;
+  }
+  if(!consented()){ showConsent(); return; }
+  // One GROUP per rater: 143 pairs is too long for one sitting, so the set is split into thirds
+  // and a rater judges one. ?g=N pins a group; otherwise it follows from the participant id, so
+  // the same worker always returns to the same third.
+  // The group comes from the server, which hands out the emptiest one; ?g= overrides it for testing.
+  // A hash of the id would leave the thinnest group at 4 of 24 raters as often as at 6, which buys
+  // eight ratings for some pairs and four for others.
+  const want=q.get('g'); const G=Object.keys(CFG.groups).sort();
+  let gi=-1; if(want!==null && CFG.groups[want]) gi=G.indexOf(want);
+  // A rater who already answered something keeps THAT group, whatever the server would hand out.
+  // Asking /api/assign on every load once sent someone back for a second group: they returned to
+  // re-sync, assign gave them the emptiest group instead of theirs, their stored answers matched
+  // none of its ids, the page showed 0 answered, and they began judging a group they had not been
+  // paid for. The group a rater is in is a fact about their answers, not a fresh decision.
+  if(gi<0){
+    const seen=loadLocal();
+    const ids=Object.keys(seen);
+    if(ids.length){
+      let best=-1,bestN=0;
+      G.forEach((g,i)=>{ const set=new Set(CFG.groups[g]);
+        const n=ids.filter(id=>set.has(id)).length; if(n>bestN){bestN=n;best=i;} });
+      if(best>=0) gi=best;
+    }
+  }
+  if(gi<0){
+    try{
+      const a=await (await fetch(`/api/assign?study=nat&rater=${encodeURIComponent(RATER)}&n=${G.length}`)).json();
+      if(a && a.unit!==undefined) gi=G.indexOf(String(a.unit));
+    }catch(e){}
+  }
+  if(gi<0){ let h=0; for(const c of RATER) h=(h*31+c.charCodeAt(0))>>>0; gi=h%G.length; }
+  const g=G[gi];
+  ITEMS=CFG.groups[g].map(id=>({id}));
+  STATE=loadLocal();
+  idx=ITEMS.findIndex(it=>!STATE[it.id]); if(idx<0) idx=0;
+  render();
+  // Never let the resync break the page: an unhandled rejection reaches the global handler, which
+  // replaces the whole screen with the failure card. Saving is a background concern; judging is not.
+  resync().catch(()=>{ syncNote(''); });
+}
+function decline(){
+  // Consent is not a formality: someone who declines needs to know what to do next, or they ask --
+  // or submit the platform task with no code, which costs a rejection out of a capped allowance.
+  document.getElementById('main').innerHTML=
+    '<div class="card done"><b>参加をとりやめました。</b>'+
+    '<div style="margin-top:.8rem;font-size:.9rem;line-height:1.9">'+
+    'この画面を閉じてください。<b>回答は一切記録されていません。</b><br>'+
+    'クラウドワークスの案件には<b>回答を送信しないでください</b>（未提出であれば、'+
+    'あなたに不利益はありません）。<br>'+
+    '気が変わった場合は、同じURLを開き直せば最初から始められます。</div></div>';
+}
+function showConsent(){
+  document.getElementById('main').innerHTML=`
+  <div class="card"><div class="lab" style="text-align:left"><b>はじめにお読みください（同意事項）</b></div>
+  <div style="font-size:.9rem;line-height:1.8;margin:1rem 0">
+    このタスクは、音声合成研究のための聴取評価です。同じ文を読み上げた2つの音声を聴き比べ、
+    <b>どちらがより自然に聞こえるか</b>を選んでいただきます。所要時間は約30分（${CFG.per_group}問）、報酬は${CFG.fee}です。
+    <ul style="margin:.8rem 0 .8rem 1.2rem">
+      <li>聴取のみの課題です。<b>あなたの音声・個人情報は一切収集しません。</b>
+          収集するのは選択結果のみで、匿名の統計データとして学術論文に使用します。</li>
+      <li>参加は任意です。途中でやめても不利益はありません。中断した場合、
+          それまでの回答は研究に使用します（画面上部のIDでご連絡いただければ、進んだ分の謝礼をお支払いします）。</li>
+      <li>静かな環境で、<b>ヘッドホンまたはイヤホン</b>を使用してください。</li>
+      <li>会話や音声の<b>聞き取りに支障がない方</b>を対象としています。補聴器などを使用して
+          支障なく聞き取れる場合は差し支えありません。</li>
+      <li>2つの音声は<b>同じ音量に揃えてあります</b>。</li>
+      <li>2つの音声は<b>同じ文</b>を読み上げています。ただし一部の単語の<b>読み方が違って聞こえる
+          ことがあります</b>。読み方の正誤は<b>評価対象ではありません</b>。
+          <b>声の滑らかさ・途切れ・ノイズ・抑揚の自然さ</b>だけで選んでください。</li>
+      <li>すでに「アクセント判定」の案件に参加された方は、この案件にはご参加にならないでください。</li>
+    </ul>
+    下のボタンを押すことで、上記に同意したものとみなします。
+  </div>
+  <div class="btns"><button class="ok" onclick="agree()">同意して開始する</button></div>
+    <div class="btns" style="margin-top:.6rem">
+      <button onclick="decline()">参加しない</button></div></div>`;
+}
+function agree(){
+  try{localStorage.setItem('natconsent__'+RATER,new Date().toISOString())}catch(e){}
+  post('natmeta','consent','agreed');
+  boot();
+}
+function render(){
+  const n=Object.keys(STATE).length;
+  document.getElementById('prog').textContent=`${n} / ${ITEMS.length}`;
+  document.getElementById('fill').style.width=(100*n/ITEMS.length)+'%';
+  const it=ITEMS[idx];
+  if(!it||(n>=ITEMS.length&&!REVIEW)){
+    document.getElementById('main').innerHTML=
+      '<div class="card done"><b>完了しました。ありがとうございました。</b>'+
+      '<div style="margin:1.4rem 0 .4rem;font-size:.9rem">完了コード（回答欄に貼り付けてください）</div>'+
+      `<div style="font-size:1.6rem;font-weight:700;letter-spacing:.06em;background:#fff8e1;`+
+      `border:1px solid #e6d9a8;border-radius:10px;padding:.8rem;user-select:all">${RATER}-N</div>`+
+      '<div style="margin-top:1.2rem"><button class="nav" onclick="REVIEW=true;idx=0;render()">回答を見直す</button></div></div>';
+    return;
+  }
+  const j=STATE[it.id];
+  document.getElementById('main').innerHTML=`
+  <div class="card">
+    <div class="qid">${it.id}${j?' — 回答済: '+({'A':'A','B':'B','x':'差がない'}[j.verdict]||j.verdict):''}</div>
+    <div class="lab">2つの音声は同じ文を読み上げています</div>
+    <div class="side"><b>A</b><audio controls preload="none" src="clips/${it.id}A.wav"></audio></div>
+    <div class="side"><b>B</b><audio controls preload="none" src="clips/${it.id}B.wav"></audio></div>
+    <div class="lab" style="margin-top:1rem">どちらがより自然に聞こえますか？</div>
+    <div class="btns">
+      <button class="ok${j&&j.verdict==='A'?' sel':''}" onclick="ans('A')">A のほう<span class="key">1</span></button>
+      <button class="ok${j&&j.verdict==='B'?' sel':''}" onclick="ans('B')">B のほう<span class="key">2</span></button>
+    </div>
+    <div class="btns" style="margin-top:.6rem"><button class="x${j&&j.verdict==='x'?' sel':''}" onclick="ans('x')">差がない<span class="key">3</span></button></div>
+    <div class="hint">読み方が違って聞こえても、それは評価対象ではありません。
+      声の滑らかさ・途切れ・ノイズ・抑揚だけで選んでください。</div>
+    ${j?'':'<div class="unans">この問題はまだ回答していません</div>'}
+    ${(function(){const r=ITEMS.filter(x=>!STATE[x.id]).length;
+       return r? `<div class="left">未回答があと ${r} 問あります。すべて回答すると完了コードが出ます。
+         <button class="jump" onclick="toUnanswered()">未回答へ移動</button></div>`:'';})()}
+    <div class="foot">
+      <button class="nav" onclick="prev()">← 前</button>
+      ${j?'<button class="nav" onclick="ans(null)">回答を取り消す</button>':''}
+      <button class="nav" onclick="next()">次 →</button>
+    </div>
+  </div>`;
+}
+async function ans(v){
+  const it=ITEMS[idx];
+  if(v===null) delete STATE[it.id]; else STATE[it.id]={verdict:v,ts:Date.now()};
+  saveLocal();
+  post('nat',it.id,v).then(()=>{ syncNote(UNSENT.size?`未送信 ${UNSENT.size} 件`:''); flush(); });
+  if(v!==null){ const k=ITEMS.findIndex((x,i)=>i>idx&&!STATE[x.id]);
+    idx=k>=0?k:ITEMS.findIndex(x=>!STATE[x.id]); }
+  render();
+}
+// Navigating with 前/次 makes it easy to leave a hole and not notice. The footer says how many are
+// left and jumps to the first of them; the completion code only appears once none are.
+function toUnanswered(){
+  const k=ITEMS.findIndex(x=>!STATE[x.id]);
+  if(k>=0){ idx=k; REVIEW=false; render(); }
+}
+function next(){idx=Math.min(idx+1,ITEMS.length-1);render()}
+function prev(){idx=Math.max(idx-1,0);render()}
+document.addEventListener('keydown',e=>{
+  if(e.isComposing||e.keyCode===229)return;
+  const d={'1':'A','2':'B','3':'x'}[e.key]; if(d){e.preventDefault();ans(d)}
+});
+boot();
+</script>

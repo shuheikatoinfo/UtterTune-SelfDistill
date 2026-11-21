@@ -1,0 +1,413 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>アクセント判定</title>
+<style>
+  :root{--bg:#f7f6f3;--card:#fff;--ink:#1a1a1a;--sub:#6b6b6b;--line:#e4e1da;
+        --ok:#2f6f4f;--no:#a8442c;--warn:#8a6d1f}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Hiragino Sans","Noto Sans JP",system-ui,sans-serif;background:var(--bg);
+       color:var(--ink);min-height:100vh;padding:1.2rem}
+  .wrap{max-width:720px;margin:0 auto}
+  header{display:flex;align-items:baseline;gap:.8rem;flex-wrap:wrap;margin-bottom:.8rem}
+  h1{font-size:1rem;font-weight:600}
+  .sub{font-size:.8rem;color:var(--sub)}
+  .prog{margin-left:auto;font-size:.85rem;color:var(--sub)}
+  .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:1.2rem}
+  .bar>div{height:100%;background:var(--ok);width:0;transition:width .2s}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:2rem}
+  .qid{font-size:.75rem;color:var(--sub);letter-spacing:.05em;margin-bottom:1.2rem}
+  .lab{font-size:.9rem;color:var(--sub);text-align:center}
+  .word{font-size:1.5rem;font-weight:600;text-align:center;margin:.2rem 0 1.2rem}
+  .acc{font-size:2.4rem;font-weight:700;letter-spacing:.08em;text-align:center;
+       padding:.6rem 0 .4rem}
+  .hint{font-size:.78rem;color:var(--sub);text-align:center;margin-bottom:1.2rem}
+  audio{width:100%;margin-bottom:1.4rem}
+  .btns{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+  button{font-family:inherit;font-size:1.05rem;padding:.85rem 2rem;border-radius:10px;
+         border:1px solid var(--line);background:var(--card);cursor:pointer}
+  button.ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+  button.sel{outline:3px solid #1a1a1a;outline-offset:2px}
+  button.sel::before{content:'✓ '}
+  .unans{font-size:.8rem;color:#a8442c;text-align:center;margin-top:.6rem}
+  .left{font-size:.8rem;color:#8a6d1f;text-align:center;margin-top:.8rem}
+  button.jump{background:#8a6d1f;color:#fff;border-color:#8a6d1f;font-size:.85rem;padding:.45rem 1rem}
+  button.no{background:var(--no);color:#fff;border-color:var(--no)}
+  button.x{background:var(--warn);color:#fff;border-color:var(--warn);font-size:.9rem;
+           padding:.6rem 1.2rem}
+  button.rd{background:#6b5b95;color:#fff;border-color:#6b5b95;font-size:.95rem}
+  button.nav{font-size:.85rem;padding:.4rem 1rem}
+  .key{opacity:.7;font-size:.75rem;margin-left:.4em}
+  .foot{display:flex;justify-content:space-between;margin-top:1.4rem}
+  .brk{background:#fff8e1;border:1px solid #e6d9a8;border-radius:10px;padding:1rem;
+       margin-bottom:1rem;font-size:.9rem;display:none}
+  .brk.show{display:block}
+  .done{text-align:center;padding:3rem 1rem}
+  .kits{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+  .kit{border:1px solid var(--line);background:var(--card);padding:.35rem .8rem;
+       border-radius:999px;cursor:pointer;font-size:.85rem}
+  .kit.on{background:var(--ok);color:#fff;border-color:var(--ok)}
+</style>
+<div class="wrap">
+  <header><h1>アクセント判定</h1>
+    <span class="sub" id="who"></span>
+    <span class="prog" id="prog"></span></header>
+  <div class="kits" id="kits"></div>
+  <div class="bar"><div id="fill"></div></div>
+  <div class="brk" id="brk">25分が経過しました。<b>5分ほど休憩</b>してください。耳が疲れると判定がぶれます。
+    <button class="nav" onclick="resetTimer()">休憩した</button></div>
+  <div id="main"></div>
+</div>
+<script>
+let KIT=null, ITEMS=[], STATE={}, idx=0, t0=Date.now(), CFG=null, RATER=null, PEND=0, REVIEW=false;
+// A session is one BLOCK (~95 judgements across all four cells), not one cell. Items therefore
+// carry their own cell, and state is keyed cell|blind_id because blind_ids repeat across cells.
+let UNITS=[], SCREEN_N=0, MAIN=null;
+const API=p=>'/api/'+p;   // Pages Function on this origin; no second service to keep alive
+const UNSENT=new Set();
+// Retry whatever did not reach the server, once per subsequent judgement. A rater on a flaky
+// connection should not have to notice anything, and no judgement should exist only in a browser.
+function flush(){
+  if(!UNSENT.size) return;
+  const k=[...UNSENT][0], [kit,bid]=[k.slice(0,k.lastIndexOf('|')),k.slice(k.lastIndexOf('|')+1)];
+  const st=loadLocal(KIT)[k]; if(!st){ UNSENT.delete(k); return; }
+  fetch(API('save'),{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({rater:RATER,kit:kit,blind_id:bid,verdict:st.verdict,
+                         block:(KIT.startsWith('block-')?KIT:''),ts:new Date(st.ts||Date.now()).toISOString()})})
+    .then(r=>{ if(r.ok) UNSENT.delete(k); }).catch(()=>{});
+}
+// A rater is assigned exactly one block, so its number carries no information for them and only
+// invites questions about the ones they did not get.
+function unitLabel(u){return u==='screening' ? '事前テスト' : (/^block-\d+$/.test(u) ? '本編' : u);}
+function sk(it){return (it.kit||KIT)+'|'+it.blind_id}
+const LS=k=>`resp__${RATER}__${k}`;
+function loadLocal(k){ try{return JSON.parse(localStorage.getItem(LS(k))||'{}')}catch(e){return {}} }
+function saveLocal(k,st){ try{localStorage.setItem(LS(k),JSON.stringify(st))}catch(e){} }
+async function boot(){
+  // Two delivery routes need two identification schemes:
+  //   Coconala (named experts): a per-order URL carries ?r=r01 — the buyer sends it in the
+  //     private トークルーム, so each rater is identified in advance.
+  //   CrowdWorks (self-serve crowd): every worker opens the SAME url, so the page mints a
+  //     participant id on first load, keeps it in localStorage, and shows it back as a
+  //     completion code that the worker pastes into the CrowdWorks answer box.
+  const q=new URLSearchParams(location.search);
+  RATER=q.get('r')||'';
+  if(!RATER){
+    RATER=localStorage.getItem('pid')||'';
+    if(!RATER){
+      RATER='w'+Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+      try{localStorage.setItem('pid',RATER)}catch(e){}
+    }
+  }
+  CFG=await (await fetch('index.json?v='+Date.now(),{cache:'no-store'})).json();
+  // HOLD (2026-09-17): raters listed in index.json "hold" have not started and are asked to wait while the block is
+  // being finalised; nothing is recorded for them, and they are told they will be contacted. Remove the id to release.
+  if((CFG.hold||[]).includes(RATER)){
+    document.getElementById('who').textContent='判定者: '+RATER;
+    document.getElementById('main').innerHTML='<div class="card done"><b>ただいま準備中です。</b>'+
+      '<div style="margin-top:.9rem;font-size:.92rem;line-height:1.9">本編の最終調整を行っているため、まだ開始していただけません。'+
+      '開始できる状態になりましたら、こちらからご連絡いたします。お手数をおかけしますが、それまでお待ちください。</div></div>';
+    return;
+  }
+  document.getElementById('who').textContent='判定者: '+RATER;
+  const all=Object.keys(CFG.blocks||{}).length ? Object.keys(CFG.blocks).sort((a,b)=>a-b).map(b=>({kit:'block-'+b,n:CFG.blocks[b].length}))
+                                               : CFG.kits;
+  // ONE block per rater (prereg S:4). Showing every block to everyone would let coverage drift --
+  // five people could all take block 1 and none take block 5 -- and would break the "one session
+  // per rater" the design and the payment are built on. ?b=N pins a block (Coconala, per-order
+  // URL); otherwise the block is derived from the participant id, so the same worker always
+  // returns to the same block and ids spread across blocks on their own.
+  SCREEN_N=CFG.screening_n||0;
+  // ?b= is how an invitation pins a block. Without it the SERVER hands out the emptiest one --
+  // hashing the id spread raters at random, and random leaves blocks uneven far more often than not.
+  const want=q.get('b');
+  let bi=-1;
+  if(want!==null && all.some(u=>u.kit==='block-'+want)) bi=all.findIndex(u=>u.kit==='block-'+want);
+  else {
+    try{
+      const a=await (await fetch(`/api/assign?study=block&rater=${encodeURIComponent(RATER)}&n=${all.length}`)).json();
+      if(a && a.unit!==undefined) bi=all.findIndex(u=>u.kit==='block-'+a.unit);
+    }catch(e){}
+    if(bi<0){ let h=0; for(const c of RATER) h=(h*31+c.charCodeAt(0))>>>0; bi=h%all.length; }
+  }
+  MAIN=all[bi];
+  try{localStorage.setItem('assigned',MAIN.kit)}catch(e){}
+  // screening first; the main block only appears once it is finished
+  // STAGE. The two stages are separate contracts on the platform: stage 1 pays for the gate alone,
+  // stage 2 pays for a block and is opened only to those who passed. Without this split a stage-1
+  // worker who passes would be handed the 99-item block on the spot, under no contract at all.
+  //   ?s=1  gate only; a passing candidate is told they qualified and stops there.
+  //   ?s=2  block; the gate is skipped for a rater the SERVER says has already passed, which is
+  //         what makes an invitation work from a different browser.
+  // The block is reachable ONLY through an invitation URL. Without ?s the page behaves as stage 1
+  // and stops at the gate: a bare link -- a stripped query string, a URL passed to someone else --
+  // must never hand out a 99-item block that nobody is contracted or paid for.
+  const stage=q.get('s')==='2' ? '2' : '1';
+  if(!consented()){ showConsent(stage); return; }
+  let srv=null;
+  try{ srv=await (await fetch('/api/gate?rater='+encodeURIComponent(RATER))).json(); }catch(e){}
+  if(srv&&srv.found) setGate(srv.pass?'pass':'fail');
+  if(gateState()==='fail'){ showFail(srv||{}); return; }
+  // Whether the gate is still owed is decided by the gate VERDICT, not by how many screening
+  // answers this browser happens to hold: an invited rater arriving in a fresh browser has none,
+  // and counting them sent them back through a gate the server already recorded them passing.
+  const needGate = SCREEN_N && gateState()!=='pass';
+  if(!needGate && stage==='1'){ showQualified(); return; }
+  UNITS = needGate ? [{kit:'screening', n:SCREEN_N}] : [MAIN];
+  paintUnits(); pick(UNITS[0].kit);
+}
+function paintUnits(){
+  document.getElementById('kits').innerHTML=UNITS.map(k=>{
+    const done=(k.kit===KIT)?nDone():Object.keys(loadLocal(k.kit)).length;
+    return `<div class="kit${k.kit===KIT?' on':''}" id="k_${k.kit}" onclick="pick('${k.kit}')">${unitLabel(k.kit)} (${done}/${k.n})</div>`;
+  }).join('');
+}
+async function pick(kit){
+  KIT=kit;
+  REVIEW=false;
+  if(kit==='screening'){
+    ITEMS=(await (await fetch('screening/manifest.json')).json())
+            .map(r=>({kit:'screening', blind_id:r.id, target_word:r.word,
+                      target_reading:r.reading||'', prescribed_accent:r.shown_accent}));
+  } else if(kit.startsWith('block-')){
+    const want=CFG.blocks[kit.slice(6)];                       // [[cell, blind_id], ...]
+    const need=[...new Set(want.map(x=>x[0]))];
+    const mans={};
+    for(const c of need){ const rows=await (await fetch(c+'/manifest.json')).json();
+      mans[c]={}; rows.forEach(r=>mans[c][r.blind_id]=r); }
+    ITEMS=want.map(([c,b])=>Object.assign({},mans[c][b],{kit:c})).filter(x=>x.blind_id);
+    // Randomise the order PER RATER. The build fixes one order per block, so without this the five
+    // raters of a block all meet the same item at the same position, and any position effect
+    // (fatigue, warm-up) lands on the same arms for everyone instead of averaging out.
+    // The catch trials keep their build-time slots, which is what guarantees they are never first
+    // and never adjacent; only the real items are permuted, among themselves.
+    (function(){
+      let h=2166136261>>>0; for(const c of RATER+'|'+kit){ h^=c.charCodeAt(0); h=Math.imul(h,16777619)>>>0; }
+      const rnd=()=>{ h+=0x6D2B79F5; let t=h; t=Math.imul(t^t>>>15,t|1); t^=t+Math.imul(t^t>>>7,t|61);
+                      return ((t^t>>>14)>>>0)/4294967296; };
+      const slots=[], real=[];
+      ITEMS.forEach((x,i)=>{ if(x.kit==='E') slots.push(i); else real.push(x); });
+      for(let i=real.length-1;i>0;i--){ const j=Math.floor(rnd()*(i+1)); [real[i],real[j]]=[real[j],real[i]]; }
+      let k=0; ITEMS=ITEMS.map((x,i)=> slots.includes(i) ? x : real[k++]);
+    })();
+  } else {
+    ITEMS=(await (await fetch(kit+'/manifest.json')).json()).map(r=>Object.assign({},r,{kit:kit}));
+  }
+  STATE=loadLocal(kit);
+  idx=ITEMS.findIndex(it=>!STATE[sk(it)]); if(idx<0) idx=0;
+  render();
+}
+function consented(){ try{return !!localStorage.getItem('consent__'+RATER)}catch(e){return false} }
+async function agree(stage){
+  try{localStorage.setItem('consent__'+RATER,new Date().toISOString())}catch(e){}   // per browser; the server keeps one record per stage
+  fetch(API('save'),{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({rater:RATER,kit:'meta',blind_id:'consent-stage'+(stage||'0'),
+                         verdict:'agreed',block:'stage'+stage,ts:new Date().toISOString()})}).catch(()=>{});
+  boot();
+}
+function decline(){
+  // Consent is not a formality: someone who declines needs to know what to do next, or they ask --
+  // or submit the platform task with no code, which costs a rejection out of a capped allowance.
+  document.getElementById('main').innerHTML=
+    '<div class="card done"><b>参加をとりやめました。</b>'+
+    '<div style="margin-top:.8rem;font-size:.9rem;line-height:1.9">'+
+    'この画面を閉じてください。<b>回答は一切記録されていません。</b><br>'+
+    'クラウドワークスの案件には<b>回答を送信しないでください</b>（未提出であれば、'+
+    'あなたに不利益はありません）。<br>'+
+    '気が変わった場合は、同じURLを開き直せば最初から始められます。</div></div>';
+}
+function showConsent(stage){
+  // The panel was advertised at "about 50 minutes" from an estimate. The first rater to finish
+  // took 98 minutes of judging time, breaks excluded. Consent is given on this screen, so it says
+  // what the work actually costs.
+  const mins = stage==='1' ? '約10分（20問）' : '正味1時間半〜2時間（481問・休憩を挟んで分けられます）';
+  // Screening pay has moved with the posting (JPY 400 open task -> 1,500 individual contract);
+  // this is what the current one pays. Referred raters are told their terms directly.
+  const fee  = stage==='1' ? '1,500円' : '6,000円';
+  document.getElementById('main').innerHTML=`
+  <div class="card">
+    <div class="lab" style="text-align:left"><b>はじめにお読みください（同意事項）</b></div>
+    <div style="font-size:.9rem;line-height:1.8;margin:1rem 0">
+      このタスクは、音声合成研究のための聴取評価です。合成音声を聴き、示されたアクセント型で
+      言えているかを3択で判定していただきます。所要時間は${mins}、報酬は${fee}です。
+      <ul style="margin:.8rem 0 .8rem 1.2rem">
+        <li>聴取のみの課題です。<b>あなたの音声・個人情報は一切収集しません。</b>
+            収集するのは判定結果のみで、匿名の統計データとして学術論文に使用します。</li>
+        <li>参加は任意です。途中でやめても不利益はありません。中断した場合、
+            <b>それまでの回答は研究に使用します</b>（画面上部のIDでご連絡いただければ、
+            進んだ分の謝礼をお支払いします）。</li>
+        <li>静かな環境で、<b>ヘッドホンまたはイヤホン</b>を使用してください。</li>
+        <li>会話や音声の<b>聞き取りに支障がない方</b>を対象としています。補聴器などを使用して
+          支障なく聞き取れる場合は差し支えありません。</li>
+        <li>一部に正解の分かっている確認用の音声が含まれます。</li>
+        <li>音質や声の自然さは判定対象ではありません。アクセントだけを聴いてください。</li>
+        <li><b>第一印象でお答えください。</b>この研究で必要なのは、繰り返し聴いて分析した結果ではなく、
+          ふつうに聞いたときにどう聞こえるかです。判断に迷う音声も含まれていますので、
+          迷ったときは考え込まず、<b>そのとき最も近いと感じた選択肢</b>をお選びください。
+          特定の選択肢が「無難」ということはありません。1問あたり10秒程度を目安に、
+          それより速く進めていただいても構いません。
+          どうしても判断がつかない場合にのみ「判断できない」をお使いください。</li>
+      </ul>
+      下のボタンを押すことで、上記に同意したものとみなします。
+    </div>
+    <div class="btns"><button class="ok" onclick="agree('${stage}')">同意して開始する</button></div>
+    <div class="btns" style="margin-top:.6rem">
+      <button onclick="decline()">参加しない</button></div>
+  </div>`;
+}
+function nDone(){return ITEMS.filter(x=>STATE[sk(x)]).length}  // count only answers to items of THIS block: stale keys (e.g. a renamed cell) must not complete it
+// The completion code carries the tier: -S = screening only, -F = screening plus a full block.
+// It is not a claim we trust -- every code is checked against the server's own record before
+// payment -- it just tells the worker, and us, which rate applies.
+function code(c){
+  return '<div style="margin:1.4rem 0 .4rem;font-size:.9rem">完了コード（回答欄に貼り付けてください）</div>'+
+    `<div style="font-size:1.6rem;font-weight:700;letter-spacing:.06em;background:#fff8e1;`+
+    `border:1px solid #e6d9a8;border-radius:10px;padding:.8rem;user-select:all">${c}</div>`;
+}
+// The screening is a GATE, so it is graded on the server: the answer key lives in the Apps Script
+// collector and never reaches the browser. A worker who opens devtools finds no key to read.
+// If the request itself fails (no collector configured, offline, Google hiccup) the gate opens and
+// the attempt is marked 'unverified' rather than locking out a paid worker over a network blip --
+// every response is re-graded offline from the collector log before payment either way.
+function gateState(){ try{return localStorage.getItem('gate__'+RATER)||''}catch(e){return ''} }
+function setGate(v){ try{localStorage.setItem('gate__'+RATER,v)}catch(e){} }
+async function submitScreening(){
+  const st=loadLocal('screening'), ans={};
+  Object.keys(st).forEach(k=>{ans[k.split('|').pop()]=st[k].verdict});
+  document.getElementById('main').innerHTML='<div class="card done">採点しています…</div>';
+  let r=null;
+  try{
+    const res=await fetch(API('screen'),{method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({action:'screen',rater:RATER,answers:ans})});
+    r=await res.json();
+    if(!r || typeof r.pass!=='boolean') r=null;
+  }catch(e){ r=null; }
+  if(!r){
+    setGate('unverified');
+    // Dry run (rater id starts with DRY): no collector is deployed yet, and the point of the run is
+    // to find ambiguous clips, so hand the answers back as a file instead of walking on.
+    if(RATER.indexOf('DRY')===0){ document.getElementById('main').innerHTML=
+      '<div class="card done"><b>事前テスト36問が終了しました。</b>'+
+      '<div style="margin:1rem 0;font-size:.9rem">下のボタンで回答ファイルを保存して渡してください。'+
+      '採点と、迷ったクリップの洗い出しに使います。</div>'+
+      '<div class="btns"><button class="rd" onclick="dl()">回答ファイルを保存</button>'+
+      ' <button class="nav" onclick="REVIEW=true;idx=0;render()">回答を見直す</button></div></div>'; return; }
+    UNITS=[MAIN]; paintUnits(); pick(MAIN.kit); return;
+  }
+  setGate(r.pass?'pass':'fail');
+  if(r.pass){
+    // same normalisation as boot(): only ?s=2 opens a block, everything else stops here
+    if(new URLSearchParams(location.search).get('s')!=='2'){ showQualified(); return; }
+    UNITS=[MAIN]; paintUnits(); pick(MAIN.kit); return;
+  }
+  showFail(r);
+}
+function showQualified(){
+  document.getElementById('main').innerHTML=
+    '<div class="card done"><b>事前テストに合格しました。</b>'+
+    '<div style="margin-top:.8rem;font-size:.9rem">ここまでです。下の完了コードを、'+
+    'ご依頼元（クラウドソーシングの案件からお越しの方は回答欄）にお知らせください。'+
+    '<br><b>本編（481問・報酬6,000円・別案件）を、改めてご案内することがあります。</b>'+
+    '所要時間は、最初の方の実測で<b>正味1時間半〜2時間</b>でした（休憩を挟んで数回に分けられます）。'+
+    '本編の募集人数に達した場合は、基準を満たした方でもご案内できないことがあります。</div>'+
+    code(RATER+'-S');
+}
+function showFail(r){
+  document.getElementById('main').innerHTML=
+    '<div class="card done"><b>事前テストの結果、今回はここで終了となります。</b>'+
+    `<div style="margin-top:.8rem;font-size:.9rem;color:#6b6b6b">正解 ${r.correct} / ${r.n}`+
+    (r.wrong?'<br>誤答: '+r.wrong.join(' '):'')+'</div>'+
+    '<div style="margin-top:1rem;font-size:.9rem">ご協力ありがとうございました。'+
+    '<b>事前テスト分の謝礼はお支払いします。</b>下の完了コードを、'+
+    'ご依頼元（クラウドソーシングの案件からお越しの方は回答欄）にお知らせください。</div>'+
+    code(RATER+'-S');
+}
+function render(){
+  document.getElementById('prog').textContent=`${nDone()} / ${ITEMS.length}`;
+  document.getElementById('fill').style.width=(100*nDone()/ITEMS.length)+'%';
+  const it=ITEMS[idx];
+  paintUnits();
+  if(KIT==='screening'&&nDone()>=ITEMS.length&&!REVIEW){submitScreening();return;}
+  if(!it||(nDone()>=ITEMS.length&&!REVIEW)){document.getElementById('main').innerHTML=
+    '<div class="card done"><b>完了しました。ありがとうございました。</b>'+
+    code(RATER+(KIT==='screening'?'-S':'-F'))+
+    '<div style="margin-top:1.2rem"><button class="nav" onclick="REVIEW=true;idx=0;render()">回答を見直す</button>'+
+    ' <button class="nav" onclick="dl()">回答ファイルを保存（予備）</button></div></div>';return;}
+  const j=STATE[sk(it)];
+  document.getElementById('main').innerHTML=`
+  <div class="card">
+    <div class="qid">${it.blind_id}${j?' — 回答済: '+({'1':'一致','2':'アクセント違い','3':'読みが違う','x':'判断不能'}[j.verdict]||j.verdict):''}</div>
+    <div class="lab">対象語</div><div class="word">${it.target_word}${it.target_reading?`（${it.target_reading}）`:''}</div>
+    <audio controls autoplay id="au" src="${it.kit||KIT}/clips/${it.blind_id}.wav"></audio>
+    <div class="lab">この音声は、下のアクセント型で言えていますか？</div>
+    <div class="acc">${it.prescribed_accent}</div>
+    <div class="hint">＼ = その直後で下降 ／ ￣ = 平板（下降なし）。音質や自然さは判定対象ではありません。</div>
+    ${j?'':'<div class="unans">この問題はまだ回答していません</div>'}
+    <div class="btns">
+      <button class="ok${j&&j.verdict==='1'?' sel':''}" onclick="ans('1')">① 一致している<span class="key">1</span></button>
+      <button class="no${j&&j.verdict==='2'?' sel':''}" onclick="ans('2')">② 対象語だがアクセントが違う<span class="key">2</span></button>
+    </div>
+    <div class="btns" style="margin-top:.7rem">
+      <button class="rd${j&&j.verdict==='3'?' sel':''}" onclick="ans('3')">③ 対象語に聞こえない（読みが違う）<span class="key">3</span></button>
+    </div>
+    <div class="btns" style="margin-top:.8rem">
+      <button onclick="replay()">もう一度聴く<span class="key">Space</span></button>
+      <button class="x${j&&j.verdict==='x'?' sel':''}" onclick="ans('x')">判断できない</button>
+      <div style="margin-top:.7rem;font-size:.82rem;color:var(--muted,#6b6b6b);text-align:center">
+        迷ったら第一印象で。考え込む必要はありません。</div>
+    </div>
+    ${(function(){const r=ITEMS.filter(x=>!STATE[sk(x)]).length;
+       return r? `<div class="left">未回答があと ${r} 問あります。すべて回答すると完了コードが出ます。
+         <button class="jump" onclick="toUnanswered()">未回答へ移動</button></div>`:'';})()}
+    <div class="foot">
+      <button class="nav" onclick="prev()">← 前</button>
+      ${j?'<button class="nav" onclick="ans(null)">回答を取り消す</button>':''}
+      <button class="nav" onclick="next()">次 →</button>
+    </div>
+  </div>`;
+}
+async function ans(v){
+  const it=ITEMS[idx];
+  if(v===null) delete STATE[sk(it)]; else STATE[sk(it)]={verdict:v,ts:Date.now()};
+  saveLocal(KIT,STATE);                       // never lose a judgement to a network blip
+  // Same-origin, so unlike the old no-cors POST this one can tell success from failure. Anything
+  // that does not land is retried on the next judgement; localStorage stays the rater's safety net.
+  PEND++;
+  fetch(API('save'),{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({rater:RATER,kit:(it.kit||KIT),blind_id:it.blind_id,verdict:v,
+                         block:(KIT.startsWith('block-')?KIT:''),ts:new Date().toISOString()})})
+    .then(r=>{ if(!r.ok) throw 0; UNSENT.delete(sk(it)); })
+    .catch(()=>{ UNSENT.add(sk(it)); })
+    .finally(()=>{PEND--; flush();});
+  if(v!==null){const n=ITEMS.findIndex((x,i)=>i>idx&&!STATE[sk(x)]);
+    idx=n>=0?n:ITEMS.findIndex(x=>!STATE[sk(x)]);}
+  if((Date.now()-t0)>25*60*1000) document.getElementById('brk').classList.add('show');
+  render();
+}
+// Navigating with 前/次 makes it easy to leave a hole and not notice. The footer says how many are
+// left and jumps to the first of them; the completion code only appears once none are.
+function toUnanswered(){
+  const k=ITEMS.findIndex(x=>!STATE[sk(x)]);
+  if(k>=0){ idx=k; REVIEW=false; render(); }
+}
+function next(){idx=Math.min(idx+1,ITEMS.length-1);render()}
+function prev(){idx=Math.max(idx-1,0);render()}
+function replay(){const a=document.getElementById('au');if(a){a.currentTime=0;a.play()}}
+function dl(){
+  const blob=new Blob([JSON.stringify({rater:RATER,unit:KIT,responses:STATE},null,1)],
+                      {type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob); a.download=`${RATER}__${KIT}.json`; a.click();
+}
+function resetTimer(){t0=Date.now();document.getElementById('brk').classList.remove('show')}
+document.addEventListener('keydown',e=>{
+  if(e.isComposing||e.keyCode===229||(e.target&&e.target.tagName==='INPUT'))return;
+  const d={'1':'1','2':'2','3':'3','１':'1','２':'2','３':'3'}[e.key]
+        ||{'Digit1':'1','Digit2':'2','Digit3':'3',
+           'Numpad1':'1','Numpad2':'2','Numpad3':'3'}[e.code];
+  if(d){e.preventDefault();ans(d)}
+  else if(e.key===' '||e.code==='Space'){e.preventDefault();replay()}
+  else if(e.code==='ArrowRight')next(); else if(e.code==='ArrowLeft')prev();
+});
+boot();
+</script>

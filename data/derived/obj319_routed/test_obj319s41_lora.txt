@@ -1,0 +1,4 @@
+長年使った道具には<PHON_START>アイジャク<PHON_END>がわくものだ。
+この<PHON_START>サカズキ<PHON_END>は、漆塗りで非常に美しい細工が施されている。
+彼女は、友達の成功をいつも<PHON_START>ネタ'ン<PHON_END>でいる。
+江戸時代には<PHON_START>イチブ'ギン<PHON_END>銀という通貨があった。

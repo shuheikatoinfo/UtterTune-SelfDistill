@@ -1,0 +1,5 @@
+彼女は桜<PHON_START>サクライロ<PHON_END>の着物を着ていた。
+転勤になったが、いつかはこの街が<PHON_START>モト'<PHON_END>だと思って帰ってきたい。
+エンジンは重い荷物を積んだ状態での<PHON_START>トーハンノ'ーリョク<PHON_END>能力が低い。
+毛布に白い<PHON_START>フチドリ<PHON_END>を縫い付けた。
+この道具は、ネジを締めるために<PHON_START>モチー'ル<PHON_END>ことができます。
