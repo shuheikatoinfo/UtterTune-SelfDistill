@@ -53,7 +53,8 @@ registered count on CosyVoice 2 and Irodori, and 600 instead of 400 on T5Gemma (
 20,000 steps (14, 16 at 10:48). T5Gemma's step 800 arrived after the kit was built
 and was not used (16, 16:15 and 17:10). The silence-trimming rule was withdrawn before any kit used it (16, 15:23).
 Ten easy-50 tags were corrected by the author's review before the naturalness kit was built (16, 15:07). The
-round-2 screening records of three raters were carried into round 3 (16, 17:15).
+round-2 screening records of three raters were carried into round 3 (16, 17:15). The released-UtterTune comparator of the 319-item table was
+re-synthesized with the corrected inputs of amendment 13 on 2026-11-21 (last entry); the comparison is unchanged.
 
 **Corrections made within this record.** Section 11 first said that `lora_faithful2_tf457` (the adapter the round-1
 Sarashina stimuli were actually made with) was trained on an earlier, unreleased teacher set; it was trained
@@ -1196,3 +1197,14 @@ are set to 10,000 (seeds unchanged: 20260901 and 0) and the round-3 results re-r
 replaces `naturalness_report_round3_final_20260921_1014.json` as the record. Point estimates, exclusions and every
 verdict are unchanged; interval limits move by at most 0.004 (third decimal). The paper reports the 10,000-resample
 intervals and states the count in the table captions.
+
+**Finding and correction, 2026-11-21 (after all results; found while assembling the retry record for release).** The
+released-UtterTune arm of the 319-item table (CosyVoice 2) was not re-synthesized when amendment 13 corrected 74
+malformed tag inputs: the amendment re-synthesized the tag arm of the four backbones only, so 74 UtterTune clips were
+made from the uncorrected inputs. Separately, 86 of its clips dated from 2026-09-04, before the shared guard. The
+whole arm was re-synthesized on 2026-11-21 under the guard with the corrected inputs (same adapter, seeds and voices):
+every clip passed on the first take; the 86 clips of 09-04 are byte-identical to the new ones, and the 74 corrected
+items differ, as they should. Re-measured in the same way (`results/round3/reading_obj319_round3_ut_corrected_inputs.json`):
+UtterTune 0.856 (unchanged), tag - UtterTune -0.072 [-0.120, -0.024], p = 0.003 (discordant 16 vs 39), against
+-0.072 [-0.122, -0.022], p = 0.004 (18 vs 41) before. The tag arm's verdicts are identical between the two ASR passes.
+The corrected arm replaces the earlier one as the arm of record; the conclusion is unchanged.

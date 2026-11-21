@@ -1,0 +1,386 @@
+{
+ "n_key_items": 473,
+ "n_raw_judgments": 962,
+ "preregistered": "preregistration/PREREGISTRATION.md",
+ "n_boot": 10000,
+ "seed": 20260901,
+ "catch_gate": {
+  "R1": {
+   "n_catch": 8,
+   "n_correct": 7,
+   "rate": 0.875,
+   "passed": true
+  },
+  "R2": {
+   "n_catch": 8,
+   "n_correct": 8,
+   "rate": 1.0,
+   "passed": true
+  }
+ },
+ "consistency": {
+  "R1": {
+   "n_pairs": 23,
+   "n_agree": 23,
+   "rate": 1.0
+  },
+  "R2": {
+   "n_pairs": 23,
+   "n_agree": 23,
+   "rate": 1.0
+  }
+ },
+ "n_catch_key": 8,
+ "raters_admitted": [
+  "R1",
+  "R2"
+ ],
+ "raters_excluded": [],
+ "n_judgments_after_gate": 962,
+ "INTERIM": "2 raters: below the pre-registered minimum of 3. Everything below is an interim, exploratory look; no test in it is confirmatory.",
+ "items_in_multiple_blocks": [],
+ "reliability": {
+  "fleiss_kappa_pooled_by_block": 0.9278198653198654,
+  "kappa_by_block": {
+   "block-0": {
+    "fleiss_kappa": 0.9278198653198654,
+    "n_items": 441
+   }
+  },
+  "n_blocks": 1,
+  "n_items_without_block": 0,
+  "fleiss_kappa_global_reference_only": 0.9278198653198654,
+  "n_items_in_kappa": 441,
+  "pairwise_cohen_kappa": {
+   "R1|R2": 0.9306854439432282
+  }
+ },
+ "n_consensus_items": 427,
+ "n_tied_items_excluded": 14,
+ "secondary_2v3_split": {
+  "A2_sarashina_difficult|kana": {
+   "2": 44,
+   "3": 0
+  },
+  "A2_sarashina_difficult|noedit": {
+   "2": 5,
+   "3": 31
+  },
+  "A2_sarashina_difficult|ours": {
+   "2": 18,
+   "3": 4
+  },
+  "B2_cv2_difficult|kana": {
+   "2": 57,
+   "3": 1
+  },
+  "B2_cv2_difficult|ours": {
+   "2": 11,
+   "3": 0
+  },
+  "C2_irodori_difficult|ours": {
+   "2": 14,
+   "3": 1
+  },
+  "C2_irodori_difficult|kana": {
+   "2": 56,
+   "3": 0
+  },
+  "D2_t5gemma_difficult|kana": {
+   "2": 39,
+   "3": 0
+  },
+  "D2_t5gemma_difficult|ours": {
+   "2": 7,
+   "3": 0
+  }
+ },
+ "family_A_superiority": [
+  {
+   "id": "Hk-sarashina",
+   "desc": "Sarashina: tag > kana",
+   "cell": "A2_sarashina_difficult",
+   "speaker": null,
+   "n_paired": 46,
+   "n_distinct_words": 46,
+   "p_kana": 0.5652173913043478,
+   "p_ours": 0.8043478260869565,
+   "discordant_b": 3,
+   "discordant_c": 14,
+   "p_raw": 0.012725830078125012,
+   "risk_diff": 0.23913043478260876,
+   "risk_diff_ci95": [
+    0.08695652173913038,
+    0.39130434782608703
+   ],
+   "odds_ratio": 3.0536246276067525,
+   "odds_ratio_ci95": [
+    1.4410557184750732,
+    7.545454545454546
+   ],
+   "p_holm": 0.025451660156250024,
+   "significant_at_0.05_family": true
+  },
+  {
+   "id": "Hk-cv2",
+   "desc": "CosyVoice 2: tag > kana",
+   "cell": "B2_cv2_difficult",
+   "speaker": null,
+   "n_paired": 43,
+   "n_distinct_words": 43,
+   "p_kana": 0.3953488372093023,
+   "p_ours": 0.8837209302325582,
+   "discordant_b": 0,
+   "discordant_c": 21,
+   "p_raw": 9.536743164062499e-07,
+   "risk_diff": 0.48837209302325585,
+   "risk_diff_ci95": [
+    0.34883720930232553,
+    0.627906976744186
+   ],
+   "odds_ratio": 10.600000000000001,
+   "odds_ratio_ci95": [
+    5.005689900426743,
+    36.66013071895426
+   ],
+   "p_holm": 4.768371582031249e-06,
+   "significant_at_0.05_family": true
+  },
+  {
+   "id": "Hk-irodori",
+   "desc": "Irodori: tag > kana",
+   "cell": "C2_irodori_difficult",
+   "speaker": null,
+   "n_paired": 47,
+   "n_distinct_words": 47,
+   "p_kana": 0.44680851063829785,
+   "p_ours": 0.851063829787234,
+   "discordant_b": 0,
+   "discordant_c": 19,
+   "p_raw": 3.814697265625e-06,
+   "risk_diff": 0.4042553191489362,
+   "risk_diff_ci95": [
+    0.25531914893617025,
+    0.553191489361702
+   ],
+   "odds_ratio": 6.655813953488372,
+   "odds_ratio_ci95": [
+    3.425655976676385,
+    17.85266457680251
+   ],
+   "p_holm": 1.52587890625e-05,
+   "significant_at_0.05_family": true
+  },
+  {
+   "id": "Hk-t5gemma",
+   "desc": "T5Gemma: tag > kana",
+   "cell": "D2_t5gemma_difficult",
+   "speaker": null,
+   "n_paired": 43,
+   "n_distinct_words": 43,
+   "p_kana": 0.6046511627906976,
+   "p_ours": 0.9302325581395349,
+   "discordant_b": 1,
+   "discordant_c": 15,
+   "p_raw": 0.0005187988281250003,
+   "risk_diff": 0.32558139534883723,
+   "risk_diff_ci95": [
+    0.16279069767441867,
+    0.48837209302325574
+   ],
+   "odds_ratio": 7.6415094339622645,
+   "odds_ratio_ci95": [
+    2.9199999999999995,
+    47.31578947368421
+   ],
+   "p_holm": 0.0015563964843750009,
+   "significant_at_0.05_family": true
+  },
+  {
+   "id": "Hn-sarashina",
+   "desc": "Sarashina: tag > no edit",
+   "cell": "A2_sarashina_difficult",
+   "speaker": null,
+   "n_paired": 46,
+   "n_distinct_words": 46,
+   "p_noedit": 0.6304347826086957,
+   "p_ours": 0.782608695652174,
+   "discordant_b": 6,
+   "discordant_c": 13,
+   "p_raw": 0.167068481445313,
+   "risk_diff": 0.15217391304347827,
+   "risk_diff_ci95": [
+    -0.021739130434782594,
+    0.32608695652173914
+   ],
+   "odds_ratio": 2.062146892655367,
+   "odds_ratio_ci95": [
+    0.8990874932903918,
+    5.350413223140496
+   ],
+   "p_holm": 0.167068481445313,
+   "significant_at_0.05_family": false
+  }
+ ],
+ "secondary_stratified_cellA_by_prescribed_type": [
+  {
+   "contrast": "kana vs ours",
+   "stratum": "heiban",
+   "n_paired": 32,
+   "n_distinct_words": 32,
+   "p_kana": 0.5625,
+   "p_ours": 0.84375,
+   "discordant_b": 2,
+   "discordant_c": 11,
+   "p_mcnemar_unadjusted": 0.022460937499999993,
+   "risk_diff": 0.28125,
+   "risk_diff_ci95": [
+    0.09375,
+    0.46875
+   ],
+   "note": "descriptive; no confirmatory claim attached to either stratum"
+  },
+  {
+   "contrast": "kana vs ours",
+   "stratum": "nucleus",
+   "n_paired": 14,
+   "n_distinct_words": 14,
+   "p_kana": 0.5714285714285714,
+   "p_ours": 0.7142857142857143,
+   "discordant_b": 1,
+   "discordant_c": 3,
+   "p_mcnemar_unadjusted": 0.6249999999999994,
+   "risk_diff": 0.1428571428571429,
+   "risk_diff_ci95": [
+    -0.1428571428571428,
+    0.42857142857142855
+   ],
+   "note": "descriptive; no confirmatory claim attached to either stratum"
+  },
+  {
+   "contrast": "noedit vs ours",
+   "stratum": "heiban",
+   "n_paired": 31,
+   "n_distinct_words": 31,
+   "p_noedit": 0.6774193548387096,
+   "p_ours": 0.8064516129032258,
+   "discordant_b": 4,
+   "discordant_c": 8,
+   "p_mcnemar_unadjusted": 0.38769531250000044,
+   "risk_diff": 0.12903225806451613,
+   "risk_diff_ci95": [
+    -0.09677419354838701,
+    0.35483870967741926
+   ],
+   "note": "descriptive; no confirmatory claim attached to either stratum"
+  },
+  {
+   "contrast": "noedit vs ours",
+   "stratum": "nucleus",
+   "n_paired": 15,
+   "n_distinct_words": 15,
+   "p_noedit": 0.5333333333333333,
+   "p_ours": 0.7333333333333333,
+   "discordant_b": 2,
+   "discordant_c": 5,
+   "p_mcnemar_unadjusted": 0.4531249999999999,
+   "risk_diff": 0.19999999999999996,
+   "risk_diff_ci95": [
+    -0.1333333333333333,
+    0.5333333333333334
+   ],
+   "note": "descriptive; no confirmatory claim attached to either stratum"
+  }
+ ],
+ "family_B_estimates": [],
+ "secondary_accent_only": {
+  "Hk-sarashina": {
+   "n_items": 44,
+   "p_kana": 0.5681818181818182,
+   "p_ours": 0.8409090909090909,
+   "p_raw": 0.004180908203124997,
+   "note": "reading errors removed; the remaining contrast is accent only"
+  },
+  "Hk-cv2": {
+   "n_items": 43,
+   "p_kana": 0.3953488372093023,
+   "p_ours": 0.8837209302325582,
+   "p_raw": 9.536743164062499e-07,
+   "note": "reading errors removed; the remaining contrast is accent only"
+  },
+  "Hk-irodori": {
+   "n_items": 47,
+   "p_kana": 0.44680851063829785,
+   "p_ours": 0.851063829787234,
+   "p_raw": 3.814697265625e-06,
+   "note": "reading errors removed; the remaining contrast is accent only"
+  },
+  "Hk-t5gemma": {
+   "n_items": 43,
+   "p_kana": 0.6046511627906976,
+   "p_ours": 0.9302325581395349,
+   "p_raw": 0.0005187988281250003,
+   "note": "reading errors removed; the remaining contrast is accent only"
+  },
+  "Hn-sarashina": {
+   "n_items": 30,
+   "p_noedit": 0.9333333333333333,
+   "p_ours": 0.8,
+   "p_raw": 0.21875000000000017,
+   "note": "reading errors removed; the remaining contrast is accent only"
+  }
+ },
+ "author_verification": {
+  "difficult": {
+   "n_items": 50,
+   "n_ok": 42,
+   "n_fix": 1,
+   "n_other_source": 7,
+   "n_excluded": 0
+  },
+  "katakana": {
+   "n_items": 50,
+   "n_ok": 48,
+   "n_fix": 1,
+   "n_other_source": 1,
+   "n_excluded": 0
+  }
+ },
+ "sensitivity_author_assigned": {
+  "Hk-sarashina": {
+   "n_items": 40,
+   "n_dropped_item_indices": 7,
+   "p_kana": 0.575,
+   "p_ours": 0.775,
+   "p_raw": 0.05737304687500017
+  },
+  "Hk-cv2": {
+   "n_items": 37,
+   "n_dropped_item_indices": 7,
+   "p_kana": 0.3783783783783784,
+   "p_ours": 0.8648648648648649,
+   "p_raw": 7.629394531250002e-06
+  },
+  "Hk-irodori": {
+   "n_items": 40,
+   "n_dropped_item_indices": 7,
+   "p_kana": 0.475,
+   "p_ours": 0.875,
+   "p_raw": 3.0517578125000014e-05
+  },
+  "Hk-t5gemma": {
+   "n_items": 36,
+   "n_dropped_item_indices": 7,
+   "p_kana": 0.5277777777777778,
+   "p_ours": 0.9166666666666666,
+   "p_raw": 0.0005187988281250003
+  },
+  "Hn-sarashina": {
+   "n_items": 40,
+   "n_dropped_item_indices": 7,
+   "p_noedit": 0.7,
+   "p_ours": 0.75,
+   "p_raw": 0.7905273437500018
+  }
+ }
+}

@@ -1,0 +1,67 @@
+{
+ "what": "round-3 listening stimuli, four raters (final): ASR target-reading hit from the guard's kana-whisper transcripts vs raters' reading verdict (3 = reading wrong); majority = more than half of the raters",
+ "total": {
+  "ours": {
+   "asr_miss": 42,
+   "read_wrong_majority": 2,
+   "read_wrong_any": 5,
+   "n": 200
+  },
+  "kana": {
+   "asr_miss": 35,
+   "read_wrong_majority": 0,
+   "read_wrong_any": 1,
+   "n": 200
+  }
+ },
+ "per_cell": {
+  "A2_sarashina_difficult|ours": {
+   "asr_miss": 14,
+   "read_wrong_majority": 2,
+   "read_wrong_any": 3,
+   "n": 50
+  },
+  "A2_sarashina_difficult|kana": {
+   "asr_miss": 11,
+   "read_wrong_majority": 0,
+   "read_wrong_any": 0,
+   "n": 50
+  },
+  "B2_cv2_difficult|ours": {
+   "asr_miss": 9,
+   "read_wrong_majority": 0,
+   "read_wrong_any": 0,
+   "n": 50
+  },
+  "B2_cv2_difficult|kana": {
+   "asr_miss": 12,
+   "read_wrong_majority": 0,
+   "read_wrong_any": 1,
+   "n": 50
+  },
+  "C2_irodori_difficult|ours": {
+   "asr_miss": 9,
+   "read_wrong_majority": 0,
+   "read_wrong_any": 1,
+   "n": 50
+  },
+  "C2_irodori_difficult|kana": {
+   "asr_miss": 4,
+   "read_wrong_majority": 0,
+   "read_wrong_any": 0,
+   "n": 50
+  },
+  "D2_t5gemma_difficult|ours": {
+   "asr_miss": 10,
+   "read_wrong_majority": 0,
+   "read_wrong_any": 1,
+   "n": 50
+  },
+  "D2_t5gemma_difficult|kana": {
+   "asr_miss": 8,
+   "read_wrong_majority": 0,
+   "read_wrong_any": 0,
+   "n": 50
+  }
+ }
+}

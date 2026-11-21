@@ -1,0 +1,7 @@
+{
+ "t5g42g": {
+  "noedit": "$DATA/v2/synth/t5gemma/obj319_base/blockA_t5gemma_difficult",
+  "kana": "$DATA/v2/synth/t5gemma/obj319_base/blockA_t5gemma_difficult",
+  "ours": "$DATA/v2/synth_r3/t5gemma/obj319/blockA_t5gemma_difficult"
+ }
+}
