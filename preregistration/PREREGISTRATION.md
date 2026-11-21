@@ -1,7 +1,7 @@
 # Pre-registration — Listening evaluation of post-hoc pronunciation/accent editing in LLM-based TTS
 
 **Status:** DRAFT — not yet timestamped.
-**Author:** Shuhei Kato (KOWRO Inc.)
+**Author:** Shuhei Kato (KOWRO Co., Ltd.)
 **Registered artifact:** this file, `build_item_lists.py`, and `items/` in the same directory.
 
 This document fixes the design, outcome measures, and analysis of the listening evaluation
