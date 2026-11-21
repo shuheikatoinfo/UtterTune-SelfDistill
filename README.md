@@ -62,7 +62,8 @@ The first two reproduce `results/round3/listening_report_round3_4raters_20260921
 ## Train
 
 Set the environment variables that `scripts/paths.py` names for the parts you use (`COSYVOICE_DIR`, `T5GEMMA_DIR`,
-`SARASHINA_DIR`, and `DATA` for the evaluation scripts). `D` below is a local copy of the dataset.
+`SARASHINA_DIR`, `DATASET_DIR` for the dataset, and `DATA` for the evaluation scripts). `D` below is a local copy of
+the dataset.
 
 ```bash
 # Sarashina2.2-TTS (round 3: 20,000 steps)
