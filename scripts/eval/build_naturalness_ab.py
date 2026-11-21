@@ -100,7 +100,7 @@ def hyps(bb, av):
         for arm, i, p in todo:
             w, sr = sf.read(p, dtype="float32")
             if w.ndim > 1: w = w.mean(1)
-            if sr != 16000:   # resample here: the pipeline's raw-input path distorts 44.1/48 kHz audio (2026-09-16)
+            if sr != 16000:   # resample here: the pipeline's raw-input path distorts 44.1/48 kHz audio
                 import librosa; w = librosa.resample(w, orig_sr=sr, target_sr=16000); sr = 16000
             got[(arm, i)] = norm(kw({"raw": w, "sampling_rate": sr})["text"])
     return got

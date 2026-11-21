@@ -1,4 +1,4 @@
-"""Uniform teacher reading check for the v2 (2026-09-16) recipe, shared by all four backbones.
+"""Teacher reading check of the registered rule, shared by all four backbones.
 
 A candidate teacher take is kept only if the ASR of record (kana-whisper) hears the target word's
 reading in it, judged with the same canonicalisation as the paper's reading metric
@@ -42,9 +42,9 @@ class Checker:
                             generate_kwargs={"language": "ja", "task": "transcribe"})
 
     def transcribe(self, audio, sr):
-        # Resample here, not in the pipeline: transformers' raw-input path (torchaudio) returned distorted
-        # transcripts at 48 kHz (garbage) and 44.1 kHz (misheard) on 2026-09-16, while 24 and 16 kHz were
-        # fine. librosa to 16 kHz gives the file-path result at every rate (scratch test one.wav).
+        # Resample here, not in the pipeline: transformers' raw-input path (torchaudio) returns distorted
+        # transcripts at 48 kHz (garbage) and 44.1 kHz (misheard), while 24 and 16 kHz are fine. librosa
+        # to 16 kHz gives the file-path result at every rate.
         import numpy as np, librosa
         x = np.asarray(audio, dtype="float32")
         if int(sr) != 16000:

@@ -1,4 +1,4 @@
-"""v2 teacher generation for CosyVoice 2 (uniform recipe, 2026-09-16).
+"""Teacher generation for CosyVoice 2 (the registered rule, as on the other backbones).
 
 Same rule as the other backbones: the frozen base reads the PLAIN kanji carrier; a take is kept
 if it passes the degeneration guard (audio >= MIN_SEC) AND the ASR of record hears the target

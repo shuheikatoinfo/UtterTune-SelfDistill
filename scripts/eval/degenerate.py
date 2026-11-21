@@ -1,13 +1,10 @@
 #!/usr/bin/env python3
 """One definition of "degenerate output", and one uniform retry policy, shared by every backbone.
 
-Why this exists. The recipe already carried a disclosed guard -- Sarashina retried up to 6 times if
-the waveform was under 0.5 s -- but it caught only one of the two ways an autoregressive TTS fails.
-The author's dry run (2026-09-04) marked 9 stimuli 「判断できない」; every one was broken audio, and
-their ASR hypotheses showed the other two modes: a single mora repeated (ンンンン…, エーエーエー…)
-and clips run to the generation cap while silent. Those were scored as ordinary reading misses, at
-2.4% of the edited arm against 1.0% of the kana arm -- so the metric was partly measuring sampler
-stability, not pronunciation.
+Why this exists. A length check alone (under 0.5 s) catches only one way an autoregressive TTS
+fails. The others are a single mora repeated (ンンンン…, エーエーエー…) and clips run to the generation
+cap while silent; unguarded, they are scored as ordinary reading misses, at different rates per arm,
+so the metric would partly measure sampler stability, not pronunciation.
 
 The policy here is the same class as the guard it completes, and is applied IDENTICALLY to every arm:
   * reject a take if it is degenerate, redraw with a bumped seed, take the FIRST valid one;
@@ -102,8 +99,8 @@ def synth_valid(gen, seed, asr=None, cap_s=None, max_takes=MAX_TAKES):
             except Exception as e:
                 # The ASR is the guard's instrument, not its master: if it cannot read the take
                 # (e.g. Whisper refuses inputs over 30 s and demands long-form decoding), that is
-                # evidence the take is degenerate, not a reason to abort the run. Seen 2026-09-04
-                # on T5Gemma, where a runaway redraw exceeded 30 s and killed the whole stage.
+                # evidence the take is degenerate, not a reason to abort the run (a runaway take can
+                # exceed 30 s).
                 hyp, r = None, f"asr_failed:{type(e).__name__}"
         if r is None:
             return a, sr, {"takes": t + 1, "rejected": rejected, "final_reason": None, "hyp": hyp}
@@ -116,9 +113,8 @@ def safe_asr(asr, a, sr, limit_s=30.0):
 
     Whisper refuses inputs over 30 s (it wants long-form decoding with timestamps), and a degenerate
     take can be longer than that. A clip we cannot read is scored as unreadable -- returning "" makes
-    it a miss, which is the honest outcome -- but it must never raise: on 2026-09-04 one such take
-    killed a whole T5Gemma stage twice, the second time through the SCORING call, which the guard's
-    own try/except did not cover. Every ASR call in the synthesis scripts goes through here.
+    it a miss, which is the honest outcome -- but it must never raise, or one such take stops the
+    whole run. Every ASR call in the synthesis scripts goes through here.
     """
     a = np.asarray(a, dtype="float32").reshape(-1)
     if a.size == 0 or a.size / float(sr) > limit_s:

@@ -26,7 +26,7 @@ from collections import defaultdict
 # ---------------------------------------------------------------- pre-registered constants
 N_BOOT = 10000            # §5 bootstrap resamples
 ALPHA = 0.05              # §5 family-wise
-CATCH_MIN = 3.0 / 4.0     # §4 (rev. 2026-09-06): known-answer catch trials, <3/4 excludes a session
+CATCH_MIN = 3.0 / 4.0     # §4: known-answer catch trials, <3/4 excludes a session
 ATTENTION_MIN = 0.80      # duplicate-consistency rate: REPORTED, never an exclusion criterion
 SEED = 20260901           # bootstrap seed, fixed here so the report is reproducible
 
@@ -468,7 +468,7 @@ def main():
         ("H5", "A_sarashina_difficult", "kana", "ours", None,
          "Sarashina, 27 voices: Ours > kana input (the study's existential contrast)"),
 ]
-    # Family B is ESTIMATION, not testing (revised 2026-09-01). Every one of these is at an
+    # Family B is ESTIMATION, not testing. Every one of these is at an
     # effective n of 50 distinct words, where the 95% CI half-width (~0.12) is the same size as
     # the pre-registered margin of 0.15: the test cannot resolve the question it is asked, and
     # reporting it as a test would present a resolution limit as a finding. Point estimate and

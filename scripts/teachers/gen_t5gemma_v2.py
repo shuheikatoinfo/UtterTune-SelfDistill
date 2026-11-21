@@ -1,4 +1,4 @@
-"""v2 teacher generation for T5Gemma-TTS (uniform recipe, 2026-09-16).
+"""Teacher generation for T5Gemma-TTS (the registered rule, as on the other backbones).
 
 Same rule as the other backbones: the frozen base reads the PLAIN kanji carrier with no reference
 (no_ref); a take is kept if it passes the degeneration guard (>= 10 codec frames, valid codes) AND

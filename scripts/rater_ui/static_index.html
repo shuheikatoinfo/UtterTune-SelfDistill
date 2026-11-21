@@ -99,7 +99,7 @@ async function boot(){
     }
   }
   CFG=await (await fetch('index.json?v='+Date.now(),{cache:'no-store'})).json();
-  // HOLD (2026-09-17): raters listed in index.json "hold" have not started and are asked to wait while the block is
+  // HOLD: raters listed in index.json "hold" have not started and are asked to wait while the block is
   // being finalised; nothing is recorded for them, and they are told they will be contacted. Remove the id to release.
   if((CFG.hold||[]).includes(RATER)){
     document.getElementById('who').textContent='判定者: '+RATER;

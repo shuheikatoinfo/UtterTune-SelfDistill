@@ -70,7 +70,7 @@ def _surface_from_diff(vanilla, tagged):
 def _author_corrections():
     """Author target-accent corrections (prereg §2 verification, done before any audio was
     judged). The kit reads the released item files directly, so corrections must be applied
-    here or raters would be shown a target the author already rejected. [2026-08-29]"""
+    here or raters would be shown a target the author already rejected."""
     p = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
                      "preregistration", "items", "target_verification.json")
     fixes = {}
@@ -161,8 +161,8 @@ def cells():
         # Round 2 (PREREGISTRATION_v2.md item 6): every backbone x {kana, tag}, plus {no edit} on
         # Sarashina; one voice per word from speaker_assignment42.json cells A2..D2. EVERY arm is
         # synthesized in round 2 under the same script, seeds and degeneracy guard as its own tag arm
-        # (2026-09-16 20:00: the round-1 sweep42 wavs were made on 09-02, before the shared guard
-        # existed, so reusing them would have given the tag arm retries the comparators never had).
+        # (the round-1 sweep42 wavs predate the shared guard, so reusing them would give the tag arm
+        # retries the comparators never had).
         SW = f"{DATA}/sweep42"; V2 = f"{DATA}/v2/synth"
         A = json.load(open(os.environ.get(
             "KIT_ASSIGN", f"{REPO}/preregistration/items/speaker_assignment42.json")))["cells"]
@@ -290,7 +290,7 @@ def cells():
         dict(name="D_sarashina_katakana", layout="spk_subdir",
              dir=f"{DATA}/blockB2_sarashina_katakana_4spk{SUF}",
              arms=["noedit", "ours"], set="katakana", idx=list(range(50)), spks=[0, 1]),
-        # E_irodori_katakana (Irodori leak check) was dropped 2026-09-01: it repeats D's
+        # No E_irodori_katakana (Irodori leak check): it would repeat D's
         # question on a second backbone and detects nothing D does not, at 210 judgements per
         # rater. That budget pays for the speaker replication in A and C instead.
     ]
@@ -355,7 +355,7 @@ def run_align():
     if os.environ.get("DISABLE_CUDNN", "1") == "1":
         # This box's cuDNN backend fails to finalize tensor descriptors for some conv shapes
         # (CUDNN_STATUS_SUBLIBRARY_VERSION_MISMATCH). The native kernels are numerically
-        # equivalent, only slower. Default ON here because alignment is a one-off. [2026-08-29]
+        # equivalent, only slower. Default ON here because alignment is a one-off.
         torch.backends.cudnn.enabled = False
     os.makedirs(ALIGNDIR, exist_ok=True)
     sets = load_sets()

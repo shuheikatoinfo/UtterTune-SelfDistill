@@ -1,4 +1,4 @@
-"""v2 teacher generation for Sarashina2.2-TTS (uniform recipe, 2026-09-16).
+"""Teacher generation for Sarashina2.2-TTS (the registered rule, as on the other backbones).
 
 Rule shared by all four backbones: for each carrier, the frozen base reads the PLAIN kanji carrier;
 a take is kept if it passes the degeneration guard (here: 20 <= n_sem <= 600 semantic tokens) AND
