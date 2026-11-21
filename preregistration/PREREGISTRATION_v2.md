@@ -1231,3 +1231,12 @@ items that needed more than one take (four pod logs for no edit and kana, the lo
 listed took one take. UtterTune: the re-synthesis with the corrected inputs of the finding and correction above.
 Tag arms: Sarashina 4 items redrawn, CosyVoice 2 and Irodori none, T5Gemma 32, of which 9 used all six takes and 7
 remained inaudible (the last take silent or too quiet).
+
+**Irodori code for release, 2026-11-21 (after all results).** The Irodori training and inference code of this record
+cannot be released. The code in `irodori/` of the release is written on the public Irodori-TTS code at commit
+`eaf74d6` and reproduces the round-3 setting (section 16; the settings in the summary at the top). Checked on the 144
+validation items of the checkpoint rule (kana CER of the tag arm; UTMOSv2, mean of three seeds): the paper's
+checkpoint read with the new code 0.057 / 2.800; a model retrained with the new code for 2,000 steps in the round-3
+setting 0.061 / 2.769; the value recorded at the checkpoint choice (12:02 JST on 09-18) 0.058 / 2.806. The paper's
+numbers stay those of the paper's checkpoint, which is the released Irodori model; the released weights omit the
+`meanflow_cond` tensors, which the model does not use.
