@@ -55,7 +55,8 @@ yom = [l.rstrip("\n") for l in open(f"{TD}/test_easy_50_yomi.txt", encoding="utf
 # locates the target inside the sentence and wraps only that span, and it derived the span by
 # diffing plain against reading text, which is empty here. That is a difference in how the edit is
 # ADDRESSED, not in what the model can do, so the span is named directly through the router's
-# registry instead (scripts/eval/fill_irodori_katakana.sh) and all four backbones carry all 50.
+# registry instead (in round 1; from round 2 the Irodori synthesis falls back to the tagged word) and
+# all four backbones carry all 50.
 tgt = [norm(re.sub(r"[’'/]", "", re.search(r"<PHON_START>(.*?)<PHON_END>", l).group(1))) for l in lora]
 
 
