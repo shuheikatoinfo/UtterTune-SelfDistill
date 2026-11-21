@@ -73,7 +73,9 @@ exclusion of 2026-09-21 was corrected the same day (section 16, entries of 2026-
 
 **Where this record was kept.** The registration and its record were kept in the author's private git repository
 from 2026-09-05 and are published with this release, with their commit history. Commit dates are the author's own;
-there is no third-party timestamp. Rater identifiers are pseudonyms.
+there is no third-party timestamp. Rater identifiers are pseudonyms, and machine paths are placeholders. Where the
+record mentions the earlier teacher set that preceded the clean-room text set, its wording was made neutral for
+publication, here and in the history ("earlier, unreleased"); no fact, date or number changed.
 
 
 **Status:** fixed 2026-09-16 (JST), before any round-2 teacher audio was inspected, before any
