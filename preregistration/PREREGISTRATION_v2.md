@@ -1,5 +1,69 @@
 # Pre-registration v2 — one recipe, one evaluation, four backbones (round 2)
 
+## Round 3 as run: summary (added 2026-11-21, after all data; not part of the registration)
+
+This section was written after every round-3 result was final, to give a reader the round the paper reports in one
+place. It fixes nothing and changes nothing below it. The record below is kept as it was written, in the order it was
+written: the registration of 2026-09-16 (sections 0 to 3; the numbering runs 0, 4, 5, 1, 2, 3, 6, ... because
+amendments were inserted where they applied), the amendments and findings that followed, and section 16, which
+registers round 3. Where an entry below was later found wrong, the entry is marked in place and points to its
+correction. Section numbers in this summary refer to the record below.
+
+**What round 3 is.** Round 2 (section 0) with one recipe change applied identically to all four backbones before any
+round-3 output existed (section 16, registered 2026-09-18 06:58 JST): up to 50 carriers per word instead of 10, and a
+slow-teacher filter. Rounds 1 and 2 are superseded and not pooled; round 1 is recorded in `PREREGISTRATION.md`.
+
+| Part | Round 3 | Where |
+|---|---|---|
+| Text set | 471 words, 23,549 carriers (`teachers_text_v3.jsonl` + `teachers_text_v4_new.jsonl`), disjoint from every evaluation target | 0.1, 16 item 1; the v5/v5b carriers were added at 08:35 and withdrawn at 10:48, so they are not part of round 3 |
+| Teacher rule | the frozen base reads the plain carrier; a take is kept if it passes the guard and kana-whisper hears the target reading; up to five takes; failures dropped and logged | 0.2 |
+| Rate rule | a teacher is dropped above 0.22 s of speech per character of the plain carrier, the same number on every backbone | 16 item 2 and the note of 07:43 |
+| Teachers kept | Sarashina 22,729 → 12,870; CosyVoice 2 21,395 → 13,751; Irodori 22,548 → 13,901; T5Gemma 21,449 → 18,781 | 16 |
+| Speaker rule | no speaker for Sarashina and T5Gemma (text-only teachers); the same 2,000 voices sampled from Irodori-TTS-500M-v2 without a reference, for Irodori (reference latents) and CosyVoice 2 (prompt clips) | 0.3 |
+| Checkpoint rule | lowest mean sentence kana CER of the tag arm on the 144 validation items (105 selection items + 39 side-effect sentences), ties within 0.005 to the higher UTMOSv2 | 16, notes of 08:44, 08:55 and 11:10 |
+| Chosen | CosyVoice 2 1,000 steps; Irodori 2,000; T5Gemma 600, each by the checkpoint rule. Sarashina: P4 at its registered 20,000 steps, not chosen by the rule (the rule of 08:44 was written for a retrained adapter that was not used) | 14 (P4), 16 (10:48, 12:02, 15:10, 16:07) |
+| Objective set | 319-item test half of the Joyo Kanji Yomi Benchmark items a public G2P misreads; one of 42 held-out ReazonSpeech voices per item; target-reading hit under kana-whisper; guard identical in every arm | 0.5, 13; tag arm round 3, no-edit and kana arms round 2 (amendment 5) |
+| Listening | difficult-50; every backbone × {kana, tag}, plus no edit on Sarashina; 450 stimuli + 23 duplicates + 8 catch trials per rater; four raters who passed the 18/20 screening, all complete | 0.6, 7, 16 (16:13, 17:15, 2026-09-21 10:09) |
+| Naturalness | easy-50 with the author-reviewed tags; same-sentence A/B, edited vs unedited; 200 pairs in 4 groups; 102 complete sittings after the speed rule, 5,116 judgements, 24 to 27 per pair; one submission per platform account | 0.8, 6, 16 (16:28, 2026-09-21 10:14 and the correction after it) |
+| Confirmatory tests | five, one Holm family: tag vs kana on each backbone, tag vs no edit on Sarashina | 0.7 |
+
+**Training as run.** The registration fixes the training as "exactly as in round 1 per backbone" (0.4). The settings
+actually used, read from each run's configuration:
+
+| Backbone | What is trained | Steps |
+|---|---|---|
+| Sarashina2.2-TTS | LoRA rank 16, alpha 64, on q/k/v/o, plus the two tag-token embedding rows | 20,000 |
+| CosyVoice 2 | LoRA rank 16, alpha 64, on q/k/v/o, plus two new embedding rows for the tag tokens | 1,000 |
+| Irodori-TTS-500M-v3 | **no LoRA**: every module of the model is trained (about 520M parameters; Muon, learning rate 1e-5, 32 × 2 samples per step) | 2,000 |
+| T5Gemma-TTS-2b-2b | LoRA rank 8, alpha 16, on q/k/v/o and gate/up/down; only the LoRA weights train (the reserved tokens used as tags keep their embeddings) | 600 (token budget of 20,000 per step) |
+
+The paper's version of 2026-09-24 (arXiv 2609.17234v3) describes the Sarashina and CosyVoice 2 setting as if it held
+on all four backbones. That is wrong for Irodori and T5Gemma, and is corrected in the next version of the paper.
+
+**Results of record.** Objective: `data/analysis/v2/reading_obj319_round3.json`, contrasts
+`obj319_round3_contrasts.md`. Listening: `data/analysis/v2/listening_report_round3_4raters_20260921_1009.json`
+(Fleiss' kappa 0.89; 13 tied stimuli excluded; four of the five confirmatory hypotheses supported, Sarashina tag vs no
+edit not). Naturalness: `data/analysis/v2/naturalness_report_round3_final_10k.json`. Bootstrap resamples are 10,000
+throughout (last entry).
+
+**Deviations from the registration, all recorded below where they happened.** The v5/v5b carriers were added and then
+withdrawn before any round-3 stimulus existed (16). On CosyVoice 2, Irodori and T5Gemma the checkpoint grids were
+widened and the checkpoint was chosen by rule rather than fixed at the registered step counts; the rule chose the
+registered count on CosyVoice 2 and Irodori, and 600 instead of 400 on T5Gemma (16). Sarashina's P4 kept its registered
+20,000 steps (14, 16 at 10:48). T5Gemma's step 800 arrived after the kit was built
+and was not used (16, 16:15 and 17:10). The silence-trimming rule was withdrawn before any kit used it (16, 15:23).
+Ten easy-50 tags were corrected by the author's review before the naturalness kit was built (16, 15:07). The
+round-2 screening records of three raters were carried into round 3 (16, 17:15).
+
+**Corrections made within this record.** Section 11 first said that `lora_faithful2_tf457` (the adapter the round-1
+Sarashina stimuli were actually made with) was trained on an earlier, unreleased teacher set; it was trained
+on speech tokens of real JSUT and JVS recordings (correction after section 14). The note on the duplicate-account
+exclusion of 2026-09-21 was corrected the same day (last entries of section 16).
+
+**What fixes the timing.** The commit history of this repository. Rater identifiers in this record are pseudonyms
+in the public copy.
+
+
 **Status:** fixed 2026-09-16 (JST), before any round-2 teacher audio was inspected, before any
 round-2 adapter was trained, and before any round-2 judgement was collected. Round 1 (the design
 in `PREREGISTRATION.md`, with all its amendments) was analysed in full before this document was
