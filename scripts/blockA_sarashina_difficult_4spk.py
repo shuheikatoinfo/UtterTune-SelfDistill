@@ -29,7 +29,7 @@ from sarashina_tts.generate.generate import SarashinaTTSGenerator
 from transformers import pipeline
 import pyopenjtalk
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'eval'))
-from degenerate import synth_valid, safe_asr
+from degenerate import synth_valid, safe_asr, save_guard_record
 # Calibrated from 957 generated clips: durations pile up at exactly 20.00 s (52 clips) -- that is
 # the hard generation cap and a clip reaching it was truncated, not finished. An earlier value of
 # 10.0 s (from max_tokens/50) was WRONG: 77 of the 112 clips over 9.9 s are perfectly fine by ASR,
@@ -190,7 +190,7 @@ for si in range(len(SPK)):
     res["arms"]["ours"][f"spk{si}"] = {"kana_cer_mean": float(c.mean()), "cer>0.5": int((c > 0.5).sum())}
 
 json.dump(res, open(os.path.join(OUT, "blockA_difficult_4spk.json"), "w"), ensure_ascii=False, indent=1)
-json.dump(TAKES, open(os.path.join(OUT, "guard_takes.json"), "w"), ensure_ascii=False, indent=1)
+save_guard_record(os.path.join(OUT, "guard_takes.json"), TAKES)
 print(f"\n== Sarashina Block A difficult, {len(SPK)} speakers (n={n}) ==", flush=True)
 for arm in (("ours",) if _ONLY_OURS else ("noedit", "kana", "ours")):
     ms = [res["arms"][arm][f"spk{si}"]["kana_cer_mean"] for si in range(len(SPK))]

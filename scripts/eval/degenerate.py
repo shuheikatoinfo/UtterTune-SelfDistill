@@ -15,6 +15,7 @@ The policy here is the same class as the guard it completes, and is applied IDEN
   * cap the retries, and RECORD the number of takes so the degeneration rate is a reported number
     rather than something inferred afterwards from a detector.
 """
+import json
 import re
 import os
 import numpy as np
@@ -126,3 +127,22 @@ def safe_asr(asr, a, sr, limit_s=30.0):
         return asr(a, sr)
     except Exception:
         return ""
+
+
+def save_guard_record(path, rows):
+    """Write the per-item guard record (one row per synthesized wav: arm, spk, idx, takes, rejected, ...).
+
+    A run synthesizes only the wavs not yet on disk, so `rows` holds only this run's items. The file is
+    therefore merged, keyed by (arm, spk, idx): rows from earlier runs are kept, and a row of this run
+    replaces an earlier row for the same wav (that wav was deleted and synthesized again). Writing
+    only this run's rows erased the record of every take kept from earlier runs.
+    """
+    merged = {}
+    if os.path.exists(path):
+        with open(path, encoding="utf-8") as f:
+            for r in json.load(f):
+                merged[(r["arm"], r.get("spk"), r["idx"])] = r
+    for r in rows:
+        merged[(r["arm"], r.get("spk"), r["idx"])] = r
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(list(merged.values()), f, ensure_ascii=False, indent=1)

@@ -14,7 +14,7 @@ import numpy as np, soundfile as sf, pyopenjtalk
 from cv_synth import make_measurement_synth
 from cv_quality import KanaScorer
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'eval'))
-from degenerate import synth_valid, safe_asr
+from degenerate import synth_valid, safe_asr, save_guard_record
 
 # TEST_DIR / TEST_SET make the item set swappable without touching the synthesis path:
 # the same code, the same recipe, only a different input file. Needed for the 105-item
@@ -125,5 +125,5 @@ res["arms"] = ARMS
 res["prompt_wav"] = os.environ.get("CV_PROMPT_WAV", "(default fictional)")
 res["n"] = n
 json.dump(res, open(os.path.join(OUT, "blockA_cv2_difficult.json"), "w"), ensure_ascii=False, indent=1)
-json.dump(TAKES, open(os.path.join(OUT, "guard_takes.json"), "w"), ensure_ascii=False, indent=1)
+save_guard_record(os.path.join(OUT, "guard_takes.json"), TAKES)
 print(f"DONE -> {OUT}  (CV2 Block A difficult; accent = ear/rater)", flush=True)
