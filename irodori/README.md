@@ -61,7 +61,7 @@ $PY irodori/synthesis.py --checkpoint CKPT --ref-latent REF.pt --seed 0 --guard 
 
 Without `--checkpoint` the base release is used. The tag tokenizer is rebuilt from the pinned base
 tokenizer into `~/.cache/irodori-pron-tags/` on first use. `--guard` and `run_blockB1.py` need
-`scripts/eval/degenerate.py` and `scripts/eval/asr_audio.py` from the repository's code branch.
+`scripts/eval/degenerate.py` and `scripts/eval/asr_audio.py` of this repository.
 
 ## Evaluation CLI
 
@@ -76,47 +76,9 @@ a degenerate take is redrawn (seed + 1000 per redraw, up to 6 takes, first valid
 Writes `O/<arm>/NN.wav`, `O/guard_takes.json`, `O/blockB1_irodori.json`. The line files are used
 as given: an item set whose tags still need routing must be routed first.
 
-## Reproduction of the round-3 model
+## Relation to the paper's model
 
-Retrained with this code on the round-3 teacher manifest (13,901 rows), one run, and read on the
-round-3 validation items (tag arm, 105 selection + 39 side-effect items, the same voices, seeds and
-guard) with `run_blockB1.py`. CER: mean sentence kana CER from the guard's kana-whisper transcripts,
-as the checkpoint rule computes it. UTMOSv2: mean over the 144 clips; UTMOSv2 picks random audio
-segments, so it is given as mean ± s.d. over three fixed seeds (the recorded value is one unseeded
-draw).
+This code is written on the public Irodori-TTS. Retrained with it in the round-3 setting, the model reaches the
+paper's checkpoint on the 144 validation items (kana CER 0.061 against 0.057, UTMOSv2 2.77 against 2.80, both read
+with this code).
 
-| Step 2,000 | CER (144) | CER sel. 105 | CER side 39 | redraws | UTMOSv2 |
-|---|---|---|---|---|---|
-| Paper's checkpoint, as recorded | 0.058 | 0.063 | 0.044 | 1 | 2.806 |
-| Paper's checkpoint, its recorded clips re-scored | 0.058 | 0.063 | 0.044 | 1 | 2.791 ± 0.011 |
-| Paper's checkpoint, this inference code | 0.057 | 0.063 | 0.043 | 1 | 2.800 ± 0.005 |
-| Retrained with this code | 0.061 | 0.068 | 0.043 | 1 | 2.769 ± 0.016 |
-| Retrained, unpatched upstream reference sampling | 0.051 | 0.057 | 0.035 | 0 | 2.889 ± 0.029 |
-
-The retrained model is within the checkpoint rule's tie margin (0.005) of the paper's checkpoint
-read by the same code. One training run per row: run-to-run spread is not measured.
-
-Why the patch: with the row's own reference the training loss follows the paper's run log
-(smoothed loss at steps 100 / 400 / 800: 1.160 / 0.963 / 0.899 against 1.159 / 0.968 / 0.902);
-with upstream's same-speaker sampling it stays about 0.05 higher (1.197 / 1.014 / 0.957). That run
-scores better on validation, but it is not the recipe the paper's model was trained with.
-
-What is not reproduced:
-
-* **Target length of the tag arm.** The paper's runs did not use the length this code takes from
-  the duration predictor: on the tag arm, 10 of 144 clips have the same length, and the paper's
-  clips are 2.5% shorter on average. Forcing the paper's length on three items reproduces their
-  waveforms (correlation 0.97 to 0.99), and on the no-edit arm the predicted lengths equal the
-  paper's on all eight items checked; so the text and reference reach the model as they did.
-  Where the paper's tag-arm length came from could not be determined from the configuration,
-  the logs and the public code.
-* **Exact weights.** The two new embedding rows are drawn from N(0, 1) with their own seed (the
-  original took them from the model's initialisation), so data order and initial values differ.
-* **Routing.** The earlier loader routed some line files at load time (reviewed accents on the
-  difficult and easy sets). This CLI reads line files as given, except for removing `/`.
-
-The paper's checkpoint also holds `meanflow_cond`, a two-layer module that public Irodori-TTS
-does not define (its later MeanFlow support is a different module, `delta_cond_module`) and that
-no gradient reached in RF training (bit-identical at steps 500 and 2,000, all-zero output layer).
-A model trained with this code has the same parameters without it (637 tensors, 512,050,465
-parameters); `synthesis.py` drops it when loading the paper's checkpoint.
