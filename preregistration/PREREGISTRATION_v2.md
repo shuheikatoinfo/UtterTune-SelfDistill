@@ -37,14 +37,23 @@ actually used, read from each run's configuration:
 | Irodori-TTS-500M-v3 | **no LoRA**: every module of the model is trained (about 520M parameters; Muon, learning rate 1e-5, 32 × 2 samples per step) | 2,000 |
 | T5Gemma-TTS-2b-2b | LoRA rank 8, alpha 16, on q/k/v/o and gate/up/down; only the LoRA weights train (the reserved tokens used as tags keep their embeddings) | 600 (token budget of 20,000 per step) |
 
-The paper's version of 2026-09-24 (arXiv 2609.17234v3) describes the Sarashina and CosyVoice 2 setting as if it held
-on all four backbones. That is wrong for Irodori and T5Gemma, and is corrected in the next version of the paper.
+**What the next version of the paper corrects.** The version of 2026-09-24 (arXiv 2609.17234v3):
+- describes the Sarashina and CosyVoice 2 training setting as if it held on all four backbones; the settings per
+  backbone are those in the table above;
+- says all four step counts were chosen by the checkpoint rule; Sarashina's 20,000 steps are the registered count, not
+  chosen by the rule;
+- gives the UtterTune comparison of the 319-item table as -0.072 [-0.122, -0.022], p = 0.004; with the corrected inputs
+  it is -0.072 [-0.120, -0.024], p = 0.003 (finding and correction of 2026-11-21);
+- prints the lower bound of Irodori's naturalness interval in Table 2 as -.31; the record's -0.305 rounds to -.30;
+- calls the registration a "public pre-registration"; it was fixed and kept in the author's private repository and is
+  published with this release (last paragraph of this summary).
 
-**Results of record.** Objective: `data/analysis/v2/reading_obj319_round3.json`, contrasts
-`obj319_round3_contrasts.md`. Listening: `data/analysis/v2/listening_report_round3_4raters_20260921_1009.json`
-(Fleiss' kappa 0.89; 13 tied stimuli excluded; four of the five confirmatory hypotheses supported, Sarashina tag vs no
-edit not). Naturalness: `data/analysis/v2/naturalness_report_round3_final_10k.json`. Bootstrap resamples are 10,000
-throughout (last entry).
+**Results of record.** Objective: `results/round3/reading_obj319_round3_ut_corrected_inputs.json`, contrasts
+`results/round3/obj319_round3_contrasts_ut_corrected_inputs.md`. Listening:
+`results/round3/listening_report_round3_4raters_20260921_1009.json` (Fleiss' kappa 0.89; 13 tied stimuli excluded;
+four of the five confirmatory hypotheses supported, Sarashina tag vs no edit not). Naturalness:
+`results/round3/naturalness_report_round3_final_10k.json`. Bootstrap resamples are 10,000 throughout (entry of
+2026-09-24).
 
 **Deviations from the registration, all recorded below where they happened.** The v5/v5b carriers were added and then
 withdrawn before any round-3 stimulus existed (16). On CosyVoice 2, Irodori and T5Gemma the checkpoint grids were
@@ -54,12 +63,13 @@ registered count on CosyVoice 2 and Irodori, and 600 instead of 400 on T5Gemma (
 and was not used (16, 16:15 and 17:10). The silence-trimming rule was withdrawn before any kit used it (16, 15:23).
 Ten easy-50 tags were corrected by the author's review before the naturalness kit was built (16, 15:07). The
 round-2 screening records of three raters were carried into round 3 (16, 17:15). The released-UtterTune comparator of the 319-item table was
-re-synthesized with the corrected inputs of amendment 13 on 2026-11-21 (last entry); the comparison is unchanged.
+re-synthesized with the corrected inputs of amendment 13 on 2026-11-21 (finding and correction of that date); the point estimate is
+unchanged (interval and p move from [-0.122, -0.022], p = 0.004 to [-0.120, -0.024], p = 0.003).
 
 **Corrections made within this record.** Section 11 first said that `lora_faithful2_tf457` (the adapter the round-1
 Sarashina stimuli were actually made with) was trained on an earlier, unreleased teacher set; it was trained
 on speech tokens of real JSUT and JVS recordings (correction after section 14). The note on the duplicate-account
-exclusion of 2026-09-21 was corrected the same day (last entries of section 16).
+exclusion of 2026-09-21 was corrected the same day (section 16, entries of 2026-09-21).
 
 **Where this record was kept.** The registration and its record were kept in the author's private git repository
 from 2026-09-05 and are published with this release, with their commit history. Commit dates are the author's own;
