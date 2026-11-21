@@ -1,24 +1,13 @@
-"""Data-free UtterTune LoRA on Sarashina — clean-room rebuild.
+"""Self-distillation LoRA training for Sarashina2.2-TTS.
 
-Copy of the recovered original (durable: $DATA/code/train_lora.py;
-this repo's scripts/train_lora.py is the later revision of the same file adding --alpha,
-which the saved accent adapters require: lora_faithful2_tf457 has lora_alpha=64 = 4*rank,
-i.e. was trained with --alpha 64). Changes vs. that original, and NOTHING else:
-  1. Dead scratchpad paths -> parameterized: --model-dir defaults to
-     the durable handoff mirror $DATA/_handoff/sara-tts-weights;
-     sys.path uses $SARASHINA_DIR (the sarashina2.2-tts code); --teachers/--out default to the clean-room
-     rebuild locations.
-  2. Checkpoint log line says "SAVED adapter <dir>" (the CV2 chain-script convention that
-     j5_after_retrain.sh / v3_onmethod_chain.sh grep for) instead of "saved <dir>".
-
-Method (verbatim original): student = <|pron_start|>{accented-kana}<|pron_end|> carrier;
-label = base LLM's own semantic-token sequence for the plain carrier (teachers jsonl).
-Train LoRA on q/k/v/o + ONLY the 2 pron-token input-embedding rows (grad-masked, mean-init).
-Freeze everything else; flow.pt/hift.pt never touched (zero timbre drift by construction).
-CE on semantic-token positions only. Disclosed uniform teacher-length filter 20<=n_sem<=600.
-Saves ckpt_{step}/ with the peft adapter + pron_emb.pt {"pron_start","pron_end","emb"[2,H]}.
-Round-3 recipe: --steps 20000 --alpha 64 --save-every 4000 (rank 16, lr 1e-4,
-bs 8 x accum 2 defaults).
+Student input = <|pron_start|>{accented kana}<|pron_end|> in the carrier; label = the base LLM's own
+semantic-token sequence for the plain carrier (teacher jsonl). LoRA on q/k/v/o plus ONLY the two
+pron-token input-embedding rows (gradient-masked, mean-initialized); everything else frozen, so
+flow.pt/hift.pt are never touched. CE on semantic-token positions only. Teachers outside
+20 <= n_sem <= 600 are skipped. Saves ckpt_<step>/ with the peft adapter and pron_emb.pt
+{"pron_start", "pron_end", "emb"[2,H]}, and logs "SAVED adapter <dir>" at each checkpoint.
+Round-3 recipe: --steps 20000 --alpha 64 --save-every 4000 (rank 16, lr 1e-4, batch 8 x 2
+accumulation: the defaults).
 """
 import sys, os, json, time, math, argparse, random
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # scripts/, for paths.py

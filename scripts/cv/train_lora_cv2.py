@@ -1,8 +1,9 @@
-"""Data-free self-distill LoRA training for CV2 (UtterTune notation), ported to the MAIN CosyVoice
-repo so it runs on the RTX 5090 (CosyVoice/.venv, torch cu128; the UtterTune venv's torch 2.3.1 is
-sm_120-incompatible). Logic mirrors UtterTune scripts/cv2/train.py: register <PHON_START>/<PHON_END>,
-LoRA on q/k/v/o_proj, unfreeze only the 2 new embed rows (grad-masked), CE loss via Qwen2LM.forward,
-save adapter + embed_patch.safetensors. Trains on our self-distilled manifest (phon_text -> tokens).
+"""Self-distillation LoRA training for CosyVoice 2, run in the CosyVoice checkout's environment.
+
+Follows UtterTune's scripts/cv2/train.py: registers <PHON_START>/<PHON_END>, LoRA on q/k/v/o_proj,
+trains the two new embedding rows besides the LoRA (gradient-masked), CE loss via Qwen2LM.forward;
+saves the adapter and embed_patch.safetensors. Training pairs come from the self-distilled manifest:
+tagged text (column 2) -> the base's speech tokens for the plain carrier (column 3, a .npy path).
 """
 import sys, os, argparse, random
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # scripts/, for paths.py

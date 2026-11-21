@@ -1,8 +1,8 @@
-"""Best-of-N + automatic rejection for CV synthesis — the robust lever against the *stochastic*
-artifacts (music-like textures / runaway tails that appear on some seeds even with a ZH prompt).
-Generate N takes, score each, keep the best. Score = kana-whisper CER (hallucination/music -> ASR
-garbage -> high CER) + a duration-deviation penalty (runaway/truncation). Lower is better. Same
-rejection-sampling philosophy as the teacher QC in the Sarashina recipe.
+"""Kana-whisper scoring of CosyVoice output.
+
+KanaScorer.transcribe is the ASR half of the degeneration guard in blockA_cv2_difficult.py.
+KanaScorer.score rates a take by its kana CER against the expected text's reading plus a penalty for
+a duration far from the expected one (runaway or truncated take); lower is better.
 """
 import os, re, difflib, tempfile
 import numpy as np, soundfile as sf
@@ -44,18 +44,3 @@ class KanaScorer:
         score = cer + dur_penalty * max(0.0, dev - dev_free)  # only penalize dev beyond dev_free
         return round(score, 4), round(cer, 3), hyp, round(dur, 2)
 
-
-def best_of(synth, text, n, scorer, expected_text=None, base_seed=7000, text_frontend=True):
-    """Synthesize `text` n times (varied seed), score each, return the best.
-    Returns dict{wav, sr, best, takes:[{seed,score,cer,hyp,dur}]}."""
-    expected_text = expected_text or text
-    takes, best = [], None
-    for k in range(n):
-        seed = base_seed + 101 * k
-        wav = synth.synth(text, text_frontend=text_frontend, seed=seed)
-        sc, cer, hyp, dur = scorer.score(wav, synth.sr, expected_text)
-        rec = {"seed": seed, "score": sc, "cer": cer, "hyp": hyp, "dur": dur}
-        takes.append(rec)
-        if best is None or sc < best[0]:
-            best = (sc, wav, rec)
-    return {"wav": best[1], "sr": synth.sr, "best": best[2], "takes": takes}
