@@ -30,7 +30,7 @@ import argparse, csv, json, os, random, re, shutil, sys, unicodedata
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # scripts/, for paths.py
 import paths
 
-TANK = paths.DATA
+DATA = paths.DATA
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # Which synthesis generation to package. There is NO safe default: the unsuffixed directories
 # still hold the audio of the adapter trained before the clean-room rebuild, and defaulting to "" silently
@@ -38,7 +38,7 @@ REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 SUF = os.environ.get("CELL_SUFFIX")
 if SUF is None:
     raise SystemExit("set CELL_SUFFIX (e.g. CELL_SUFFIX=_cleanroom_v2); there is no safe default")
-OUTROOT = os.environ.get("KIT_OUT", f"{TANK}/blind_kits{SUF}")
+OUTROOT = os.environ.get("KIT_OUT", f"{DATA}/blind_kits{SUF}")
 ALIGNDIR = f"{OUTROOT}/_align"
 TD = paths.ITEM_SOURCE
 SEED = 0
@@ -149,8 +149,8 @@ def cells():
     Layouts: "spk_subdir" = <dir>/spk<N>/<arm>/NN.wav ; "dir_per_spk" = <dir_fmt % spk>/<arm>/NN.wav
     ; "flat" = <dir>/<arm>/NN.wav (single speaker, arm dirs at the top).
     """
-    IRO = f"{TANK}/cleanroom_rebuild/irodori_eval_v2"
-    CMP = f"{TANK}/cleanroom_rebuild/cv2_compare"
+    IRO = f"{DATA}/cleanroom_rebuild/irodori_eval_v2"
+    CMP = f"{DATA}/cleanroom_rebuild/cv2_compare"
 
     # KIT_PROFILE=refalign builds the kit from the REFERENCE-ALIGNED synthesis: every backbone
     # driven by the same two held-out ITA references, the corrected difficult-50 input, the fixed
@@ -163,7 +163,7 @@ def cells():
         # synthesized in round 2 under the same script, seeds and degeneracy guard as its own tag arm
         # (2026-09-16 20:00: the round-1 sweep42 wavs were made on 09-02, before the shared guard
         # existed, so reusing them would have given the tag arm retries the comparators never had).
-        SW = f"{TANK}/sweep42"; V2 = f"{TANK}/v2/synth"
+        SW = f"{DATA}/sweep42"; V2 = f"{DATA}/v2/synth"
         A = json.load(open(os.environ.get(
             "KIT_ASSIGN", f"{REPO}/preregistration/items/speaker_assignment42.json")))["cells"]
         isp = lambda cell: {int(k): v for k, v in A[cell].items()}
@@ -188,7 +188,7 @@ def cells():
         # Round 3 (PREREGISTRATION_v2.md section 16): the tag arm of every backbone comes from the round-3 adapter
         # (synth_r3); the base arms (kana; no edit on Sarashina) are base-model renditions and are the round-2 clips,
         # same voices, seeds and guard. Cells keep the round-2 names so the registered analysis applies unchanged.
-        V2 = f"{TANK}/v2/synth"; V3 = f"{TANK}/v2/synth_r3"
+        V2 = f"{DATA}/v2/synth"; V3 = f"{DATA}/v2/synth_r3"
         A = json.load(open(os.environ.get(
             "KIT_ASSIGN", f"{REPO}/preregistration/items/speaker_assignment42.json")))["cells"]
         isp = lambda cell: {int(k): v for k, v in A[cell].items()}
@@ -217,7 +217,7 @@ def cells():
         # per item, not per cell, so these cells carry `item_spk` (idx -> [speaker]) and layout
         # "per_item_spk": <dir>/spk<N>/<arm>/NN.wav. Cells A/C and B-ours come from sweep42/, which
         # was synthesized over all 42 refs; only the assigned (item, speaker) pairs are packaged.
-        SW = f"{TANK}/sweep42"; K42 = f"{TANK}/kit42"
+        SW = f"{DATA}/sweep42"; K42 = f"{DATA}/kit42"
         A = json.load(open(os.environ.get(
             "KIT_ASSIGN", f"{REPO}/preregistration/items/speaker_assignment42.json")))["cells"]
         isp = lambda cell: {int(k): v for k, v in A[cell].items()}
@@ -241,7 +241,7 @@ def cells():
         ]
 
     if os.environ.get("KIT_PROFILE") == "refalign":
-        RA = f"{TANK}/refalign"
+        RA = f"{DATA}/refalign"
         SPKN = ["amitaro", "kamijou"]
         CV2_OURS = os.environ.get("KIT_CV2_OURS")
         if not CV2_OURS:
@@ -275,7 +275,7 @@ def cells():
         # place an accent?). spk1 adds the speaker replication; it needs only the noedit/ours
         # pair, so the kana arm stays on spk0 and no rater time is spent duplicating it.
         dict(name="A_sarashina_difficult", layout="spk_subdir",
-             dir=f"{TANK}/blockA_sarashina_difficult_4spk{SUF}",
+             dir=f"{DATA}/blockA_sarashina_difficult_4spk{SUF}",
              arms=["noedit", "kana", "ours"],
              arms_by_spk={0: ["noedit", "kana", "ours"], 1: ["noedit", "ours"]},
              set="difficult", idx=list(range(50)), spks=[0, 1]),
@@ -288,7 +288,7 @@ def cells():
              dir_fmt=IRO + "/difficult_spk%d",
              arms=["noedit", "ours"], set="difficult", idx=list(range(50)), spks=[0, 1]),
         dict(name="D_sarashina_katakana", layout="spk_subdir",
-             dir=f"{TANK}/blockB2_sarashina_katakana_4spk{SUF}",
+             dir=f"{DATA}/blockB2_sarashina_katakana_4spk{SUF}",
              arms=["noedit", "ours"], set="katakana", idx=list(range(50)), spks=[0, 1]),
         # E_irodori_katakana (Irodori leak check) was dropped 2026-09-01: it repeats D's
         # question on a second backbone and detects nothing D does not, at 210 judgements per

@@ -61,8 +61,9 @@ Sarashina stimuli were actually made with) was trained on an earlier, unreleased
 on speech tokens of real JSUT and JVS recordings (correction after section 14). The note on the duplicate-account
 exclusion of 2026-09-21 was corrected the same day (last entries of section 16).
 
-**What fixes the timing.** The commit history of this repository. Rater identifiers in this record are pseudonyms
-in the public copy.
+**Where this record was kept.** The registration and its record were kept in the author's private git repository
+from 2026-09-05 and are published with this release, with their commit history. Commit dates are the author's own;
+there is no third-party timestamp. Rater identifiers are pseudonyms.
 
 
 **Status:** fixed 2026-09-16 (JST), before any round-2 teacher audio was inspected, before any
