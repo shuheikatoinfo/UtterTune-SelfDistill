@@ -42,7 +42,7 @@ def main() -> None:
     p.add_argument("--cfg-scale-speaker", type=float, default=5.0)
     p.add_argument("--seed", type=int, default=12345)
     p.add_argument("--min-sec", type=float, default=0.5)
-    p.add_argument("--max-takes", type=int, default=3)
+    p.add_argument("--max-takes", type=int, default=5)
     p.add_argument("--limit", type=int, default=0)
     p.add_argument("--model-device", default="cuda")
     p.add_argument("--model-precision", default="bf16")
