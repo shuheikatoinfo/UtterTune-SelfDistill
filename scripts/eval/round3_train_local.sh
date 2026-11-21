@@ -35,7 +35,7 @@ while [ $(echo $done_bb | wc -w) -lt 3 ]; do
     t5gemma)
       T5G=$T5GEMMA_DIR; PY=$T5G/.venv_t5gemma/bin/python
       ( cd $T5G && $PY $R/scripts/t5gemma/materialize_dataset.py --teachers $V/r3/t5gemma/teachers_filtered.jsonl --out $V/r3/t5gemma/dataset ) > $V/logs/r3_t5gemma_mat.log 2>&1
-      ( cd $T5G && DATASET_DIR=$V/r3/t5gemma/dataset EXP_ROOT=$V/r3/t5gemma/readlora NUM_STEPS=400 SAVE_EVERY=100 bash $R/scripts/t5gemma/blockA_readlora_train.sh ) > $V/logs/r3_t5gemma_train.log 2>&1
+      ( cd $T5G && T5G_DATA_DIR=$V/r3/t5gemma/dataset EXP_ROOT=$V/r3/t5gemma/readlora NUM_STEPS=400 SAVE_EVERY=100 bash $R/scripts/t5gemma/blockA_readlora_train.sh ) > $V/logs/r3_t5gemma_train.log 2>&1
       BUNDLE=$(ls -1 $V/r3/t5gemma/readlora/bundle_step*.pth 2>/dev/null | sort -V | tail -1); [ -n "$BUNDLE" ] || { say "t5gemma TRAIN FAILED"; done_bb="$done_bb $bb"; continue; }
       ( cd $T5G && $PY $R/scripts/t5gemma/export_readlora_hf.py --ckpt $BUNDLE --out $V/r3/t5gemma/merged ) > $V/logs/r3_t5gemma_export.log 2>&1
       [ -f $V/r3/t5gemma/merged/config.json ] || { say "t5gemma EXPORT FAILED"; done_bb="$done_bb $bb"; continue; }
