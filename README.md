@@ -83,7 +83,9 @@ T5G_DATA_DIR=out/t5g_data EXP_ROOT=out/t5g NUM_STEPS=1600 SAVE_EVERY=200 bash sc
 
 The routed evaluation inputs are shipped as files under `data/derived/`. The drivers under `scripts/eval/`
 (`round3_*`, `sarahyp_P4_*`, `obj319_inputfix_resynth.sh`) are the ones that produced the paper's numbers, including the
-cloud-GPU runs.
+cloud-GPU runs. The measurement scripts run in a separate environment built from `scripts/eval/requirements-metrics.txt`
+(at `scripts/eval/.venv_metrics`, or pointed to by `METRICS_PY`). The CosyVoice 2 base model is read from
+`$COSYVOICE_DIR/pretrained_models/CosyVoice2-0.5B`, or from `CV2_DIR`.
 
 ### Backbone code
 

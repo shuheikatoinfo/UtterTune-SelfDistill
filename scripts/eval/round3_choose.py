@@ -72,7 +72,7 @@ if len(ties) > 1:
         code = ("import sys, json, statistics as st, torch; torch.backends.cudnn.enabled = False; sys.path.insert(0, '%s/scripts/eval'); from eval_metrics import utmos; "
                 "print(json.dumps(st.mean(utmos(json.load(open(sys.argv[1]))))))" % R)
         lst = f"{V}/r3/{bb}/_utmos_files_{l}.json"; json.dump(files, open(lst, "w"))
-        r = subprocess.run([f"{R}/scripts/eval/.venv_metrics/bin/python", "-c", code, lst], capture_output=True, text=True, env=dict(os.environ, DISABLE_CUDNN="1"))
+        r = subprocess.run([os.environ.get("METRICS_PY") or f"{R}/scripts/eval/.venv_metrics/bin/python", "-c", code, lst], capture_output=True, text=True, env=dict(os.environ, DISABLE_CUDNN="1"))
         um[l] = float(r.stdout.strip().split("\n")[-1]) if r.returncode == 0 and r.stdout.strip() else -1
         if um[l] == -1: print("UTMOSv2 failed for", l, r.stderr[-300:])
     choice = max(ties, key=lambda l: um[l]); note = f"tie within 0.005 among {ties}, UTMOSv2 {dict((k, round(v, 3)) for k, v in um.items())}"
