@@ -89,7 +89,6 @@ if __name__ == "__main__":
 # the arms are genuinely equal. Delta=0.15 is at the resolution limit of n=50: the 95% CI
 # half-width on the risk difference is ~0.12 at 20% discordance, so the margin and the noise
 # are the same size. This is a property of the design, known before data, not a result.
-# See docs/internal/CP8_H4_power_decision.md for the three options and their costs.
 
 # ---------------------------------------------------------------------------
 # CORRECTION 2026-09-01 to power_h1 above.

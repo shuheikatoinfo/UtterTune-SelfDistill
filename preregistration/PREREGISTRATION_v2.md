@@ -696,7 +696,7 @@ set: 56% of teachers above 5.5 speech tokens per character, 27% above 8, 7% abov
 them lengthens every output until, on a few reference voices, generation no longer stops.
 
 **Correction to section 11.** Section 11 and later notes called `lora_faithful2_tf457` an adapter trained on the
-earlier, unreleased self-distilled set. `docs/internal/HANDOFF.md` and the file itself show otherwise: its teacher file
+earlier, unreleased self-distilled set. The author's working notes and the file itself show otherwise: its teacher file
 `faithful_teachers.jsonl` holds 14,970 rows keyed by JSUT and JVS utterance ids (9,997 JVS, 4,973 JSUT; first written
 here as JSUT only), that is, **speech tokens of real recordings**. The one Sarashina adapter that never ran away was therefore trained on recorded speech, and L1 shows
 that the earlier, unreleased *self-distilled* set runs away under today's code as the clean-room sets do (9 of 100). This
