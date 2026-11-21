@@ -78,8 +78,9 @@ DATASET_DIR=out/t5g_data EXP_ROOT=out/t5g NUM_STEPS=600 bash scripts/t5gemma/blo
 # Irodori-TTS-500M-v3: see irodori/README.md
 ```
 
-The scripts under `scripts/eval/` named `round3_*` are the drivers that produced the paper's numbers, including the
-cloud-GPU runs; the registration refers to them by these paths.
+The routed evaluation inputs are shipped as files under `data/derived/`. The drivers under `scripts/eval/`
+(`round3_*`, `sarahyp_P4_*`, `obj319_inputfix_resynth.sh`) are the ones that produced the paper's numbers, including the
+cloud-GPU runs.
 
 ## Licence
 
