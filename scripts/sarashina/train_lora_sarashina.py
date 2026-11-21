@@ -17,13 +17,12 @@ Train LoRA on q/k/v/o + ONLY the 2 pron-token input-embedding rows (grad-masked,
 Freeze everything else; flow.pt/hift.pt never touched (zero timbre drift by construction).
 CE on semantic-token positions only. Disclosed uniform teacher-length filter 20<=n_sem<=600.
 Saves ckpt_{step}/ with the peft adapter + pron_emb.pt {"pron_start","pron_end","emb"[2,H]}.
-Recovered faithful2 recipe: --steps 20000 --alpha 64 --save-every 4000 (rank 16, lr 1e-4,
+Round-3 recipe: --steps 20000 --alpha 64 --save-every 4000 (rank 16, lr 1e-4,
 bs 8 x accum 2 defaults).
 """
 import sys, os, json, time, math, argparse, random
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # scripts/, for paths.py
 import paths
-HANDOFF = f"{paths.DATA}/_handoff"
 sys.path.insert(0, paths.SARASHINA_DIR)
 import torch
 from torch.nn.utils.rnn import pad_sequence
@@ -32,9 +31,9 @@ from peft import LoraConfig, get_peft_model
 from sarashina_tts.additional_tokens import SPEECH_START_TOKEN, PRON_START_TOKEN, PRON_END_TOKEN, PAD_TOKEN
 
 ap = argparse.ArgumentParser()
-ap.add_argument("--teachers", default=f"{paths.DATA}/cleanroom_rebuild/teachers_cleanroom_apostrophe.jsonl")
-ap.add_argument("--out", default=f"{paths.DATA}/cleanroom_rebuild/lora_cleanroom")
-ap.add_argument("--model-dir", default=HANDOFF + "/sara-tts-weights")
+ap.add_argument("--teachers", required=True, help="teacher jsonl (e.g. teachers/sarashina/ of the released dataset)")
+ap.add_argument("--out", required=True)
+ap.add_argument("--model-dir", required=True, help="local copy of sbintuitions/sarashina2.2-tts")
 ap.add_argument("--steps", type=int, default=600)
 ap.add_argument("--bs", type=int, default=8)
 ap.add_argument("--accum", type=int, default=2)
