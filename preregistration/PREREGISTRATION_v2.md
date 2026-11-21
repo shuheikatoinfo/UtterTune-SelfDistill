@@ -1219,3 +1219,15 @@ items differ, as they should. Re-measured in the same way (`results/round3/readi
 UtterTune 0.856 (unchanged), tag - UtterTune -0.072 [-0.120, -0.024], p = 0.003 (discordant 16 vs 39), against
 -0.072 [-0.122, -0.022], p = 0.004 (18 vs 41) before. The tag arm's verdicts are identical between the two ASR passes.
 The corrected arm replaces the earlier one as the arm of record; the conclusion is unchanged.
+
+**Per-item retry record assembled for release, 2026-11-21 (after all results).** `results/round3/retry_record_obj319.jsonl`
+holds one row per item for the 13 arms of the 319-item table (4 backbones × {no edit, kana, tag}, plus the released
+UtterTune on CosyVoice 2), 13 × 319 rows. Each row's `source` field states where it comes from. Sarashina's three arms,
+CosyVoice 2's tag arm, and Irodori's kana and tag arms: the record the synthesis run wrote; Irodori's no-edit record is
+the first half of the 638-row record of the guard-fixed run. CosyVoice 2 no edit and kana: no record survived, so both
+arms were re-synthesized on 2026-11-21 with the same inputs, seeds and guard; all 638 clips are byte-identical to the
+table's, and their record is used. T5Gemma's three arms: reconstructed from the synthesis logs, which print only the
+items that needed more than one take (four pod logs for no edit and kana, the local log for tag); every item not
+listed took one take. UtterTune: the re-synthesis with the corrected inputs of the finding and correction above.
+Tag arms: Sarashina 4 items redrawn, CosyVoice 2 and Irodori none, T5Gemma 32, of which 9 used all six takes and 7
+remained inaudible (the last take silent or too quiet).
