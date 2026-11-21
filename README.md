@@ -1,4 +1,4 @@
-# Self-distilled pronunciation and accent control
+# UtterTune-SelfDistill
 
 Code, pre-registration and results for
 
@@ -6,19 +6,19 @@ Code, pre-registration and results for
 
 A frozen TTS backbone reads a sentence containing a common word it already says correctly; its own output becomes
 the teacher for the same sentence with that word written as a tagged, accented reading
-(`<PHON_START>カラ'イ<PHON_END>`). Training on these pairs adds reading and pitch-accent control to the backbone
-without any recorded speech. The paper applies one recipe to four backbones: Sarashina2.2-TTS, CosyVoice 2,
-Irodori-TTS-500M-v3 and T5Gemma-TTS.
+(`<PHON_START>カラ'イ<PHON_END>`, the tag of [UtterTune](https://github.com/shuheikatoinfo/UtterTune)). Training on
+these pairs adds UtterTune's reading and pitch-accent control to the backbone without any recorded speech. The paper
+applies one recipe to four backbones: Sarashina2.2-TTS, CosyVoice 2, Irodori-TTS-500M-v3 and T5Gemma-TTS.
 
 ## Released artifacts
 
 | What | Where |
 |---|---|
-| Sarashina2.2-TTS adapter | [shuheikatoinfo/Sarashina2.2-TTS-self-distilled-pron-accent](https://huggingface.co/shuheikatoinfo/Sarashina2.2-TTS-self-distilled-pron-accent) |
-| CosyVoice 2 adapter | [shuheikatoinfo/CosyVoice2-0.5B-self-distilled-pron-accent](https://huggingface.co/shuheikatoinfo/CosyVoice2-0.5B-self-distilled-pron-accent) |
-| Irodori-TTS-500M-v3 model | [shuheikatoinfo/Irodori-TTS-500M-v3-self-distilled-pron-accent](https://huggingface.co/shuheikatoinfo/Irodori-TTS-500M-v3-self-distilled-pron-accent) |
-| T5Gemma-TTS adapter | [shuheikatoinfo/T5Gemma-TTS-2b-2b-self-distilled-pron-accent](https://huggingface.co/shuheikatoinfo/T5Gemma-TTS-2b-2b-self-distilled-pron-accent) |
-| Text set, teacher sets, speaker prompts | [shuheikatoinfo/self-distilled-pron-accent-data](https://huggingface.co/datasets/shuheikatoinfo/self-distilled-pron-accent-data) |
+| Sarashina2.2-TTS adapter | [shuheikatoinfo/Sarashina2.2-TTS-UtterTune-ja-SelfDistill](https://huggingface.co/shuheikatoinfo/Sarashina2.2-TTS-UtterTune-ja-SelfDistill) |
+| CosyVoice 2 adapter | [shuheikatoinfo/CosyVoice2-0.5B-UtterTune-ja-SelfDistill](https://huggingface.co/shuheikatoinfo/CosyVoice2-0.5B-UtterTune-ja-SelfDistill) |
+| Irodori-TTS-500M-v3 model | [shuheikatoinfo/Irodori-TTS-500M-v3-UtterTune-ja-SelfDistill](https://huggingface.co/shuheikatoinfo/Irodori-TTS-500M-v3-UtterTune-ja-SelfDistill) |
+| T5Gemma-TTS adapter | [shuheikatoinfo/T5Gemma-TTS-2b-2b-UtterTune-ja-SelfDistill](https://huggingface.co/shuheikatoinfo/T5Gemma-TTS-2b-2b-UtterTune-ja-SelfDistill) |
+| Text set, teacher sets, speaker prompts | [shuheikatoinfo/UtterTune-SelfDistill-data](https://huggingface.co/datasets/shuheikatoinfo/UtterTune-SelfDistill-data) |
 | Pre-registration and its dated record | [`preregistration/`](preregistration/) (this repository's history) |
 | Evaluation inputs, raters' responses, results | [`results/round3/`](results/round3/), [`data/`](data/), [`preregistration/items/`](preregistration/items/) |
 

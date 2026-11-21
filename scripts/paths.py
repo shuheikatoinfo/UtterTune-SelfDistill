@@ -12,7 +12,7 @@ other path (the same rule as ${VAR:?} in scripts/paths.sh).
                    sentence files (test_<set>_{vanilla,lora,yomi,...}.txt).
     COSYVOICE_DIR  CosyVoice checkout, with the CosyVoice 2 model under pretrained_models/.
     T5GEMMA_DIR    T5Gemma-TTS checkout.
-    DATASET_DIR    root of the released teacher dataset (self-distilled-pron-accent-data); paths
+    DATASET_DIR    root of the released teacher dataset (UtterTune-SelfDistill-data); paths
                    inside its files are relative to this root.
     SARASHINA_DIR  Sarashina2.2-TTS code (the directory that holds the sarashina_tts package).
 
