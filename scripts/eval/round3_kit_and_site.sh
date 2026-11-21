@@ -5,7 +5,7 @@
 # block -> static site for project jp-accent-listening-r3. Deployment is a separate, checked step (round3_panel_deploy.sh).
 set -euo pipefail
 . "$(dirname "$0")/../paths.sh"; require_env DATA
-REPO=$REPO_ROOT; TANK=$DATA; V=$TANK/v2
+REPO=$REPO_ROOT; V=$DATA/v2
 KIT=${KIT_ROOT:-$V/blind_kits_r3}; NORM=${KIT_ROOT:-$V/blind_kits_r3}_norm; SITE=${SITE_ROOT:-$V/cf_panel_r3}; cd $REPO
 SKIP=${KIT_SKIP:-}; T5=""; echo "$SKIP" | grep -q t5gemma || T5="$V/synth_r3/t5gemma/difficult/blockA_t5gemma_difficult/ours $V/synth/t5gemma/difficult_base/blockA_t5gemma_difficult/kana"
 CV=""; echo "$SKIP" | grep -q cv2 || CV="$V/synth_r3/cv2/difficult $V/synth/cv2/difficult"
