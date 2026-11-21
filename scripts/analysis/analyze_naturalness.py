@@ -82,7 +82,9 @@ def main():
     ap.add_argument("--until", help="ISO timestamp; keep judgements made before it (interim run)")
     ap.add_argument("--exclude-speeders", action="store_true",
                     help="sensitivity: drop sittings whose median response interval is below the shortest pair's duration")
-    ap.add_argument("--clips", default=f"{paths.DATA}/naturalness_kit_norm")
+    ap.add_argument("--clips", default=None, help="directory of the kit's clips (default: $DATA/naturalness_kit_norm)")
+    ap.add_argument("--clip-durations", default=None,
+                    help="JSON {clip file name: seconds}; used instead of reading the clips (the released results ship one)")
     ap.add_argument("--exclude-items", help="JSON whose 'trained_word_items' keys are pair ids to drop whole: pairs "
                     "whose edited word was in that backbone's teacher inventory (found 2026-09-15)")
     ap.add_argument("--out", default="data/analysis/naturalness_report.json")
@@ -93,11 +95,17 @@ def main():
     resp = load(a.responses, a.until)
 
     # response speed per sitting, from timestamps alone
+    known = json.load(open(a.clip_durations)) if a.clip_durations else None
+    clips = None if known is not None else (a.clips or f"{paths.DATA}/naturalness_kit_norm")
     dur = {}
     for pid in items:
         t = 0.0
         for side in "AB":
-            f = os.path.join(a.clips, f"{pid}{side}.wav")
+            name = f"{pid}{side}.wav"
+            if known is not None:
+                t += known.get(name, 0.0)
+                continue
+            f = os.path.join(clips, name)
             if os.path.exists(f):
                 with wave.open(f) as w:
                     t += w.getnframes() / w.getframerate()

@@ -311,7 +311,7 @@ def consistency_rate(resp, key):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--responses", required=True)
-    ap.add_argument("--kits", default=f"{paths.DATA}/blind_kits_42_norm")
+    ap.add_argument("--kits", default=None, help="directory of the blind kits (default: $DATA/blind_kits_42_norm)")
     ap.add_argument("--catch-key", default="preregistration/items/catch_KEY_DO_NOT_SHIP.json",
                     help="known-answer catch trials: blind_id -> gold (never shipped to raters)")
     ap.add_argument("--out", default="data/analysis/listening_report.json")
@@ -322,7 +322,7 @@ def main():
                     help="PREREGISTRATION_v2.md item 7: cells A2..D2, family of five (tag > kana on each backbone, tag > no edit on Sarashina)")
     a = ap.parse_args()
 
-    key = load_keys(a.kits)
+    key = load_keys(a.kits or f"{paths.DATA}/blind_kits_42_norm")
     resp = load_responses(a.responses)
     catch_key = {r["blind_id"]: r for r in json.load(open(a.catch_key, encoding="utf-8"))} \
         if os.path.exists(a.catch_key) else {}
