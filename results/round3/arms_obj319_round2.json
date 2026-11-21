@@ -2,17 +2,22 @@
  "sara42g": {
   "noedit": "$DATA/v2/synth/sarashina/obj319",
   "kana": "$DATA/v2/synth/sarashina/obj319",
-  "ours": "$DATA/v2/synth/sarashina_P4/obj319"
+  "ours": "$DATA/v2/synth/sarashina/obj319"
  },
  "cv242g": {
   "noedit": "$DATA/v2/synth/cv2/obj319",
   "kana": "$DATA/v2/synth/cv2/obj319",
-  "ours": "$DATA/v2/synth_r3/cv2/obj319",
+  "ours": "$DATA/v2/synth/cv2/obj319",
   "uttertune_released": "$DATA/obj42g/cv2/uttertune_released"
  },
  "iro42g": {
   "noedit": "$DATA/v2/synth/irodori/obj319",
   "kana": "$DATA/v2/synth/irodori/obj319_kana",
-  "ours": "$DATA/v2/synth_r3/irodori/obj319"
+  "ours": "$DATA/v2/synth/irodori/obj319"
+ },
+ "t5g42g": {
+  "noedit": "$DATA/v2/synth/t5gemma/obj319_base/blockA_t5gemma_difficult",
+  "kana": "$DATA/v2/synth/t5gemma/obj319_base/blockA_t5gemma_difficult",
+  "ours": "$DATA/v2/synth/t5gemma/obj319/blockA_t5gemma_difficult"
  }
 }

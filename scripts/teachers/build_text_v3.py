@@ -1,4 +1,4 @@
-"""Write the ONE text set every backbone's v2 teacher generator reads (2026-09-16).
+"""Write the ONE text set every backbone's teacher generator reads.
 
 Rows: {word, reading (accented, apostrophe notation), plain (kanji carrier), phon (carrier with the
 target replaced by <PHON_START>reading<PHON_END>)}. The eval-collision filter is the union of the

@@ -111,10 +111,11 @@ if __name__ == "__main__":
     # per-set measurement MUST come through this script, so every number in the paper is produced
     # by one implementation of canon()/targets().
     ap.add_argument("--arms-json", default=None,
-                    help="JSON file replacing ARMS: {backbone: {arm: wav_dir}}")
+                    help="JSON file replacing ARMS: {backbone: {arm: wav_dir}}; $DATA in a path is expanded")
     args = ap.parse_args()
     if args.arms_json:
-        ARMS = json.load(open(args.arms_json, encoding="utf-8"))
+        ARMS = {bk: {arm: os.path.expandvars(d) for arm, d in arms.items()}
+                for bk, arms in json.load(open(args.arms_json, encoding="utf-8")).items()}
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
 
     torch.backends.cudnn.enabled = False          # this box's cuDNN fails on some conv shapes
@@ -154,8 +155,7 @@ if __name__ == "__main__":
                 raw = str(asr(to_asr_input(a, sr))["text"])
                 # HIT = canon match OR exact-mora match. canon() alone collapses a word-INITIAL
                 # オ/ウ/イ after an o/u/e-dan mora across the word boundary ("コノネコオス" ->
-                # "コノネコース"), scoring an exact rendition of "オス" as a miss (found 2026-09-03,
-                # audit #6). The exact-mora alternative cannot create a false positive: it is the
+                # "コノネコース"), scoring an exact rendition of "オス" as a miss. The exact-mora alternative cannot create a false positive: it is the
                 # stricter of the two tests. The raw hypothesis is stored so any future rescoring
                 # is a file operation, not another ASR pass.
                 ok = (tgt in canon(raw)) or (TGT_N[i] in norm(raw))

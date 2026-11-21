@@ -49,9 +49,8 @@ import soundfile as sf
 import pyopenjtalk
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'eval'))
 from degenerate import synth_valid, safe_asr
-# 2026-09-17: the guard ASR must see 16 kHz audio. transformers 4.57 does not resample a raw-array payload,
-# so 44.1 kHz T5Gemma audio reached kana-whisper unchanged and the guard's transcript checks fired on
-# distorted text (PREREGISTRATION_v2 section 8). The metric of record was never on this path.
+# The guard ASR must see 16 kHz audio: transformers 4.57 does not resample a raw-array payload, so
+# 44.1 kHz T5Gemma audio would reach kana-whisper unchanged (PREREGISTRATION_v2 section 8).
 from asr_audio import to_asr_input
 TAKES = []          # per-item guard record (reported)
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, pipeline
@@ -63,7 +62,7 @@ from inference_tts_utils import inference_one_sample
 # TEST_DIR / TEST_SET make the item set swappable without touching the synthesis path:
 # the same code, the same recipe, only a different input file. Needed for the 105-item
 # SELECTION split and the 319-item TEST split (preregistration/items/objective_*.jsonl).
-# Defaults reproduce the original difficult-50 run exactly. [2026-09-03]
+# Default: difficult-50.
 TD = (os.environ.get("TEST_DIR") or paths.ITEM_SOURCE)
 TEST_SET = os.environ.get("TEST_SET", "difficult_50")
 
@@ -83,7 +82,7 @@ SETS = {
     # difficult:011 (斟酌) carried the pre-correction heiban reading; the author's NHK
     # verification made it atamadaka, so the synthesis input is taken from the corrected
     # copy -- the SAME file Sarashina and Irodori use. Readings are identical between the
-    # two files, so the reading metric is unaffected; the accent arms are not. [2026-09-01]
+    # two files, so the reading metric is unaffected; the accent arms are not.
         "ours":   (f"{paths.REPO}/data/derived/test_difficult_50_lora_fixed.txt" if TEST_SET == "difficult_50"
                    else f"test_{TEST_SET}_lora.txt", False),
         "ref":    (f"test_{TEST_SET}_yomi.txt", False),   # reading reference for kana-CER
@@ -108,7 +107,7 @@ CAN = str.maketrans({"ヂ": "ジ", "ヅ": "ズ", "ヴ": "ブ"})
 _PHON_RE = re.compile(r"<PHON_START>|<PHON_END>|</?b>")
 
 # T5Gemma control tokens. The literal "<PHON_START>" is NOT a token here: Gemma splits it into
-# ['<','PH','ON','_','START','>'] and the decoder speaks those subwords aloud (measured 2026-09-01:
+# ['<','PH','ON','_','START','>'] and the decoder speaks those subwords aloud (measured: reading hit
 # 0.74 -> 0.46, target word replaced by "fuon-endoo"). Gemma's reserved <unusedN> rows ARE single
 # tokens (ids 7/8) that never occur in text, so the training data and this eval both use them.
 # Must match TAG_S/TAG_E in gen_teachers_t5gemma.py.
@@ -308,8 +307,7 @@ def main(
                 if ginfo["takes"] > 1:
                     print(f"    guard {arm}/{i:02d}: {ginfo['takes']} takes {ginfo['rejected']}", flush=True)
                 _guard_hyp = ginfo.get("hyp")
-            # the guard already transcribed this exact waveform with this exact model; a second
-            # identical ASR pass per item was pure waste (introduced with the guard, 2026-09-04)
+            # the guard already transcribed this exact waveform with this exact model; reuse it
             hyp = kana_only(str(_guard_hyp if _guard_hyp is not None
                                  else safe_asr(lambda w, r: kw(to_asr_input(w, r))["text"], a, SR)))
             ref = kana_only(pyopenjtalk.g2p(ref_texts[i], kana=True))

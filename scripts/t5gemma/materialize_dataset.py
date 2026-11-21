@@ -1,16 +1,17 @@
-"""STEP B - materialize teacher jsonl into the layout data/combined_dataset.py expects.
+"""Write a T5Gemma teacher set (jsonl) in the layout T5Gemma-TTS's data/combined_dataset.py reads.
 
-  DATASET_DIR/manifest_final/{train.txt,valid.txt}   # lines: <stem>\t<n_frames>
-  DATASET_DIR/text/<stem>.txt                          # encoder input = SURFACE kanji carrier
-  DATASET_DIR/xcodec2_1cb/<stem>.txt                   # one line: space-separated acoustic ints (1 codebook)
+  OUT/manifest_final/{train.txt,valid.txt}   # lines: <stem>\t<n_frames>
+  OUT/text/<stem>.txt                          # encoder input: the tagged carrier (`surface_text`)
+  OUT/xcodec2_1cb/<stem>.txt                   # one line: the base's acoustic codes for the plain carrier (1 codebook)
 
 n_frames >= encodec_sr*audio_min_length (>=10 at 50Hz*0.2s) passes the filter. Holds out `valid_n` rows.
+OUT is T5G_DATA_DIR of blockA_readlora_train.sh.
 """
 import os, json, argparse, random
 
 ap = argparse.ArgumentParser()
-ap.add_argument("--teachers", required=True, help="teachers.jsonl from gen_teachers_t5gemma.py")
-ap.add_argument("--out", required=True, help="DATASET_DIR")
+ap.add_argument("--teachers", required=True, help="teacher jsonl (teachers/t5gemma/ of the released dataset)")
+ap.add_argument("--out", required=True, help="output directory (T5G_DATA_DIR of blockA_readlora_train.sh)")
 ap.add_argument("--valid_n", type=int, default=16)
 ap.add_argument("--seed", type=int, default=0)
 args = ap.parse_args()

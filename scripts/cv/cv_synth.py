@@ -3,7 +3,7 @@
 One code path drives both bases via the *main* CosyVoice repo's `AutoModel` (which selects
 CosyVoice2 vs CosyVoice3 by which cosyvoice{2,3}.yaml sits in model_dir). This is deliberately
 the plain-text path: base READING/ACCENT measurement needs NO PHON tokens and NO LoRA — those
-belong to the later self-distill notation arm (docs/cv-extension.md §5).
+belong to the tag arm.
 
 Env overrides:
   CV_ROOT   main CosyVoice checkout (default $COSYVOICE_DIR)
@@ -14,7 +14,7 @@ Env overrides:
 Voice note: reading/accent are judged on OUTPUT CONTENT (kana-CER via whisper, F0 peak), so the
 voice only needs to be fixed and intelligible. Default = CosyVoice's shipped zero-shot prompt.
 Pass a Japanese prompt wav (e.g. the Sarashina narration prompt) via CV_PROMPT_WAV to share one
-voice across bases (CAM++ speaker space is identical across Sarashina/CV2/CV3 — see §1).
+voice across bases (CAM++ speaker space is identical across Sarashina/CV2/CV3).
 """
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # scripts/, for paths.py
@@ -60,14 +60,12 @@ def _vad_prompt(src=FICTIONAL_WAV):
 
 
 def make_measurement_synth(backend, **overrides):
-    """The settled measurement configuration (docs/cv-extension.md §6) — aligned with the
-    UtterTune paper's protocol (user's call): SHIPPED default inference config (no custom levers;
-    they were verified CER-neutral anyway, so nothing is lost), fictional speaker as a VAD'd
+    """The measurement configuration, aligned with the UtterTune paper's protocol: SHIPPED default
+    inference config (no custom levers; they were verified CER-neutral), fictional speaker as a VAD'd
     zero_shot prompt anchor (reference-audio-free), bidirectional VAD on outputs. Runaway tails are
-    handled post-hoc by the VAD (8.53s->3.03s verified); mid-utterance garbage is handled at
-    aggregation (CER>0.5 / UTMOSv2<2.0 drops, rates disclosed) exactly as in the paper. This makes
-    our CV2 numbers directly comparable to the published UtterTune results. No take selection —
-    best-of-N lives in cv_quality.py, teacher generation only.
+    handled post-hoc by the VAD; mid-utterance garbage is handled at aggregation (CER>0.5 /
+    UTMOSv2<2.0 drops, rates disclosed) exactly as in the paper. This makes our CV2 numbers directly
+    comparable to the published UtterTune results. No take selection.
 
     Reference alignment: CV_PROMPT_WAV (+ CV_PROMPT_TEXT) overrides the fictional prompt so one
     reference voice can be shared across every backbone. The prompt is VAD'd with the SAME
@@ -111,7 +109,7 @@ def _trim_edges(wav, sr, trigger_level=7.0):
 class CVSynth:
     def _apply_quality_levers(self, max_token_text_ratio, sampling):
         """Inject the DETERMINISTIC artifact-suppression levers the top-level API does not thread
-        through (docs/cv-extension.md §6). Both optional; None = shipped default. These are a fixed
+        through. Both optional; None = shipped default. These are a fixed
         inference config applied identically to every arm (base & adapter), so — unlike best-of-N
         take rejection — they do NOT cherry-pick and are legitimate for reported measurements.
           max_token_text_ratio (default 20): caps LLM generation length = (text-prompt)*ratio.

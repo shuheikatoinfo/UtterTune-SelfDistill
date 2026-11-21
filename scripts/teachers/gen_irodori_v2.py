@@ -1,10 +1,10 @@
-"""v2 teacher generation for Irodori-TTS-500M-v3 (uniform recipe, 2026-09-16).
+"""Teacher generation for Irodori-TTS-500M-v3 (the registered rule, as on the other backbones).
 
 Same rule as the other backbones: the frozen base reads the PLAIN kanji carrier; a take is kept if it passes the degeneration guard (audio >= MIN_SEC) AND the
 ASR of record hears the target reading; otherwise the seed is bumped, up to MAX_TAKES; a carrier
 with no passing take is dropped and logged. The kept take's own codec latent is the teacher.
 
-Speaker: Irodori's unconditional (no_ref) output is unintelligible (probed 2026-09-16: guidance 0/1/5,
+Speaker: Irodori's unconditional (no_ref) output is unintelligible (guidance 0/1/5,
 20/32 steps, all noise), so like CosyVoice 2 it takes a reference; the rule shared by the two
 speaker-conditioned backbones is the backbone's whole self-sampled voice bank cycled over carriers, as in
 round 1 (CosyVoice 2: 20 fictional voices; Irodori: the first 2,000 anchor-bank references in name
@@ -42,7 +42,7 @@ def main() -> None:
     p.add_argument("--cfg-scale-speaker", type=float, default=5.0)
     p.add_argument("--seed", type=int, default=12345)
     p.add_argument("--min-sec", type=float, default=0.5)
-    p.add_argument("--max-takes", type=int, default=3)
+    p.add_argument("--max-takes", type=int, default=5)
     p.add_argument("--limit", type=int, default=0)
     p.add_argument("--model-device", default="cuda")
     p.add_argument("--model-precision", default="bf16")

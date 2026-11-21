@@ -78,7 +78,7 @@ as given: an item set whose tags still need routing must be routed first.
 
 ## Relation to the paper's model
 
-This code is written on the public Irodori-TTS. Retrained with it in the round-3 setting, the model reaches the
-paper's checkpoint on the 144 validation items (kana CER 0.061 against 0.057, UTMOSv2 2.77 against 2.80, both read
+This code is written on the public Irodori-TTS. Retrained with it in the round-3 setting, the model comes close to
+the paper's checkpoint on the 144 validation items (kana CER 0.061 against 0.057, UTMOSv2 2.77 against 2.80, both read
 with this code).
 

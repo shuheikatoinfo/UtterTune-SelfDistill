@@ -1,11 +1,11 @@
 """Registered analysis of the same-sentence naturalness preference (PREREGISTRATION.md, naturalness
-amendments of 2026-09-09/11/14).
+amendments).
 
 Input is the KV export written by scripts/rater_ui/export_kv.py and the item key that pins which
 side of each pair is the edited rendition. The statistic is the share preferring the unedited
 rendition minus the share preferring the edited one, ties split evenly, per backbone; the interval
-is a bootstrap over pairs and raters (the same resampling as the interim run of 2026-09-11, kept so
-the two are comparable); the registered non-inferiority margin is 0.15 on the upper limit.
+is a bootstrap over pairs and raters (the same resampling as the registered interim look, so the two
+are comparable); the registered non-inferiority margin is 0.15 on the upper limit.
 
 Rules that decide what enters, all fixed before the data they act on were seen:
   * every judgement is kept, complete sitting or not (no gate exists for this task);
@@ -86,7 +86,7 @@ def main():
     ap.add_argument("--clip-durations", default=None,
                     help="JSON {clip file name: seconds}; used instead of reading the clips (the released results ship one)")
     ap.add_argument("--exclude-items", help="JSON whose 'trained_word_items' keys are pair ids to drop whole: pairs "
-                    "whose edited word was in that backbone's teacher inventory (found 2026-09-15)")
+                    "whose edited word was in that backbone's teacher inventory")
     ap.add_argument("--out", default="data/analysis/naturalness_report.json")
     a = ap.parse_args()
 

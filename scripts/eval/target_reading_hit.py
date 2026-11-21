@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Target-reading HIT rate — a carrier-robust reading diagnostic (CPU, uses STORED hyps).
 
-Motivation (2026-07-05): full-sentence kana-CER is dominated by carrier-word ASR noise on
+Motivation: full-sentence kana-CER is dominated by carrier-word ASR noise on
 lower-intelligibility backbones (Irodori-500M-v3 full-sentence CER ~0.6 even on readable words).
 The EDIT only touches the TARGET word, so the honest reading question is: "does the synthesized
 audio actually say the target word's intended reading?" This checks whether the target katakana

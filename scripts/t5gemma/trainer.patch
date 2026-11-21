@@ -1,0 +1,32 @@
+diff --git a/steps/trainer.py b/steps/trainer.py
+index 058a1bd..349180a 100644
+--- a/steps/trainer.py
++++ b/steps/trainer.py
+@@ -871,8 +871,10 @@ class Trainer:
+         sum_top10acc_cbi = [0 for _ in range(self.args.n_codebooks)]
+         mean_perplexity_cbi = [0 for _ in range(self.args.n_codebooks)]
+ 
++        n_val_batches = 0
+         with torch.no_grad():
+             for i, batch in enumerate(tqdm(valid_loader, disable=hide_progress)):
++                n_val_batches += 1
+                 out = self.model(batch)  # no reduction is applied to loss
+                 sum_losses += out["loss"]
+                 sum_top10acc += out["top10acc"]
+@@ -895,6 +897,16 @@ class Trainer:
+                 # if i > 10:
+                 #     break
+ 
++        # An empty valid loader leaves the accumulators as plain ints, and dist.all_reduce then
++        # raises TypeError and kills the run -- including at the unconditional end-of-training
++        # validate_and_save(), so the FINAL bundle never gets written. (Seen with a 16-row valid
++        # split under num_buckets=5: DynamicBatchSampler yields no batches.) Returning early is
++        # safe here because nothing selects a checkpoint on the validation score.
++        if n_val_batches == 0:
++            logging.warning("validate(): valid loader produced 0 batches; skipping validation")
++            self.model.train()
++            return float("inf")
++
+         dist.all_reduce(sum_losses, op=dist.ReduceOp.SUM)
+         dist.all_reduce(sum_top10acc, op=dist.ReduceOp.SUM)
+         dist.all_reduce(sum_ntoken, op=dist.ReduceOp.SUM)

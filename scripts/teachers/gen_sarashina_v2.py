@@ -1,4 +1,4 @@
-"""v2 teacher generation for Sarashina2.2-TTS (uniform recipe, 2026-09-16).
+"""Teacher generation for Sarashina2.2-TTS (the registered rule, as on the other backbones).
 
 Rule shared by all four backbones: for each carrier, the frozen base reads the PLAIN kanji carrier;
 a take is kept if it passes the degeneration guard (here: 20 <= n_sem <= 600 semantic tokens) AND
@@ -32,7 +32,7 @@ ap.add_argument("--ref-json", default=f"{paths.DATA}/refvoice/pilot_ref.json")
 ap.add_argument("--limit", type=int, default=0)
 ap.add_argument("--batch", type=int, default=24)
 ap.add_argument("--max-new", type=int, default=400)
-ap.add_argument("--max-takes", type=int, default=3)
+ap.add_argument("--max-takes", type=int, default=5)
 ap.add_argument("--nsem-min", type=int, default=20)
 ap.add_argument("--nsem-max", type=int, default=600)
 ap.add_argument("--only-dropped", help="provenance.json of a previous run: process only its dropped carriers")

@@ -2,15 +2,14 @@
 
 Why this exists: passing raw audio with its NATIVE sampling_rate lets the pipeline resample
 internally, and that path BREAKS on 48 kHz input — the model receives aliased audio and returns a
-fluent-looking transcript of something else. Measured 2026-08-29 on the same wav, same model,
-same code, in two independent venvs (torch 2.8.0+cu128 and 2.11.0+cu130):
+fluent-looking transcript of something else. Same wav, same model, same code, in two independent
+environments (torch 2.8.0+cu128 and 2.11.0+cu130):
 
     {"raw": a, "sampling_rate": 48000}                  -> ツマエーノーヤ、スーセキノオーブンニ…
     librosa.resample(a, 48000, 16000), sampling_rate=16000 -> チミモーリョーガ、シズカナモリニ… (correct)
 
-24 kHz input is unaffected, which is why the Sarashina/CosyVoice2 numbers were always sound and
-why the failures looked backbone-specific. They were not: the old "kana-whisper is OOD on
-non-24 kHz codec audio" rule was this bug, and it is retracted (CP6 訂正 2026-08-29).
+24 kHz input is unaffected, so the failure looks backbone-specific (44.1/48 kHz backbones) when it is
+not.
 
 Always resample explicitly before the ASR call. Whisper-family models operate at 16 kHz.
 """

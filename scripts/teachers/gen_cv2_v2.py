@@ -1,4 +1,4 @@
-"""v2 teacher generation for CosyVoice 2 (uniform recipe, 2026-09-16).
+"""Teacher generation for CosyVoice 2 (the registered rule, as on the other backbones).
 
 Same rule as the other backbones: the frozen base reads the PLAIN kanji carrier; a take is kept
 if it passes the degeneration guard (audio >= MIN_SEC) AND the ASR of record hears the target
@@ -27,7 +27,7 @@ ap.add_argument("--text", required=True)
 ap.add_argument("--out", required=True)
 ap.add_argument("--speakers", default=",".join(str(i) for i in range(20)))
 ap.add_argument("--pool-json", help="shared voice pool: [{spk, src_wav, text}]; overrides --speakers")
-ap.add_argument("--max-takes", type=int, default=3)
+ap.add_argument("--max-takes", type=int, default=5)
 ap.add_argument("--min-sec", type=float, default=0.5)
 ap.add_argument("--limit", type=int, default=0)
 ap.add_argument("--shard", default="0/1", help="i/n: rows i::n; voice index and seed keyed on the global row index")

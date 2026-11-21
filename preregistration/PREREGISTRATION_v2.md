@@ -37,14 +37,23 @@ actually used, read from each run's configuration:
 | Irodori-TTS-500M-v3 | **no LoRA**: every module of the model is trained (about 520M parameters; Muon, learning rate 1e-5, 32 × 2 samples per step) | 2,000 |
 | T5Gemma-TTS-2b-2b | LoRA rank 8, alpha 16, on q/k/v/o and gate/up/down; only the LoRA weights train (the reserved tokens used as tags keep their embeddings) | 600 (token budget of 20,000 per step) |
 
-The paper's version of 2026-09-24 (arXiv 2609.17234v3) describes the Sarashina and CosyVoice 2 setting as if it held
-on all four backbones. That is wrong for Irodori and T5Gemma, and is corrected in the next version of the paper.
+**What the next version of the paper corrects.** The version of 2026-09-24 (arXiv 2609.17234v3):
+- describes the Sarashina and CosyVoice 2 training setting as if it held on all four backbones; the settings per
+  backbone are those in the table above;
+- says all four step counts were chosen by the checkpoint rule; Sarashina's 20,000 steps are the registered count, not
+  chosen by the rule;
+- gives the UtterTune comparison of the 319-item table as -0.072 [-0.122, -0.022], p = 0.004; with the corrected inputs
+  it is -0.072 [-0.120, -0.024], p = 0.003 (finding and correction of 2026-11-21);
+- prints the lower bound of Irodori's naturalness interval in Table 2 as -.31; the record's -0.305 rounds to -.30;
+- calls the registration a "public pre-registration"; it was fixed and kept in the author's private repository and is
+  published with this release (last paragraph of this summary).
 
-**Results of record.** Objective: `data/analysis/v2/reading_obj319_round3.json`, contrasts
-`obj319_round3_contrasts.md`. Listening: `data/analysis/v2/listening_report_round3_4raters_20260921_1009.json`
-(Fleiss' kappa 0.89; 13 tied stimuli excluded; four of the five confirmatory hypotheses supported, Sarashina tag vs no
-edit not). Naturalness: `data/analysis/v2/naturalness_report_round3_final_10k.json`. Bootstrap resamples are 10,000
-throughout (last entry).
+**Results of record.** Objective: `results/round3/reading_obj319_round3_ut_corrected_inputs.json`, contrasts
+`results/round3/obj319_round3_contrasts_ut_corrected_inputs.md`. Listening:
+`results/round3/listening_report_round3_4raters_20260921_1009.json` (Fleiss' kappa 0.89; 13 tied stimuli excluded;
+four of the five confirmatory hypotheses supported, Sarashina tag vs no edit not). Naturalness:
+`results/round3/naturalness_report_round3_final_10k.json`. Bootstrap resamples are 10,000 throughout (entry of
+2026-09-24).
 
 **Deviations from the registration, all recorded below where they happened.** The v5/v5b carriers were added and then
 withdrawn before any round-3 stimulus existed (16). On CosyVoice 2, Irodori and T5Gemma the checkpoint grids were
@@ -54,15 +63,17 @@ registered count on CosyVoice 2 and Irodori, and 600 instead of 400 on T5Gemma (
 and was not used (16, 16:15 and 17:10). The silence-trimming rule was withdrawn before any kit used it (16, 15:23).
 Ten easy-50 tags were corrected by the author's review before the naturalness kit was built (16, 15:07). The
 round-2 screening records of three raters were carried into round 3 (16, 17:15). The released-UtterTune comparator of the 319-item table was
-re-synthesized with the corrected inputs of amendment 13 on 2026-11-21 (last entry); the comparison is unchanged.
+re-synthesized with the corrected inputs of amendment 13 on 2026-11-21 (finding and correction of that date); the point estimate is
+unchanged (interval and p move from [-0.122, -0.022], p = 0.004 to [-0.120, -0.024], p = 0.003).
 
 **Corrections made within this record.** Section 11 first said that `lora_faithful2_tf457` (the adapter the round-1
 Sarashina stimuli were actually made with) was trained on an earlier, unreleased teacher set; it was trained
 on speech tokens of real JSUT and JVS recordings (correction after section 14). The note on the duplicate-account
-exclusion of 2026-09-21 was corrected the same day (last entries of section 16).
+exclusion of 2026-09-21 was corrected the same day (section 16, entries of 2026-09-21).
 
-**What fixes the timing.** The commit history of this repository. Rater identifiers in this record are pseudonyms
-in the public copy.
+**Where this record was kept.** The registration and its record were kept in the author's private git repository
+from 2026-09-05 and are published with this release, with their commit history. Commit dates are the author's own;
+there is no third-party timestamp. Rater identifiers are pseudonyms.
 
 
 **Status:** fixed 2026-09-16 (JST), before any round-2 teacher audio was inspected, before any
@@ -696,7 +707,8 @@ set: 56% of teachers above 5.5 speech tokens per character, 27% above 8, 7% abov
 them lengthens every output until, on a few reference voices, generation no longer stops.
 
 **Correction to section 11.** Section 11 and later notes called `lora_faithful2_tf457` an adapter trained on the
-earlier, unreleased self-distilled set. The author's working notes and the file itself show otherwise: its teacher file
+earlier, unreleased self-distilled set. The adapter's training files show otherwise [wording corrected 2026-11-21; first
+written as "The author's working notes and the file itself show otherwise"]: its teacher file
 `faithful_teachers.jsonl` holds 14,970 rows keyed by JSUT and JVS utterance ids (9,997 JVS, 4,973 JSUT; first written
 here as JSUT only), that is, **speech tokens of real recordings**. The one Sarashina adapter that never ran away was therefore trained on recorded speech, and L1 shows
 that the earlier, unreleased *self-distilled* set runs away under today's code as the clean-room sets do (9 of 100). This
@@ -1208,3 +1220,24 @@ items differ, as they should. Re-measured in the same way (`results/round3/readi
 UtterTune 0.856 (unchanged), tag - UtterTune -0.072 [-0.120, -0.024], p = 0.003 (discordant 16 vs 39), against
 -0.072 [-0.122, -0.022], p = 0.004 (18 vs 41) before. The tag arm's verdicts are identical between the two ASR passes.
 The corrected arm replaces the earlier one as the arm of record; the conclusion is unchanged.
+
+**Per-item retry record assembled for release, 2026-11-21 (after all results).** `results/round3/retry_record_obj319.jsonl`
+holds one row per item for the 13 arms of the 319-item table (4 backbones × {no edit, kana, tag}, plus the released
+UtterTune on CosyVoice 2), 13 × 319 rows. Each row's `source` field states where it comes from. Sarashina's three arms,
+CosyVoice 2's tag arm, and Irodori's kana and tag arms: the record the synthesis run wrote; Irodori's no-edit record is
+the first half of the 638-row record of the guard-fixed run. CosyVoice 2 no edit and kana: no record survived, so both
+arms were re-synthesized on 2026-11-21 with the same inputs, seeds and guard; all 638 clips are byte-identical to the
+table's, and their record is used. T5Gemma's three arms: reconstructed from the synthesis logs, which print only the
+items that needed more than one take (four pod logs for no edit and kana, the local log for tag); every item not
+listed took one take. UtterTune: the re-synthesis with the corrected inputs of the finding and correction above.
+Tag arms: Sarashina 4 items redrawn, CosyVoice 2 and Irodori none, T5Gemma 32, of which 9 used all six takes and 7
+remained inaudible (the last take silent or too quiet).
+
+**Irodori code for release, 2026-11-21 (after all results).** The Irodori training and inference code in `irodori/` of
+the release is not the code that produced this record: it was rewritten on the public Irodori-TTS code at commit
+`eaf74d6` to the round-3 setting (section 16; the settings in the summary at the top). Checked on the 144
+validation items of the checkpoint rule (kana CER of the tag arm; UTMOSv2, mean of three seeds): the paper's
+checkpoint read with the new code 0.057 / 2.800; a model retrained with the new code for 2,000 steps in the round-3
+setting 0.061 / 2.769; the value recorded at the checkpoint choice (12:02 JST on 09-18) 0.058 / 2.806. The paper's
+numbers stay those of the paper's checkpoint, which is the released Irodori model; the released weights omit the
+`meanflow_cond` tensors, which the model does not use.

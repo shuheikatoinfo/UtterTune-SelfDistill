@@ -19,7 +19,7 @@ from degenerate import synth_valid, safe_asr, save_guard_record
 # TEST_DIR / TEST_SET make the item set swappable without touching the synthesis path:
 # the same code, the same recipe, only a different input file. Needed for the 105-item
 # SELECTION split and the 319-item TEST split (preregistration/items/objective_*.jsonl).
-# Defaults reproduce the original difficult-50 run exactly. [2026-09-03]
+# Default: difficult-50.
 TD = (os.environ.get("TEST_DIR") or paths.ITEM_SOURCE)
 TEST_SET = os.environ.get("TEST_SET", "difficult_50")
 OUT = (os.environ.get("BLOCKA_CV2_OUT") or f"{paths.DATA}/blockA_cv2_difficult")
@@ -32,7 +32,7 @@ vanilla = [l.rstrip("\n") for l in open(f"{TD}/test_{TEST_SET}_vanilla.txt", enc
 # difficult:011 (斟酌) carried the pre-correction heiban reading; the author's NHK verification
 # made it atamadaka, so the synthesis input is the corrected copy -- the SAME file Sarashina and
 # Irodori use. Readings are identical between the two files (reading metric unaffected); the
-# accent arms are not. [2026-09-01]
+# accent arms are not.
 DIFF_LORA = os.environ.get("DIFF_LORA",
     f"{paths.REPO}/data/derived/test_difficult_50_lora_fixed.txt"
     if TEST_SET == "difficult_50" else f"{TD}/test_{TEST_SET}_lora.txt")
@@ -105,7 +105,7 @@ def run(g, arm, texts, text_frontend):
 
 # ARMS lets a second adapter (e.g. the released UtterTune weights) be run for its "ours" arm only:
 # noedit and kana never touch the adapter, so synthesizing them once per SPEAKER rather than once
-# per (speaker, adapter) removes pure duplication. Default = all three, unchanged. [2026-09-01]
+# per (speaker, adapter) removes pure duplication. Default: all three.
 ARMS = [a.strip() for a in os.environ.get("ARMS", "noedit,kana,ours").split(",") if a.strip()]
 cer = {}
 if {"noedit", "kana"} & set(ARMS):

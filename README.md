@@ -22,7 +22,7 @@ Irodori-TTS-500M-v3 and T5Gemma-TTS.
 | Pre-registration and its dated record | [`preregistration/`](preregistration/) (this repository's history) |
 | Evaluation inputs, raters' responses, results | [`results/round3/`](results/round3/), [`data/`](data/), [`preregistration/items/`](preregistration/items/) |
 
-The difficult-50, katakana-50 and easy-50 sentences come from [UtterTune](https://github.com/shuheikatoinfo/UtterTune)
+The difficult-50 and easy-50 sentences come from [UtterTune](https://github.com/shuheikatoinfo/UtterTune)
 (`data/eval/`). The objective set is drawn from the
 [Joyo Kanji Yomi Benchmark](https://huggingface.co/datasets/sbintuitions/joyo-kanji-yomi-benchmark) (MIT).
 
@@ -56,8 +56,9 @@ python scripts/analysis/analyze_naturalness.py --exclude-speeders \
 python scripts/eval/obj319_contrasts_v2.py --results results/round3/reading_obj319_round3_ut_corrected_inputs.json
 ```
 
-The first two reproduce `results/round3/listening_report_round3_4raters_20260921_1009.json` and
-`naturalness_report_round3_final_10k.json` exactly.
+The first two reproduce the numbers in `results/round3/listening_report_round3_4raters_20260921_1009.json` and
+`naturalness_report_round3_final_10k.json`; the listening report differs only in the order of the raters and in the
+last floating-point digit of kappa and of one p-value. The analyses need Python 3 with numpy and scipy (run with Python 3.13, numpy 2.2.6, scipy 1.14.1).
 
 ## Train
 
@@ -72,14 +73,28 @@ python scripts/sarashina/train_lora_sarashina.py --teachers $D/teachers/sarashin
 # CosyVoice 2 (round 3: 1,000 steps)
 python scripts/cv/train_lora_cv2.py --manifest $D/teachers/cosyvoice2/manifest_filtered.tsv --data-root $D \
   --out out/cv2 --steps 1000
-# T5Gemma-TTS (round 3: 600 steps)
+# T5Gemma-TTS (round 3: step 600 of a run planned for 1,600 steps; the warm-up is 5% of the planned length, and the
+# script's defaults give the run's batch: 4 x 4 accumulation, 20,000 tokens)
 python scripts/t5gemma/materialize_dataset.py --teachers $D/teachers/t5gemma/teachers_filtered.jsonl --out out/t5g_data
-DATASET_DIR=out/t5g_data EXP_ROOT=out/t5g NUM_STEPS=600 bash scripts/t5gemma/blockA_readlora_train.sh
+T5G_DATA_DIR=out/t5g_data EXP_ROOT=out/t5g NUM_STEPS=1600 SAVE_EVERY=200 bash scripts/t5gemma/blockA_readlora_train.sh
+#   the adapter is out/t5g/bundle_step600.pth; scripts/t5gemma/export_readlora_hf.py merges it into a model
 # Irodori-TTS-500M-v3: see irodori/README.md
 ```
 
-The scripts under `scripts/eval/` named `round3_*` are the drivers that produced the paper's numbers, including the
-cloud-GPU runs; the registration refers to them by these paths.
+The routed evaluation inputs are shipped as files under `data/derived/`. The drivers under `scripts/eval/`
+(`round3_*`, `sarahyp_P4_*`, `obj319_inputfix_resynth.sh`) are the ones that produced the paper's numbers, including the
+cloud-GPU runs. The measurement scripts run in a separate environment built from `scripts/eval/requirements-metrics.txt`
+(at `scripts/eval/.venv_metrics`, or pointed to by `METRICS_PY`). The CosyVoice 2 base model is read from
+`$COSYVOICE_DIR/pretrained_models/CosyVoice2-0.5B`, or from `CV2_DIR`.
+
+### Backbone code
+
+| Backbone code | Version used |
+|---|---|
+| [CosyVoice](https://github.com/FunAudioLLM/CosyVoice) | `04bcadc6340e266b4ba09f4474b4668c444aa063`, plus `scripts/cv/cosyvoice_load_wav.patch` (reads prompt audio with soundfile) |
+| [T5Gemma-TTS](https://github.com/Aratako/T5Gemma-TTS) | `c8722b37e1aca0e21f85185188755e164c316828`, plus `scripts/t5gemma/trainer.patch` (survives an empty validation loader) |
+| [sarashina2.2-tts](https://github.com/sbintuitions/sarashina2.2-tts) | 0.1.0, `e0ac9c99160ea4bf8dde46892892c945e66fcc13` |
+| [Irodori-TTS](https://github.com/Aratako/Irodori-TTS) | pinned by `irodori/setup.sh` |
 
 ## Licence
 

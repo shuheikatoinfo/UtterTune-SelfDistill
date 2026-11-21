@@ -1,4 +1,4 @@
-"""v2 teacher generation for T5Gemma-TTS (uniform recipe, 2026-09-16).
+"""Teacher generation for T5Gemma-TTS (the registered rule, as on the other backbones).
 
 Same rule as the other backbones: the frozen base reads the PLAIN kanji carrier with no reference
 (no_ref); a take is kept if it passes the degeneration guard (>= 10 codec frames, valid codes) AND
@@ -35,7 +35,7 @@ ap.add_argument("--temperature", type=float, default=0.6)
 ap.add_argument("--top_k", type=int, default=30)
 ap.add_argument("--top_p", type=float, default=0.9)
 ap.add_argument("--seed", type=int, default=1234)
-ap.add_argument("--max-takes", type=int, default=3)
+ap.add_argument("--max-takes", type=int, default=5)
 ap.add_argument("--min-frames", type=int, default=10)
 ap.add_argument("--limit", type=int, default=0)
 ap.add_argument("--shard", default="0/1", help="i/n: process rows i::n (merge shards afterwards)")

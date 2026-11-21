@@ -113,7 +113,7 @@ def stage_t5gemma(kit, teachers, grad_ckpt, rundir, num_steps, save_every, batch
              " && export HF_TOKEN=$(tr '\\0' '\\n' < /proc/1/environ | grep ^HF_TOKEN= | cut -d= -f2-)"
              " && export HUGGING_FACE_HUB_TOKEN=$HF_TOKEN HF_HUB_ENABLE_HF_TRANSFER=0"
              f" && python {WS}/r3/materialize_dataset.py --teachers {WS}/r3/teachers_filtered.jsonl --out {WS}/r3/dataset > {WS}/r3/mat.log 2>&1"
-             f" && DATASET_DIR={WS}/r3/dataset EXP_ROOT={rd} NUM_STEPS={num_steps} SAVE_EVERY={save_every} BATCH_SIZE={batch}"
+             f" && T5G_DATA_DIR={WS}/r3/dataset EXP_ROOT={rd} NUM_STEPS={num_steps} SAVE_EVERY={save_every} BATCH_SIZE={batch}"
              f" bash {WS}/r3/blockA_readlora_train.sh > {WS}/r3/train.log 2>&1; echo T5G_TRAIN_DONE >> {WS}/r3/train.log")
     with open(os.path.join(kit, "r3/chain.sh"), "w", encoding="utf-8") as f:
         f.write("#!/usr/bin/env bash\n" + chain + "\n")

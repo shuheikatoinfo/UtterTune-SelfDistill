@@ -178,7 +178,7 @@ def main(
             "REFUSED: student='plain' with teacher_plain=1 makes the student input IDENTICAL to the "
             "teacher input. That is identity distillation -- the adapter is trained to reproduce what "
             "the frozen base already does, no control channel is installed, and the resulting numbers "
-            "describe nothing. This combination produced the invalid T5Gemma row (2026-09-01). "
+            "describe nothing. "
             "Use student='tagged'.")
     os.makedirs(out, exist_ok=True)
     wavdir = os.path.join(out, "wav"); os.makedirs(wavdir, exist_ok=True)

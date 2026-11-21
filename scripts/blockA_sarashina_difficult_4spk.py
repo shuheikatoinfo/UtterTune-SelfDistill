@@ -31,10 +31,9 @@ import pyopenjtalk
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'eval'))
 from degenerate import synth_valid, safe_asr, save_guard_record
 # Calibrated from 957 generated clips: durations pile up at exactly 20.00 s (52 clips) -- that is
-# the hard generation cap and a clip reaching it was truncated, not finished. An earlier value of
-# 10.0 s (from max_tokens/50) was WRONG: 77 of the 112 clips over 9.9 s are perfectly fine by ASR,
-# so that threshold would have rejected ~8% of legitimate audio and biased the set toward short
-# utterances. [2026-09-04]
+# the hard generation cap and a clip reaching it was truncated, not finished. 10.0 s (max_tokens/50)
+# would be wrong: 77 of the 112 clips over 9.9 s are fine by ASR, so that threshold would reject ~8%
+# of legitimate audio and bias the set toward short utterances.
 CAP_S = 19.9
 
 ap = argparse.ArgumentParser()
@@ -45,7 +44,7 @@ args = ap.parse_args()
 # TEST_DIR / TEST_SET make the item set swappable without touching the synthesis path:
 # the same code, the same recipe, only a different input file. Needed for the 105-item
 # SELECTION split and the 319-item TEST split (preregistration/items/objective_*.jsonl).
-# Defaults reproduce the original difficult-50 run exactly. [2026-09-03]
+# Default: difficult-50.
 TD = (os.environ.get("TEST_DIR") or paths.ITEM_SOURCE)
 TEST_SET = os.environ.get("TEST_SET", "difficult_50")
 OUT = (os.environ.get("BLOCK_OUT") or f"{paths.DATA}/blockA_sarashina_difficult_4spk")
@@ -54,7 +53,7 @@ FAITHFUL2 = os.environ.get("SARA_ADAPTER_OURS", SP + "/adapters/lora_faithful2_t
 # (e.g. the two ITA references) instead of the bootstrap set. Entries may carry a "text"
 # field; when present it is used verbatim as the prompt transcript instead of the ASR
 # self-transcription below -- for a corpus reference the true transcript is known, and an
-# ASR error in the prompt text degrades the clone for no reason. [2026-09-01]
+# ASR error in the prompt text degrades the clone for no reason.
 SPK_JSON = os.environ.get("EVAL_SPEAKERS_JSON",
                           f"{paths.DATA}/eval_speakers/selected_4.json")
 _sel = json.load(open(SPK_JSON))
@@ -64,7 +63,7 @@ SPK_WAVS = [s["wav"] for s in SEL]
 
 vanilla = [l.rstrip("\n") for l in open(f"{TD}/test_{TEST_SET}_vanilla.txt", encoding="utf-8") if l.strip()]
 # difficult:011 (斟酌) carried the pre-correction heiban reading; the author's NHK verification
-# made it atamadaka, so the synthesis input is taken from the corrected copy. [2026-08-29]
+# made it atamadaka, so the synthesis input is taken from the corrected copy.
 DIFF_LORA = os.environ.get("DIFF_LORA",
     f"{paths.REPO}/data/derived/test_difficult_50_lora_fixed.txt"
     if TEST_SET == "difficult_50" else f"{TD}/test_{TEST_SET}_lora.txt")
@@ -136,7 +135,7 @@ def synth(text, sp, seed, asr=None):
 # ITEM_SPK_JSON + ITEM_SPK_CELL: one reference voice per ITEM, assigned by hash before any
 # audio was synthesized. Used for the 42-voice objective table, so no result depends on which
 # one or two references were picked. Speaker si synthesizes only its assigned items; output
-# layout stays spk{si}/{arm}/{i:02d}.wav. Unset -> unchanged behaviour. [2026-09-04]
+# layout is spk{si}/{arm}/{i:02d}.wav. Unset: every speaker synthesizes every item.
 _ASSIGN = None
 if os.environ.get("ITEM_SPK_JSON"):
     _ASSIGN = json.load(open(os.environ["ITEM_SPK_JSON"]))["cells"][os.environ["ITEM_SPK_CELL"]]

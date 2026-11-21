@@ -50,7 +50,7 @@ def contrast(a, b, comps, n_boot=10000, seed=20260901):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--results", required=True, help="measure_reading_all.py output JSON")
-    ap.add_argument("--arms-json", default=None, help="arm map, for the inaudible-output count")
+    ap.add_argument("--arms-json", default=None, help="arm map, for the inaudible-output count; $DATA in a path is expanded")
     a = ap.parse_args()
     items = [json.loads(l) for l in open(ITEMS)]; n = len(items)
     comps = components(items)
@@ -90,6 +90,7 @@ def main():
         for bb, arms in json.load(open(a.arms_json)).items():
             for arm, root in arms.items():
                 if "uttertune" in arm: continue
+                root = os.path.expandvars(root)
                 files = glob.glob(f"{root}/**/{arm}/*.wav", recursive=True)
                 if bb == "iro42g" and arm == "kana": files = glob.glob(f"{root}/kana/*.wav")
                 q = sum(np.abs(sf.read(fp)[0]).max() < 0.05 for fp in files)
