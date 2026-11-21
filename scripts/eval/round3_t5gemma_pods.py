@@ -9,6 +9,8 @@
 import json, os, re, subprocess, sys, time
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # scripts/, for paths.py
 import paths
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import round3_podkit
 V = f"{paths.DATA}/v2"; R = paths.REPO
 SSH = ["-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=/dev/null", "-o", "LogLevel=ERROR", "-o", "ConnectTimeout=15"]
 LOGS = "".join(open(f"{V}/logs/{f}").read() for f in os.listdir(f"{V}/logs") if (f.startswith("t5gv") or f.startswith("t5gh")) and f.endswith(".log"))
@@ -66,15 +68,11 @@ while not pod:
     if not pod: time.sleep(60)
 name, ip, port = pod; say("training on", name)
 sh(ip, port, "touch /workspace/BUSY_TRAIN; mkdir -p /workspace/r3 /workspace/scripts"); RD = f"/workspace/r3/{RUNDIR}"
-os.makedirs(f"{V}/t5g_trainkit", exist_ok=True)
 GC = os.environ.get("T5_GRADCKPT", "1")   # 0 on an 80 GB GPU: no activation recomputation, about 2x faster per step
-subprocess.run(f"sed -e 's#^REPO=.*#REPO=/workspace/T5Gemma-TTS#' -e 's#--t5_gradient_checkpointing 1#--t5_gradient_checkpointing {GC}#' {R}/scripts/t5gemma/blockA_readlora_train.sh > {V}/t5g_trainkit/blockA_readlora_train_{RUNDIR}.sh && cp {R}/scripts/t5gemma/materialize_dataset.py {V}/t5g_trainkit/", shell=True, check=True)
-subprocess.run(["scp", "-q"] + SSH + ["-P", str(port), f"{V}/t5g_trainkit/materialize_dataset.py", f"{V}/r3/t5gemma/teachers_filtered.jsonl", f"root@{ip}:/workspace/r3/"], capture_output=True, timeout=1800)
-subprocess.run(["scp", "-q"] + SSH + ["-P", str(port), f"{V}/t5g_trainkit/blockA_readlora_train_{RUNDIR}.sh", f"root@{ip}:/workspace/r3/blockA_readlora_train.sh"], capture_output=True, timeout=600)
-cmd = ("cd /workspace/T5Gemma-TTS && . .venv_t5gemma/bin/activate && export HF_TOKEN=$(tr '\\0' '\\n' < /proc/1/environ | grep ^HF_TOKEN= | cut -d= -f2-) && export HUGGING_FACE_HUB_TOKEN=$HF_TOKEN HF_HUB_ENABLE_HF_TRANSFER=0 && python /workspace/r3/materialize_dataset.py --teachers /workspace/r3/teachers_filtered.jsonl --out /workspace/r3/dataset > /workspace/r3/mat.log 2>&1 && "
-       f"DATASET_DIR=/workspace/r3/dataset EXP_ROOT={RD} NUM_STEPS={NUM_STEPS} SAVE_EVERY={SAVE_EVERY} BATCH_SIZE={BATCH} bash /workspace/r3/blockA_readlora_train.sh > /workspace/r3/train.log 2>&1; echo T5G_TRAIN_DONE >> /workspace/r3/train.log")
-open(f"{V}/t5g_trainkit/chain_{RUNDIR}.sh", "w").write("#!/usr/bin/env bash\n" + cmd + "\n")
-subprocess.run(["scp", "-q"] + SSH + ["-P", str(port), f"{V}/t5g_trainkit/chain_{RUNDIR}.sh", f"root@{ip}:/workspace/r3/chain.sh"], capture_output=True, timeout=120)
+# everything the pod runs, staged in the pod's layout (scripts/eval/round3_podkit.py) and shipped with one tar
+KIT = f"{V}/t5g_trainkit/{RUNDIR}"
+round3_podkit.stage_t5gemma(KIT, f"{V}/r3/t5gemma/teachers_filtered.jsonl", GC, RUNDIR, NUM_STEPS, SAVE_EVERY, BATCH)
+subprocess.run(f"tar cz -C {KIT} . | ssh {' '.join(SSH)} -p {port} root@{ip} 'tar xz -C /workspace --no-same-owner'", shell=True, check=True)
 sh(ip, port, "cd /workspace && (setsid nohup bash /workspace/r3/chain.sh < /dev/null > /workspace/r3/chain.log 2>&1 &)"); say("materialize+train started on", name)
 # 3. pull bundles as they appear
 os.makedirs(f"{V}/r3/t5gemma/{RUNDIR}", exist_ok=True); got = set(); t0 = time.time()

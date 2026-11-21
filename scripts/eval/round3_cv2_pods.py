@@ -9,6 +9,8 @@
 import json, os, re, subprocess, sys, time
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # scripts/, for paths.py
 import paths
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import round3_podkit
 V = f"{paths.DATA}/v2"; R = paths.REPO
 SSH = ["-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=/dev/null", "-o", "LogLevel=ERROR", "-o", "ConnectTimeout=15"]
 LOGS = open(f"{V}/logs/cv2v4_par.log").read()
@@ -52,33 +54,13 @@ if not SKIP:
   open(f"{V}/r3/cv2/TEACHERS_READY", "w").write(time.strftime("%F %T"))
 # 2. training + validation pod: cv4-0 once its quarter run is done (it is, by now)
 p = [q for q in st["pods"] if q["name"] == "cv4-0"][0]; ip, port = addr(p); say("cv2 training on cv4-0")
-# token files: every tok path in the manifest is under a local pull dir; ship them under /workspace/r3/tok/<pod>/<file>
+# everything the pod runs, staged in the pod's layout (scripts/eval/round3_podkit.py) and shipped with one tar
 man = [l.rstrip("\n").split("\t") for l in open(f"{V}/r3/cv2/manifest_filtered.tsv", encoding="utf-8") if l.strip()]
-os.makedirs(f"{V}/r3/cv2/tokship", exist_ok=True); pod_rows = []
-for spk, txt, tp, wp in man:
-    sub = tp.split("/runpod/")[1].split("/")[0] if "/runpod/" in tp else os.path.basename(os.path.dirname(os.path.dirname(tp)))   # pulled shard dir, or the round-2 pod dir (cv2_runpod/<pod>/tok)
-    dst = f"{V}/r3/cv2/tokship/{sub}"; os.makedirs(dst, exist_ok=True)
-    if not os.path.exists(f"{dst}/{os.path.basename(tp)}"): os.link(tp, f"{dst}/{os.path.basename(tp)}")
-    pod_rows.append("\t".join([spk, txt, f"/workspace/r3/tok/{sub}/{os.path.basename(tp)}", wp]))
-open(f"{V}/r3/cv2/manifest_pod.tsv", "w", encoding="utf-8").write("\n".join(pod_rows) + "\n")
-sh(ip, port, "mkdir -p /workspace/r3/tok /workspace/eval /workspace/scripts")
-subprocess.run(f"tar cz -C {V}/r3/cv2/tokship . | ssh {' '.join(SSH)} -p {port} root@{ip} 'tar xz -C /workspace/r3/tok --no-same-owner'", shell=True, check=True)
-KIT = f"{V}/runpod_bundle_t5gsynth/eval"
-subprocess.run(["scp", "-q", "-r"] + SSH + ["-P", str(port), f"{KIT}/selected_42.json", f"{KIT}/spk", f"{R}/data/derived/sel105_routed", f"{R}/data/derived/deveasy", f"{R}/preregistration/items/speaker_assignment42_sel105.json", f"{R}/preregistration/items/speaker_assignment42_deveasy.json", f"root@{ip}:/workspace/eval/"], capture_output=True, timeout=1800)
-subprocess.run(f"sed 's#{{paths.DATA}}/eval_speakers/selected_42.json#/workspace/eval/selected_42.json#' {R}/scripts/cv/blockA_cv2_difficult.py > {V}/r3/cv2/blockA_cv2_difficult_pod.py", shell=True, check=True)
-subprocess.run(["scp", "-q"] + SSH + ["-P", str(port), f"{R}/scripts/cv/train_lora_cv2.py", f"{R}/scripts/paths.py", f"{V}/r3/cv2/blockA_cv2_difficult_pod.py", f"{V}/r3/cv2/manifest_pod.tsv", f"root@{ip}:/workspace/r3/"], capture_output=True, timeout=600)
-ENV = "export CV_ROOT=/workspace/CosyVoice CV2_DIR=/workspace/cv2model PYTHONPATH=/workspace/CosyVoice:/workspace/CosyVoice/third_party/Matcha-TTS HUGGING_FACE_HUB_TOKEN=$(tr '\\0' '\\n' < /proc/1/environ | grep ^HF_TOKEN= | cut -d= -f2-) && cd /workspace/repo"
-cmd = ENV
-for s_ in (250, 500, 1000, 2000, 4000, 8000, 16000):
-    cmd += f" && python /workspace/r3/train_lora_cv2.py --manifest /workspace/r3/manifest_pod.tsv --base /workspace/cv2model --out /workspace/r3/lora_s{s_} --steps {s_} > /workspace/r3/train_s{s_}.log 2>&1"
-first = True
-for s_ in (250, 500, 1000, 2000, 4000, 8000, 16000):
-    for sname, d, cell in (("sel105", "/workspace/eval/sel105_routed", "SEL105"), ("deveasy", "/workspace/eval/deveasy", "DEVEASY")):
-        arms = "noedit,kana,ours" if first else "ours"
-        cmd += f" && ARMS={arms} CV2_LORA=/workspace/r3/lora_s{s_} TEST_DIR={d} TEST_SET={sname} ITEM_SPK_JSON=/workspace/eval/speaker_assignment42_{sname}.json ITEM_SPK_CELL={cell} BLOCKA_CV2_OUT=/workspace/r3val/{sname}/s{s_} python /workspace/r3/blockA_cv2_difficult_pod.py > /workspace/r3/val_{sname}_s{s_}.log 2>&1"
-    first = False
-cmd += " && echo CV2_R3_DONE >> /workspace/r3/done.txt"
-sh(ip, port, f"(setsid nohup bash -c '{cmd}' < /dev/null > /workspace/r3/chain.log 2>&1 &)"); say("cv2 train+validate chain started on cv4-0")
+KIT = f"{V}/r3/cv2/podkit"
+round3_podkit.stage_cv2(KIT, man, voice_kit=f"{V}/runpod_bundle_t5gsynth/eval", fictional_wav=f"{paths.DATA}/bootstrap_speakers/fictional0.wav",
+                        budgets=(250, 500, 1000, 2000, 4000, 8000, 16000))
+subprocess.run(f"tar cz -C {KIT} . | ssh {' '.join(SSH)} -p {port} root@{ip} 'tar xz -C /workspace --no-same-owner'", shell=True, check=True)
+sh(ip, port, "(setsid nohup bash /workspace/r3/chain.sh < /dev/null > /workspace/r3/chain.log 2>&1 &)"); say("cv2 train+validate chain started on cv4-0")
 for _ in range(240):
     try:
         if sh(ip, port, "grep -c CV2_R3_DONE /workspace/r3/done.txt 2>/dev/null") == "1": break
