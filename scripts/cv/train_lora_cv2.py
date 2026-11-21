@@ -23,7 +23,11 @@ from cosyvoice.cli.cosyvoice import CosyVoice2
 from cosyvoice.tokenizer.tokenizer import get_qwen_tokenizer
 
 ap = argparse.ArgumentParser()
-ap.add_argument("--manifest", required=True)
+ap.add_argument("--manifest", required=True,
+                help="TSV: voice, tagged text, speech-token .npy, teacher wav (unused; may be empty)")
+ap.add_argument("--data-root", default=".",
+                help="directory that relative token paths in the manifest are relative to (the released "
+                     "teacher set's paths are relative to the dataset root); default: the current directory")
 ap.add_argument("--base", default=f"{CV_ROOT}/pretrained_models/CosyVoice2-0.5B")
 ap.add_argument("--out", required=True)
 ap.add_argument("--steps", type=int, default=1000)
@@ -71,8 +75,8 @@ class TSV(Dataset):
     def __init__(self, path):
         self.rows = []
         for ln in Path(path).read_text(encoding="utf-8").splitlines():
-            _, txt, npy, wav = ln.split("\t")
-            self.rows.append((txt, torch.from_numpy(np.load(npy)).long()))
+            txt, npy = ln.split("\t")[1:3]
+            self.rows.append((txt, torch.from_numpy(np.load(os.path.join(args.data_root, npy))).long()))
     def __len__(self): return len(self.rows)
     def __getitem__(self, i): return self.rows[i]
 
