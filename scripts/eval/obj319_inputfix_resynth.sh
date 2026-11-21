@@ -31,5 +31,5 @@ say "t5gemma start"
     $T5G/.venv_t5gemma/bin/python $R/scripts/t5gemma/blockA_t5gemma.py --model_dir $V/t5gemma/merged --out_root $V/synth/t5gemma/obj319 --arms ours ) > $V/logs/t5gemma_synth_obj319_inputfix.log 2>&1; say "t5gemma rc=$? ours=$(ls $V/synth/t5gemma/obj319/blockA_t5gemma_difficult/ours/*.wav | wc -l)"
 say "measure start"
 OUT_JSON=data/analysis/v2/reading_obj319_round2_inputfix.json bash scripts/eval/measure_obj319_v2.sh > $V/logs/obj319_inputfix_measure.log 2>&1
-python3 scripts/eval/obj319_contrasts_v2.py --results data/analysis/v2/reading_obj319_round2_inputfix.json --arms-json data/analysis/v2/arms_obj319_round2.json 2>&1 | tee -a $L
+python3 scripts/eval/obj319_contrasts_v2.py --results data/analysis/v2/reading_obj319_round2_inputfix.json --arms-json results/round3/arms_obj319_round2.json 2>&1 | tee -a $L
 say "INPUTFIX DONE"

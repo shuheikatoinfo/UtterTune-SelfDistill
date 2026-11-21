@@ -24,9 +24,10 @@ say "t5gemma export rc=$? $(ls $M 2>/dev/null | wc -l) files"
 ( cd $T5G && TEST_DIR=$OBJ TEST_SET=obj319 ITEM_SPK_JSON=$ITEMS/speaker_assignment42_obj319.json ITEM_SPK_CELL=OBJ319 \
     $T5G/.venv_t5gemma/bin/python $R/scripts/t5gemma/blockA_t5gemma.py --model_dir $M --out_root $V/synth_r3/t5gemma/obj319 --arms ours ) > $V/logs/r3_t5gemma_obj319.log 2>&1
 say "t5gemma rc=$? ours=$(ls $V/synth_r3/t5gemma/obj319/blockA_t5gemma_difficult/ours/*.wav 2>/dev/null | wc -l)"
+mkdir -p $R/data/analysis/v2
 python3 - <<PY
 import json
-V="$V"; d=json.load(open("$R/data/analysis/v2/arms_obj319_round2.json"))
+V="$V"; d=json.load(open("$R/results/round3/arms_obj319_round2.json"))
 d["sara42g"]["ours"]=f"{V}/synth/sarashina_P4/obj319"; d["cv242g"]["ours"]=f"{V}/synth_r3/cv2/obj319"
 d["iro42g"]["ours"]=f"{V}/synth_r3/irodori/obj319"; d["t5g42g"]["ours"]=f"{V}/synth_r3/t5gemma/obj319/blockA_t5gemma_difficult"
 json.dump(d,open("$R/data/analysis/v2/arms_obj319_round3.json","w"),indent=1)
