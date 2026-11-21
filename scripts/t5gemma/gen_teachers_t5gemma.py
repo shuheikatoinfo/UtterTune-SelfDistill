@@ -8,7 +8,7 @@ control (out of scope: that needs encoder-vocab surgery).
 
 Two word sources:
   --mode covered  --pairs_tsv <idx\tsurface\treading>   (e.g. difficult-50 target words, FRESH carriers)
-  --mode generic  --teachers_jsonl teachers500_v4.jsonl  (word/reading/plain; carrier = `plain`)
+  --mode generic  --teachers_jsonl <text-set jsonl>  (word/reading/plain; carrier = `plain`)
 
 Output jsonl rows: {stem, word, reading, surface_text, teacher_input, n_frames, cer, codes:[int,...]}.
 QC = decode the base output + kana-whisper CER vs pyopenjtalk.g2p(teacher_input, kana=True); reject
@@ -118,7 +118,7 @@ def _build_rows(mode, pairs_tsv, teachers_jsonl, carriers_per_word, limit_words,
                     continue
                 c = per[w]
                 per[w] += 1
-                # ON-METHOD (Sarashina gen_teachers500_v4:84): teacher input = PLAIN KANJI carrier,
+                # ON-METHOD (as on Sarashina): teacher input = PLAIN KANJI carrier,
                 # let the base's natural reading+accent BE the teacher. teacher_plain=1 selects this.
                 # teacher_plain=0 = the old kana-forced input (breaks the accent axis; kept for A/B).
                 tin = r["plain"] if teacher_plain else r["plain"].replace(w, read_kana, 1)
@@ -152,7 +152,7 @@ def _build_rows(mode, pairs_tsv, teachers_jsonl, carriers_per_word, limit_words,
 def main(
     mode="covered",
     pairs_tsv=f"{paths.DATA}/blockA_t5gemma_readlora/difficult50_pairs.tsv",
-    teachers_jsonl=f"{paths.DATA}/_handoff/teachers/teachers500_v4.jsonl",
+    teachers_jsonl=None,  # required with mode="generic"; round 3 imports only the helpers of this module
     out=f"{paths.DATA}/blockA_t5gemma_readlora/teachers_covered",
     model_dir=T5G + "/pretrained/T5Gemma-TTS-2b-2b",
     reference_speech=DEFAULT_REF,
