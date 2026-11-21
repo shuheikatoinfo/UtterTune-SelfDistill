@@ -1,0 +1,5 @@
+恩師の<PHON_START>モト'<PHON_END>で学問を修めた。
+扇子の<PHON_START>カナメ<PHON_END>が壊れてしまい、開閉ができなくなった。
+彼は天皇の<PHON_START>ショーメー<PHON_END>を受け、特使として派遣された。
+箱の中にリンゴが<PHON_START>ト'ー<PHON_END>入っている。
+彼は故郷を人生の<PHON_START>モトイ<PHON_END>として、再び旅に出た。
