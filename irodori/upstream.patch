@@ -1,0 +1,28 @@
+diff --git a/irodori_tts/dataset.py b/irodori_tts/dataset.py
+index 805eda0..0538c95 100644
+--- a/irodori_tts/dataset.py
++++ b/irodori_tts/dataset.py
+@@ -182,7 +182,8 @@ class LatentTextDataset(Dataset):
+ 
+         ref_index = index
+         has_speaker = False
+-        if self.enable_speaker_condition:
++        ref_latent_path = item.get("ref_latent_path") if self.enable_speaker_condition else None
++        if self.enable_speaker_condition and not ref_latent_path:
+             speaker_id = self.manifest_index.speaker_ids[self.sample_indices[index]]
+             candidates = self.speaker_to_indices.get(speaker_id, [])
+             if len(candidates) > 1:
+@@ -191,7 +192,12 @@ class LatentTextDataset(Dataset):
+                     ref_index = random.choice(alternatives)
+                     has_speaker = True
+ 
+-        if ref_index == index:
++        if ref_latent_path:
++            # The row names the reference its audio was synthesized from: condition on that
++            # reference instead of another utterance of the same speaker.
++            ref_latent = self._load_latent(ref_latent_path)
++            has_speaker = True
++        elif ref_index == index:
+             ref_latent = latent
+         else:
+             ref_item = self._read_item(ref_index)

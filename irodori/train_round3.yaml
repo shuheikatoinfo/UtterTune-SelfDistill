@@ -1,0 +1,81 @@
+# Round-3 tag-token fine-tune of Irodori-TTS-500M-v3, for the pinned upstream train.py.
+# Full fine-tune: no LoRA, every module trains. Start from the checkpoint prepare_tag_model.py
+# writes (the base with two tag rows added); run train.py from the work directory, so that the
+# relative tokenizer path below resolves there.
+
+model:
+  # The base architecture (Aratako/Irodori-TTS-500M-v3), with the text vocabulary grown by the two
+  # tag tokens: 99,574 + 2.
+  latent_dim: 32
+  latent_patch_size: 1
+  model_dim: 1280
+  num_layers: 12
+  num_heads: 20
+  mlp_ratio: 2.875
+  text_mlp_ratio: 2.6
+  speaker_mlp_ratio: 2.6
+  dropout: 0.0
+  text_vocab_size: 99576
+  text_tokenizer_repo: tokenizer_pron_tags
+  text_add_bos: true
+  text_dim: 512
+  text_layers: 10
+  text_heads: 8
+  use_caption_condition: false
+  speaker_dim: 768
+  speaker_layers: 8
+  speaker_heads: 12
+  speaker_patch_size: 1
+  timestep_embed_dim: 512
+  adaln_rank: 192
+  norm_eps: 1.0e-05
+  use_duration_predictor: true
+  duration_aux_dim: 14
+  duration_hidden_dim: 1024
+  duration_layers: 3
+  duration_dropout: 0.1
+  duration_attention_heads: 8
+  duration_architecture: token_sum_adarn_zero_no_aux
+  duration_token_init_frames: 9.0
+  duration_speaker_fusion: adarn_zero
+
+train:
+  train_mode: rf
+  rf_loss_mode: echo
+  batch_size: 32
+  gradient_accumulation_steps: 2
+  precision: bf16
+  allow_tf32: true
+  optimizer: muon
+  muon_momentum: 0.95
+  muon_adjust_lr_fn: match_rms_adamw
+  learning_rate: 1.0e-05
+  weight_decay: 0.01
+  grad_clip_norm: 1.0
+  # WSD: 100 warm-up steps, then constant. Decay would start at step 2,100, after the last step,
+  # so the learning rate up to step 2,000 is the same as in the 4,000-step run step 2,000 was
+  # chosen from.
+  lr_scheduler: wsd
+  warmup_steps: 100
+  stable_steps: 2000
+  min_lr_scale: 0.01
+  max_steps: 2000
+  max_text_len: 64
+  max_latent_steps: 224
+  fixed_target_latent_steps: 224
+  fixed_target_full_mask: true
+  duration_loss_weight: 0.1
+  duration_speaker_dropout: 0.1
+  duration_caption_dropout: 0.1
+  text_condition_dropout: 0.0
+  speaker_condition_dropout: 0.0
+  caption_condition_dropout: 0.1
+  lora_enabled: false
+  num_workers: 8
+  dataloader_persistent_workers: true
+  dataloader_prefetch_factor: 4
+  log_every: 50
+  save_every: 500
+  valid_ratio: 0.0
+  wandb_enabled: false
+  seed: 0
