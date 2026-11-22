@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Round 3 listening kit and panel site (section 16). Builds only after every backbone's difficult-50 tag arm exists
-# under synth_r3 (CHOSEN adapters). Steps: kit (round3 profile) -> loudness normalisation (as round 2) -> silence
+# under synth_r3 (CHOSEN adapters). Steps: kit (round3 profile) -> loudness normalization (as round 2) -> silence
 # trimming (lead > 0.3 s, tail > 0.5 s, every clip of every arm; new in round 3, recorded in section 16) -> one panel
 # block -> static site for project jp-accent-listening-r3. Deployment is a separate, checked step (round3_panel_deploy.sh).
 set -euo pipefail
@@ -17,7 +17,7 @@ echo "$SKIP" | grep -q cv2 || [ "$(ls $V/synth_r3/cv2/difficult/spk*/ours/*.wav 
 echo "$SKIP" | grep -q t5gemma || [ "$(ls $V/synth_r3/t5gemma/difficult/blockA_t5gemma_difficult/ours/*.wav | wc -l)" = 50 ] || { echo "D ours incomplete"; exit 1; }
 rm -rf "$KIT" "$NORM" "$SITE"
 CELL_SUFFIX=_r3 KIT_OUT=$KIT KIT_PROFILE=round3 KIT_SKIP="$SKIP" FULL_SENTENCE=1 python3 scripts/eval/build_blind_kits.py --build
-python3 scripts/eval/normalise_loudness.py --src "$KIT" --out "$NORM" --recursive
+python3 scripts/eval/normalize_loudness.py --src "$KIT" --out "$NORM" --recursive
 for c in "$KIT"/*/; do c=${c%/}; n="$NORM/$(basename $c)"; for f in MANIFEST.csv KEY_DO_NOT_OPEN.csv README_rater.md; do [ -f "$c/$f" ] && cp "$c/$f" "$n/$f"; done; done
 echo "no trimming (author, 15:22)"
 for c in $NORM/*/; do

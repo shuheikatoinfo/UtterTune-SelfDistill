@@ -4,5 +4,5 @@
  "word": "斟酌",
  "old_tag": "シンシャク",
  "new_tag": "シ'ンシャク",
- "reason": "author NHK verification corrected the target from heiban シンシャク￣ to atamadaka シ＼ンシャク; the synthesis input carried the old heiban reading, so the model was instructed to produce what the rater would mark wrong. Corrected on the materials, before any judgement."
+ "reason": "author NHK verification corrected the target from heiban シンシャク￣ to atamadaka シ＼ンシャク; the synthesis input carried the old heiban reading, so the model was instructed to produce what the rater would mark wrong. Corrected on the materials, before any judgment."
 }

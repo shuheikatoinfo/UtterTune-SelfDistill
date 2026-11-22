@@ -4,7 +4,7 @@
     <work>/tokenizer_pron_tags/   the base text tokenizer with <PHON_START> and <PHON_END> added
     <work>/init_pron_tags.pt      the base weights with the text embedding grown by those two rows
 
-With these two in place the upstream trainer fine-tunes unchanged: it initialises from a
+With these two in place the upstream trainer fine-tunes unchanged: it initializes from a
 checkpoint only when checkpoint and config agree on the vocabulary, so the vocabulary is grown
 here, once, instead of inside the trainer.
 
@@ -53,7 +53,7 @@ def build_tag_tokenizer(out_dir: Path) -> None:
     """Save the base tokenizer plus the two tag tokens (ids 99,574 and 99,575) to out_dir.
 
     The tags are added as SPECIAL tokens. As ordinary added tokens they go through this
-    tokenizer's normaliser, and `<PHON_END>` then fails to match inside a sentence and is spelt
+    tokenizer's normalizer, and `<PHON_END>` then fails to match inside a sentence and is spelled
     out as `<`, `PH`, `ON`, `_`, `END`, `>`. Special tokens match as one id each; the segment that
     follows a tag gets a leading `▁`, as it does at the start of a text.
     """
@@ -74,7 +74,7 @@ def build_tag_tokenizer(out_dir: Path) -> None:
 def build_init_checkpoint(base_path: Path, out_path: Path, tokenizer_ref: str, seed: int) -> None:
     """Write the base weights with two new text-embedding rows, in the trainer's .pt layout.
 
-    The new rows are drawn from N(0, 1), the initialisation `torch.nn.Embedding` gives every row of
+    The new rows are drawn from N(0, 1), the initialization `torch.nn.Embedding` gives every row of
     a freshly built text encoder; all other weights are the base's, unchanged.
     """
     with safe_open(str(base_path), framework="pt", device="cpu") as handle:

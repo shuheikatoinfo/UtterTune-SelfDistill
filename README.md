@@ -1,6 +1,6 @@
 # UtterTune-SelfDistill
 
-Code, pre-registration and results for
+Code, pre-registration, and results for
 
 > Shuhei Kato. *Self-Distilled Pronunciation and Accent Control for Neural Text-to-Speech.* arXiv:2609.17234.
 
@@ -32,7 +32,7 @@ The difficult-50 and easy-50 sentences come from [UtterTune](https://github.com/
 preregistration/   the registration (PREREGISTRATION_v2.md opens with a summary of the round the paper reports),
                    item sets, screening and catch trials, voice assignments
 scripts/           teacher generation, training, synthesis with the degeneration guard, evaluation, analysis,
-                   and the rater web site; paths as the registration cites them
+                   and the rater website; paths as the registration cites them
 irodori/           Irodori-TTS training and inference on top of the public Irodori-TTS code
 data/              text-set inventory and the evaluation inputs
 results/round3/    reports of record, raters' responses (pseudonymous IDs), kit keys, per-item retry record
@@ -81,7 +81,7 @@ T5G_DATA_DIR=out/t5g_data EXP_ROOT=out/t5g NUM_STEPS=1600 SAVE_EVERY=200 bash sc
 # Irodori-TTS-500M-v3: see irodori/README.md
 ```
 
-The routed evaluation inputs are shipped as files under `data/derived/`. The drivers under `scripts/eval/`
+The routed evaluation inputs are shipped as files under `data/derived/`. The drivers are under `scripts/eval/`
 (`round3_*`, `sarahyp_P4_*`, `obj319_inputfix_resynth.sh`) are the ones that produced the paper's numbers, including the
 cloud-GPU runs. The measurement scripts run in a separate environment built from `scripts/eval/requirements-metrics.txt`
 (at `scripts/eval/.venv_metrics`, or pointed to by `METRICS_PY`). The CosyVoice 2 base model is read from
@@ -96,10 +96,10 @@ cloud-GPU runs. The measurement scripts run in a separate environment built from
 | [sarashina2.2-tts](https://github.com/sbintuitions/sarashina2.2-tts) | 0.1.0, `e0ac9c99160ea4bf8dde46892892c945e66fcc13` |
 | [Irodori-TTS](https://github.com/Aratako/Irodori-TTS) | pinned by `irodori/setup.sh` |
 
-## Licence
+## License
 
-Code: MIT ([`LICENSE`](LICENSE)). Weights and data carry the licences of the backbones they derive from; see each
-Hugging Face card. Sarashina2.2-TTS parts are Built with Sarashina and are under the Sarashina Model NonCommercial
+Code: MIT ([`LICENSE`](LICENSE)). Weights and data carry the licenses of the backbones they derive from; see each
+Hugging Face card. Sarashina2.2-TTS parts are built with Sarashina and are under the Sarashina Model NonCommercial
 License Agreement; T5Gemma-TTS parts are under the Gemma Terms of Use and CC BY-NC 4.0.
 
 ## Citation

@@ -1,4 +1,4 @@
-// One judgement, stored server-side. The browser's localStorage is still the rater's own safety
+// One judgment, stored server-side. The browser's localStorage is still the rater's own safety
 // net; this is the copy the analysis reads, so a cleared browser or a closed tab loses nothing.
 // Same-origin, so the response is readable and a failure is visible to the page.
 export async function onRequestPost({ request, env }) {

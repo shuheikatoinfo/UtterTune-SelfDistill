@@ -53,7 +53,7 @@ def audio_reason(a, sr, cap_s=None):
         return "silent"
     # Audible-but-inaudible: a take can pass the silence test and still be far too quiet to judge.
     # Seven naturalness clips and one listening clip sat at peak 0.008-0.04 and -47 to -59 LUFS,
-    # which is nothing a rater can hear at a normal setting; normalising them only raises the noise.
+    # which is nothing a rater can hear at a normal setting; normalizing them only raises the noise.
     # Thresholds are well below normal speech here (a clip at -23 LUFS has RMS near -25 dBFS).
     if float(np.abs(a).max()) < QUIET_PEAK or float(np.sqrt((a ** 2).mean())) < QUIET_RMS:
         return "too_quiet"

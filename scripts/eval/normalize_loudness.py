@@ -8,8 +8,8 @@ spread is not: the median absolute difference is 0.75 dB, 42% of pairs exceed 1 
 3 dB, with T5Gemma worst at a 1.90 dB median. A note asking raters to ignore it would not work; the
 effect is not under their control.
 
-Every clip is normalised to the same integrated loudness and peak-limited. The transform is applied
-identically to both arms, so it cannot favour either.
+Every clip is normalized to the same integrated loudness and peak-limited. The transform is applied
+identically to both arms, so it cannot favor either.
 """
 import argparse, json, os, shutil
 import numpy as np, soundfile as sf
@@ -20,10 +20,10 @@ ap.add_argument("--src", required=True)
 ap.add_argument("--out", required=True)
 ap.add_argument("--recursive", action="store_true", help="walk sub-directories, mirroring the tree")
 ap.add_argument("--lufs", type=float, default=-23.0)
-ap.add_argument("--peak", type=float, default=-1.0, help="dBFS ceiling after normalisation")
+ap.add_argument("--peak", type=float, default=-1.0, help="dBFS ceiling after normalization")
 ap.add_argument("--floor", type=float, default=-45.0,
                 help="leave a clip alone if its own loudness is below this: it is degenerate "
-                     "(near-silent, usually a runaway take), and normalising it amplifies noise")
+                     "(near-silent, usually a runaway take), and normalizing it amplifies noise")
 a = ap.parse_args()
 os.makedirs(a.out, exist_ok=True)
 

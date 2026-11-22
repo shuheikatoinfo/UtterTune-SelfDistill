@@ -75,7 +75,7 @@ def run(g, arm, texts, text_frontend):
             os.makedirs(od, exist_ok=True)
             wp = os.path.join(od, f"{i:02d}.wav")
             if os.path.exists(wp):
-                # Already synthesised from an identical input: keep it. A partial re-run must not
+                # Already synthesized from an identical input: keep it. A partial re-run must not
                 # regenerate audio it is not meant to touch.
                 continue
             # uniform degeneracy guard, identical for every arm (scripts/eval/degenerate.py)
@@ -88,7 +88,7 @@ def run(g, arm, texts, text_frontend):
             if ginfo["takes"] > 1:
                 print(f"    guard {arm}/{i:02d}: {ginfo['takes']} takes {ginfo['rejected']}", flush=True)
         if wav is None:
-            # every take for this item was already on disk: nothing was synthesised, so there is no
+            # every take for this item was already on disk: nothing was synthesized, so there is no
             # waveform to score here. The auxiliary CER simply has no entry for it.
             continue
         # the guard already transcribed this waveform with this model; a second identical ASR pass

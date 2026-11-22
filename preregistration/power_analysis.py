@@ -84,7 +84,7 @@ if __name__ == "__main__":
 #            20%  |  0.86   0.96   0.99   1.00   1.00
 #            25%  |  0.78   0.92   0.97   1.00   1.00
 #
-# At n=50 and the discordance an accent judgement realistically produces (20-25% when both
+# At n=50 and the discordance an accent judgment realistically produces (20-25% when both
 # arms score near 0.8), the test concludes non-inferiority only 58-68% of the time even when
 # the arms are genuinely equal. Delta=0.15 is at the resolution limit of n=50: the 95% CI
 # half-width on the risk difference is ~0.12 at 20% discordance, so the margin and the noise

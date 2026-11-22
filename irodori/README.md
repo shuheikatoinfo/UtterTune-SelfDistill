@@ -38,7 +38,7 @@ sampler, codec) is the pinned upstream code, unchanged.
 The manifest is upstream's JSONL (`text`, `latent_path`, `num_frames`, `speaker_id`), one row per
 teacher, with `text` carrying the tags, plus `ref_latent_path`: the reference latent the teacher
 was synthesized from. Upstream conditions on another utterance of the same `speaker_id`; with the
-patch a row's own `ref_latent_path` is used when present.
+patch, a row's own `ref_latent_path` is used when present.
 
 ```bash
 $PY irodori/prepare_tag_model.py --work-dir WORK      # WORK/tokenizer_pron_tags, WORK/init_pron_tags.pt
@@ -59,7 +59,7 @@ $PY irodori/synthesis.py --checkpoint CKPT --ref-latent REF.pt --seed 0 --guard 
     --text "このカレーはとても<PHON_START>カラ'イ<PHON_END>です。" --out out.wav
 ```
 
-Without `--checkpoint` the base release is used. The tag tokenizer is rebuilt from the pinned base
+Without `--checkpoint`, the base release is used. The tag tokenizer is rebuilt from the pinned base
 tokenizer into `~/.cache/irodori-pron-tags/` on first use. `--guard` and `run_blockB1.py` need
 `scripts/eval/degenerate.py` and `scripts/eval/asr_audio.py` of this repository.
 
@@ -81,4 +81,3 @@ as given: an item set whose tags still need routing must be routed first.
 This code is written on the public Irodori-TTS. Retrained with it in the round-3 setting, the model comes close to
 the paper's checkpoint on the 144 validation items (kana CER 0.061 against 0.057, UTMOSv2 2.77 against 2.80, both read
 with this code).
-

@@ -6,10 +6,10 @@ earlier, unreleased adapter. Two rows measured differently are not comparable, a
 adapter contradicts the disjointness the method claims. This script removes both problems: every
 arm of every backbone is transcribed by the same model with the same decoding constraint, from
 audio resampled explicitly to 16 kHz (see scripts/eval/asr_audio.py for why that matters), and
-scored with the same canonicalisation.
+scored with the same canonicalization.
 
 Metric of record: canonical target-reading hit — does the intended reading of the target word
-appear in the kana transcript, after long-vowel canonicalisation.
+appear in the kana transcript, after long-vowel canonicalization.
 
   scripts/eval/.venv_metrics/bin/python scripts/eval/measure_reading_all.py --out <json>
 """
@@ -102,7 +102,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=f"{D}/remeasure/reading_all.json")
     # kana-whisper outputs katakana directly. Plain whisper-large-v3 transcribes in kanji, and the
-    # katakana-only normalisation then deletes most of the sentence (七味猛霊が静かな森に… ->
+    # katakana-only normalization then deletes most of the sentence (七味猛霊が静かな森に… ->
     # ガカナニクヒッソリムダ), which is what produced absurd hit rates on the first attempt. A
     # kana-constrained decode is required; this model provides it natively for every backbone,
     # and 24/44.1/48 kHz are all handled because the audio is resampled explicitly to 16 kHz.
@@ -124,7 +124,7 @@ if __name__ == "__main__":
     TGT_N = targets(normalize=norm)   # exact-mora form, see the hit test
     asr = pipeline("automatic-speech-recognition", model=args.asr, device=0,
                    dtype=torch.float16, generate_kwargs={"language": "ja", "task": "transcribe"})
-    KANA_OK = None  # kana constraint applied by post-hoc canonicalisation, identical for every arm
+    KANA_OK = None  # kana constraint applied by post-hoc canonicalization, identical for every arm
 
     res = {"asr": args.asr, "n_items": len(TGT), "backbones": {}}
     for bk, arms in ARMS.items():

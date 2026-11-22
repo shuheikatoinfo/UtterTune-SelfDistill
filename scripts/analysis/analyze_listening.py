@@ -123,7 +123,7 @@ def risk_diff(x, y):
 
 def odds_ratio(x, y):
     """Haldane-Anscombe corrected; the correction is applied always, not only on zero cells,
-    so the estimator does not change behaviour depending on the data it sees."""
+    so the estimator does not change behavior depending on the data it sees."""
     a, b = sum(y) + 0.5, len(y) - sum(y) + 0.5
     c, d = sum(x) + 0.5, len(x) - sum(x) + 0.5
     return (a / b) / (c / d)
@@ -218,7 +218,7 @@ def load_keys(kitdir):
 def load_responses(path):
     """Accept either the KV export (scripts/rater_ui/export_kv.py) or a collector CSV.
 
-    The study stores each judgement server-side as it is made; the CSV form is kept because an
+    The study stores each judgment server-side as it is made; the CSV form is kept because an
     earlier collector wrote one. Rows the outcome must never see are dropped here, at the door:
     `meta|consent` (the consent record) and the gate's own answers (`screening|...`). Catch trials
     live in cell "E" and are kept -- they are what the session exclusion is computed from.
@@ -372,7 +372,7 @@ def main():
     # kappa below mixes within-set agreement with between-set differences; it is kept only as
     # a reference figure. Blocks come from preregistration/items/blocks.json, keyed by
     # (cell, word-unit idx); a stimulus not found there is a design error and is reported.
-    # Each rater's block is carried on the judgement itself (the site stores it), so the block
+    # Each rater's block is carried on the judgment itself (the site stores it), so the block
     # structure is read from the data rather than from a separate file that can drift out of date;
     # preregistration/items/blocks.json described an earlier 5x5 layout and no longer matches what
     # was fielded. A stimulus judged under more than one block would be a design error and is
@@ -567,7 +567,7 @@ def main():
     # ---- §5.4 sensitivity: drop items whose normative accent has no dictionary entry
     # The author's NHK check records one verdict per item: "ok" (found in the dictionary),
     # "fix" (found, and the preregistered target was corrected to match it) or "other_source"
-    # (no NHK entry; the target rests on the author's own judgement). §5.4 repeats Family A
+    # (no NHK entry; the target rests on the author's own judgment). §5.4 repeats Family A
     # without the "other_source" items, so a reader can see whether the result depends on them.
     # item_id "difficult:001" is 1-indexed over the item list; KEY idx is 0-indexed.
     VSET = {"A_sarashina_difficult": "difficult", "B_cv2_datafree_vs_recorded": "difficult",

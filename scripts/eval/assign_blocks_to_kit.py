@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Write <kit>/BLOCKS.csv (blind_id, block) for every row of every cell, so the rater server can
-serve a BLOCK -- 95 judgements spanning all four cells -- without ever reading KEY_DO_NOT_OPEN.
+serve a BLOCK -- 95 judgments spanning all four cells -- without ever reading KEY_DO_NOT_OPEN.
 Blocks are defined on word-units (preregistration/items/blocks.json: cell -> idx list); an
 attention clone goes wherever its original goes (same cell + idx), so duplicate-consistency is
 scored within one session. BLOCKS.csv carries no arm, speaker, idx or source path.
@@ -22,4 +22,4 @@ for cell in sorted(d for d in os.listdir(kit_root) if os.path.isfile(f"{kit_root
     with open(f"{kit_root}/{cell}/BLOCKS.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=["blind_id", "block"]); w.writeheader(); w.writerows(out)
     print(f"  {cell}: {len(out)} rows -> BLOCKS.csv")
-print("  judgements per block (incl. attention clones):", dict(sorted(per_block.items())), "| unmapped:", missing)
+print("  judgments per block (incl. attention clones):", dict(sorted(per_block.items())), "| unmapped:", missing)

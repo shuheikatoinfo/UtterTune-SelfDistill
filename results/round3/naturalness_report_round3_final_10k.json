@@ -122,15 +122,15 @@
   "N112": 16.7,
   "N113": 18.9
  },
- "judgements_dropped_by_exclusion": {
+ "judgments_dropped_by_exclusion": {
   "N016": 19,
   "N094": 48
  },
  "sittings_started": 108,
  "sittings_complete_approx": 102,
- "n_judgements": 5116,
+ "n_judgments": 5116,
  "n_pairs": 200,
- "judgements_per_pair": {
+ "judgments_per_pair": {
   "min": 24,
   "median": 26.0,
   "max": 27

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Reading and accent self-distillation LoRA on T5Gemma-TTS-2b-2b.
 # Derived from examples/training/t5gemma_2b-2b-ft-lora.sh of T5Gemma-TTS (https://github.com/Aratako/T5Gemma-TTS),
-# used under its licence:
+# used under its license:
 #
 # MIT License
 #

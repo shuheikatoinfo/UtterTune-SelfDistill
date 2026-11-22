@@ -1,7 +1,7 @@
 """Teacher reading check of the registered rule, shared by all four backbones.
 
 A candidate teacher take is kept only if the ASR of record (kana-whisper) hears the target word's
-reading in it, judged with the same canonicalisation as the paper's reading metric
+reading in it, judged with the same canonicalization as the paper's reading metric
 (scripts/eval/measure_reading_all.py: canon() / norm(); copied here so that every backbone's
 teacher generator, each in its own venv, applies one implementation). The check reads the target
 reading only -- never the accent, never the rest of the sentence.

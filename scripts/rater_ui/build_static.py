@@ -4,7 +4,7 @@ Ships ONLY what a rater may see: clips, and a manifest carrying blind_id / targe
 target reading / prescribed accent. KEY_DO_NOT_OPEN.csv and build_note.json are never copied,
 and the build fails loudly if anything KEY-like would end up in the output.
 
-Judgements are POSTed to COLLECT_URL as they are made and mirrored in localStorage, so a lost
+Judgments are POSTed to COLLECT_URL as they are made and mirrored in localStorage, so a lost
 connection or a closed tab cannot cost the rater their session.
 
   python3 scripts/rater_ui/build_static.py --out /tmp/rater_site --collect-url https://...
@@ -26,7 +26,7 @@ ap.add_argument("--project", default="jp-accent-listening")
 ap.add_argument("--screening", default="final",
                 help="comma-separated screening sets to ship (v2,v4); empty ships none")
 ap.add_argument("--out", required=True)
-ap.add_argument("--collect-url", default="", help="endpoint that accepts one JSON judgement per POST")
+ap.add_argument("--collect-url", default="", help="endpoint that accepts one JSON judgment per POST")
 args = ap.parse_args()
 if args.kv_id is None:
     sys.exit("set CF_KV_NAMESPACE or pass --kv-id (an empty id ships no functions)")
@@ -65,7 +65,7 @@ for k in kits:
 # screening completion code, so the two groups can be paid different rates without any manual
 # tracking or scouting. The gold answers are NOT shipped -- only the audio and the shown accent --
 # so the page cannot reveal them and a worker cannot read them out of the payload. Grading happens
-# after the fact, from the recorded judgements, against preregistration/items/screening_20.json.
+# after the fact, from the recorded judgments, against preregistration/items/screening_20.json.
 # Two screening sources: v2 tests the position of a word-internal downstep to the mora, v3 tests
 # heiban vs odaka, which is only audible on the following particle and which v2 deliberately
 # excluded for that reason. Both are needed because the main study contains both (238 heiban,
@@ -86,7 +86,7 @@ ALL_SCR = {
     "final": ("preregistration/items/screening_gate20.json", f"{paths.DATA}/screening_final_norm"),
 }
 # --screening picks which sets ship. v3 (the tagged heiban/odaka attempt) is deliberately absent:
-# the contrast is realised on the following particle, outside the tagged span, so it could not be
+# the contrast is realized on the following particle, outside the tagged span, so it could not be
 # requested, and the author heard both members of all 8 pairs as the same type. v4 replaces it by
 # never asking for an accent at all.
 SCR_SOURCES = [(os.path.join(REPO, ALL_SCR[k][0]), ALL_SCR[k][1])
@@ -107,7 +107,7 @@ if scr:
     for r in scr:
         shutil.copy2(os.path.join(scr_audio_of[r["id"]], r["id"] + ".wav"),
                      os.path.join(PUB, "screening", "clips", r["id"] + ".wav"))
-    # The item files keep accents in the apostrophe notation the synthesiser consumes
+    # The item files keep accents in the apostrophe notation the synthesizer consumes
     # ("カ'シオ"), but the rater is taught exactly one notation -- ＼ = fall after that mora,
     # ￣ = no fall -- and the main blocks are already written that way. Shipping the raw field
     # would show the screening in a notation the instructions never define, and would render a
@@ -128,7 +128,7 @@ if scr:
         sys.exit("REFUSING TO SHIP: gold answers would reach the browser")
     print(f"  screening: {len(scr)} items (gold withheld)")
 
-# BLOCK assignment (prereg S:4): a session is one block of ~95 judgements spanning all four cells,
+# BLOCK assignment (prereg S:4): a session is one block of ~95 judgments spanning all four cells,
 # not one cell. <kit>/BLOCKS.csv maps blind_id -> block and carries no arm, speaker or source path,
 # so shipping it does not weaken the blinding. Written into index.json as
 # blocks[block] = [[kit, blind_id], ...] in a per-block fixed order.
@@ -160,7 +160,7 @@ for b in blocks:
 # Within-rater consistency is therefore left to the kits' 23 duplicate pairs; adding repeats here
 # would have measured the same thing twice.
 # They ship as an ordinary cell with ordinary blind ids, so nothing in the page or the network
-# traffic marks a judgement as a check. The id -> source map is written to the local key file only,
+# traffic marks a judgment as a check. The id -> source map is written to the local key file only,
 # which this builder already refuses to ship.
 CATCH_KNOWN, CATCH_REPEAT = (CATCH_KNOWN_OVERRIDE or 4), 0
 catch_pool = json.load(open(os.path.join(REPO, "preregistration/items/screening_catch.json"),
@@ -224,7 +224,7 @@ leaked = [os.path.join(dp, f) for dp, _, fs in os.walk(args.out) for f in fs
 if leaked:
     sys.exit(f"REFUSING TO SHIP: key-like files in output: {leaked[:5]}")
 n = sum(len(fs) for _, _, fs in os.walk(args.out))
-# Pages Functions: /api/screen grades the gate, /api/save stores each judgement. Serving them from
+# Pages Functions: /api/screen grades the gate, /api/save stores each judgment. Serving them from
 # the same origin as the site keeps the answer key off the client, makes the response readable (so a
 # failed save is visible rather than silent), and removes the dependency on a second service.
 fn_src = os.path.join(REPO, "scripts/rater_ui/functions")

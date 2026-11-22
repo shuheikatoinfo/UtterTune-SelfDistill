@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Round 3 naturalness kit and site (section 16): easy-50 pairs on all four backbones. Unedited arm = round-2 base-model
 # clips; edited arm = round-3 adapters (synth_r3, easy-50 tags as reviewed on 09-18). Same builder, rules and
-# exclusions as round 2; new pair-id prefix q; loudness normalisation only (no trimming); fee 700 yen.
+# exclusions as round 2; new pair-id prefix q; loudness normalization only (no trimming); fee 700 yen.
 set -euo pipefail
 . "$(dirname "$0")/../paths.sh"; require_env DATA
 R=$REPO_ROOT; V=$DATA/v2; S=$V/nat_src_r3; cd $R
@@ -15,6 +15,6 @@ if ! echo "$SKIP" | grep -q t5gemma; then rm -rf $S/t5gemma; mkdir -p $S/t5gemma
 for bb in $(ls $S); do n=$(ls $S/$bb/ours | wc -l); m=$(ls $S/$bb/noedit | wc -l); echo "$bb: ours=$n noedit=$m"; [ "$n" = 50 ] && [ "$m" = 50 ] || { echo "INCOMPLETE $bb"; exit 1; }; done
 OUT=${NAT_OUT:-$V/naturalness_kit_round3}; SITE=${NAT_SITE:-$V/cf_nat_round3}; ITEMS=${NAT_ITEMS:-preregistration/items/naturalness_ab_easy50_round3.json}; PROJECT=${NAT_PROJECT:-jp-accent-naturalness-round3}
 python3 scripts/eval/build_naturalness_ab.py --root $S --out $ITEMS --audio-out $OUT --id-prefix q --write
-rm -rf ${OUT}_norm; python3 scripts/eval/normalise_loudness.py --src $OUT --out ${OUT}_norm --recursive
+rm -rf ${OUT}_norm; python3 scripts/eval/normalize_loudness.py --src $OUT --out ${OUT}_norm --recursive
 rm -rf $SITE; python3 scripts/rater_ui/build_naturalness_site.py --items $ITEMS --clips ${OUT}_norm --out $SITE --project $PROJECT --groups 4 --fee "700円"
 echo "NAT_R3_BUILT -> $SITE"

@@ -22,9 +22,9 @@ slow-teacher filter. Rounds 1 and 2 are superseded and not pooled; round 1 is re
 | Speaker rule | no speaker for Sarashina and T5Gemma (text-only teachers); the same 2,000 voices sampled from Irodori-TTS-500M-v2 without a reference, for Irodori (reference latents) and CosyVoice 2 (prompt clips) | 0.3 |
 | Checkpoint rule | lowest mean sentence kana CER of the tag arm on the 144 validation items (105 selection items + 39 side-effect sentences), ties within 0.005 to the higher UTMOSv2 | 16, notes of 08:44, 08:55 and 11:10 |
 | Chosen | CosyVoice 2 1,000 steps; Irodori 2,000; T5Gemma 600, each by the checkpoint rule. Sarashina: P4 at its registered 20,000 steps, not chosen by the rule (the rule of 08:44 was written for a retrained adapter that was not used) | 14 (P4), 16 (10:48, 12:02, 15:10, 16:07) |
-| Objective set | 319-item test half of the Joyo Kanji Yomi Benchmark items a public G2P misreads; one of 42 held-out ReazonSpeech voices per item; target-reading hit under kana-whisper; guard identical in every arm | 0.5, 13; tag arm round 3, no-edit and kana arms round 2 (amendment 5) |
+| Objective set | 319-item test: half of the Joyo Kanji Yomi Benchmark items a public G2P misreads; one of 42 held-out ReazonSpeech voices per item; target-reading hit under kana-whisper; guard identical in every arm | 0.5, 13; tag arm round 3, no-edit and kana arms round 2 (amendment 5) |
 | Listening | difficult-50; every backbone × {kana, tag}, plus no edit on Sarashina; 450 stimuli + 23 duplicates + 8 catch trials per rater; four raters who passed the 18/20 screening, all complete | 0.6, 7, 16 (16:13, 17:15, 2026-09-21 10:09) |
-| Naturalness | easy-50 with the author-reviewed tags; same-sentence A/B, edited vs unedited; 200 pairs in 4 groups; 102 complete sittings after the speed rule, 5,116 judgements, 24 to 27 per pair; one submission per platform account | 0.8, 6, 16 (16:28, 2026-09-21 10:14 and the correction after it) |
+| Naturalness | easy-50 with the author-reviewed tags; same-sentence A/B, edited vs unedited; 200 pairs in 4 groups; 102 complete sittings after the speed rule, 5,116 judgments, 24 to 27 per pair; one submission per platform account | 0.8, 6, 16 (16:28, 2026-09-21 10:14 and the correction after it) |
 | Confirmatory tests | five, one Holm family: tag vs kana on each backbone, tag vs no edit on Sarashina | 0.7 |
 
 **Training as run.** The registration fixes the training as "exactly as in round 1 per backbone" (0.4). The settings
@@ -40,7 +40,7 @@ actually used, read from each run's configuration:
 **What the next version of the paper corrects.** The version of 2026-09-24 (arXiv 2609.17234v3):
 - describes the Sarashina and CosyVoice 2 training setting as if it held on all four backbones; the settings per
   backbone are those in the table above;
-- says all four step counts were chosen by the checkpoint rule; Sarashina's 20,000 steps are the registered count, not
+- says the checkpoint rule chose all four step counts; Sarashina's 20,000 steps are the registered count, not
   chosen by the rule;
 - gives the UtterTune comparison of the 319-item table as -0.072 [-0.122, -0.022], p = 0.004; with the corrected inputs
   it is -0.072 [-0.120, -0.024], p = 0.003 (finding and correction of 2026-11-21);
@@ -51,13 +51,13 @@ actually used, read from each run's configuration:
 **Results of record.** Objective: `results/round3/reading_obj319_round3_ut_corrected_inputs.json`, contrasts
 `results/round3/obj319_round3_contrasts_ut_corrected_inputs.md`. Listening:
 `results/round3/listening_report_round3_4raters_20260921_1009.json` (Fleiss' kappa 0.89; 13 tied stimuli excluded;
-four of the five confirmatory hypotheses supported, Sarashina tag vs no edit not). Naturalness:
+four of the five confirmatory hypotheses supported; Sarashina tag vs. no edit not). Naturalness:
 `results/round3/naturalness_report_round3_final_10k.json`. Bootstrap resamples are 10,000 throughout (entry of
 2026-09-24).
 
 **Deviations from the registration, all recorded below where they happened.** The v5/v5b carriers were added and then
-withdrawn before any round-3 stimulus existed (16). On CosyVoice 2, Irodori and T5Gemma the checkpoint grids were
-widened and the checkpoint was chosen by rule rather than fixed at the registered step counts; the rule chose the
+withdrawn before any round-3 stimulus existed (16). On CosyVoice 2, Irodori and T5Gemma, the checkpoint grids were
+widened, and the checkpoint was chosen by rule rather than fixed at the registered step counts; the rule chose the
 registered count on CosyVoice 2 and Irodori, and 600 instead of 400 on T5Gemma (16). Sarashina's P4 kept its registered
 20,000 steps (14, 16 at 10:48). T5Gemma's step 800 arrived after the kit was built
 and was not used (16, 16:15 and 17:10). The silence-trimming rule was withdrawn before any kit used it (16, 15:23).
@@ -73,14 +73,13 @@ exclusion of 2026-09-21 was corrected the same day (section 16, entries of 2026-
 
 **Where this record was kept.** The registration and its record were kept in the author's private git repository
 from 2026-09-05 and are published with this release, with their commit history. Commit dates are the author's own;
-there is no third-party timestamp. Rater identifiers are pseudonyms, and machine paths are placeholders. Where the
-record mentions the earlier teacher set that preceded the clean-room text set, its wording was made neutral for
-publication, here and in the history ("earlier, unreleased"); no fact, date or number changed.
+there is no third-party timestamp. Rater identifiers are pseudonyms, machine paths are
+placeholders, and some wording was edited for publication, here and in the history; no fact, date or number changed.
 
 
 **Status:** fixed 2026-09-16 (JST), before any round-2 teacher audio was inspected, before any
-round-2 adapter was trained, and before any round-2 judgement was collected. Round 1 (the design
-in `PREREGISTRATION.md`, with all its amendments) was analysed in full before this document was
+round-2 adapter was trained, and before any round-2 judgment was collected. Round 1 (the design
+in `PREREGISTRATION.md`, with all its amendments) was analyzed in full before this document was
 written; nothing here is chosen on round-1 outcomes except the decision to run round 2 at all.
 **Author:** Shuhei Kato. **Purpose:** replace the round-1 patchwork (four teacher-take rules, three
 different accent comparators, one backbone unjudged, an untuned transfer whose teacher sets were
@@ -89,14 +88,14 @@ not reading-checked) with one design applied identically to all four backbones.
 ## 0. What is fixed here
 
 1. **One text set.** `data/cleanroom/inventory_500.jsonl` (533 words x 10 carriers) minus every word
-   colliding, by surface or canonical reading, with a target of difficult-50, katakana-50, easy-50 or
+   colliding, by surface or canonical reading, with a target of difficult-50, katakana-50, easy-50, or
    blockC-1000 (the union of the round-1 filters; round 1 applied easy-50 on CosyVoice 2 only).
    Result: **471 words, 4,710 carriers** (`scripts/teachers/build_text_v3.py`; the 62 dropped words
    are listed in its log). The Joyo objective set is disjoint by its own construction (round 1 §2).
 2. **One teacher rule** (`scripts/teachers/gen_*_v2.py`, `reading_check.py`): the frozen base reads
    the plain kanji carrier; the take is kept iff it passes the degeneration guard (Sarashina: 20 to
    600 semantic tokens; others: audio >= 0.5 s and valid codes) **and** the ASR of record
-   (kana-whisper) hears the target word's reading in it, judged with the paper's canonicalisation;
+   (kana-whisper) hears the target word's reading in it, judged with the paper's canonicalization;
    otherwise the seed is bumped and the carrier gets another take, **up to five takes in all**, each
    later take only for carriers whose earlier takes failed; a carrier with no passing take is dropped and
    logged with all its transcripts. (History, all before any teacher set was complete: two takes at
@@ -105,17 +104,17 @@ not reading-checked) with one design applied identically to all four backbones.
    was finished by then is kept and the cut is recorded, so that the panel can be built on 09-18.) No best-of, no CER threshold, no per-word cap. The number kept per
    backbone is reported, however small. **T5Gemma's teacher generation runs on rented RunPod GPUs**
    (decided 14:00 JST on 09-16 with 151 of 4,710 carriers done locally at 30 s per row under GPU
-   contention): the same script, rule and seeds, rows sharded over pods (`scripts/teachers/runpod_t5gemma.py`);
-   the local partial pass is discarded whole and no row of it enters; with the pods the five takes are
+   contention): the same script, rule, and seeds, rows sharded over pods (`scripts/teachers/runpod_t5gemma.py`);
+   the local partial pass is discarded whole, and no row of it enters; with the pods, the five takes are
    expected to finish before the cutoff, which stays in force.
    **Checker implementation defect, found 15:20 JST on 09-16 and fixed before any teacher set was
    inspected beyond its counts:** `reading_check.Checker` handed raw audio with its native rate to the
    transformers pipeline, whose resampling is faithful at 24 and 16 kHz but distorts 44.1 kHz
    (target word misheard) and 48 kHz (unintelligible) audio; verified on one Irodori utterance whose
    file-path transcript is correct at every rate once librosa resamples to 16 kHz first. The fix resamples
-   in the checker. Consequences: Sarashina and CosyVoice 2 (24 kHz) are unaffected and their sets stand;
+   in the checker. Consequences: Sarashina and CosyVoice 2 (24 kHz) are unaffected, and their sets stand;
    Irodori (48 kHz; 200 carriers done, 10 kept) and T5Gemma (44.1 kHz; pods about 35 min in) are
-   regenerated from scratch with the fixed checker and their partial outputs are discarded whole.
+   regenerated from scratch with the fixed checker, and their partial outputs are discarded whole.
    The same raw-rate path was used by the round-1 T5Gemma teacher QC (CER at 44.1 kHz), which is
    noted in `PREREGISTRATION.md`; the objective measurement of record (`measure_reading_all.py`)
    already resampled via `asr_audio.to_asr_input` and is unaffected.
@@ -124,15 +123,15 @@ not reading-checked) with one design applied identically to all four backbones.
    over four pods; the local run (restarted 15:17 with the fixed checker) is stopped once the pods deliver
    and its partial output is discarded whole. CosyVoice 2's teacher generation moved to RunPod as well
    (15:50 JST; same script, rule, seeds and prompt-voice assignment keyed on the global row index; four
-   shards). Execution note: the Sarashina training started 15:05 stalled at step 4,880 from 15:58 (GPU
-   memory oversubscribed while three jobs shared the local GPU) and was killed at 16:15 and restarted from
+   shards). Execution note: the Sarashina training started at 15:05, stalled at step 4,880 from 15:58 (GPU
+   memory oversubscribed while three jobs shared the local GPU), and was killed at 16:15 and restarted from
    scratch with the identical command (`v2_chain.sh sarashina_train`); the stalled run's log is kept as
    `logs/sarashina_train_stalled_1558.log` and nothing of it is used.
    Irodori's adapter training (2,000 steps, identical config, base checkpoint and command) runs on the
-   RunPod pod that generated its teachers (16:39 JST) and the checkpoint is copied back for the local
+   RunPod pod that generated its teachers (16:39 JST), and the checkpoint is copied back for the local
    synthesis; no local Irodori training run is used.
    T5Gemma's materialize/train/export (400 steps, identical scripts including the local trainer patch)
-   likewise run on the pod that generated its teachers (17:25 JST); the merged model is copied back for
+   Likewise, run on the pod that generated its teachers (17:25 JST); the merged model is copied back for
    the local syntheses. CosyVoice 2's LoRA training (1,000 steps, identical command) runs on one of its
    teacher pods once the four shards are collected (from 17:30 JST); the adapter is copied back for the
    local syntheses. Idle pods are terminated once their outputs are on local storage.
@@ -143,7 +142,7 @@ not reading-checked) with one design applied identically to all four backbones.
    with a dated backup), and the easy set was re-synthesized in full with the same seeds; the 45-item
    run is kept beside it as `easy_run1_45of50` and is not used.
    T5Gemma's four evaluation syntheses (18:31 JST) also run on its pod with the identical commands, item
-   files, speaker assignments and the 42 held-out evaluation voices copied to the pod; outputs are copied
+   files, speaker assignments, and the 42 held-out evaluation voices copied to the pod; outputs are copied
    back into the same directory layout. The in-synthesis guard is unchanged from round 1.
    **Audit 18:45 JST:** the base weights the pods downloaded from Hugging Face were compared tensor by
    tensor with the local copies used for synthesis (Irodori-TTS-500M-v3 model.safetensors, CosyVoice2-0.5B
@@ -152,26 +151,26 @@ not reading-checked) with one design applied identically to all four backbones.
    within its shard (rows i::8), not the global index; every shard used the same layout, so the seeds are
    fixed and reproducible from the shard assignment, which is recorded in `t5gemma/runpod_pods.json`;
    Irodori and CosyVoice 2 seeds and voices are keyed on the global row index. (ii) The CosyVoice 2 prompt
-   clips reached the pods as 16-bit FLAC copies of the 24 kHz pool wavs (PCM_16 quantisation of float
+   clips reached the pods as 16-bit FLAC copies of the 24 kHz pool wavs (PCM_16 quantization of float
    audio); the VAD-trimmed prompt copies were rebuilt on the pods from those.
    Two further checks at 19:00 JST, both clean: every round-2 listening stimulus exists for all four cells
-   and all arms (A2 150, B2/C2/D2 100 each) under the item's assigned voice; and all 200 naturalness
+   and all arms (A2 150, B2/C2/D2 100 each) under the item's assigned voice. All 200 naturalness
    no-edit clips are byte-identical to the round-1 easy-50 rendition under that item's assigned voice,
    so each A/B pair holds one voice fixed. The round-2 panel site was deployed at 19:10 JST
    (481 items per rater: 450 stimuli, 23 duplicates, 8 catch trials). Its two endpoints were probed once
    with a dummy account `probe_selfcheck`, which failed screening and never entered the panel; its two
    records were exported and deleted from the store the same minute.
    **Naturalness pair set, built 19:28 JST: 95 of the 100 registered pairs.** Five pairs hold one clip
-   that cannot be judged (peak below 0.05 at full scale) and are excluded by the round-1 audibility rule,
+   that cannot be judged (peak below 0.05 at full scale). They are excluded by the round-1 audibility rule,
    which item 8 did not list: Sarashina items 23 and 29, where the EDITED clip is silent (the adapter ran
    to the token cap), and T5Gemma items 20, 25 and 31, where the UNEDITED clip is silent (a base failure).
    The exclusion therefore helps the method on Sarashina and hurts it on T5Gemma. Both counts are reported
    per backbone and per arm in the paper, so the filter is a result rather than a hidden step; no pair is
-   replaced and the hash selection is untouched. Groups: 49 and 46.
+   replaced, and the hash selection is untouched. Groups: 49 and 46.
    **Superseded 09-17 06:40 JST by the rebuild under amendment 5:** with both sides of every pair from
    round 2, the T5Gemma no-edit clips are audible and only the two Sarashina pairs whose EDITED clip is
    silent (items 23 and 29) fall out: **98 of 100 pairs**, groups 51 and 47, deployed at
-   jp-accent-naturalness-r2.pages.dev. Every shipped clip was verified against its round-2 source.
+   jp-accent-naturalness-r2.pages.dev. We verified every shipped clip against its round-2 source.
 
 ## 4. Amendment, 2026-09-16 20:00 JST — every listening arm is synthesized in round 2
 
@@ -182,7 +181,7 @@ degeneracy guard (`scripts/eval/degenerate.py`, retry on no-speech / repetition 
 entered the synthesis scripts on 09-05. The round-2 tag arm therefore had up to six attempts to avoid a
 degenerate take while the reused comparators had one. The guard fired on 6 of 50 items in the round-2
 Sarashina tag arm and on 1 of 50 in CosyVoice 2, so the asymmetry was live, and it runs in the method's
-favour. Irodori's kana arm was worse placed still: round 1 built it with a different script
+favor. Irodori's kana arm was worse placed still: round 1 built it with a different script
 (`synthesize_routed.py`), one fixed seed for every item, and no guard at all.
 
 **What changes.** Every arm of every listening cell is now synthesized in round 2, with the same script,
@@ -199,7 +198,7 @@ registered.
 ## 5. Amendment, 2026-09-16 20:10 JST — one guard implementation on all four backbones
 
 The audit above left three asymmetries standing, all of which the user asked to remove while there was
-still time. All three are now closed, and every affected arm is re-synthesized on the local GPU.
+still time. All three are now closed, and we re-synthesized every affected arm on the local GPU.
 
 1. **Irodori ran a weaker guard.** Sarashina, CosyVoice 2 and T5Gemma redraw a take when the waveform
    is degenerate **or** when kana-whisper's transcript is (`text_reason`: no speech, a repetition run,
@@ -208,27 +207,27 @@ still time. All three are now closed, and every affected arm is re-synthesized o
    cap (6), the same waveform thresholds and the same ASR, and writes the same `guard_takes.json`
    record; the patched file is kept in the repository as
    `scripts/irodori/run_blockB1_guarded_20260916.py` and the original beside it as a dated backup.
-   Every Irodori arm is therefore re-synthesized: listening C2 (tag, kana), the naturalness easy set
+   Every Irodori arm is therefore re-synthesized: listening C2 (tag, kana), the naturalness easy set.
    (tag, no edit) and the objective 319 set (tag, kana, no edit).
 2. **The naturalness no-edit clips came from 09-08.** They were guarded, but from a different session
    than the edited clips. The no-edit arm is now synthesized in round 2 for every backbone
    (Sarashina and Irodori already had it; CosyVoice 2 and T5Gemma are queued), so both sides of every
-   A/B pair come from the same session, the same script and the same guard.
+   A/B pair come from the same session, script, and guard.
 3. **The objective comparators came from 09-04**, before the shared guard reached the scripts. The
    no-edit and kana arms of the 319-item table are re-synthesized in round 2 for CosyVoice 2, Irodori
    and T5Gemma (Sarashina already had all three), on the local GPU, with the item voices and seeds
    unchanged. The table is reported on round-2 arms throughout; the round-1-arm version is kept as a
    sensitivity check.
 
-No item, voice, assignment, arm, test or exclusion rule changes. Nothing is selected on an outcome:
-the change is which implementation of one disclosed filter runs, and it now runs identically everywhere.
+No item, voice, assignment, arm, test, or exclusion rule changes. Nothing is selected on an outcome:
+The change is which implementation of one disclosed filter runs, and it now runs identically everywhere.
 
 **Execution record, 09-16 20:47 to 09-17 06:35 JST.** The queue ran on the local GPU in this order, each
 with the same guard: CosyVoice 2 easy no-edit (50), T5Gemma easy no-edit (50), CosyVoice 2 obj319 no-edit and
 kana (319 each), Irodori obj319 tag, no-edit and kana (319 each; the tag arm redone under the shared guard),
 T5Gemma obj319 no-edit and kana. The last step failed at once because the queue had exported
-`HF_HUB_OFFLINE=1` for Irodori and T5Gemma's tokenizer load needs the hub; it was rerun at 06:35 on 09-17
-without the flag, nothing else changed. The naturalness pair set was rebuilt on 09-17 from round-2 clips on
+`HF_HUB_OFFLINE=1` for Irodori, and T5Gemma's tokenizer load needs the hub; it was rerun at 06:35 on 09-17
+Without the flag, nothing else changed. The naturalness pair set was rebuilt on 09-17 from round-2 clips on
 both sides for all four backbones (every staged clip verified as the item's assigned-voice round-2
 rendition), and the objective table is measured with `data/analysis/v2/arms_obj319_round2.json`;
 `arms_obj319_v2.json` (round-1 comparators) is the sensitivity check.
@@ -244,11 +243,11 @@ rendition), and the objective table is measured with `data/analysis/v2/arms_obj3
    CosyVoice 2 teacher existed: five voices at 12:20 JST; each backbone's own bank at 13:20; 2,000 on
    both at 13:45; one shared set at 14:10 so that the two backbones hear identical voices.)
    Irodori's unconditional path was probed on 2026-09-16 and produces noise under every guidance
-   scale, step count and unconditional mode, so it is speaker-conditioned.
+   scale, step count, and unconditional mode, so it is speaker-conditioned.
 4. **Training** exactly as in round 1 per backbone (same scripts, ranks, alphas, step counts:
    Sarashina 20k, CosyVoice 2 1k, Irodori 2k, T5Gemma 400), with the v2 teacher sets. No tuning on
    any evaluation number. If a backbone's teacher set is small (T5Gemma is expected to lose most
-   carriers to the reading check), it is trained anyway and its size is reported.
+   carriers to the reading check), it is trained anyway, and its size is reported.
 5. **Objective evaluation** as in round 1: the 319-item test half under one of 42 held-out
    ReazonSpeech voices per item (`items/speaker_assignment42_obj319.json`), canonical target-reading
    hit under kana-whisper, guard identical in every arm, bootstrap clustered by word, exact McNemar.
@@ -275,7 +274,7 @@ rendition), and the objective table is measured with `data/analysis/v2/arms_obj3
 8. **Naturalness, round 2.** Same-sentence A/B (unedited vs edited, "no difference" allowed) on the
    easy set with the v2 adapters, **25 pairs per backbone = 100 pairs**, the 25 chosen per backbone
    as the lowest sha256 of the pair id (fixed rule, no inspection), two groups of 50, at least 15
-   judgements per pair, CrowdWorks task format, 1,000 yen, one sitting per account. Statistic and
+   judgments per pair, CrowdWorks task format, 1,000 yen, one sitting per account. Statistics and
    margin as round 1: P(unedited) - P(edited) with ties split, non-inferiority margin 0.15 on the
    upper 95% limit, pair- and rater-clustered bootstrap. Exclusions **fixed now**: a second sitting by
    the same account (by worker list); a sitting whose median inter-response interval is below the
@@ -313,18 +312,18 @@ the rule was); no output had been inspected beyond the four-carrier smoke tests 
 
 ## 6. Amendment, 2026-09-17 08:05 JST — the naturalness study uses all 50 easy pairs per backbone
 
-Item 8 registered 25 pairs per backbone, chosen by hash, to halve the crowd. Before any naturalness judgement
-was collected, a variance decomposition of the round-1 judgements (per-pair true-preference SD 0.37 to 0.65
-against a within-pair judgement SD of 0.70 to 0.88) showed that the 95% interval of the preference is set
-almost entirely by the number of pairs, not by the number of judgements per pair: at 25 pairs the half-width
+Item 8 registered 25 pairs per backbone, chosen by hash, to halve the crowd. Before any naturalness judgment
+was collected, a variance decomposition of the round-1 judgments (per-pair true-preference SD 0.37 to 0.65
+against a within-pair judgment SD of 0.70 to 0.88) showed that the 95% interval of the preference is set
+almost entirely by the number of pairs, not by the number of judgments per pair: at 25 pairs the half-width
 is 0.16 to 0.26 whatever the crowd size, against a non-inferiority margin of 0.15; at 50 pairs it is 0.11 to
 0.19. The user therefore restored the round-1 size: **all 50 easy pairs per backbone, no hash selection, four
-groups of about 50 pairs, one group per sitting, at least 15 judgements per pair**, everything else in item 8
+groups of about 50 pairs, one group per sitting, at least 15 judgments per pair**, everything else in item 8
 unchanged. 198 pairs ship (the two Sarashina pairs with a silent edited clip are excluded as before); groups
-51/51/48/48. Both sides of every pair are round-2 audio (amendment 5). Built and deployed 07:38 JST (file
-times 07:37:50 to 07:38:02); the CrowdWorks task opened at 07:46 JST and every sitting since answers ids of
+51/51/48/48. Both sides of every pair are round-2 audio (amendment 5). Built and deployed at 07:38 JST (file
+times 07:37:50 to 07:38:02); the CrowdWorks task opened at 07:46 JST and every sitting since answers IDs of
 the 198-pair build (each rater's answered set lies inside exactly one of its four groups; the 98-pair build
-had ids m000 to m097 only). No judgement was recorded on the earlier build.
+had IDs m000 to m097 only). No judgment was recorded on the earlier build.
 
 **Objective table measured 2026-09-17 09:44 JST** with the metric of record (truth = the item's registered
 reading via `TARGETS_FILE`, as fixed on 09-09). A first run at 09:00 had omitted that variable and judged against the
@@ -344,19 +343,19 @@ item truth, the round-1 comparator arms reproduce the round-1 numbers exactly. R
   correct answer, and the original key stands. The set is scored as a clean 20.
 - **Pass line.** The slack widens from one item to two at the same time (18 of 20, written as a
   count, not a fraction), on the author's decision, so that restoring the item cannot demote anyone
-  already admitted. Under 18/20 all five previously admitted candidates remain admitted, and one
+  already admitted. Under 18/20, all five previously admitted candidates remain admitted, and one
   candidate rejected at 17/19, who had answered `scr07` correctly, is admitted: six of 34 in total.
   Nobody is dropped on a rule change made after the fact. Every stored gate record was regraded from
   its own stored answers against the 20-item key; the rule and the key are in
   `scripts/rater_ui/gen_collector.py` and the generated `functions/api/screen.js`, deployed to the
   round-2 panel site at the same time.
 - **Incident, 2026-09-17 morning: admitted raters could not reach the judging block.** The regrade
-  wrote each gate record through a helper that already JSON-serialises its argument, and passed it a
-  pre-serialised string, so all 33 records were stored as JSON string literals. The site's gate
+  wrote each gate record through a helper that already JSON-serializes its argument, and passed it a
+  pre-serialized string, so all 33 records were stored as JSON string literals. The site's gate
   endpoint then returned `found` without `pass`, and the page treated every rater, admitted or not, as
   failed. Reported by an invited rater; diagnosed and repaired 2026-09-17 morning by rewriting all 33
   records as objects from the same stored answers (no answer or verdict changed; six pass, 27 fail,
-  every record re-checked against the 18/20 rule). No judgements were lost: the block had not been
+  every record re-checked against the 18/20 rule). No judgments were lost: the block had not been
   reachable, so none had been made. The window during which invited raters were turned away is the
   invitation time to the repair; they are being told the link now works.
 
@@ -364,8 +363,8 @@ item truth, the round-1 comparator arms reproduce the round-1 numbers exactly. R
 
 - **Defect.** The shared guard (`scripts/eval/degenerate.py`, amendment 5) rejects a take on the waveform
   (silent, too quiet, mostly silent, under 0.5 s, runaway to the cap) **or** on kana-whisper's transcript
-  (no speech, a repetition run, a mora inventory under 25%). The transcript half is fed by a per-backbone
-  wrapper. On Irodori (`run_blockB1.py`, 48 kHz) and T5Gemma (`blockA_t5gemma.py`, 44.1 kHz) that wrapper
+  (no speech, a repetition run, a mora inventory under 25%). A per-backbone feeds the transcript half
+  wrapper. On Irodori (`run_blockB1.py`, 48 kHz) and T5Gemma (`blockA_t5gemma.py`, 44.1 kHz), that wrapper
   passed the raw array with its native rate to the transformers pipeline, which in the transformers 4.57
   used by both environments does not resample: kana-whisper heard the audio at three times (Irodori) or
   2.76 times (T5Gemma) its speed. Verified 11:20 JST inside both environments on round-2 files: the same
@@ -377,8 +376,7 @@ item truth, the round-1 comparator arms reproduce the round-1 numbers exactly. R
 - **Effect.** On Irodori and T5Gemma the transcript half of the guard fired on garbage: `repetition` and
   `low_variety` rejections there are noise with respect to the take's content, and a genuinely looping take
   was not caught by it. The waveform half worked. The guard was applied identically to every arm of a
-  backbone, so no arm was favoured within a backbone, and nothing was selected on the measured outcome; but
-  the guard on these two backbones was in effect weaker than on the other two, which is the asymmetry
+  backbone, so no arm was favored within a backbone, and nothing was selected on the measured outcome. Still, the guard on these two backbones was in effect weaker than on the other two, which is the asymmetry
   amendment 5 was meant to remove. Retry records: Irodori objective 135 of 638 (tag + no edit) and 65 of 319
   (kana) items retried, 27 and 9 to the cap; T5Gemma objective 51 of 319 base items and 7 + 46 tag items retried.
 - **Fix and re-synthesis.** Both wrappers now resample through `to_asr_input` (the Irodori synthesis wrapper backed up
@@ -387,21 +385,21 @@ item truth, the round-1 comparator arms reproduce the round-1 numbers exactly. R
   the earlier outputs kept beside them under `*_guardraw` for a sensitivity check: Irodori objective 319
   (tag, no edit, kana) and listening C2 (tag, kana); T5Gemma objective 319 (tag, no edit, kana) and listening
   D2 (tag, kana). The objective table of record is the re-synthesized one. The naturalness easy sets cannot be
-  re-synthesized (judgements were collected on them from 07:46 JST); their guard state is disclosed. Whether
+  re-synthesized (judgments were collected on them from 07:46 JST); their guard state is disclosed. Whether
   the re-synthesized C2 and D2 stimuli replace the deployed ones is decided by the author before any C2/D2
-  judgement exists (none exists at 11:40 JST); the panel is not redeployed on the author's initiative.
+  judgment exists (none exists at 11:40 JST); the panel is not redeployed on the author's initiative.
 
 ## 9. Amendment, 2026-09-17 12:05 JST — the author's decisions on amendment 8
 
 1. **Listening C2 and D2 are replaced.** The re-synthesized Irodori and T5Gemma difficult arms (tag, kana; same
    items, voices, seeds) replace the deployed stimuli on the same site, as cells **C2b** and **D2b**; A2 and B2
    are unchanged (the rebuilt clips are checked byte-identical to the deployed ones before deployment).
-   **Correction at 12:00 JST:** one rater had already completed the whole block (473 judgements, 10:32 to
+   **Correction at 12:00 JST:** one rater had already completed the whole block (473 judgments, 10:32 to
    11:18 JST) on the earlier C2/D2 stimuli before the store was checked again. The author's decision (12:00 JST,
-   option A): the replacement goes ahead; that rater's A2/B2 judgements stand; their 210 C2/D2 judgements on the
+   option A): the replacement goes ahead; that rater's A2/B2 judgments stand; their 210 C2/D2 judgments on the
    superseded stimuli are exported to the backup and removed from the working store, reported as a sensitivity
    check, and the rater is asked to judge C2b/D2b (210 items) for a proportional additional payment. The other
-   admitted raters had not started. Under the corrected guard none of the Irodori difficult or objective items
+   admitted raters had not started. Under the corrected guard, none of the Irodori difficult or objective items
    needed a redraw: every redraw the defective guard triggered on Irodori was spurious, so 17 of 50 tag and 19 of
    50 kana C2 stimuli change take (seed) with this replacement. The registered speed exclusion (median
    inter-response interval below the shortest stimulus) is the only speed rule applied; a rater may answer as
@@ -412,7 +410,7 @@ item truth, the round-1 comparator arms reproduce the round-1 numbers exactly. R
    seeds); the Sarashina and CosyVoice 2 easy clips are unchanged (24 kHz; guard verified faithful in their
    environments). The 200 pairs are rebuilt with the same rules (audibility exclusion, A/B by hash), deployed as
    a new site, and judged in a new CrowdWorks task under item 8 and amendment 6 (four groups of about 50, at
-   least 15 judgements per pair, same exclusions, same payment, new raters not required). The complete 09-17
+   least 15 judgments per pair, same exclusions, same payment, new raters not required). The complete 09-17
    collection on the 198-pair build (104 sittings) is superseded as the record and is reported only as a
    sensitivity check, per backbone. Nothing else in item 8 changes.
 
@@ -423,12 +421,12 @@ session opened on the earlier build keeps playing. Stimuli whose audio changed w
 (byte-different and not the same take under float noise): C2b 38 of 105 (17 tag, 19 kana, 2 duplicates), D2b 32 of
 105; these 70 form block 1, which only the rater who had completed the block judges (invitation URL with `&b=1`).
 Every other rater judges block 0 (481 items, A2, B2, C2b, D2b); the assignment endpoint is called with one unit so
-that no new rater is ever handed block 1. Store: the completed rater's 140 judgements on unchanged C2/D2 stimuli were
-re-keyed to C2b/D2b (same clip, same answer; `rekeyed_from` kept in each record) and their 70 judgements on changed
+that no new rater is ever handed block 1. Store: the completed rater's 140 judgments on unchanged C2/D2 stimuli were
+re-keyed to C2b/D2b (same clip, same answer; `rekeyed_from` kept in each record) and their 70 judgments on changed
 stimuli removed (exported first to `superseded_c2d2_R1_*.json`). A second rater had started at 12:04 JST
-(32 judgements); at the author's decision they restart the block: their 10 C2/D2 judgements were exported and
-removed, their 22 A2/B2 judgements stand. Deployed 12:20 JST and probed end to end with a dummy passing account
-for both blocks (block 0: 481 items; block 1: 70 items), whose records were deleted afterwards.
+(32 judgments); at the author's decision, they restart the block: their 10 C2/D2 judgments were exported and
+removed; their 22 A2/B2 judgments stand. Deployed at 12:20 JST and probed end to end with a dummy passing account
+for both blocks (block 0: 481 items; block 1: 70 items), whose records were deleted afterward.
 
 **Objective, Irodori, under the corrected guard (12:22 JST, `reading_obj319_round2_irodori_gf.json`):** no edit
 0.586, kana 0.909, tag 0.868; tag − kana −0.041 [−0.079, −0.003], p = 0.029; tag − none +0.282 [+0.212, +0.357].
@@ -442,7 +440,7 @@ under the corrected guard with the same items, voices and seeds; the earlier arm
 silent-edit exclusions, others 50; A/B by hash as before). Against the 198-pair build of 07:38: every Sarashina and
 CosyVoice 2 clip byte-identical; Irodori 17 no-edit and 24 tag clips changed, T5Gemma 17 and 21 (the T5Gemma
 counts include same-take float-noise differences, the earlier T5Gemma easy arms having been pod-generated).
-Loudness-normalised as before (396 clips, -23.0 LUFS), four content-derived groups 51/51/48/48. Deployed as a new
+Loudness-normalized as before (396 clips, -23.0 LUFS), four content-derived groups 51/51/48/48. Deployed as a new
 project, `https://jp-accent-naturalness-r3.pages.dev`, 12:47 JST; served clips verified byte-identical to the build;
 the consent-to-judging path exercised with a dummy id in a headless browser (48-item group rendered with both
 players), whose records were deleted. The group-assignment endpoint shares the store with the 07:46 task, so its
@@ -468,7 +466,7 @@ rebuilt block (amendment 9), the browser still held ten answers to the supersede
 the completion screen at 471 of 481 real answers (the ten unanswered items: A2 2, B2 2, C2b 5, D2b 1). Found from
 the store (463 of 473 stimuli plus catch trials, then no movement). The counter now counts only answers to items of
 the block shown (`nDone` in the page and both templates); redeployed 15:20 JST; the rater is asked to reload and
-finish the ten items. No answer was lost or altered. The rater still on the earlier build, and block 1, are not
+finish the ten items. No answer was lost or altered. The rater is still on the earlier build, and block 1 is not
 affected (their stored answers all belong to the block they are shown).
 
 **Interim look, 2026-09-17 15:30 JST (at the author's request, to draft the paper).** Store exported to
@@ -476,12 +474,12 @@ affected (their stored answers all belong to the block they are shown).
 analysis refuses confirmatory tests below three raters, so it was run with the explicit `--interim-min-raters 2`
 flag added for this purpose, which stamps the report as interim and exploratory
 (`data/analysis/v2/listening_report_interim_2raters.json`; cells C2b/D2b presented to the script under their
-registered names by `scripts/analysis/prep_round2_panel.py`, judgements on the superseded C2/D2 stimuli dropped,
+registered names by `scripts/analysis/prep_round2_panel.py`, judgments on the superseded C2/D2 stimuli dropped,
 the incomplete third rater left out). Naturalness: the registered script on the re-collection as it stood, task
 not yet closed, duplicate-account check not yet possible (`naturalness_report_r3_interim.json`). No design, item,
-rater or stopping decision depends on this look: every admitted rater still judges everything, the naturalness
+rater or stopping decision depends on this look. Every admitted rater still judges everything, the naturalness
 task closes when its posted slots are filled, and the final numbers replace the interim ones whatever they show.
-What the interim look shows is unfavourable to the method on Sarashina (tag 0.62 vs kana 0.55, tag vs no edit
+What the interim look shows is unfavorable to the method on Sarashina (tag 0.62 vs kana 0.55, tag vs no edit
 0.61 vs 0.64) and on naturalness (non-inferiority met on no backbone) and is reported as such.
 
 ## 10. Amendment, 2026-09-17 16:00 JST — exploratory bridge block: the preliminary round's Sarashina tag stimuli
@@ -494,9 +492,9 @@ difference, the author adds one exploratory measurement; it is not part of the c
 registered cell, and is reported whatever it shows.
 
 **What.** Block 2 of the panel site: the 50 Sarashina tag stimuli that the preliminary round's raters heard, byte for
-byte (round-1 kit, loudness-normalised clips), shown with the round-2 display of the same item (no prescribed accent
+byte (round-1 kit, loudness-normalized clips), shown with the round-2 display of the same item (no prescribed accent
 differs between the two kits). The round-1 kana and no-edit Sarashina stimuli are the same renditions as round 2's A2
-(per arm 33 byte-identical and 17 same take under float noise), so the rater's own A2 judgements are the
+(per arm 33 byte-identical and 17 same take under float noise), so the rater's own A2 judgments are the
 comparators. Judged only by the rater the author recruits additionally (after that rater's block 0, invitation URL
 with `&b=2`), blind, same UI and instructions, for an additional payment stated to the rater. Analysis: that rater's
 share of words with the prescribed accent realized, round-1 tag stimuli vs round-2 tag stimuli vs kana, descriptive
@@ -519,7 +517,7 @@ reference voice, inputs, seeds and sampling as the round-1 synthesis script):
   recordings (`faithful_teachers.jsonl`, 14,970 rows: 9,997 JVS, 4,973 JSUT), not on self-distilled teachers. (This line first said otherwise; that was wrong. See "Correction to section 11" after section 14.) It is
   the **default** of `SARA_ADAPTER_OURS` in `blockA_sarashina_difficult_4spk.py`, and was the adapter in effect when
   the round-1 stimuli were synthesized; the clean-room adapter the round-1 paper describes was not the one heard.
-- Under today's conditions the clean-room v2 adapter of the preliminary round runs to the token cap on the same
+- Under today's conditions, the clean-room v2 adapter of the preliminary round runs to the token cap on the same
   items as the round-2 adapter (first two listening items at every checkpoint 4k to 20k; 15 of 88 objective items
   needing a redraw, against 61 of 319 for the round-2 adapter). The round-2 Sarashina result is therefore what the
   clean-room recipe gives on this backbone, in both rounds; it is not a bad training draw.
@@ -527,7 +525,7 @@ reference voice, inputs, seeds and sampling as the round-1 synthesis script):
 **Consequences.** (i) Round 2 set `SARA_ADAPTER_OURS` explicitly for every Sarashina synthesis (`v2_chain.sh`), so
 its Sarashina arms are the registered adapter; nothing in round 2 changes. (ii) The preliminary round's Sarashina tag
 results (accent 0.89 vs 0.57, naturalness non-inferior, reading 0.821) are **withdrawn as evidence for the method**:
-they describe a different adapter. They are not reported in the paper as the method's result. (iii) Amendment 10's
+They describe a different adapter. They are not reported in the paper as results for the method. (iii) Amendment 10's
 bridge block would bridge to that other adapter and is withdrawn before anyone judged it; block 2 is removed from the
 site. (iv) The within-rater comparison computed at the interim look (the same raters scoring the round-1 tag stimuli
 0.84 to 0.86 and the round-2 ones 0.60 to 0.64) stands as a fact about the two adapters, not about two draws of one
@@ -541,7 +539,7 @@ and both clean-room adapters, which do: its teacher set held 25,000 carriers ove
 more varied sentences) against 4,830 / 4,508 over 483 / 461 words (10 per word, frame-built). The author decided, after
 seeing the round-2 Sarashina result, to test whether carrier count explains the failure. This is a results-driven
 change and is reported only as exploratory; **Table 1 keeps the registered round-2 Sarashina adapter**, and no
-listening or naturalness judgement is collected on the follow-up adapter.
+listening or naturalness judgment is collected on the follow-up adapter.
 
 **What.** Same 471 words, readings and frame-times-word construction; up to 50 carriers per word
 (`scripts/teachers/build_text_v4.py`: the registered 10 kept, 18,839 added from the existing hand-authored frame banks
@@ -550,7 +548,7 @@ particle after the target). Same teacher rule (guard + reading check, five takes
 shards 0 to 3 on the local GPU, 4 to 11 on RunPod 5090 pods with the local environment's package versions and the local
 weights copied to the pods), same trainer, LoRA configuration and 20,000 steps, adapter path given explicitly. Measured:
 the tag arm's redraw and cap-exhaustion rates and reading accuracy on the 319 objective items, same voices, seeds and
-guard. Stopping rule fixed now: if no result exists by 2026-09-19 the follow-up is dropped and said so. Whatever it
+guard. Stopping rule fixed now: if no result exists by 2026-09-19, the follow-up is dropped and said so. Whatever it
 shows is reported in one to three sentences.
 
 **Success criterion for section 12, fixed 2026-09-17 18:32 JST, before any output of the 50-carrier adapter existed**
@@ -566,10 +564,10 @@ extended teacher sets are generated tonight (yes unless it is about 10 again); i
 ## 13. Amendment, 2026-09-17 19:00 JST — 74 of the 319 objective tag inputs were malformed; corrected and re-synthesized
 
 - **Defect.** The author noticed `ご令<PHON_START>ゴレーエン<PHON_END>` in a synthesis log. The accent review of 09-09 had
-  widened 96 objective targets to a phrase (足痕 → アシア'ト, 弓状 → キュージョー) and written correct tagged lines, but the
-  routing step run afterwards (`scripts/eval/route_ours_inputs.py`) took the span to wrap from the plain-versus-kana
+  widened 96 objective targets to a phrase (足痕 → アシア'ト, 弓状 → キュージョー) and wrote correct tagged lines, but the
+  routing step run afterward (`scripts/eval/route_ours_inputs.py`) took the span to wrap from the plain-versus-kana
   diff, which still names only the original kanji. On the 319-item test half, 61 inputs therefore carried the phrase's
-  reading on the one-kanji span (`足<アシア'ト>`, the neighbour said twice) and 13 had an absorbed suffix's reading
+  reading on the one-kanji span (`足<アシア'ト>`, the neighbor said twice) and 13 had an absorbed suffix's reading
   appended to a reading that already contained it (`キュージョージョー`): **74 malformed tag inputs**, on all four
   backbones' tag arms, in both rounds since 09-09. Irodori's own case loader made the same choice at run time. The
   inputs before routing contain no such case; the listening (difficult-50) and naturalness (easy-50) inputs and the
@@ -579,23 +577,22 @@ extended teacher sets are generated tonight (yes unless it is about 10 again); i
   file replaces the tag exactly by the reviewed span with the reviewed reading on 319 of 319 items
   (`test_obj319_lora_fixed20260917.txt`, now the canonical `test_obj319_lora.txt`; the malformed file is kept as
   `test_obj319_lora.dupbug_20260909.txt`; the 74 indices in `changed_by_fix20260917.json`). The kana and no-edit
-  inputs, the truth targets, voices, seeds, guard and adapters are unchanged.
+  inputs, the truth targets, voices, seeds, guard, and adapters are unchanged.
 - **Re-synthesis and re-measurement.** The tag arm of the 74 items is re-synthesized on all four backbones with the
   registered adapters (`scripts/eval/obj319_inputfix_resynth.sh`; earlier clips kept under `obj319_dupbug`), and the
   objective table is re-measured (`reading_obj319_round2_inputfix.json`). That table is the record; the table on
-  the malformed inputs is kept as a sensitivity check. On the malformed inputs the tag-minus-kana gap was already
-  present on the 245 well-formed items (Sarashina -0.06, CosyVoice 2 -0.18, Irodori -0.03, T5Gemma -0.10), and
-  Sarashina's redraw rate on them was 18% against 23% and 31% on the two malformed kinds, so the defect is not what
+  the malformed inputs is kept as a sensitivity check. On the malformed inputs, the tag-minus-kana gap was already
+  present on the 245 well-formed items (Sarashina -0.06, CosyVoice 2 -0.18, Irodori -0.03, T5Gemma -0.10). Sarashina's redraw rate on them was 18% against 23% and 31% on the two malformed kinds, so the defect is not what
   produces either finding; the corrected numbers are reported whatever they show.
 - **Section 12, early read (not a result).** The 50-carrier adapter's 4,000-step checkpoint needed a redraw on about
-  11 of 100 items, as the registered adapter's did; by the rule fixed at 18:32 the other three backbones' extended
+  11 of 100 items, as the registered adapter's did; by the rule fixed at 18:32, the other three backbones' extended
   teacher sets are not generated tonight. Its training was restarted from scratch after the first run lost its GPU
   memory to a diagnostic run beside it (1 step/s instead of 5); the restart follows the re-synthesis above, alone on
   the GPU, and its evaluation uses the corrected inputs.
 
 **Block 2 restored, 2026-09-17 19:45 JST.** The author had already contracted one rater for the bridge block of
 amendment 10 before section 11 withdrew it. The block (the 50 round-1 Sarashina tag stimuli, byte for byte) is put
-back on the site so that the contract can be honoured and paid; its judgements are archived and **not analysed or
+back on the site so that the contract can be honored and paid; its judgments are archived and **not analyzed or
 reported**, since section 11 shows those stimuli came from a different adapter. No other block or rater is affected.
 
 **Objective table of record after amendment 13 (measured 2026-09-17 19:40 to 19:51 JST,
@@ -603,7 +600,7 @@ reported**, since section 11 shows those stimuli came from a different adapter. 
 0.282 / 0.850 / 0.690 (released UtterTune 0.856), Irodori 0.586 / 0.909 / 0.871, T5Gemma 0.436 / 0.906 / 0.809.
 Tag - kana: -0.072 [-0.120, -0.019], -0.160 [-0.212, -0.107], -0.038 [-0.075, +0.000], -0.097 [-0.137, -0.058];
 tag - none: +0.260, +0.408, +0.285, +0.373 (all p < 1e-12); tag - UtterTune on CosyVoice 2: -0.166 [-0.226, -0.106].
-The correction moved the tag arm by +0.016, +0.003, +0.003 and -0.006; no conclusion changes. Sarashina's tag arm
+The correction moved the tag arm by +0.016, +0.003, +0.003, and -0.006; no conclusion changes. Sarashina's tag arm
 still needs a redraw on 60 of 319 items and exhausts the six takes on 20 (61 and 24 on the malformed inputs), so
 the malformed inputs were not the cause of the runaway.
 
@@ -611,9 +608,9 @@ the malformed inputs were not the cause of the runaway.
 rebuilt with `--closed` and redeployed (groups unchanged, verified live). Store exported to
 `responses_final_nat_r3_20260917.json`; registered analysis (`analyze_naturalness.py --exclude-speeders`,
 `data/analysis/v2/naturalness_report_r3.json`): 114 sittings started, 105 complete, two excluded by the speed rule,
-5,194 judgements on 198 pairs (24 to 29 per pair). Unedited minus edited preference: Sarashina +0.34 [+0.19, +0.49],
+5,194 judgments on 198 pairs (24 to 29 per pair). Unedited minus edited preference: Sarashina +0.34 [+0.19, +0.49],
 CosyVoice 2 +0.29 [+0.13, +0.44], Irodori +0.15 [+0.04, +0.27], T5Gemma +0.28 [+0.10, +0.44]; the 0.15 margin is met on
-none. Same-reading stratum (151 pairs): +0.26, +0.33, +0.15, +0.26. The numbers equal the interim look's, no judgement
+none. Same-reading stratum (151 pairs): +0.26, +0.33, +0.15, +0.26. The numbers equal the interim looks, no judgment
 having arrived after it. The duplicate-account exclusion (second sitting by one platform account) is applied when the
 author supplies the platform's worker list; until then the figures are reported as before that check.
 Exploratory, not registered: the pair-level breakdown (`naturalness_r3_per_pair.json`), the relation of the preference
@@ -625,7 +622,7 @@ to the sentence CER change (`naturalness_r3_cer.json`), sentence damage on the l
 ## 14. Exploratory cause hunt, 2026-09-17 20:38 JST — five Sarashina teacher-set variants trained in parallel
 
 **Why.** Sections 11 to 13 leave the Sarashina runaway unexplained: code and configuration are identical to the
-earlier, unreleased adapter's, carrier count does not move it at 4,000 steps, and the malformed inputs were not the cause.
+earlier, unreleased adapter's; carrier count doesn't move it at 4,000 steps, and malformed inputs weren't the cause.
 Three measurable properties of the clean-room teacher sets differ from the earlier, unreleased set: the tagged word opens
 the sentence in most carriers, some teachers contain long runs of one repeated speech token, and some teachers are
 slow (many speech tokens per character). The author asked for these to be tested tonight, in parallel on rented GPUs,
@@ -638,7 +635,7 @@ of the section-12 teacher set (22,729 rows; clean-room only, no data of the earl
 P1 tag never sentence-initial (8,755 rows, 465 words); P2 no run of 25 or more identical speech tokens (20,750);
 P4 at most 5.5 speech tokens per character (12,870); P5 all three filters (6,378); P3 the registered teacher set
 unchanged, stopped after 3,000 steps, to read checkpoints at 1,000 / 2,000 / 3,000 steps. Each adapter is read on the
-first 100 objective items' tag arm (corrected inputs, registered voices, seeds and guard;
+first 100 objective items' tag arm (corrected inputs, registered voices, seeds, and guard;
 `runpod_bundle_sarahyp/RUNPOD_RUN.sh`), at 20,000 and 4,000 steps. References on the same 100 items: registered adapter
 at 4,000 steps 11 redraws, at 12,000 steps 21; the 50-carrier adapter at 4,000 steps 10; on all 319 items the registered
 adapter 60 redraws (19%), Sarashina's unedited and kana arms 3 each (1%).
@@ -648,7 +645,7 @@ on at most 2 of the 100 items and exhausts the six takes on none. 3 to 6 is **pa
 A variant that meets the criterion is then measured on all 319 items against the section-12 criterion before anything
 is said about it. These runs are exploratory, select among variants after seeing results, and **do not replace any
 registered number**; if one succeeds, the author decides whether a further registered round (recipe change applied to
-all four backbones, new stimuli, new judgements) is feasible, and the present round's results stay on record either way.
+all four backbones, new stimuli, new judgments) is feasible. The present round's results stay on record either way.
 If none succeeds, the paper reports the Sarashina failure as it stands and says which causes were ruled out.
 
 **Section 14, sixth variant added 21:18 JST (before any output of the first five).** Asked by the author whether
@@ -677,16 +674,16 @@ kana arms needed redraws at all.
 **Section 14, first reads and two further diagnostics (2026-09-17 21:47 JST).** P3 (registered teachers, early
 checkpoints), 100 items each: 1,000 steps 14 redraws / 3 exhausted, 2,000 steps 15 / 2, 3,000 steps 12 / 3. The
 runaway is present from the first thousand steps at the level it keeps later, so it is not a late over-training
-effect and no stopping point removes it. Mid-training reads of P1 and P2 at 8,000 steps (progress checks, not
+effect, and no stopping point removes it. Mid-training reads of P1 and P2 at 8,000 steps (progress checks, not
 results): 15 / 6 and 10 / 0. Two diagnostics started at 21:46, before any output: **L1**, today's trainer and
 environment on the earlier, unreleased teacher set (local machine only, that set never leaves it; internal control, never
 reported as a result: if L1 runs away the cause is in today's code, environment or inputs, if it does not the cause
 is in the clean-room teacher data); **no-tag inputs**, the registered 20,000-step adapter loaded but fed the untagged
 plain and kana sentences of the same 100 items (if it runs away there too, the adapter has damaged the model's
-stopping behaviour in general for some voices; if not, the tagged span triggers it).
+stopping behavior in general for some voices; if not, the tagged span triggers it).
 
 **Section 14, results (read 2026-09-18 02:31 JST; pods finished between about 22:10 and 23:50 on 09-17; all files under
-`v2/sara_hyp/pods/`).** Tag arm, first 100 objective items, registered voices, seeds and guard; redraws / items
+`v2/sara_hyp/pods/`).** Tag arm, first 100 objective items, registered voices, seeds and guard; redraws/items
 exhausting the six takes:
 
 | variant | teachers | 20,000 steps | 4,000 steps |
@@ -702,7 +699,7 @@ exhausting the six takes:
 
 By the criterion fixed at 20:38, **P4 removes the runaway on the 100 items; P1, P2 and P6 have no effect**; P5 is
 unread at 20,000 steps. Readings: the registered adapter runs away on untagged input as often as on tagged input, so
-the adapter has shifted the model's stopping behaviour in general and the tagged span is not the trigger; the
+the adapter has shifted the model's stopping behavior in general, and the tagged span is not the trigger; the
 runaway is present from the first thousand steps; selection of teachers by the reading check is not the cause (P6);
 the one property that matters is **slow teachers**: the base's text-only continuations are often slow (registered
 set: 56% of teachers above 5.5 speech tokens per character, 27% above 8, 7% above 12), and an adapter trained on
@@ -749,7 +746,7 @@ not used to choose anything from here on. (Section 14's variants were read on th
 diagnosis of a failure, and it is disclosed as selection on test data for the runaway criterion only.)
 
 **Hypothesis of the author.** Teachers should follow the distribution the edit meets in use: in the registered
-teacher set the tagged word opens the sentence in 93% of carriers and carriers are 14 to 19 characters long, while in
+teacher set the tagged word opens the sentence in 93% of carriers and carriers are 14 to 19 characters long. In contrast, in
 running text an edited word sits anywhere in a sentence of ordinary length. Matching these is a property of the
 deployment condition, not of test items. **v5 carriers** (`scripts/teachers/build_text_v5.py`): the same 471 words
 and readings, 24 new neutral and 16 new counter frames written before any output and without consulting evaluation
@@ -766,14 +763,14 @@ tag - kana +0.031 [-0.016, +0.080]); voice disagreement 0.147; sentence kana CER
 0.077 against kana's 0.074 and the registered adapter's 0.173. All three parts of the section-12 criterion are met
 (at most 6 redraws, none exhausted, reading at least 0.80). Caveat, stated once: P4 was chosen among six variants on
 the first 100 of these 319 items, so this table is not an unbiased test result; it is exploratory and replaces
-nothing. From here on choices are made on the selection split only (section 15).
+nothing. From here on, choices are made on the selection split only (section 15).
 
 **Section 15, second validation set (02:53 JST, before any audio of it).** The naturalness deficit was measured on
-words the base already reads right, so side effects are also validated on such words: `data/derived/deveasy/`, 39
+words the base already reads correctly, so side effects are also validated on such words: `data/derived/deveasy/`, 39
 common words in ordinary sentences (length 18 / 21 / 24 characters, relative tag position 0.14 / 0.40 / 0.65), tags
 from the front-end's own reading and accent, words disjoint from the 471 teacher words and from the targets of the
 easy-50 and difficult-50 sets (`scripts/eval/build_deveasy.py`; 61 candidates written, 22 dropped by the disjointness
-rule). Measure: sentence kana CER of the tagged rendition minus the unedited rendition of the same sentence and voice.
+rule). Measure: sentence-level CER of the tagged rendition minus the unedited rendition of the same sentence and voice.
 
 **Section 15, carriers v5b (02:58 JST, before any v5 or v5b output).** Asked by the author whether v5 matches the
 evaluation sentences: alone it does not. Summary statistics (length in characters and relative tag position, 10th /
@@ -811,11 +808,11 @@ heard 0.59 / 0.84) and side-effect set, 39 items (unedited 0.058, kana 0.044, ta
 | C2 untagged copies | 1 / 0 | 0.87 | 0.082 | -0.027 | 0 | 0.97 | 0.039 | -0.019 |
 | C3 both | 0 / 0 | 0.83 | 0.081 | -0.028 | 0 | 0.95 | 0.050 | -0.009 |
 
-Reading: on both validation sets the registered adapter is the outlier (CER twice the kana arm's, target heard less
+Reading: on both validation sets, the registered adapter is the outlier (CER twice the kana arm's, target heard less
 often than kana, runaway on a fifth of the items); every condition with the slow-teacher filter sits at the kana
 arm's CER on both sets. Among P4, C1, C2 and C3 the differences (0.081 to 0.092; 0.039 to 0.050) are within what 105
 and 39 items can resolve and are not read as differences. C2 is nominally best on both sets and hears the target
-most often (0.87; 0.97). On the side-effect set the edit still loses the target word itself on 1 to 3 of 39 items
+most often (0.87; 0.97). On the side-effect set, the edit still loses the target word itself on 1 to 3 of 39 items
 under P4, C1 and C3 (heard 0.92 to 0.95 against 1.00 unedited), on 1 under C2. Section-14 follow-ups on the first
 100 test items: P7 (registered set, filter only, 1,965 rows) 8 redraws / 1 exhausted, so the filter alone on the
 small registered set is not enough; P9 (threshold 8 instead of 5.5, 18,372 rows) 1 / 0, like P4.
@@ -828,7 +825,7 @@ untagged copies) train as soon as it lands, on the two pods kept for that.
 **Decision (author, 06:55).** Sections 14 and 15 found the Sarashina failure's cause (slow self-distilled teachers) and
 a condition that removes it and brings the edit's sentence damage to the kana arm's level on both validation sets.
 The author decided to apply the change as **one recipe change to all four backbones** and to re-collect the listening
-and naturalness judgements on new stimuli. The change is fixed now, before any round-3 teacher, adapter or stimulus
+and naturalness judgments on new stimuli. The change is fixed now, before any round-3 teacher, adapter, or stimulus
 exists, and is applied identically:
 1. **Carriers:** the section-12 text (the registered 471 words, up to 50 carriers per word, `teachers_text_v3.jsonl`
    plus `teachers_text_v4_new.jsonl`), on every backbone. Teachers by each backbone's registered generator and rule
@@ -836,7 +833,7 @@ exists, and is applied identically:
 2. **Slow-teacher filter:** a teacher is dropped when its speech representation runs longer than **0.22 seconds per
    character of the plain carrier** (Sarashina 5.5 semantic tokens at 25 Hz, the P4 rule; CosyVoice 2 by the teacher
    waveform's duration; Irodori 5.5 latent frames at 25 Hz; T5Gemma 11 codec frames at 50 Hz). The rule is the same
-   number on every backbone whatever it removes (expected: about half on Sarashina, a smaller share on CosyVoice 2,
+   number on every backbone, whatever it removes (expected: about half on Sarashina, a smaller share on CosyVoice 2,
    almost nothing on Irodori and T5Gemma, whose teachers are generated with a voice prompt and are not slow).
 3. **Training, guard, synthesis, voices, seeds, inputs, evaluation and analysis:** exactly as registered for round 2
    (sections 1 to 13), adapter paths given explicitly and recorded with a hash.
@@ -844,7 +841,7 @@ Not part of the change (validated as within noise, section 15): untagged copies 
 selection (C1), mid/late-position carriers (v5/v5b). If M2/M3 (section 15) finish before the round-3 adapters are
 trained and show a clear gain on both validation sets, the author may add v5/v5b carriers to item 1 for all four
 backbones and will say so here before use; otherwise they are not used.
-**Stimuli and judgements:** new difficult-50 listening stimuli and easy-50 naturalness pairs on all four backbones,
+**Stimuli and judgments:** new difficult-50 listening stimuli and easy-50 naturalness pairs on all four backbones,
 same items, voices, seeds, kits, screening, catch trials, exclusions and analyses as round 2; naturalness pay 700
 yen per sitting (round 2: 1,000), a change of payment only. The round-2 panel (three raters, section "registered
 minimum reached") and naturalness results stay on record as round 2; round 3 replaces them in the paper only if
@@ -856,12 +853,12 @@ anything was chosen.
 **Section 15, M2/M3 started 07:10 JST; author's blind check.** At the author's request M2 and M3 were built without
 waiting for the twelfth v5 shard (its pod failed twice; 19,136 of about 20,900 v5/v5b rows are in): pool 41,865 rows,
 15,246 removed as slow, **M2 26,619 rows** (relative tag position 0.00 / 0.28 / 0.63, length 16 / 24 / 32), **M3
-34,531** (M2 plus 30% untagged copies). Training started 07:09 on two pods, validation on both sets follows in the
+34,531** (M2 plus 30% untagged copies). Training started at 07:09 on two pods; validation on both sets follows in the
 same chain. **Blind check by the author** (`scripts/eval/build_val_blind_page.py`, local page): for every
 validation item, the edited rendition of one condition against the unedited rendition of the same sentence and
 voice, sides and order shuffled with a fixed seed, condition hidden until the tally is requested; choices are
-"A / B more natural", "no difference", "A / B has an error". The author's judgements choose among conditions on the
-validation split only and **never enter a reported number**; the round-3 recipe (section 16) is not changed by them
+"A / B more natural", "no difference", "A / B has an error". The author's judgments choose among conditions on the
+validation split only and **never enter a reported number**; they do not change the round-3 recipe (section 16)
 unless a change is written here before use.
 
 **Section 15, early read of M2/M3 at 4,000 steps (2026-09-18 07:31 JST; not a result, the 20,000-step adapters follow).**
@@ -876,7 +873,7 @@ added to section 16 (they would be an addition to the section-12 carriers, appli
 written in item 2 ("almost nothing on Irodori and T5Gemma") was wrong: applied to the round-2 teacher sets the rule
 would drop 43% of Irodori's (median 0.211 s/char, 90th percentile 0.284), 36% of CosyVoice 2's (0.181 / 0.319), 8% of
 T5Gemma's (0.194 / 0.220), and 56% of Sarashina's (0.234 / 0.450). **The rule is kept as registered**: one number,
-0.22 s per character, on every backbone; with 50 carriers per word every backbone keeps more teachers than it had in
+0.22 s per character, on every backbone; with 50 carriers per word, every backbone keeps more teachers than it had in
 round 2. Filter: `scripts/eval/round3_filter_teachers.py`; training and stimulus synthesis:
 `scripts/eval/round3_train_local.sh` (round-2 commands, round-3 paths; Sarashina's adapter is P4, hash in
 `v2/sara_hyp/P4_adapter_sha256.txt`, its stimuli synthesized 07:08 to 07:18).
@@ -884,7 +881,7 @@ round 2. Filter: `scripts/eval/round3_filter_teachers.py`; training and stimulus
 **Section 15, validation inputs checked (2026-09-18 07:52 JST).** Asked by the author whether the validation sets'
 readings and accents were verified: the selection split's tags were written on 09-03 and the author's accent review of
 09-09 (`objective_accent_review.tsv`, all 424 items) had been applied to the test half only; on the selection half 89 of
-105 tags equal the reviewed accent and 16 differ only in where the accent mark sits relative to a long-vowel mark
+105 tags equal the reviewed accent, and 16 differ only in where the accent mark sits relative to a long-vowel mark
 (ショー'ジョー against reviewed ショ'ージョー), readings identical on all 105. The reviewed marks are now applied to
 `test_sel105_lora.txt` (previous file kept as `*.prereview_20260918.txt`); every validation number reported so far
 used the pre-review marks, identically for all conditions, so the comparisons stand; later runs use the reviewed file.
@@ -901,16 +898,16 @@ them; list in `data/derived/sel105_routed/val_review_changes_20260918.json`). Th
 suffix into the tag, a registry entry written for the merged span now wins outright; otherwise the suffix reading is
 appended as before, the head's nucleus is kept, and the router reports the merged span as accent-unverified so that a
 reviewer decides (the 09-18 review answered the five such spans in the selection split). On the reviewed selection
-inputs the router changes no line. Every validation number so far was measured on the pre-review inputs, identically
-for all conditions; all conditions are re-synthesized on the reviewed inputs and the earlier numbers are superseded.
-For round 3 (section 16) the listening and naturalness inputs are the round-2 files (author-verified against the NHK
+inputs, the router changes no line. Every validation number so far was measured on the pre-review inputs, identically
+for all conditions; all conditions are re-synthesized on the reviewed inputs, and the earlier numbers are superseded.
+For round 3 (section 16), the listening and naturalness inputs are the round-2 files (author-verified against the NHK
 dictionary in round 1, `data/author_verification/nhk_difficult.json`), unchanged; Irodori's loader routes them at run
-time and the router change can only affect an item whose tag abuts a raw-kanji suffix.
+time, and the router change can only affect an item whose tag abuts a raw-kanji suffix.
 
 **Section 16, amendment (08:35 JST, author's decision on design grounds, before any round-3 teacher of the three
 backbones was collected).** Item 1 (carriers) now reads: the section-12 text **plus the v5 and v5b carriers of
 section 15** (21,523 more carriers: word in the middle or late in the sentence, sentences of running-text length), on
-all four backbones. The validation reads of section 15 showed no measurable gain from these carriers (M2 within the
+all four backbones. The validation results of section 15 showed no measurable gain from these carriers (M2 within the
 noise of P4 and C2 on 144 items); the author adds them because the teacher distribution should follow the
 distribution the edit meets in use, not because of an effect, and the paper will describe the carrier set as it is
 without claiming an effect for this part. Sarashina's round-3 adapter is therefore retrained on the full section-12 +
@@ -929,11 +926,11 @@ the paper says so.
 
 **Section 15, author's blind check on the side-effect set (2026-09-18, judged 10:00 to 10:40 JST, file
 `data/analysis/v2/author_blind_deveasy_20260918.json`).** 39 items x 6 conditions, edited against unedited, sides and
-order shuffled, condition hidden. Prefer edited / prefer unedited / no difference (edited flagged as having an error):
+order shuffled, condition hidden. Prefer edited/prefer unedited / no difference (edited flagged as having an error):
 registered adapter 3 / 13 / 23 (5 flagged); section-12 6 / 8 / 25 (1); P4 5 / 5 / 29 (1); C2 9 / 9 / 21 (0); M2 7 / 7 /
 25 (0); M3 5 / 7 / 27 (0). The author's ear agrees with the CER: only the registered adapter loses to its own unedited
 rendition; every condition with the slow-teacher filter is a tie, and P4, C2, M2 and M3 are not distinguishable. These
-judgements choose nothing beyond confirming section 16's recipe and never enter a reported number.
+judgments choose nothing beyond confirming section 16's recipe and never enter a reported number.
 
 **Section 16, amendment withdrawn (10:48 JST, author's decision after the blind check; before any round-3 stimulus
 of the three backbones).** The v5/v5b carriers (amendment of 08:40) are **not** added: on the validation sets and in the
@@ -947,14 +944,14 @@ for later exploratory use and enter nothing here.
 
 **Section 16, stimulus preparation (10:56 JST, before any round-3 kit exists).** The author noticed clips that open
 with long silence. Measured on the round-2 kits: leading silence over 1 s occurs in 16 to 19 of 50 Sarashina clips in
-every arm (no edit, kana, tag; up to 9.9 s; a base-model behaviour with some reference voices), in 0 CosyVoice 2 and
+every arm (no edit, kana, tag; up to 9.9 s; a base-model behavior with some reference voices), in 0 CosyVoice 2 and
 Irodori clips, and in 0 to 2 T5Gemma clips; the round-3 Sarashina tag arm (P4) shows the same share as its base arms.
-Since such silence is unrelated to the edit and could sway a naturalness or accent judgement, **every round-3 clip of
-every arm and backbone is trimmed identically after loudness normalisation: leading silence over 0.3 s and trailing
+Since such silence is unrelated to the edit and could sway a naturalness or accent judgment, **every round-3 clip of
+every arm and backbone is trimmed identically after loudness normalization: leading silence over 0.3 s and trailing
 silence over 0.5 s are cut (silence = below 1% of the clip's peak; `scripts/eval/trim_silence.py`, report written
 into the kit)**. Round-2 clips were not trimmed; the difference is stated with the round-3 results. Kit and site:
 `scripts/eval/round3_kit_and_site.sh` (kit profile round3: tag arms from synth_r3, base arms the round-2 base-model
-clips, cell names unchanged so the registered analysis applies). Training of CosyVoice 2 and T5Gemma runs on pods
+clips, cell names unchanged so the registered analysis applies). Training of CosyVoice 2 and T5Gemma runs on pods.
 (`round3_cv2_pods.py`, `round3_t5gemma_pods.py`) with the checkpoint grids and validation reads of 08:55.
 
 **Section 16, execution (11:10 JST).** To save time, the checkpoint rule of 08:55 is applied automatically the moment a
@@ -980,7 +977,7 @@ after the listening kit is built, the kit is rebuilt with it before the task is 
 13,901 rows (section-12 carriers, 8,647 dropped as slow). Validation CER over 144 items: 500 steps 0.077, 1,000
 0.064, 2,000 0.058, 4,000 0.059; redraws on the selection split 2 / 0 / 1 / 1, none exhausted. 2,000 and 4,000 tie
 within 0.005; UTMOSv2 of the tag arm 2.806 against 2.730 → **2,000 steps** (the registered value). Stimuli synthesis
-started 12:02. Irodori's kana baseline on the validation sets is the base arm over the kana sentences
+started at 12:02. Irodori's kana baseline on the validation sets is the base arm over the kana sentences
 (`round3_irodori_kana_base.sh`), as in round 2.
 
 **Section 16, T5Gemma execution note (13:42 JST).** The batch-4 training on a 5090 pod runs at about 0.19 steps per
@@ -989,11 +986,11 @@ abandoned as infeasible today and its pod is used for validation reads. Two earl
 any step (the gated base model's token was not passed, then a quoting error in the chain); about 80 minutes were lost.
 The T5Gemma checkpoint for round 3 is chosen by the rule of 08:55 among the checkpoints whose validation reads are
 complete when the listening kit has to be built (200-step checkpoints arrive every 18 minutes from about 13:58);
-later checkpoints are read afterwards and reported, and the paper says which checkpoint was used and why.
+later checkpoints are read and reported afterward, and the paper says which checkpoint was used and why.
 
 **Section 16, correction of the epoch comparison (13:45 JST).** T5Gemma's trainer batches by a token budget (20,000
 tokens per step, about 40 carriers), not by the nominal batch of 4; the round-2 log shows 400 steps = 9 epochs of the
-4,529-row set, and 400 steps of the round-3 set (18,781 rows) are about 0.85 epoch, 1,600 about 3.4 epochs. The
+4,529-row set, and 400 steps of the round-3 set (18,781 rows) are about 0.85 epochs; 1,600 steps are about 3.4 epochs. The
 "batch 16" run of 11:22 would not have changed the step size and is withdrawn. Today's rate (0.19 steps/s on a 5090
 with activation checkpointing) equals round 2's. To finish in time, a second batch-4 run without activation
 checkpointing runs on an H100 (labels hs200 ... hs1600); the 5090 run continues; both enter the same rule.
@@ -1011,34 +1008,34 @@ sensitivity analysis excluding the three items will be added).
 **Easy-50 tags reviewed (15:07 JST).** The author reviewed all 50 easy-50 tags; 10 changed
 (`data/derived/easy50_r3/`, list in `changed_items.json`): three readings (子守歌 コモリ'ウタ, 心 ココ'ロ, 夕暮れ時
 ユーグレドキ), one word (間 マ), six nucleus positions (一日, 音, 上, 駅前, 疲れ, 貝殻). Round 3 uses the reviewed file for
-the naturalness pairs (the tag arm of the 10 items is re-synthesized on every backbone, same voices, seeds and guard);
-rounds 1 and 2 used the unreviewed tags, which is stated with their results.
+the naturalness pairs (the tag arm of the 10 items is re-synthesized on every backbone, same voices, seeds, and guard);
+Rounds 1 and 2 used the unreviewed tags, as stated in their results.
 
 **Section 16, CosyVoice 2 checkpoint chosen (2026-09-18 15:10 JST, `r3/cv2/cv2_choice.json`).** Teacher set 13,751 rows
 (section-12 carriers, 7,644 dropped as slow). Validation CER over 144 items: 500 steps 0.179, 1,000 0.166, 2,000 0.185,
 4,000 0.186, 8,000 0.205, 16,000 0.234; no redraws anywhere. Unedited / kana: selection split 0.204 / 0.113, side-effect
 set 0.078 / 0.100. **1,000 steps** (the registered value) is chosen; the provisional choice of 14:49 (same checkpoint)
-already synthesized the stimuli. Note: on the side-effect set every budget's tag arm (0.139 to 0.182) is above the
-unedited arm (0.078), i.e. on CosyVoice 2 the edit still damages sentences the base reads correctly, unlike Sarashina.
+already synthesized the stimuli. Note: on the side-effect set, every budget's tag arm (0.139 to 0.182) is above the
+unedited arm (0.078), i.e., on CosyVoice 2 the edit still damages sentences the base reads correctly, unlike Sarashina.
 
 **Findings, 2026-09-18 15:23 JST.** (1) **CosyVoice 2 drops the final mora.** On the round-2 clips the kana-whisper
 transcript lacks the sentence's last mora in 29 of 50 kana-arm clips and 24 of 50 unedited easy clips; on the round-3
 tag arm in 45 of 50 difficult and 8 of 10 sampled easy clips (Sarashina 3 to 4 of 50 in every arm, Irodori 3 of 50).
-The synthesis path passes the whole sentence with stream=False and nothing in the repository crops the waveform, so
+The synthesis path passes the whole sentence with stream=False, and nothing in the repository crops the waveform, so
 this is the backbone's own early stop in this setup; it is present in both arms and stronger in the tag arm, it is
 audible as a clipped ending, and it is stated with the CosyVoice 2 naturalness results. (2) **No trimming in the
 round-3 kits** (author's decision 15:22): the silence-trimming rule of 10:56 is withdrawn before any kit was built
-with it; clips ship as synthesized after loudness normalisation, as in round 2. (3) The T5Gemma 5090 training stopped
+with it; clips ship as synthesized after loudness normalization, as in round 2. (3) The T5Gemma 5090 training stopped
 at step 1,000 while writing that checkpoint (no error in the log; the file is truncated); checkpoints 200, 400, 600
-and 800 exist and the rule chooses among those read in time.
+and 800 exist, and the rule chooses among those read in time.
 
 **Author's blind check on the round-3 stimuli sample (2026-09-18 15:35 JST, `data/analysis/v2/author_blind_r3sample_20260918.json`).**
 Ten difficult-50 and ten easy-50 items per backbone (fixed seed), backbone hidden. Difficult, tag vs kana, "right =
 reading and accent": tag right only / kana right only / both right / both wrong: CosyVoice 2 5 / 0 / 2 / 3, Irodori
-6 / 1 / 3 / 0, Sarashina 6 / 0 / 2 / 2. Easy, tag vs no edit, more natural: edited / unedited / no difference:
+6 / 1 / 3 / 0, Sarashina 6 / 0 / 2 / 2. Easy, tag vs. no edit, more natural: edited / unedited / no difference:
 CosyVoice 2 2 / 6 / 2, Irodori 1 / 0 / 9, Sarashina 0 / 5 / 5. No catastrophic failure; the accent channel works on all
 three; the naturalness cost remains audible on CosyVoice 2 and, in this sample, on Sarashina's P4 stimuli, while
-Irodori is a tie. These judgements choose nothing and enter no reported number.
+Irodori is a tie. These judgments choose nothing and enter no reported number.
 
 **Section 16, T5Gemma checkpoint chosen (2026-09-18 16:07 JST, `round3_choose.py t5gemma`, `$V/r3/t5gemma/t5gemma_choice.json`).**
 Validation reads complete at kit time: steps 400 and 600 (step 200 base arms and step 800 still being read; reported
@@ -1055,20 +1052,20 @@ results. Training bundles for steps 200 to 1,000 are copied to `$V/r3/t5gemma/re
 Listening: `jp-accent-listening-r3.pages.dev`, KV `worker-RATER_R3PROD`; four cells A2/B2/C2/D2 (158/105/105/105 items,
 same arms, attention duplicates and catch items E as the round-2 site, byte-identical E clips and screening set), block
 0 = 481 items, no hold. Verified before release: for all 473 cell items the key's source path (cell, arm, item
-index), the kit copy (byte-identical to the source), the normalised clip and the served clip (byte-identical) form one
+index), the kit copy (byte-identical to the source), the normalized clip and the served clip (byte-identical) form one
 chain; rater-facing target word, reading and prescribed accent match the key and the difficult-50 text; within each
 item the arms share the voice; all 501 served files fetched from the live host with matching sizes; a test
 save written to and removed from the live store. Naturalness: `jp-accent-naturalness-round3.pages.dev`, KV
 `worker-NAT_R3PROD`, 200 pairs (50 per backbone, all easy-50 items), 400 clips, 4 groups, fee 700 yen; the same
-chain check on all 400 clips (registered items -> synth_r3 tag arm / round-2 unedited arm -> kit -> normalised ->
+chain check on all 400 clips (registered items -> synth_r3 tag arm / round-2 unedited arm -> kit -> normalized ->
 served), sentences equal to the reviewed easy-50 text, test save written and removed. Side assignment is the
 registered deterministic hash of the pair id (as round 2); it gives A = unedited on 25/21/24/27 of 50 pairs
 (Sarashina / CosyVoice 2 / Irodori / T5Gemma; binomial two-sided p >= 0.32), which is kept as the rule gives it.
-T5Gemma stimuli in both sites are the step-600 checkpoint (choice of 16:07). No trimming; loudness normalisation only.
+T5Gemma stimuli in both sites are the step-600 checkpoint (choice of 16:07). No trimming; loudness normalization only.
 
 **Panel decision (16:35 JST).** Rater R4 (round-2 gate 20/20) is at 379 of 481 round-2 items (last
 answer 14:47 JST today). The author asks this rater to move to round 3 and pays the round-2 work as done; the
-round-2 judgements stay incomplete and, under the registered rule (complete valid raters only), do not enter the
+round-2 judgments stay incomplete and, under the registered rule (complete valid raters only), do not enter the
 round-2 analysis, which stands at three raters unless that rater finishes on their own. Round-2 raters who passed
 the gate enter round 3 at the main task (invitation URL with `s=2`); new raters take the screening first.
 
@@ -1079,7 +1076,7 @@ steps 400 (0.1352) and 600 (0.1353): had it been read in time, the rule would ha
 round-3 checkpoint under the rule of 13:42; the step-800 numbers are reported with the results. The pattern is
 noted, not interpreted: step 800 reads the selection split better and the easy split worse than 400 and 600.
 
-**Section 16, step-800 UTMOSv2 (recorded 17:10 JST).** Mean UTMOSv2 over the 144 validation clips: step 800 2.832 (step 400 2.794, step 600 2.866). Under the rule this would have left step 600 chosen; the round-3 checkpoint remains step 600 as chosen at 16:07.
+**Section 16, step-800 UTMOSv2 (recorded 17:10 JST).** Mean UTMOSv2 over the 144 validation clips: step 800 2.832 (step 400 2.794, step 600 2.866). Under the rule, this would have left step 600 chosen; the round-3 checkpoint remains step 600 as chosen at 16:07.
 
 **Section 16, gate records carried over (17:15 JST).** The round-3 site keeps its own KV, so a round-2 rater opening a
 `s=2` invitation without a gate record there is shown the 20-item screening again before the block. Rater
@@ -1092,39 +1089,39 @@ is the round-2 one; R2's repeat is recorded and changes nothing.
 **Section 16, pods closed (17:34 JST).** All RunPod pods are terminated. On local storage: CosyVoice 2 adapters for every grid
 step (250 to 16,000; chosen 1,000); T5Gemma training bundles for steps 200, 400 and 600 (model, optimizer, scheduler;
 chosen 600, which loads); the step-800 bundle was not copied in full and was discarded (its validation read and
-UTMOSv2 are recorded above), the step-1000 file was truncated by the training crash. The step-200 base-arm read on
+UTMOSv2 are recorded above), the training crash truncated the step-1000 file. The step-200 base-arm read on
 the validation set was stopped unfinished (no registered number depends on it). Irodori checkpoints are local.
 
 **Section 16, naturalness recruitment target (17:50 JST, before any result is looked at).** The registered minimum of
-15 judgements per pair stands; the author sets the recruitment target at 20 valid complete sittings per group (80 in
-all), so that every pair has at least 20 judgements after the registered exclusions. The task stays open until every
-group reaches it; additional postings, if any, target the groups that are short. The analysis uses every valid
+15 judgments per pair stands; the author sets the recruitment target at 20 valid complete sittings per group (80 in
+all), so that every pair has at least 20 judgments after the registered exclusions. The task stays open until every
+group reaches it; additional postings, if any, target the short groups. The analysis uses every valid
 complete sitting, as registered; the target changes the number of raters, not the rule.
 
 **Section 16, naturalness interim look (2026-09-18 18:23 JST, `analyze_naturalness.py --exclude-speeders`,
 `data/analysis/v2/naturalness_report_round3_interim_20260918_1823.json`, export `v2/responses_nat_round3_interim_20260918_1823.json`).**
 Taken at the author's request to see how many sittings the registered exclusions remove; the task stays open until
 the 107 assigned sittings finish, as decided at 17:50, and no design, item, rater or stopping decision depends on
-this look. 105 sittings started, about 99 complete, 5,031 judgements; two sittings excluded by the speed rule (median
-interval below the shortest pair, 6.1 s), 4,964 judgements kept, 23 to 26 per pair; the duplicate-account check
+this look. 105 sittings started, about 99 complete, 5,031 judgments; two sittings excluded by the speed rule (median
+interval below the shortest pair, 6.1 s), 4,964 judgments kept, 23 to 26 per pair; the duplicate-account check
 waits for the platform's worker list. Unedited minus edited: Sarashina -0.008 [-0.146, +0.133] (margin met),
 Irodori +0.193 [+0.074, +0.305], CosyVoice 2 +0.200 [+0.042, +0.352], T5Gemma +0.259 [+0.095, +0.417]; same-reading
-stratum -0.03 / +0.21 / +0.22 / +0.19. Interim; the final run on the closed task replaces it whatever it shows.
+stratum -0.03 / +0.21 / +0.22 / +0.19. Interim; the final run on the closed task replaces it, whatever it shows.
 
 **Section 16, listening interim look (2026-09-18 18:28 JST, two complete raters, `analyze_listening.py --round2
 --interim-min-raters 2`, `data/analysis/v2/listening_report_round3_interim_20260918_1828.json`).** Taken at the
 author's request; below the registered minimum of three raters, so exploratory, and no rater, item or stopping
 decision depends on it. Raters R2 (catch 8/8, consistency 23/23) and R1 (7/8, 23/23); kappa
-0.93 over 441 stimuli; with two raters a disagreement is a tie, 14 tied stimuli excluded as registered. Tag vs kana:
-Sarashina 0.80 vs 0.57 (Holm p 0.026), CosyVoice 2 0.88 vs 0.40 (Holm p < 1e-4), Irodori 0.85 vs 0.45 (Holm p < 1e-4),
-T5Gemma 0.93 vs 0.60 (Holm p 0.0016); Sarashina tag vs no edit 0.78 vs 0.63 (p 0.17). The final run on all complete
-valid raters replaces it whatever it shows.
+0.93 over 441 stimuli; with two raters, a disagreement is a tie; 14 tied stimuli excluded as registered. Tag vs kana:
+Sarashina 0.80 vs 0.57 (Holm p = 0.026), CosyVoice 2 0.88 vs 0.40 (Holm p < 1e-4), Irodori 0.85 vs 0.45 (Holm p < 1e-4),
+T5Gemma 0.93 vs 0.60 (Holm p = 0.0016); Sarashina tag vs no edit 0.78 vs 0.63 (p = 0.17). The final run on all complete
+valid raters replaces it, whatever it shows.
 
 **Section 16, objective table, three backbones (2026-09-18 19:42 JST, `data/analysis/v2/reading_obj319_round3_partial3.json`,
 `obj319_round3_partial3_contrasts.md`; T5Gemma's tag arm still synthesizing, to be read in the same way).** Tag arm
 with the round-3 adapters (paths and hashes in `v2/logs/round3_obj319.log`), unedited, kana and UtterTune arms the
 round-2 clips, one ASR pass: Sarashina 0.875 (tag - kana +0.031 [-0.016, +0.080], p 0.20), CosyVoice 2 0.784 (-0.066
-[-0.114, -0.019], p 0.009; tag - UtterTune -0.072 [-0.122, -0.021]), Irodori 0.868 (-0.041 [-0.076, -0.007], p 0.019);
+[-0.114, -0.019], p = 0.009; tag - UtterTune -0.072 [-0.122, -0.021]), Irodori 0.868 (-0.041 [-0.076, -0.007], p = 0.019);
 redraws 4 / 0 / 0 of 319, none exhausted, no inaudible output. **Check on the Sarashina caveat of section 14:** the
 rate rule was chosen on the first 100 of the 319 items; on the 219 items never used for that choice the tag reads
 0.904 against kana's 0.868 (first 100: 0.810 against 0.790), so the row shows no sign of an optimistic selection
@@ -1137,7 +1134,7 @@ vs 15), tag - none +0.402 [+0.308, +0.491]; first 100 items: tag 0.810 [0.708, 0
 Step-600 model exported locally from the training bundle (hash in `v2/logs/round3_obj319.log`; missing keys 0), tag
 arm synthesized 19:08 to 20:21, unedited and kana arms the round-2 clips, one ASR pass: tag 0.793 (round 2: 0.809),
 tag - kana -0.113 [-0.154, -0.073] (p 1e-7), tag - none +0.357 [+0.275, +0.437]; redraws 32 of 319 (round 2: 30), 7
-outputs inaudible after six takes and scored as misses (round 2: 4); voice disagreement tag 0.327. Unfavourable and
+outputs inaudible after six takes and scored as misses (round 2: 4); voice disagreement tag 0.327. Unfavorable and
 reported as it is: on T5Gemma the round-3 recipe does not improve the objective reading score. The four-backbone
 single-pass read (`reading_obj319_round3.json`) follows as the table of record and is checked against these values.
 
@@ -1147,16 +1144,16 @@ the guard's kana-whisper transcript (target reading found or not) and the raters
 clip counts as "reading wrong" if either rater answered 3). Tag arms: ASR misses the target on 42 of 200 clips,
 raters call the reading wrong on 3; kana arms: 35 and 1. The ASR score is therefore a conservative measure of
 reading, about equally so for both arms (21% against 17.5% of clips), and the objective tag - kana gap is not read
-as a gap in what a listener hears. T5Gemma's 66 objective misses concentrate on few reference voices (32 on 8 of
+as a gap in what a listener hears. T5Gemma's 66 objective misses concentrate on a few reference voices (32 on 8 of
 the 42 voices, where kana reads 0.60 to 1.00), and 7 are inaudible outputs. Threshold sensitivity quoted in the
 paper: section 14's P9 (8 speech tokens per character, about 0.32 s) removed the runaway as P4 did (1 redraw in 100).
 Exploratory; the counts are recomputed on the final panel.
 
 **Note on authorship of this document (2026-09-18 21:40 JST).** This registration, including every amendment and
 execution note, was drafted with a generative AI assistant (Claude, Anthropic) working under the author's direction;
-the same assistant wrote and ran the experiment, evaluation and analysis code. Every design and analysis decision
+the same assistant wrote and ran the experiment, evaluation, and analysis code. Every design and analysis decision
 recorded here was made or approved by the author (entries say "the author decided" where the decision was the
-author's own initiative), and the author is responsible for the content. What fixes a decision in time is the
+author's own initiative). The author is responsible for the content. What fixes a decision in time is the
 repository's commit history, not the prose. The paper discloses the same in its acknowledgments, as the IEEE policy
 on AI-generated content requires.
 
@@ -1171,9 +1168,9 @@ kana Sarashina 0.80 vs 0.57 (+0.24 [+0.09, +0.39], discordant 14 vs 3, Holm p 0.
 0.93 vs 0.60 (+0.33 [+0.19, +0.49], 15 vs 1, Holm p 0.0016); Sarashina tag vs no edit 0.81 vs 0.67 (+0.15 [-0.02,
 +0.31], 13 vs 6, p 0.17, not significant). Four of the five registered hypotheses are supported; H-n is not and is
 reported as such. Secondary, accent only (reading failures removed): 0.84 vs 0.57, 0.89 vs 0.38, 0.85 vs 0.47, 0.93 vs
-0.60; Sarashina tag vs no edit 0.82 vs 0.94 on 33 words. This run replaces the two-rater interim look of 09-18. The
+0.60; Sarashina tag vs. no edit: 0.82 vs 0.94 on 33 words. This run replaces the two-rater interim look of 09-18. The
 panel is closed. Exploratory recount of ASR misses against the raters' reading verdicts on the 400 stimuli
-(`asr_vs_raters_reading_r3_final.json`): ASR misses 42 tag and 35 kana clips; a majority of the four raters calls the
+(`asr_vs_raters_reading_r3_final.json`): ASR misses 42 tag and 35 kana clips; a majority of the four raters call the
 reading wrong on 2 and 0 (any rater: 5 and 1).
 
 **Section 16, naturalness: registered analysis on the closed collection (2026-09-21 10:14 JST, `analyze_naturalness.py
@@ -1181,7 +1178,7 @@ reading wrong on 2 and 0 (any rater: 5 and 1).
 `v2/responses_nat_round3_final_20260921_1014.json`).** The author closed the collection (no answer since 09-19). 108
 sittings started, 102 complete after the exclusions; two sittings excluded by the registered speed rule (median
 interval below the shortest pair, 6.1 s: one complete sitting, median 4.6 s, 62% of answers faster than the shorter
-clip alone; one abandoned at 19 answers); 5,116 judgements on 200 pairs, 24 to 27 per pair (target of 20 met on every
+clip alone; one abandoned at 19 answers); 5,116 judgments on 200 pairs, 24 to 27 per pair (target of 20 met on every
 pair). Unedited minus edited, ties split: Sarashina -0.010 [-0.152, +0.130] (margin 0.15 met), Irodori +0.188 [+0.069,
 +0.301], CosyVoice 2 +0.201 [+0.041, +0.349], T5Gemma +0.258 [+0.089, +0.411]; same-reading stratum -0.03 / +0.21 /
 +0.22 / +0.19. All-kept run beside it (`..._allkept_...`): -0.011, +0.187, +0.199, +0.257, same verdicts. The paper
@@ -1197,18 +1194,18 @@ not required"), and every edited clip of round 3 is new. The figures of 10:14 JS
 worker list is obtained later, the exclusion is applied and reported beside them.
 
 **Correction to the note above on the duplicate-account exclusion (2026-09-21).** That note misstated the author's
-position. The round-3 naturalness task on CrowdWorks is limited by the platform to one submission per worker, so a
-second sitting by one account within the collection cannot occur and the registered exclusion has nothing to
+position. The platform limits the round-3 naturalness task on CrowdWorks to one submission per worker, so a
+second sitting by one account within the collection cannot occur, and the registered exclusion has nothing to
 remove; it is satisfied by the task setting, not waived. Raters who took part in an earlier collection may take part
 again, as the registration allows ("new raters not required"); they are not excluded. No worker list is needed, and
 the figures of 10:14 JST are final.
 
 **Bootstrap resamples unified at 10,000 (2026-09-24, author's decision).** The listening analysis used 10,000
 resamples (section 5); the objective contrasts (`obj319_contrasts_v2.py`) and the naturalness analysis
-(`analyze_naturalness.py`) had used 4,000, the latter kept equal to the interim look of 09-11 for comparability. Both
+(`analyze_naturalness.py`) had used 4,000; the latter kept equal to the interim look of 09-11 for comparability. Both
 are set to 10,000 (seeds unchanged: 20260901 and 0) and the round-3 results re-run: `obj319_round3_contrasts.md`,
 `reading_obj319_sarashina_r3_split100_219.json` (10k entry added), `naturalness_report_round3_final_10k.json`, which
-replaces `naturalness_report_round3_final_20260921_1014.json` as the record. Point estimates, exclusions and every
+replaces `naturalness_report_round3_final_20260921_1014.json` as the record. Point estimates, exclusions, and every
 verdict are unchanged; interval limits move by at most 0.004 (third decimal). The paper reports the 10,000-resample
 intervals and states the count in the table captions.
 
@@ -1217,7 +1214,7 @@ released-UtterTune arm of the 319-item table (CosyVoice 2) was not re-synthesize
 malformed tag inputs: the amendment re-synthesized the tag arm of the four backbones only, so 74 UtterTune clips were
 made from the uncorrected inputs. Separately, 86 of its clips dated from 2026-09-04, before the shared guard. The
 whole arm was re-synthesized on 2026-11-21 under the guard with the corrected inputs (same adapter, seeds and voices):
-every clip passed on the first take; the 86 clips of 09-04 are byte-identical to the new ones, and the 74 corrected
+Every clip passed on the first take; the 86 clips of 09-04 are byte-identical to the new ones, and the 74 corrected
 items differ, as they should. Re-measured in the same way (`results/round3/reading_obj319_round3_ut_corrected_inputs.json`):
 UtterTune 0.856 (unchanged), tag - UtterTune -0.072 [-0.120, -0.024], p = 0.003 (discordant 16 vs 39), against
 -0.072 [-0.122, -0.022], p = 0.004 (18 vs 41) before. The tag arm's verdicts are identical between the two ASR passes.
@@ -1241,5 +1238,5 @@ the release is not the code that produced this record: it was rewritten on the p
 validation items of the checkpoint rule (kana CER of the tag arm; UTMOSv2, mean of three seeds): the paper's
 checkpoint read with the new code 0.057 / 2.800; a model retrained with the new code for 2,000 steps in the round-3
 setting 0.061 / 2.769; the value recorded at the checkpoint choice (12:02 JST on 09-18) 0.058 / 2.806. The paper's
-numbers stay those of the paper's checkpoint, which is the released Irodori model; the released weights omit the
+numbers match those of the paper's checkpoint, which is the released Irodori model; the released weights omit the
 `meanflow_cond` tensors, which the model does not use.

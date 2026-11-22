@@ -42,7 +42,7 @@ button.sel::before{content:'✓ '}
 </div>
 <script>
 let ITEMS=[],STATE={},idx=0,CFG=null,RATER=null,REVIEW=false;
-// Every judgement used to be posted with `fetch(...).catch(()=>{})`: nothing retried, nothing
+// Every judgment used to be posted with `fetch(...).catch(()=>{})`: nothing retried, nothing
 // noticed, and the completion code came from localStorage alone -- so a rater could finish, be shown
 // a code, and leave the server short. It did happen, though not the way that bug would have caused
 // it: a bulk delete run against the store during the study removed everything written before
@@ -68,7 +68,7 @@ function flush(){
   });
 }
 // Push what the browser holds back to the server, in small batches so a long set does not stall the
-// page. Keys are per judgement, so a resend overwrites and never duplicates.
+// page. Keys are per judgment, so a resend overwrites and never duplicates.
 async function resync(){
   const local=loadLocal(); const ids=Object.keys(local);
   if(!ids.length) return;

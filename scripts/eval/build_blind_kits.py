@@ -139,7 +139,7 @@ KATAKANA_IDX = list(range(50))
 
 
 def cells():
-    """The five preregistered listening cells (PREREGISTRATION.md §3, 788 judgements).
+    """The five preregistered listening cells (PREREGISTRATION.md §3, 788 judgments).
 
     Stimuli are FULL SENTENCES: the ±0.5 s clip design was dropped because the aligner could not
     locate the target word in 11 % of difficult items, concentrated in the No-edit arm (a word the
@@ -291,7 +291,7 @@ def cells():
              dir=f"{DATA}/blockB2_sarashina_katakana_4spk{SUF}",
              arms=["noedit", "ours"], set="katakana", idx=list(range(50)), spks=[0, 1]),
         # No E_irodori_katakana (Irodori leak check): it would repeat D's
-        # question on a second backbone and detects nothing D does not, at 210 judgements per
+        # question on a second backbone and detects nothing D does not, at 210 judgments per
         # rater. That budget pays for the speaker replication in A and C instead.
     ]
 

@@ -5,13 +5,13 @@ Why the easy set. The paper's instrument is a same-sentence A/B preference betwe
 the edited rendition, which only measures naturalness if both renditions SAY THE SAME THING. On the
 difficult set they do not: the edit exists precisely to change the reading, and measured over the
 319-item objective set the two arms produce an identical transcript for 1-16% of items depending on
-backbone. A listener asked which sounds better would be answering which word they recognised. The
+backbone. A listener asked which sounds better would be answering which word they recognized. The
 UtterTune preprint has the same split -- its subjective MOS is reported on Test Set 1 (easy) only,
 with the automatic UTMOSv2 proxy on both -- and this follows that.
 
 Even on the easy set the equality is not free: measured here, ASR hears the target reading in both
 arms for only 56-84% of pairs depending on backbone. An earlier version of this script ADMITTED
-ONLY those pairs. That was wrong, and in our own favour: the pairs it dropped are overwhelmingly the
+ONLY those pairs. That was wrong, and in our own favor: the pairs it dropped are overwhelmingly the
 ones where the unedited arm got the reading wrong -- exactly the cases where the edit did something
 -- so the surviving set is the mildest possible intervention, where the tag asks for what the model
 would have said anyway. Naturalness measured there cannot show a cost that the mechanism only incurs
@@ -19,7 +19,7 @@ when it acts. It is also selection on a post-treatment outcome, which tilts the 
 unedited arm happened to handle well.
 
 Every complete pair therefore ships. The rater is told that pronunciation is not what is being
-judged. Whether the two arms realise the same reading is recorded per pair (`same_reading`) so the
+judged. Whether the two arms realize the same reading is recorded per pair (`same_reading`) so the
 matched subset can be reported as a secondary analysis, with the disagreement between the two
 readings of the result visible rather than resolved by us in advance.
 """
@@ -62,7 +62,7 @@ tgt = [norm(re.sub(r"[’'/]", "", re.search(r"<PHON_START>(.*?)<PHON_END>", l).
 
 def audible(path, peak=0.05):
     """A pair only exists if both clips can be heard. After the guard's retry cap some T5Gemma items
-    still come back at peak 0.006-0.04 -- inaudible at a normal setting, and loudness normalisation
+    still come back at peak 0.006-0.04 -- inaudible at a normal setting, and loudness normalization
     would only raise the noise floor. Such a pair cannot be judged, so it is excluded and the count
     is reported per backbone. This removes a backbone's WORST output, so the count matters as much
     as the preference it leaves behind."""

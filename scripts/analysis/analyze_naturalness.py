@@ -8,13 +8,13 @@ is a bootstrap over pairs and raters (the same resampling as the registered inte
 are comparable); the registered non-inferiority margin is 0.15 on the upper limit.
 
 Rules that decide what enters, all fixed before the data they act on were seen:
-  * every judgement is kept, complete sitting or not (no gate exists for this task);
+  * every judgment is kept, complete sitting or not (no gate exists for this task);
   * a rater's side balance is reported and excludes no one;
   * a second sitting by the same platform account is excluded whole (--exclude-rater), the account
     match being made from the platform's worker list, never from the answers;
-  * --until reproduces the interim run on the judgements that existed at that time;
+  * --until reproduces the interim run on the judgments that existed at that time;
   * --exclude-speeders (added 2026-09-15, after the data were seen; the primary analysis by the
-    author's decision, the all-kept run reported beside it): a sitting whose median interval between consecutive judgements
+    author's decision, the all-kept run reported beside it): a sitting whose median interval between consecutive judgments
     is shorter than the SHORTEST pair's two clips played once (4.7 s) cannot have heard both clips
     of a typical pair, and is excluded whole. The rule reads only timestamps, never the answers or
     the arm key.
@@ -79,7 +79,7 @@ def main():
     ap.add_argument("--items", default="preregistration/items/naturalness_ab_easy50.json")
     ap.add_argument("--exclude-rater", action="append", default=[],
                     help="rater id of a sitting excluded whole (second sitting of one account)")
-    ap.add_argument("--until", help="ISO timestamp; keep judgements made before it (interim run)")
+    ap.add_argument("--until", help="ISO timestamp; keep judgments made before it (interim run)")
     ap.add_argument("--exclude-speeders", action="store_true",
                     help="sensitivity: drop sittings whose median response interval is below the shortest pair's duration")
     ap.add_argument("--clips", default=None, help="directory of the kit's clips (default: $DATA/naturalness_kit_norm)")
@@ -160,10 +160,10 @@ def main():
            "speeders_flagged": speeders, "speeders_excluded": bool(a.exclude_speeders),
            "shortest_pair_s": shortest,
            "median_response_interval_s": {r: (round(m, 1) if m is not None else None) for r, m in sorted(speed.items())},
-           "judgements_dropped_by_exclusion": dict(dropped_excluded),
+           "judgments_dropped_by_exclusion": dict(dropped_excluded),
            "sittings_started": len(started), "sittings_complete_approx": complete,
-           "n_judgements": len(rows), "n_pairs": len(per_pair),
-           "judgements_per_pair": {"min": min(per_pair.values()), "median": statistics.median(per_pair.values()),
+           "n_judgments": len(rows), "n_pairs": len(per_pair),
+           "judgments_per_pair": {"min": min(per_pair.values()), "median": statistics.median(per_pair.values()),
                                    "max": max(per_pair.values())},
            "margin": MARGIN, "n_boot": N_BOOT, "seed": SEED, "by_backbone": {}, "same_reading_stratum": {},
            "rater_side_balance": {}}
@@ -191,9 +191,9 @@ def main():
 
     json.dump(rep, open(a.out, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(f"speeders flagged (median interval < {shortest:.1f}s): {speeders}  excluded={a.exclude_speeders}")
-    print(f"judgements {rep['n_judgements']}  sittings started {rep['sittings_started']}  "
+    print(f"judgments {rep['n_judgments']}  sittings started {rep['sittings_started']}  "
           f"complete~ {complete}  per pair min/med/max "
-          f"{rep['judgements_per_pair']['min']}/{rep['judgements_per_pair']['median']}/{rep['judgements_per_pair']['max']}")
+          f"{rep['judgments_per_pair']['min']}/{rep['judgments_per_pair']['median']}/{rep['judgments_per_pair']['max']}")
     print(f"{'backbone':<10}{'n':>6}{'ours':>6}{'noedit':>7}{'tie':>5}{'D':>8}{'95% CI':>20}  NI")
     for bb, s in rep["by_backbone"].items():
         ci = "[%+.3f,%+.3f]" % tuple(s["ci95"])

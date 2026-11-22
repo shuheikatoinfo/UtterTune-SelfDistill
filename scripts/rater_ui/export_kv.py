@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Pull every stored judgement out of Cloudflare KV into one JSON file.
+"""Pull every stored judgment out of Cloudflare KV into one JSON file.
 
-The site writes each judgement as it is made (functions/api/save.js) and each gate attempt
+The site writes each judgment as it is made (functions/api/save.js) and each gate attempt
 (functions/api/screen.js), so this is the authoritative record; a rater's browser copy is only
 their own safety net.
 
@@ -30,7 +30,7 @@ if tick:
     print()
 
 # `responses` stays the top-level list analyze_listening.py reads. The rest is split out because a
-# gate verdict is not a judgement and must never be counted as one.
+# gate verdict is not a judgment and must never be counted as one.
 rows = {"responses": [], "screening": [], "gate": [], "assign": [], "other": [],
         "exported_at": datetime.datetime.now().isoformat(timespec="seconds"),
         "namespace": kv.ns, "key_count": len(names)}
@@ -47,5 +47,5 @@ for k in names:
 
 os.makedirs(os.path.dirname(os.path.abspath(a.out)) or ".", exist_ok=True)
 json.dump(rows, open(a.out, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-print(f"  {len(rows['responses'])} judgements, {len(rows['screening'])} gate attempts, "
+print(f"  {len(rows['responses'])} judgments, {len(rows['screening'])} gate attempts, "
       f"{len(rows['gate'])} verdicts -> {a.out}")

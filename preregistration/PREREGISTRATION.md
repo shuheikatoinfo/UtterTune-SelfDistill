@@ -115,7 +115,7 @@ verified by the author **before any audio is presented to raters**, against the 
 **Why a target may be author-assigned without compromising the claim.** The hypothesis tested
 is conformance to the *intended* accent (H1, §4: raters are shown the intended type and never
 asked to recall the norm), not conformance to the dictionary. The target is applied
-**identically to both arms**, so an author-assigned target cannot favour the edited system: it
+**identically to both arms**, so an author-assigned target cannot favor the edited system: it
 is the No-edit baseline that benefits, because a natural default reading is also what the
 unedited model's lexical prior tends to produce. Dictionary grounding is required not for the
 edited arm but to keep the **No-edit baseline a meaningful control** — an arbitrary target
@@ -162,7 +162,7 @@ UtterTune adapter was trained on JSUT+JVS, so JVS is excluded as a reference eve
 | | **Total** | | **473** |
 
 Each word-unit is synthesized under the single voice its hash assigns (§3), so cells A–D span 27,
-31, 28 and 30 of the 42 held-out references respectively. The 473 judgements are split into **5
+31, 28 and 30 of the 42 held-out references respectively. The 473 judgments are split into **5
 blocks of 95–98** (§4) — 99–102 with the four known-answer catch trials each block carries — about
 25 min each; with the 20-item gate a first session fits in half an hour. Each stimulus is judged by
 five raters: 25 block-assignments, about 10.5 h of judging in total (JPY ~52,000 at JPY 5,000/h)
@@ -224,8 +224,8 @@ any audio was selected, no result rests on that choice.
   (One item was withdrawn from the key on 2026-09-09, leaving 19 scored at 18/19; see below.)
 
   *Why split it.* A gate can only test ability at the moment of admission; it cannot tell whether a
-  rater kept listening for the next hundred judgements. A short gate plus ongoing checks tests both,
-  and the checks cost four judgements per block rather than a second sitting.
+  rater kept listening for the next hundred judgments. A short gate plus ongoing checks tests both,
+  and the checks cost four judgments per block rather than a second sitting.
 
   *Gate (20 items).* 5 items in each of 頭高 / 中高 / 平板 / 尾高, gold balanced 10/10, in the same
   three-choice format and ＼/￣ notation as the study. 19/20 leaves one item of slack for a
@@ -290,7 +290,7 @@ any audio was selected, no result rests on that choice.
   measured there and is not duplicated here; what those duplicates cannot do is separate a careful
   rater from a consistent guesser, which is what a known answer tests. They ship as an ordinary cell with ordinary blind ids and are placed at per-block
   jittered positions, never first and never adjacent, with each repeat kept well away from the item
-  it repeats; nothing in the page or its network traffic marks a judgement as a check. A rater scoring
+  it repeats; nothing in the page or its network traffic marks a judgment as a check. A rater scoring
   **below 3/4** on these is reported and excluded from the primary analysis; the block's own
   duplicate pairs are reported as a within-rater agreement rate and are not an exclusion criterion.
 
@@ -299,12 +299,12 @@ any audio was selected, no result rests on that choice.
   edit restates a reading the model already produces — for all four backbones, 197 pairs
   (sarashina 50, irodori 50, cv2 50, t5gemma 47), one held-out voice per sentence fixed by hash.
   Which arm is presented first is fixed per pair and near-balanced across the set (97 pairs lead
-  with the edited arm, 100 with the unedited one), so a side preference cannot favour either arm in
+  with the edited arm, 100 with the unedited one), so a side preference cannot favor either arm in
   aggregate. The difficult set is not used for a human preference:
   there the edit changes the reading by design, so a listener would be reporting which word they
-  recognised.
+  recognized.
 
-  Two things are deliberately NOT done. Pairs are **not** filtered to those where both arms realise
+  Two things are deliberately NOT done. Pairs are **not** filtered to those where both arms realize
   the same reading. That filter drops overwhelmingly the pairs where the unedited arm read the word
   wrongly — the cases where the edit did something — leaving the mildest possible intervention and
   understating any cost the mechanism incurs when it acts; it is also selection on a post-treatment
@@ -315,7 +315,7 @@ any audio was selected, no result rests on that choice.
   invitation link and no contract in front of it, because the task needs no qualification -- so the
   posting caps who is *paid*, not who takes part. More sittings were completed than slots were
   posted, and every completed sitting is kept: whether a rater could still submit for payment is a
-  fact about the platform's slot counter, not about their judgements, and discarding them on that
+  fact about the platform's slot counter, not about their judgments, and discarding them on that
   basis would be selection. It also means one person could sit it twice from two browsers and go
   undetected; the rater id is minted client-side and nothing identifying is collected, by design.
   The number of sittings and the number paid are both reported, and their difference with it. Accent raters recruited on the platform are contracted
@@ -331,22 +331,22 @@ any audio was selected, no result rests on that choice.
     shown; only the A/B/no-difference preference was run. No absolute naturalness number exists.
   - **No dichotic headphone check and no anchor training were implemented.** The consent screen asks
     for headphones or earphones; nothing tests it, and no covariate for it exists.
-  - **Collection fell short of the registered size.** Registered: at least 15 independent judgements
-    per pair, about 90 workers, about 4,500 judgements. Run: 197 pairs, 28 completed sittings of 33
-    started, 1,447 judgements, **6 to 9 per pair (median 7); no pair reaches 15**. Further sittings may
+  - **Collection fell short of the registered size.** Registered: at least 15 independent judgments
+    per pair, about 90 workers, about 4,500 judgments. Run: 197 pairs, 28 completed sittings of 33
+    started, 1,447 judgments, **6 to 9 per pair (median 7); no pair reaches 15**. Further sittings may
     still complete by browser re-sync; the final counts are reported.
 
   None of these is repaired after the fact. The primary non-inferiority test is run as registered on
-  the data collected, and the per-pair judgement count is reported beside it, because at 6 to 9
-  judgements a pair the interval is wider than the registered design anticipated and a reader should
+  the data collected, and the per-pair judgment count is reported beside it, because at 6 to 9
+  judgments a pair the interval is wider than the registered design anticipated and a reader should
   see that before reading the result.
 
   *Naturalness collection resumed to the registered size (2026-09-14).* Collection had been
-  closed at 24 completed sittings without checking the registered size of 15 judgements per pair;
-  on checking, pairs had 6 to 9. By then an analysis of those 1,447 judgements had been computed
+  closed at 24 completed sittings without checking the registered size of 15 judgments per pair;
+  on checking, pairs had 6 to 9. By then an analysis of those 1,447 judgments had been computed
   and its figures entered into a paper draft. The decision to resume was taken on the shortfall
   alone: the registered size is the stopping rule, and it had not been reached. Collection resumed
-  with the aim of 15 judgements per pair, which needs about 32 more completed sittings, balanced
+  with the aim of 15 judgments per pair, which needs about 32 more completed sittings, balanced
   across the four groups by the assignment endpoint. Nothing about the task, stimuli or groups
   changes. The registered non-inferiority test is run once more on the full set, and because an
   analysis of the incomplete data exists, its figures are reported beside the final ones.
@@ -354,9 +354,9 @@ any audio was selected, no result rests on that choice.
   *Naturalness closed at the registered size; one duplicate account (2026-09-15).* The second
   posting filled its 40 slots; 52 sittings completed on the server in that window, so 12 could not
   claim a slot and are kept, as stated above. Final counts: 86 sittings started, 79 complete,
-  3,949 judgements, 17 to 22 per pair (median 21). Before any analysis of the new data, the two
+  3,949 judgments, 17 to 22 per pair (median 21). Before any analysis of the new data, the two
   postings' worker lists were intersected by account name. One account appears in both: an
-  incomplete first sitting (31 judgements, one group) and a complete second sitting (47 judgements,
+  incomplete first sitting (31 judgments, one group) and a complete second sitting (47 judgments,
   another group). The rule stated before the lists were compared -- a second sitting by the same
   account is excluded whole, whichever group it fell in -- is applied: the second sitting is
   excluded, the first kept. Without the exclusion no estimate moves by more than 0.01. The analysis
@@ -367,14 +367,14 @@ any audio was selected, no result rests on that choice.
   One rater answered one side on 41 of 47 pairs; reported, not excluded, as registered.
 
   *Training words inside the naturalness set (found 2026-09-15, after the naturalness data were
-  analysed).* The teacher scripts' evaluation-disjointness filter covered the difficult, katakana and
+  analyzed).* The teacher scripts' evaluation-disjointness filter covered the difficult, katakana and
   Joyo sets. The CosyVoice2 script also excluded the easy (naturalness) set's targets and dropped 10
   more words (473 words, 1,892 candidate takes); the Sarashina, Irodori and T5Gemma scripts did not,
   so on those backbones 10, 10 and 9 of the easy pairs edit a word that was in their training
   inventory (空, 星, 音, 心, 橋, 教室, 写真, 机, 絨毯). **Decision (author, 2026-09-15): those 29 pairs are excluded from the primary
   naturalness result**, as a training--evaluation contamination that the filter should have caught,
   by the same identity-based logic as the training-set filter itself (the rule reads the teacher
-  inventory, not the judgements). Primary: 168 pairs, 3,228 judgements -- Sarashina -0.08
+  inventory, not the judgments). Primary: 168 pairs, 3,228 judgments -- Sarashina -0.08
   [-0.24, +0.08] (margin met), Irodori +0.43, CosyVoice2 +0.33, T5Gemma +0.30; same-reading stratum
   127 pairs, -0.07 / +0.41 / +0.36 / +0.34. All-pairs figures for the record: Sarashina -0.13
   [-0.27, +0.01], Irodori +0.50, T5Gemma +0.24; on the trained-word pairs alone Sarashina -0.29,
@@ -386,7 +386,7 @@ any audio was selected, no result rests on that choice.
   The Sarashina and Irodori teacher sets kept the first take passing the degeneration guard with no
   reading check. Every stored teacher was decoded (Sarashina: semantic tokens through the frozen
   flow/vocoder under one held-out reference; Irodori: codec latents through the same DACVAE codec)
-  and scored with the ASR and canonicalisation of the metric of record
+  and scored with the ASR and canonicalization of the metric of record
   (`scripts/eval/audit_teachers_{sarashina,irodori}.py`). Target reading heard: Sarashina 4,071/4,830
   = 0.843, Irodori 4,313/4,830 = 0.893. Words misread in every take: Sarashina 10 (南瓜, 料金所, 牛車,
   目覚まし, 硝子, 脛, 茄子, 蒲団, 蓮根, 饂飩), Irodori 15 (adds キヤノン, ヤマハ, 牙医, 給油所, 絵具, 胡瓜,
@@ -402,14 +402,14 @@ any audio was selected, no result rests on that choice.
   paradigms answer the cross-architecture claim; four listening tables do not fit). The same decision
   has a substantive reason that was also on record when it was taken (the T5Gemma teacher set of
   2026-09-01, 1,068 of 1,932 takes rejected, documented 2026-09-05 alongside §0): T5Gemma's channel
-  was trained on the half of its teacher set that survived, so an accent judgement there would grade
+  was trained on the half of its teacher set that survived, so an accent judgment there would grade
   the recipe's floor on that backbone, not the channel. Rater time went to the two backbones where the
   recipe ran as designed and to the one with a recorded-data comparator. The paper now says so; the
   decision itself is unchanged.
 
   *Speeders (rule written 2026-09-15, after the data were seen).* Server receipt times match the
   client timestamps, so response intervals are real. Three sittings have a median interval between
-  consecutive judgements below 4.7 s, the two clips of the shortest pair played once (51 judgements
+  consecutive judgments below 4.7 s, the two clips of the shortest pair played once (51 judgments
   in 69 s; 51 in effectively 2 minutes around one break; 47 in 4 minutes, that rater also answering
   one side on 41 of 47). They cannot have heard both clips of a typical pair (median 11.5 s). The
   next-fastest sitting is at 8.7 s, so the threshold is set by the stimuli, not fitted to the data,
@@ -417,9 +417,9 @@ any audio was selected, no result rests on that choice.
   are excluded from the primary analysis**, by the author's decision, as the ordinary quality step
   for crowdsourced listening that this document should have fixed in advance and did not; the
   omission is recorded here, and the rule is added to the standing design for future studies. The
-  registered all-judgement figures are reported beside the primary ones: primary (speeders and the
-  duplicate sitting excluded) -0.13 [-0.27, +0.01] / +0.50 / +0.33 / +0.24 on 3,800 judgements,
-  15 to 22 per pair; all judgements kept -0.12 / +0.48 / +0.31 / +0.23 on 3,949; no estimate moves by
+  registered all-judgment figures are reported beside the primary ones: primary (speeders and the
+  duplicate sitting excluded) -0.13 [-0.27, +0.01] / +0.50 / +0.33 / +0.24 on 3,800 judgments,
+  15 to 22 per pair; all judgments kept -0.12 / +0.48 / +0.31 / +0.23 on 3,949; no estimate moves by
   more than 0.02. The interim figures under the same rule (one speeder among the first sittings):
   -0.18 [-0.34, -0.01] / +0.56 / +0.38 / +0.27 on 1,396. `analyze_naturalness.py --exclude-speeders`
   is the primary run; `data/analysis/naturalness_report.json` holds it and
@@ -435,9 +435,9 @@ any audio was selected, no result rests on that choice.
   and used to exclude no one** -- an exclusion rule written after seeing the responses would be
   selection on the outcome. The naturalness result is reported with this limitation stated.
 
-  *One rater's judgements outside their group (recorded 2026-09-09).* A rater who returned to
+  *One rater's judgments outside their group (recorded 2026-09-09).* A rater who returned to
   re-sync was handed a different group by the assignment endpoint, saw an empty progress bar, and
-  answered three pairs of it before the bug was fixed. Those three judgements are real and are
+  answered three pairs of it before the bug was fixed. Those three judgments are real and are
   kept; the per-item rater count already varies by design, and dropping them would be selection.
   One rater therefore contributes to two groups.
 
@@ -462,7 +462,7 @@ any audio was selected, no result rests on that choice.
   filter that removes 26% of one cell and 0% of two others is neither.
 
   The clips are therefore kept. A pause is a rendition of the prescribed text rather than a failure
-  to speak, and the target word is present and intact. Re-synthesising mid-study would additionally
+  to speak, and the target word is present and intact. Re-synthesizing mid-study would additionally
   leave the raters already working with different stimuli from those admitted later.
 
   What is conceded rather than repaired: a long pause can introduce an accent-phrase boundary, a
@@ -483,7 +483,7 @@ any audio was selected, no result rests on that choice.
   the choice to each rater put both kinds in the same pool.
 
   It is disclosed as a mid-collection change, and it is not applied evenly: the first rater had
-  already completed all 481 judgements before it existed, and the second was 200 in. The primary
+  already completed all 481 judgments before it existed, and the second was 200 in. The primary
   analysis keeps every rater; the per-rater median response time is reported alongside the results
   so a reader can see whether pace tracks agreement, and a registered secondary repeats the
   comparison on raters admitted after the change once there are enough of them to support it.
@@ -520,17 +520,17 @@ any audio was selected, no result rests on that choice.
   reason selection exists there: without it the base reads more than half the carriers too badly to
   yield a teacher at all. For CosyVoice2 the logs quantify only the post-selection rejection; the
   author's experience with that backbone (the UtterTune preprint) was that single takes often carry
-  artefacts, which is why best-of-three was written in, but no single-take rate was measured here. All of this acts on training data only. It is
-  not repaired, because every listening judgement was collected on the adapters as trained; it is
+  artifacts, which is why best-of-three was written in, but no single-take rate was measured here. All of this acts on training data only. It is
+  not repaired, because every listening judgment was collected on the adapters as trained; it is
   disclosed in the paper's method section, and the sentence claiming a recipe transferred without
   per-backbone adjustment is corrected. The direction of the asymmetry is noted: the two backbones
   with the more curated teachers are among those on which the channel transfers less, so the
-  asymmetry does not favour the backbone the recipe was developed on.
+  asymmetry does not favor the backbone the recipe was developed on.
 
-  *Incomplete sessions.* A rater may stop at any time; the judgements already made are kept, so
+  *Incomplete sessions.* A rater may stop at any time; the judgments already made are kept, so
   items end with unequal numbers of raters and the per-item rater count is reported. In the accent
   panel a session is additionally required to pass the catch-trial gate, and one that stopped
-  before reaching any catch trial is reported as unverifiable and its judgements excluded; the
+  before reaching any catch trial is reported as unverifiable and its judgments excluded; the
   naturalness task has no such gate (above), so its partial sessions are kept and counted. Payment
   does not follow the analysis, but it does follow what the platform can do, and an earlier version
   of this document promised a proportional payment that cannot be made. The naturalness task is
@@ -540,13 +540,13 @@ any audio was selected, no result rests on that choice.
   who reports a fault and gives their rater id instead of a code, which the posting invites. The
   accent panel is an individual contract paid in advance into escrow: a rater who cannot finish is
   paid in full, and the platform's amount-change request, which requires their agreement, is not
-  planned to be used. Partial judgements are kept in the analysis either way, so what a rater is
+  planned to be used. Partial judgments are kept in the analysis either way, so what a rater is
   paid never depends on how much of their data is usable.
 
-  *Analysis input.* Judgements are read from the study's own server-side store (the KV export), not
+  *Analysis input.* Judgments are read from the study's own server-side store (the KV export), not
   from a spreadsheet; the consent record and the gate's own answers are dropped at the door, and the
   catch trials gate sessions without ever entering the outcome. Each rater's block is taken from the
-  judgement itself rather than from a separate block file, which had drifted out of date. The whole
+  judgment itself rather than from a separate block file, which had drifted out of date. The whole
   pipeline was exercised on a simulated 25-rater study before recruitment opened, including a rater
   who fails the catch trials.
 
@@ -568,8 +568,8 @@ any audio was selected, no result rests on that choice.
   throughout scores exactly 10. The instrument was verified intact -- every shipped clip is
   byte-identical to the source its gold refers to -- so what failed is the fit between the task and
   an untrained population. This is why the gate exists, and it caught the problem before any
-  main-study judgement was bought: the same yes/no format carries the same bias, so an untrained
-  panel would have produced 473 judgements of nothing.
+  main-study judgment was bought: the same yes/no format carries the same bias, so an untrained
+  panel would have produced 473 judgments of nothing.
 
   Raters are therefore recruited from people who handle Japanese pitch accent professionally or in
   training -- narrators, announcers, voice actors, Japanese-language teachers, students of phonetics
@@ -611,7 +611,7 @@ any audio was selected, no result rests on that choice.
   *How the heiban/odaka items are built.* Not by requesting an accent. A first attempt asked the
   adapter to render the same word once as heiban and once as odaka; that cannot work, and an author
   dry run confirmed it did not — both members of all eight pairs were heard as the same type. The
-  contrast is realised on the following particle, outside the tagged span, so the control signal
+  contrast is realized on the following particle, outside the tagged span, so the control signal
   cannot express it, and every word chosen happened to be odaka in the dictionary anyway. The items
   that shipped instead have the base model read plain text, so each word comes out in its dictionary
   type (pyopenjtalk: `acc==0` heiban, `acc==mora_size` odaka); the difficulty lies entirely in what
@@ -630,11 +630,11 @@ any audio was selected, no result rests on that choice.
 
   Grading is done **on the server** — a Cloudflare Pages Function on the same origin as the study
   site — and not in the browser: the answer key is never sent to the client, so a candidate cannot
-  read it out of the page. Judgements are stored server-side as they are made, with the browser's
-  local copy kept only as the rater's own safety net and unsent judgements retried. If the grading
+  read it out of the page. Judgments are stored server-side as they are made, with the browser's
+  local copy kept only as the rater's own safety net and unsent judgments retried. If the grading
   request fails the session is allowed to continue and is recorded as `unverified`; every response
   is re-graded offline before payment and before entering the analysis, and `unverified` sessions
-  that fail that grading are excluded there. This fail-open behaviour is a payment-fairness
+  that fail that grading are excluded there. This fail-open behavior is a payment-fairness
   measure, not a loosening of the criterion.
 - **All raters judge all 787 stimuli.** Judgments are not divided among raters. This is what
   makes κ computable over the entire stimulus set rather than over an overlap subset.
@@ -685,7 +685,7 @@ any audio was selected, no result rests on that choice.
 - **No non-inferiority test is pre-registered.** An earlier draft tested locality and the
   data-free comparison for non-inferiority at Δ = 0.15. That is withdrawn, before any data, for a
   reason that is a property of the design and not of the result: every one of those comparisons
-  rests on **50 distinct words**, and at 50 words with the discordance an accent judgement
+  rests on **50 distinct words**, and at 50 words with the discordance an accent judgment
   realistically produces (20–25 %), the 95 % CI half-width on the risk difference is ≈ 0.12 — the
   same size as the margin. Simulation puts the probability of concluding non-inferiority at
   0.58–0.68 *when the two arms are genuinely identical* (`power_analysis.py`). A test that fails a
@@ -713,7 +713,7 @@ any audio was selected, no result rests on that choice.
   per test set), alongside means computed over all samples. Human judgments are never
   excluded except by the attention-check rule (§4).
 - **The analysis is code, fixed in advance.** `scripts/analysis/analyze_listening.py` implements
-  everything above and was committed before any rater judgement existed; it is dry-run on
+  everything above and was committed before any rater judgment existed; it is dry-run on
   synthetic responses generated from the real stimulus keys so that every branch is exercised.
 
 ### 5.1 Power and its limits (stated in advance)
@@ -758,7 +758,7 @@ same size as the Δ = 0.15 an earlier draft registered, and the test concludes n
 `preregistration/items/target_verification.json` records the author's pre-audio check of every
 target against the §2 source hierarchy. **Seven difficult-set items** (`difficult:024, 026, 028,
 031, 041, 042, 049`) and **one katakana item** (`katakana:006`) have no dictionary headword and
-rest on the author's own judgement or on analogy from a listed variant spelling. One further item
+rest on the author's own judgment or on analogy from a listed variant spelling. One further item
 in each set was *corrected* against the dictionary (`difficult:011`, `katakana:031`); corrections
 are applied downstream of that file, so the original and the corrected target are both auditable
 and the corrected target is the one synthesized and judged.
@@ -793,7 +793,7 @@ MOS predictor is reported as an accent measure anywhere in this study.
 ### 5.5 Naturalness evaluation (crowdsourced, CrowdWorks) — fixed here in full
 
 Evaluated **separately from the expert accent task** and by different people: the expert budget
-buys accent judgements, which no automatic measure supplies; naturalness is what naive listeners
+buys accent judgments, which no automatic measure supplies; naturalness is what naive listeners
 can judge.
 
 **The design follows the methodological critique of MOS, not the habit.** Kirkland et al.
@@ -806,13 +806,13 @@ edit does not make the audio worse* — so the primary instrument is a **same-se
 comparison**, not an absolute rating.
 
 **Primary: same-sentence A/B preference (non-degradation).**
-The listener hears the **same sentence** synthesized twice — No-edit and Ours, order randomised
+The listener hears the **same sentence** synthesized twice — No-edit and Ours, order randomized
 per trial — and answers: **A is more natural / B is more natural / no difference**. This holds
 text, speaker and content constant, so the comparison is within-item and immune to the scale-usage
 and question-framing effects that make absolute MOS unstable.
 Outcome: the proportion preferring No-edit. Non-inferiority is concluded if the upper bound of the
 95 % bootstrap CI of (P(prefer No-edit) − P(prefer Ours)) is **below 0.15**, ties split evenly.
-Analysed with a mixed-effects model (random intercepts for listener and sentence).
+Analyzed with a mixed-effects model (random intercepts for listener and sentence).
 
 **Secondary: 5-point naturalness rating, reported the way the critique asks for.**
 Retained so the work is legible to readers who expect it, and reported with everything Kirkland
@@ -837,7 +837,7 @@ other papers, and say so in the paper.**
 
 The **easy** set carries the most weight: difficult sentences are lexically odd whatever the system
 does, so an ordinary sentence is where a naturalness cost would actually show. It receives no
-accent judgement (§6) and exists for this.
+accent judgment (§6) and exists for this.
 
 **Procedure follows ITU-T P.808**, the recommendation for crowdsourced speech-quality testing,
 whose session structure is qualification → setup/environment check → training → rating:
@@ -857,7 +857,7 @@ whose session structure is qualification → setup/environment check → trainin
 
 **Collection.** Each worker completes **50 A/B trials** (≈12 min) drawn across the three sets, then
 rates a **25-stimulus subset** on the 5-point scale. Each pair receives **≥ 15 independent
-judgements**; ≈ 90 workers, ≈ 4,500 preference judgements. Served from the same static site as the
+judgments**; ≈ 90 workers, ≈ 4,500 preference judgments. Served from the same static site as the
 expert kits, with a per-worker completion code pasted back into CrowdWorks for approval.
 Compensation above the platform's standard rate for the time involved.
 
@@ -888,16 +888,16 @@ task description **before** the worker starts, so non-approval can never be a su
   the task was not performed at all).
 
 **Re-collection after exclusion.** Following P.808, excluding a rating does not simply reduce the
-count: the affected items are **re-posted until every pair again carries ≥ 15 valid judgements**,
+count: the affected items are **re-posted until every pair again carries ≥ 15 valid judgments**,
 so exclusions cannot leave some stimuli measured more thinly than others. Re-collection is
 mechanical (it targets whichever pairs fall below the threshold) and never depends on which way
-the existing judgements went; the number of re-collection rounds is reported.
+the existing judgments went; the number of re-collection rounds is reported.
 
 Numbers recruited, approved, not approved, and excluded from analysis --- with the reason for each
 --- are reported.
 
-**Pre-commitment.** No naturalness analysis absent from this list will be added, and a favourable
-accent result will not license dropping an unfavourable naturalness result.
+**Pre-commitment.** No naturalness analysis absent from this list will be added, and a favorable
+accent result will not license dropping an unfavorable naturalness result.
 
 ### 5.3 Automatic accent measure (PASQA) — secondary, full coverage
 
@@ -939,7 +939,7 @@ arm, every backbone, all four speakers — not only the 683 stimuli presented to
 - **Version.** The exact commit and weights revision used are recorded in the released code.
   The upstream repository self-describes as temporarily public, so the artifact is pinned.
 
-**Pre-commitment.** If the human primary result is unfavourable, PASQA will not be promoted to
+**Pre-commitment.** If the human primary result is unfavorable, PASQA will not be promoted to
 the primary outcome, and no PASQA-based analysis absent from this list will be added.
 
 ## 6. What is deliberately not measured
@@ -963,7 +963,7 @@ analysis where they differ.
 
 ### 7.1 Revisions made before registration (2026-09-01)
 
-This document was revised before it was tagged and before any rater judgement existed, so these
+This document was revised before it was tagged and before any rater judgment existed, so these
 are not deviations. They are recorded because each one made the design weaker on paper, and a
 reader should be able to see that they were made in that direction rather than the other.
 
@@ -979,7 +979,7 @@ reader should be able to see that they were made in that direction rather than t
    replications (H6, H7) were added as confirmatory tests. Justified by measurement, not taste:
    cross-voice discordance under the edit is 0.267 vs 0.137 unedited (§3.1).
 5. **The Irodori locality cell was removed** — it repeated the Sarashina locality question on a
-   second backbone. Total judgements per rater: 788 → 787.
+   second backbone. Total judgments per rater: 788 → 787.
 6. **Attention checks are described as what the kit implements**, duplicate-consistency pairs
    rather than known-answer items (§4).
 7. **The PronSteering comparison (S1) is dropped**; no stimuli for it exist in the kit.
@@ -989,7 +989,7 @@ filtered held-out references, one assigned per word-unit by hash before any audi
 (§3, §3.1). Consequences, all recorded before any listening data exists:
 * **H6 and H7 withdrawn.** They tested replication on a second voice; with 27–31 voices per cell
   that property is inside H1/H2. Family A is now three tests, so Holm's strictest threshold moves
-  from 0.0100 to 0.0167 — a change that FAVOURS the remaining tests, disclosed for that reason.
+  from 0.0100 to 0.0167 — a change that FAVORS the remaining tests, disclosed for that reason.
 * Stimuli fall 787 → 472, blocks 10 → 6, rater cost by roughly 40%. No item and no arm was
   dropped; only the duplicated second-voice renditions are gone.
 * The design no longer rests on which voices were picked. That mattered: on the 319-item objective
@@ -1013,22 +1013,22 @@ assumed either way. Changes:
 * **Power:** if a reading-only input already lands on heiban, up to 34 items are ties and the primary
   H5 has less power than n=50 suggests; the paired CI is reported and interpreted as such. Whether
   that happens is measured (the stratified secondary), not assumed. If the CI is wide, the remedy is
-  more items chosen by a criterion that does not look at accent, not a favourable subset.
+  more items chosen by a criterion that does not look at accent, not a favorable subset.
 * **Cell C voices that collapse the edit** (3 of the 42 references drove Irodori's objective gain to
   or below zero on difficult-50): no exclusion. Every voice the hash assigned is kept and results are
   reported per voice; excluding them would select the reference on the outcome.
 
 **Dry run 2026-09-04 (procedure only; no reported number).** The author completed all 473
-judgements of the 42-voice kit under a separate rater id and output directory
+judgments of the 42-voice kit under a separate rater id and output directory
 (`rater_responses_DRYRUN/`, never merged with rater data). Outcomes used, and the only ones used:
-* **Pace:** median 4.0 s and p90 9.0 s per judgement (expert, task known). The 15 s/judgement
+* **Pace:** median 4.0 s and p90 9.0 s per judgment (expert, task known). The 15 s/judgment
   assumption behind 5 blocks × 95 is therefore conservative by a wide margin; the block design is
   kept unchanged, with the headroom noted.
 * **Attention gate calibration:** 23/23 duplicate pairs answered identically (100%, both exact and
   on the binary outcome). The registered 80% threshold does not exclude an attentive listener.
 * **Fourth option:** 9 「判断できない」 answers were recorded; the UI sends them as `x`, which the
   analysis now maps to verdict 4 (it previously dropped them).
-No arm-level contrast was computed from these judgements, before or after recruitment.
+No arm-level contrast was computed from these judgments, before or after recruitment.
 
 ## 8. Timestamp
 
