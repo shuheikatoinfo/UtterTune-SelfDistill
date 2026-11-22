@@ -1,5 +1,8 @@
 # UtterTune-SelfDistill
 
+[![arXiv](https://img.shields.io/badge/arXiv-2609.17234-b31b1b.svg)](https://arxiv.org/abs/2609.17234)
+[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97-HuggingFace-yellow)](https://huggingface.co/collections/shuheikatoinfo/uttertune-selfdistill-6b02b2bd022d76813ab04b73)
+
 Code, pre-registration, and results for
 
 > Shuhei Kato. *Self-Distilled Pronunciation and Accent Control for Neural Text-to-Speech.* arXiv:2609.17234.
